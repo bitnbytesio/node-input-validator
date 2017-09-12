@@ -1,0 +1,31 @@
+{
+  "name": "node-input-validator",
+  "version": "1.0.0",
+  "description": "validation library",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "koa",
+    "express",
+    "middleware",
+    "validation",
+    "validator",
+    "koa-validation",
+    "koa-validator",
+    "express-validation",
+    "express-validator",
+    "koa validation",
+    "express validation",
+    "file validation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "validator": "^8.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.3"
+  }
+}
