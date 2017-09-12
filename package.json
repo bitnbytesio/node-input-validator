@@ -20,7 +20,11 @@
     "express validation",
     "file validation"
   ],
-  "author": "",
+  "repository": "artisangang/node-input-validator",
+  "author": {
+    "name": "Harcharan Singh",
+    "email": "artisangang@gmail.com"
+  },
   "license": "ISC",
   "dependencies": {
     "validator": "^8.2.0"
