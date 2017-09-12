@@ -2,7 +2,11 @@
 
 const Validator = require('./lib/validator');
 
-module.exports = function() {
+module.exports = Validator;
+
+
+module.exports.koa = () => {
+
 	return async (ctx, next) => {
   
 
@@ -22,4 +26,5 @@ module.exports = function() {
 
 		await next();
 	};
+
 };
