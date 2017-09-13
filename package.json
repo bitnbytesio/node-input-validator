@@ -1,11 +1,12 @@
 {
   "name": "node-input-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "validation library",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
+  "engines" : { "node" : ">=7" },
   "keywords": [
     "koa",
     "express",
