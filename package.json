@@ -27,9 +27,12 @@
   },
   "license": "ISC",
   "dependencies": {
+    "mime-types": "^2.1.17",
+    "moment": "^2.18.1",
     "validator": "^8.2.0"
   },
   "devDependencies": {
-    "mocha": "^3.5.3"
+    "mocha": "^3.5.3",
+    "should": "^13.0.1"
   }
 }
