@@ -15,7 +15,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {name:'Harcharan'}, {name:'alpha'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, true);
 	      	
@@ -27,7 +27,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {name:'123456'}, {name:'alpha'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, false);
 
@@ -42,7 +42,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {name:'ASD123456'}, {name:'alpha'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, false);
 
@@ -57,7 +57,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {name:'ASD-QRT'}, {name:'alpha'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, false);
 
@@ -77,7 +77,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {name:'HarcharanSingh'}, {name:'alphaDash'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, true);
 	      	
@@ -89,7 +89,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {name:'Harcharan_Singh'}, {name:'alphaDash'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, true);
 	      	
@@ -101,7 +101,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {name:'Harcharan-Singh'}, {name:'alphaDash'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, true);
 	      	
@@ -113,7 +113,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {name:'Harcharan Singh'}, {name:'alphaDash'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, false);
 
@@ -133,7 +133,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {uuid:'QWERTY'}, {uuid:'alphaNumeric'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, true);
 	      	
@@ -145,7 +145,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {uuid:'123456'}, {uuid:'alphaNumeric'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, true);
 	      	
@@ -158,7 +158,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {uuid:'QWERTY123'}, {uuid:'alphaNumeric'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, true);
 	      	
@@ -170,7 +170,7 @@ describe('Pattern', function() {
 
 	    	let v = new Validator(r, {uuid:'QWERTY-13'}, {uuid:'alphaNumeric'});
 
-	    	let matched = await v.validate();
+	    	let matched = await v.check();
 
 	    	assert.equal(matched, false);
 
