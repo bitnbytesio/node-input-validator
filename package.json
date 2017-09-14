@@ -15,13 +15,16 @@
     "middleware",
     "validation",
     "validator",
+    "node-validator",
     "koa-validation",
     "koa-validator",
     "express-validation",
     "express-validator",
     "koa validation",
     "express validation",
-    "file validation"
+    "file validation",
+    "input validation",
+    "form validation"
   ],
   "repository": "artisangang/node-input-validator",
   "author": {
