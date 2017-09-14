@@ -30,6 +30,9 @@ describe('Dates', function() {
 	    	let matched = await v.check();	    	
 
 	    	assert.equal(matched, false);
+
+	    	should(v.errors).have.property('dob');
+	    	should(v.errors.dob).have.property('message');
 	      	
 
 	    });	  

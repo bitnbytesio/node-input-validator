@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha"
   },
-  "engines" : { "node" : ">=7" },
+  "engines": {
+    "node": ">=7"
+  },
   "keywords": [
     "koa",
     "express",
@@ -28,8 +30,10 @@
   },
   "license": "ISC",
   "dependencies": {
+    "file-type": "^6.1.0",
     "mime-types": "^2.1.17",
     "moment": "^2.18.1",
+    "read-chunk": "^2.1.0",
     "validator": "^8.2.0"
   },
   "devDependencies": {
