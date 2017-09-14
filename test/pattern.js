@@ -182,5 +182,33 @@ describe('Pattern', function() {
 	  
 	});
 
+	describe('email', function() {
+
+		it('should return true', async () => {
+
+
+	    	let v = new Validator(r, {email:'artisangang@gmail.com'}, {email:'required|email'});
+
+	    	let matched = await v.check();
+
+	    	assert.equal(matched, true);
+	      	
+
+	    });
+
+	    it('should return false', async () => {
+
+
+	    	let v = new Validator(r, {email:'artisangang.gmail.com'}, {email:'required|email'});
+
+	    	let matched = await v.check();
+
+	    	assert.equal(matched, false);
+	      	
+
+	    });
+
+	});
+
 
 });

@@ -8,6 +8,37 @@ let r = {};
 
 describe('Custom Rules', function() {
 
+	describe('regex', function() {
+
+	    it('should return true', async () => {
+
+
+
+	    	let v = new Validator(r, 
+	    		{number:'abc'}, {number: "regex:[abc]"});
+	    	
+	    	let matched = await v.check();
+
+	    	assert.equal(matched, true);
+	      	
+
+	    });
+
+	     it('should return false', async () => {
+
+
+
+	    	let v = new Validator(r, 
+	    		{number:'xyz'}, {number: "regex:[abc]"});
+	    	
+	    	let matched = await v.check();
+
+	    	assert.equal(matched, false);
+	      	
+
+	    });
+	});
+
 	describe('custom', function() {
 
 	    it('should return true', async () => {

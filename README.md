@@ -26,7 +26,7 @@ validator.check().then(function (matched) {
 
 **Extending**
 
-```
+```javascript
 validator.rules.validateCustom = async (field, value, message)  => {
 	    	
     if( value === 'yes' || value === 'on' ){
@@ -66,6 +66,8 @@ if (!isValid) {
 ```
 
 **Rules**
+
+You can check test cases for rules.
 
 required
 requiredIf:age,16
