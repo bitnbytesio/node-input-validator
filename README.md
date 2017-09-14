@@ -3,6 +3,12 @@ Validation Library
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 
+[travis-image]: https://api.travis-ci.org/artisangang/node-input-validator.svg?branch=master
+[travis-url]: https://travis-ci.org/artisangang/node-input-validator
+
+[npm-image]: https://img.shields.io/npm/v/node-input-validator.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/node-input-validator
+
 
 Validation library for node.js
 
