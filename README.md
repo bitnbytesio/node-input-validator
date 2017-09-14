@@ -12,44 +12,61 @@ Node Input Validator is a validation library for node.js. You can also extend li
 
 **Usage**
 ```javascript
-	const v = require('node-input-validator');
+const v = require('node-input-validator');
 
-	let r = {};
+let r = {};
 
-	let validator = new v(r, {name:''}, {name:'required|minLength:5'});
+let validator = new v(r, {name:''}, {name:'required|minLength:5'});
 
-	validator.check().then(function (matched) {
-		console.log(matched);
-		console.log(validator.errors);
-	});
+validator.check().then(function (matched) {
+	console.log(matched);
+	console.log(validator.errors);
+});
 ```
+
+**Extending**
+
+```
+validator.rules.validateCustom = async (field, value, message)  => {
+	    	
+    if( value === 'yes' || value === 'on' ){
+        return true;
+    }else{
+        this.validator.addError(field, 'custom', message || 'The value of the field needs to be  yes or no');
+        return false;
+    }
+
+};
+```
+
 **For Koa2**
 Attach koa middleware
 ```javascript
-	const validator = require('node-input-validator');
-	app.use(validator.koa());
+const validator = require('node-input-validator');
+app.use(validator.koa());
 ```
 Controller Example
 ```javascript
 
-	let v = await ctx.validate(ctx.request.body, {
-			name:'required|max:50', 
-			username:'required|max:15',
-			email:'required|email',
-			password:'required'
-		});
+let v = await ctx.validate(ctx.request.body, {
+		name:'required|max:50', 
+		username:'required|max:15',
+		email:'required|email',
+		password:'required'
+	});
 
-	
-	let isValid = await v.check();
 
-	if (!isValid) {
-		// return validation errors
-		ctx.body = v.errors;
-	}
+let isValid = await v.check();
+
+if (!isValid) {
+	// return validation errors
+	ctx.body = v.errors;
+}
 
 ```
 
 **Rules**
+
 required
 requiredIf:age,16
 requiredNotIf:age,16
