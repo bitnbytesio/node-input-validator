@@ -16,7 +16,7 @@ describe('Custom Rules', function() {
 	    	let v = new Validator(r, 
 	    		{remember:'yes'}, {remember: 'custom'});
 
-	    	v.rules.custom = async (field, value, message)  => {
+	    	v.rules.validateCustom = async (field, value, message)  => {
 	    	
 		        if( value === 'yes' || value === 'on' ){
 		            return true;
@@ -40,7 +40,7 @@ describe('Custom Rules', function() {
 	    	let v = new Validator(r, 
 	    		{remember:'1'}, {remember: 'custom'});
 
-	    	v.rules.custom = async (field, value, message)  => {
+	    	v.rules.validateCustom = async (field, value, message)  => {
 	    	
 		        if( value === 'yes' || value === 'on' ){
 		            return true;

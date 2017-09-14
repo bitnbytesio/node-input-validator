@@ -16,7 +16,6 @@ describe('Dates', function() {
 	    	let v = new Validator(r, {dob:'1992-02-28'}, {dob:'required|dateFormat:YYYY-MM-DD'});
 
 	    	let matched = await v.check();
-
 	    	assert.equal(matched, true);
 	      	
 
@@ -28,7 +27,7 @@ describe('Dates', function() {
 
 	    	let v = new Validator(r, {dob:'1992-28-02'}, {dob:'required|dateFormat:YYYY-MM-DD'});
 
-	    	let matched = await v.check();
+	    	let matched = await v.check();	    	
 
 	    	assert.equal(matched, false);
 	      	
@@ -36,6 +35,7 @@ describe('Dates', function() {
 	    });	  
 	  
 	});
+
 
 	describe('before', function() {
 
@@ -45,7 +45,6 @@ describe('Dates', function() {
 	    	let v = new Validator(r, {dob:'1990-02-28'}, {dob:'required|dateFormat:YYYY-MM-DD|before:1991-01-01'});
 
 	    	let matched = await v.check();
-
 	    	assert.equal(matched, true);
 	      	
 

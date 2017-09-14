@@ -77,7 +77,7 @@ describe('requiredRules', function() {
 	    it('should return true', async () => {
 
 
-	    	let v = new Validator(r, {name:'Harcharan Singh', age:16}, {sex:'requiredNotIf:age,16'});
+	    	let v = new Validator(r, {name:'Harcharan Singh', age:'16'}, {sex:'requiredNotIf:age,16'});
 
 	    	let matched = await v.check();
 
@@ -89,7 +89,7 @@ describe('requiredRules', function() {
 	    it('should return false', async () => {
 
 
-	    	let v = new Validator(r, {name:'Harcharan Singh', age:15}, {sex:'requiredNotIf:age,16'});
+	    	let v = new Validator(r, {name:'Harcharan Singh', age:'15'}, {sex:'requiredNotIf:age,16'});
 
 	    	let matched = await v.check();
 
