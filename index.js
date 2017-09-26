@@ -4,6 +4,14 @@ const Validator = require('./lib/validator');
 
 module.exports = Validator;
 
+module.exports.Rules = Validator.Rules;
+
+module.exports.extend = (rule, func) => {
+
+	let name = 'validate' + rule.charAt(0).toUpperCase() + rule.slice(1);
+	Validator.Rules.prototype[name] = func;
+
+};
 
 module.exports.koa = () => {
 
