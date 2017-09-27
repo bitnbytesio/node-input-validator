@@ -91,8 +91,8 @@ Controller Example
 ```javascript
 
 let v = await ctx.validate(ctx.request.body, {
-		name:'required|max:50', 
-		username:'required|max:15',
+		name:'required|maxLength:50', 
+		username:'required|maxLength:15',
 		email:'required|email',
 		password:'required'
 	});
