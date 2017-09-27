@@ -20,8 +20,6 @@ Validation Library
 
 Validation library for node.js
 
-**Note: Package is under development**
-
 
 Node Input Validator is a validation library for node.js. You can also extend library to add custom rules.
 
@@ -113,34 +111,96 @@ if (!isValid) {
 
 You can check test cases for rules.
 
-required
-requiredIf:age,16
-requiredNotIf:age,16
-requiredWith:age
-requiredWithout:age
+required  
+requiredIf:age,16  
+requiredNotIf:age,16  
+requiredWith:age  
+requiredWithout:age  
 
-accepted
-alpha
-alphaDash
-alphaNumeric
-between:1,9
-boolean
-contains
-digits
-digitsBetween
-email
-in
-Integer
-ip
-array
-json
-max
-min
-maxLength
-minLength
-notIn
-numeric
-regex
-same
-string
-url
+**accepted**  
+The field under validation must be yes, on, 1, or true.
+
+**alpha**  
+he field under validation must be entirely alphabetic characters.
+
+**alphaDash**  
+The field under validation may have alpha-numeric characters, as well as dashes and underscores.
+
+**alphaNumeric**  
+The field under validation only contains letters and numbers.
+
+**between:1,9**  
+The field under validation must be between provided values.
+
+**boolean**  
+The field under validation must be 0/1, or true/false.
+
+**contains**  
+The field under validation must contains provided seeds.
+
+**dateFormat**  
+The field under validation must match the given date format.
+
+**digits**  
+The field under validation only contains digits.
+
+
+**digitsBetween**  
+The field under validation must be between provided digit values.
+
+**email**  
+The field under validation must be formatted as an e-mail address.
+
+**Equals**  
+The field under validation must be equal to given value.
+
+**in**  
+The field under validation must exist in the given list of values.
+
+**Integer**  
+The field under validation must be an integer.
+
+**ip**  
+The field under validation must be an IP address.
+
+**array**  
+The field under validation must be an array.
+
+**json**   
+The field under validation must be a valid JSON string.
+
+**max**  
+The field under validation must be less than givern value.
+
+**mime**  
+The file under validation must have a MIME type corresponding to one of the listed extensions.
+
+**min**   
+The field under validation must be greater than givern value.
+
+**maxLength**   
+The length of field under validation should be less than givern value.
+
+**minLength**  
+The length of field under validation  should be greater than givern value.
+
+**notIn**  
+The field under validation must not exist in the given list of values.
+
+**numeric**  
+The field under validation must be numeric.
+
+**regex**  
+The field under validation must match the given regular expression.
+
+**same**  
+The given field must match the field under validation.
+
+**size**  
+The field under validation must have a size matching the given value.
+
+**string**  
+The field under validation must be string.
+
+**url**  
+The field under validation must be a valid URL.

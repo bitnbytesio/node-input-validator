@@ -6,8 +6,8 @@ const Validator = require('../index');
 
 Validator.extend('even', async function (field, value, message) {
 
-	if( (parseInt(value) % 2) == 0 ){
-		return true;
+    if ((parseInt(value) % 2) == 0) {
+        return true;
     } else {
         this.validator.addError(field, 'even', message || 'The value of the field must be even number');
         return false;
@@ -17,8 +17,8 @@ Validator.extend('even', async function (field, value, message) {
 
 Validator.extend('status', async function (field, value, args, message) {
 
-	if( args.indexOf(value) >= 0 ){
-		return true;
+    if (args.indexOf(value) >= 0) {
+        return true;
     } else {
         this.validator.addError(field, 'status', message || 'Invalid status');
         return false;
@@ -28,150 +28,148 @@ Validator.extend('status', async function (field, value, args, message) {
 
 let r = {};
 
-describe('Custom Rules', function() {
+describe('Custom Rules', function () {
 
-	describe('Using custom rule even', function() {
+    describe('Using custom rule even', function () {
 
-	    it('should return true', async () => {
-
-
-	    	let v = new Validator(r, 
-	    		{number:'4'}, {number: "even|required"});
-	    	
-	    	let matched = await v.check();
-
-	    	assert.equal(matched, true);
-	      	
-
-	    });
-
-	    it('should return false', async () => {
+        it('should return true', async () => {
 
 
-	    	let v = new Validator(r, 
-	    		{number:'9'}, {number: "even|required"});
-	    	
-	    	let matched = await v.check();
+            let v = new Validator(r,
+                {number: '4'}, {number: "even|required"});
 
-	    	assert.equal(matched, false);
-	      	
+            let matched = await v.check();
 
-	    });
-	    
-	});
-
-	describe('Using custom rule status', function() {
-
-	    it('should return true', async () => {
+            assert.equal(matched, true);
 
 
-	    	let v = new Validator(r, 
-	    		{status:'draft'}, {status: "status:draft,published|required"});
-	    	
-	    	let matched = await v.check();
+        });
 
-	    	assert.equal(matched, true);
-	      	
-
-	    });
-
-	    it('should return false', async () => {
+        it('should return false', async () => {
 
 
-	    	let v = new Validator(r, 
-	    		{status:'completed'}, {status: "status:draft,published|required"});
-	    	
-	    	let matched = await v.check();
+            let v = new Validator(r,
+                {number: '9'}, {number: "even|required"});
 
-	    	assert.equal(matched, false);
-	      	
+            let matched = await v.check();
 
-	    });
-	    
-	});
+            assert.equal(matched, false);
 
 
-	describe('regex', function() {
+        });
 
-	    it('should return true', async () => {
+    });
 
+    describe('Using custom rule status', function () {
 
-
-	    	let v = new Validator(r, 
-	    		{number:'abc'}, {number: "regex:[abc]"});
-	    	
-	    	let matched = await v.check();
-
-	    	assert.equal(matched, true);
-	      	
-
-	    });
-
-	     it('should return false', async () => {
+        it('should return true', async () => {
 
 
+            let v = new Validator(r,
+                {status: 'draft'}, {status: "status:draft,published|required"});
 
-	    	let v = new Validator(r, 
-	    		{number:'xyz'}, {number: "regex:[abc]"});
-	    	
-	    	let matched = await v.check();
+            let matched = await v.check();
 
-	    	assert.equal(matched, false);
-	      	
-
-	    });
-	});
-
-	describe('custom', function() {
-
-	    it('should return true', async () => {
+            assert.equal(matched, true);
 
 
-	    	let v = new Validator(r, 
-	    		{remember:'yes'}, {remember: 'custom'});
+        });
 
-	    	v.rules.validateCustom = async (field, value, message)  => {
-	    	
-		        if( value === 'yes' || value === 'on' ){
-		            return true;
-		        }else{
-		            this.validator.addError(field, 'custom', message || 'The value of the field needs to be  yes or no');
-		            return false;
-		        }
-    
-	    	};
-
-	    	let matched = await v.check();
-
-	    	assert.equal(matched, true);
-	      	
-
-	    });
-	     
-	     it('should return false', async () => {
+        it('should return false', async () => {
 
 
-	    	let v = new Validator(r, 
-	    		{remember:'1'}, {remember: 'custom'});
+            let v = new Validator(r,
+                {status: 'completed'}, {status: "status:draft,published|required"});
 
-	    	v.rules.validateCustom = async (field, value, message)  => {
-	    	
-		        if( value === 'yes' || value === 'on' ){
-		            return true;
-		        }else{
-		            v.addError(field, 'custom', message || 'The value of the field needs to be  yes or no');
-		            return false;
-		        }
-    
-	    	};
+            let matched = await v.check();
 
-	    	let matched = await v.check();
+            assert.equal(matched, false);
 
-	    	assert.equal(matched, false);
-	      	
 
-	    });
-	     
+        });
 
-	});
+    });
+
+
+    describe('regex', function () {
+
+        it('should return true', async () => {
+
+
+            let v = new Validator(r,
+                {number: 'abc'}, {number: "regex:[abc]"});
+
+            let matched = await v.check();
+
+            assert.equal(matched, true);
+
+
+        });
+
+        it('should return false', async () => {
+
+
+            let v = new Validator(r,
+                {number: 'xyz'}, {number: "regex:[abc]"});
+
+            let matched = await v.check();
+
+            assert.equal(matched, false);
+
+
+        });
+    });
+
+    describe('custom', function () {
+
+        it('should return true', async () => {
+
+
+            let v = new Validator(r,
+                {remember: 'yes'}, {remember: 'custom'});
+
+            v.rules.validateCustom = async (field, value, message) => {
+
+                if (value === 'yes' || value === 'on') {
+                    return true;
+                } else {
+                    this.validator.addError(field, 'custom', message || 'The value of the field needs to be  yes or no');
+                    return false;
+                }
+
+            };
+
+            let matched = await v.check();
+
+            assert.equal(matched, true);
+
+
+        });
+
+        it('should return false', async () => {
+
+
+            let v = new Validator(r,
+                {remember: '1'}, {remember: 'custom'});
+
+            v.rules.validateCustom = async (field, value, message) => {
+
+                if (value === 'yes' || value === 'on') {
+                    return true;
+                } else {
+                    v.addError(field, 'custom', message || 'The value of the field needs to be  yes or no');
+                    return false;
+                }
+
+            };
+
+            let matched = await v.check();
+
+            assert.equal(matched, false);
+
+
+        });
+
+
+    });
 });

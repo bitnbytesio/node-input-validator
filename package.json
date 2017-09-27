@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "validation library",
   "main": "index.js",
   "scripts": {
@@ -41,6 +41,6 @@
   },
   "devDependencies": {
     "mocha": "^3.5.3",
-    "should": "^13.0.1"
+    "should": "^13.1.0"
   }
 }

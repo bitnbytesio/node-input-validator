@@ -8,31 +8,31 @@ const fs = require('fs');
 
 let r = {};
 
-describe('File Rules', function() {
+describe('File Rules', function () {
 
-	describe('size', function() {
+    describe('size', function () {
 
-	    it('should return true', async () => {
+        it('should return true', async () => {
 
 
-	    	let v = new Validator(r, 
-	    		{file:fs.readFileSync('./test/files/file-small.png')}, {file: 'size:4kb'});
-	    	
+            let v = new Validator(r,
+                {file: fs.readFileSync('./test/files/file-small.png')}, {file: 'size:4kb'});
 
-	    	let matched = await v.check();
 
-	    	console.log(v.errors);
+            let matched = await v.check();
 
-	    	assert.equal(matched, true);
-	      	
+            console.log(v.errors);
 
-	    });
-	     
-	     it('should return false', async () => {
-	      	
+            assert.equal(matched, true);
 
-	    });
-	     
 
-	});
+        });
+
+        it('should return false', async () => {
+
+
+        });
+
+
+    });
 });
