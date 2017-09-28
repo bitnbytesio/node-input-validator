@@ -129,6 +129,15 @@ The field under validation may have alpha-numeric characters, as well as dashes 
 **alphaNumeric**  
 The field under validation only contains letters and numbers.
 
+**array**  
+The field under validation must be an array.
+
+**ascii**  
+The field under validation only contains ascii characters.
+
+**base64**  
+The field under validation must be valid base64 ecoded string.
+
 **between:1,9**  
 The field under validation must be between provided values.
 
@@ -138,12 +147,14 @@ The field under validation must be 0/1, or true/false.
 **contains**  
 The field under validation must contains provided seeds.
 
+**creditCard**  
+The field under validation must be valid creadit card string.
+
 **dateFormat**  
 The field under validation must match the given date format.
 
 **digits**  
 The field under validation only contains digits.
-
 
 **digitsBetween**  
 The field under validation must be between provided digit values.
@@ -163,11 +174,12 @@ The field under validation must be an integer.
 **ip**  
 The field under validation must be an IP address.
 
-**array**  
-The field under validation must be an array.
-
 **json**   
 The field under validation must be a valid JSON string.
+
+**latLong**   
+The field under validation must be a valid latitude-longitude coordinate.
+
 
 **max**  
 The field under validation must be less than givern value.
