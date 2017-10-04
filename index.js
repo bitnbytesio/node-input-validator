@@ -1,6 +1,7 @@
 'use strict';
 
-const Validator = require('./lib/validator');
+const Validator = require('./lib/validator'),
+      messages = require('./lib/messages');
 
 module.exports = Validator;
 
@@ -16,6 +17,18 @@ module.exports.extend = (rule, func) => {
     let name = 'validate' + rule.charAt(0).toUpperCase() + rule.slice(1);
     Validator.Rules.prototype[name] = func;
 
+};
+
+/**
+ * extend/upgrade messages for rules
+ * @param custom_messages
+ */
+module.exports.messages = (custom_messages) => {
+
+    let keys = Object.keys(custom_messages);
+    for (let i in keys) {
+        messages[ keys[i] ] = custom_messages[ keys[i] ];
+    }
 };
 
 /**

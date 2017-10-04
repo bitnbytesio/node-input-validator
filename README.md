@@ -2,6 +2,7 @@ Validation Library
 ==================
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
+[![Coverage Status](https://coveralls.io/repos/github/artisangang/node-input-validator/badge.svg?branch=master)](https://coveralls.io/github/artisangang/node-input-validator?branch=master)
 [![David deps][david-image]][david-url]
 [![node version][node-image]][node-url]
 
@@ -66,6 +67,13 @@ Validator.extend('status', async function (field, value, args, message) {
 
 });
 
+```
+
+**Extending/Overiding messages**
+```javascript
+Validator.messages({
+    required: 'The :attribute field must not be empty.',
+});
 ```
 
 ```javascript
