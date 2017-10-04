@@ -60,7 +60,7 @@ describe('requiredRules', function () {
             let v = new Validator(r, {name: 'Harcharan Singh', age: 16}, {sex: 'requiredIf:age,16'});
 
             let matched = await v.check();
-
+            console.log(v.errors);
             assert.equal(matched, false);
 
             should(v.errors).be.an.instanceOf(Object);
@@ -104,43 +104,45 @@ describe('requiredRules', function () {
     });
 
 
-    describe('requiredNotIf', function () {
+    describe('requiredWith', function () {
 
         it('should return true', async () => {
 
 
-            let v = new Validator(r, {name: 'Harcharan Singh', sex: 'male', age: 16}, {sex: 'requiredWith:age'});
+            let v = new Validator(r, {name: 'Harcharan Singh', sex: 'male',  email: '', ip:''}, {email: 'email', ip: 'requiredWith:email|ip'});
 
             let matched = await v.check();
 
             assert.equal(matched, true);
-
 
         });
 
         it('should return false', async () => {
 
 
-            let v = new Validator(r, {name: 'Harcharan Singh', age: 15}, {sex: 'requiredWith:age'});
+            let v = new Validator(r, {name: 'Harcharan Singh', sex: 'male',  email: 'artisangang@gmail.com', ip:''}, {email: 'email', ip: 'requiredWith:email|ip'});
+
 
             let matched = await v.check();
 
             assert.equal(matched, false);
 
             should(v.errors).be.an.instanceOf(Object);
-            should(v.errors).have.property('sex');
+            should(v.errors).have.property('ip');
 
 
         });
 
     });
 
+
+
     describe('requiredWithout', function () {
 
         it('should return true', async () => {
 
 
-            let v = new Validator(r, {name: 'Harcharan Singh', sex: 'male'}, {sex: 'requiredWithout:age'});
+            let v = new Validator(r, {name: 'Harcharan Singh', sex: 'male', age:'23'}, {sex: 'requiredWithout:age'});
 
             let matched = await v.check();
 
