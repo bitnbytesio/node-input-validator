@@ -60,7 +60,7 @@ describe('requiredRules', function () {
             let v = new Validator(r, {name: 'Harcharan Singh', age: 16}, {sex: 'requiredIf:age,16'});
 
             let matched = await v.check();
-            console.log(v.errors);
+
             assert.equal(matched, false);
 
             should(v.errors).be.an.instanceOf(Object);
