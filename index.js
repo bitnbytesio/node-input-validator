@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * node-input-validator
+ * https://github.com/artisangang/node-input-validator
+ */
+
 const Validator = require('./lib/validator'),
       messages = require('./lib/messages');
 
