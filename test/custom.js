@@ -4,23 +4,28 @@ const should = require('should');
 
 const Validator = require('../index');
 
-Validator.extend('even', async function (field, value, message) {
+Validator.messages({
+    even: 'The value of the field must be even number.',
+    status: 'Invalid status'
+});
+
+Validator.extend('even', async function (field, value) {
 
     if ((parseInt(value) % 2) == 0) {
         return true;
     } else {
-        this.validator.addError(field, 'even', message || 'The value of the field must be even number');
+        this.validator.addError(field, 'even');
         return false;
     }
 
 });
 
-Validator.extend('status', async function (field, value, args, message) {
+Validator.extend('status', async function (field, value, args) {
 
     if (args.indexOf(value) >= 0) {
         return true;
     } else {
-        this.validator.addError(field, 'status', message || 'Invalid status');
+        this.validator.addError(field, 'status');
         return false;
     }
 
@@ -54,6 +59,9 @@ describe('Custom Rules', function () {
             let matched = await v.check();
 
             assert.equal(matched, false);
+
+            v.errors.should.have.property('number').and.be.a.Object();
+            v.errors.number.should.have.property('message', 'The value of the field must be even number.');
 
 
         });
@@ -133,7 +141,7 @@ describe('Custom Rules', function () {
                 if (value === 'yes' || value === 'on') {
                     return true;
                 } else {
-                    this.validator.addError(field, 'custom', message || 'The value of the field needs to be  yes or no');
+                    this.validator.addError(field, 'custom');
                     return false;
                 }
 
@@ -152,12 +160,12 @@ describe('Custom Rules', function () {
             let v = new Validator(r,
                 {remember: '1'}, {remember: 'custom'});
 
-            v.rules.validateCustom = async (field, value, message) => {
+            v.rules.validateCustom = async (field, value) => {
 
                 if (value === 'yes' || value === 'on') {
                     return true;
                 } else {
-                    v.addError(field, 'custom', message || 'The value of the field needs to be  yes or no');
+                    v.addError(field, 'custom');
                     return false;
                 }
 
@@ -166,6 +174,8 @@ describe('Custom Rules', function () {
             let matched = await v.check();
 
             assert.equal(matched, false);
+
+
 
 
         });

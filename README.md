@@ -45,12 +45,18 @@ validator.check().then(function (matched) {
 **Extending**
 
 ```javascript
+
+Validator.messages({
+    even: 'The value of the field must be even number.',
+    status: 'Invalid status'
+});
+
 Validator.extend('even', async function (field, value, message) {
 
 	if( (parseInt(value) % 2) == 0 ){
 		return true;
     } else {
-        this.validator.addError(field, 'even', message || 'The value of the field must be even number');
+        this.validator.addError(field, 'even');
         return false;
     }
 
@@ -61,7 +67,7 @@ Validator.extend('status', async function (field, value, args, message) {
 	if( args.indexOf(value) >= 0 ){
 		return true;
     } else {
-        this.validator.addError(field, 'status', message || 'Invalid status');
+        this.validator.addError(field, 'status');
         return false;
     }
 

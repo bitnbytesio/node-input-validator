@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "validation library",
   "main": "index.js",
   "scripts": {
