@@ -32,7 +32,8 @@ Node Input Validator is a validation library for node.js. You can also extend li
 ```javascript
 const v = require('node-input-validator');
 
-let r = {};
+let r = {};   // first argument for constructor will always be blank object 
+              // This empty object (i.e. r in this case) will be used in future
 
 let validator = new v(r, {name:''}, {name:'required|minLength:5'});
 
@@ -51,9 +52,9 @@ Validator.messages({
     status: 'Invalid status'
 });
 
-Validator.extend('even', async function (field, value, message) {
+Validator.extend('even', async function (field, value) {
 
-	if( (parseInt(value) % 2) == 0 ){
+    if( (parseInt(value) % 2) == 0 ){
 		return true;
     } else {
         this.validator.addError(field, 'even');
@@ -62,9 +63,9 @@ Validator.extend('even', async function (field, value, message) {
 
 });
 
-Validator.extend('status', async function (field, value, args, message) {
+Validator.extend('status', async function (field, value, args) {
 
-	if( args.indexOf(value) >= 0 ){
+    if( args.indexOf(value) >= 0 ){
 		return true;
     } else {
         this.validator.addError(field, 'status');
@@ -75,7 +76,7 @@ Validator.extend('status', async function (field, value, args, message) {
 
 ```
 
-**Extending/Overiding messages**
+**Extending/Overriding messages**
 ```javascript
 Validator.messages({
     required: 'The :attribute field must not be empty.',
@@ -83,12 +84,12 @@ Validator.messages({
 ```
 
 ```javascript
-validator.rules.validateCustom = async (field, value, message)  => {
+validator.rules.validateCustom = async (field, value)  => {
 	    	
     if( value === 'yes' || value === 'on' ){
         return true;
     }else{
-        this.validator.addError(field, 'custom', message || 'The value of the field needs to be  yes or no');
+        this.validator.addError(field, 'custom');
         return false;
     }
 
@@ -135,7 +136,7 @@ requiredWithout:age
 The field under validation must be yes, on, 1, or true.
 
 **alpha**  
-he field under validation must be entirely alphabetic characters.
+The field under validation must be entirely alphabetic characters.
 
 **alphaDash**  
 The field under validation may have alpha-numeric characters, as well as dashes and underscores.
@@ -150,7 +151,7 @@ The field under validation must be an array.
 The field under validation only contains ascii characters.
 
 **base64**  
-The field under validation must be valid base64 ecoded string.
+The field under validation must be valid base64 encoded string.
 
 **between:1,9**  
 The field under validation must be between provided values.
@@ -162,7 +163,7 @@ The field under validation must be 0/1, or true/false.
 The field under validation must contains provided seeds.
 
 **creditCard**  
-The field under validation must be valid creadit card string.
+The field under validation must be valid credit card string.
 
 **dateFormat**  
 The field under validation must match the given date format.
@@ -171,18 +172,18 @@ The field under validation must match the given date format.
 The field under validation only contains digits.
 
 **digitsBetween**  
-The field under validation must be between provided digit values.
+The field under validation must be in between provided digit values.
 
 **email**  
 The field under validation must be formatted as an e-mail address.
 
-**Equals**  
+**equals**  
 The field under validation must be equal to given value.
 
 **in**  
 The field under validation must exist in the given list of values.
 
-**Integer**  
+**integer**  
 The field under validation must be an integer.
 
 **ip**  
@@ -194,21 +195,20 @@ The field under validation must be a valid JSON string.
 **latLong**   
 The field under validation must be a valid latitude-longitude coordinate.
 
-
 **max**  
-The field under validation must be less than givern value.
+The field under validation must be less than given value.
 
 **mime**  
 The file under validation must have a MIME type corresponding to one of the listed extensions.
 
 **min**   
-The field under validation must be greater than givern value.
+The field under validation must be greater than given value.
 
 **maxLength**   
-The length of field under validation should be less than givern value.
+The length of field under validation should be less than given value.
 
 **minLength**  
-The length of field under validation  should be greater than givern value.
+The length of field under validation  should be greater than given value.
 
 **notIn**  
 The field under validation must not exist in the given list of values.
@@ -223,7 +223,7 @@ The field under validation must match the given regular expression.
 The given field must match the field under validation.
 
 **size**  
-The field under validation must have a size matching the given value.
+The file field  under validation must have a file size matching the given maximum value or should be between file size range.
 
 **string**  
 The field under validation must be string.
