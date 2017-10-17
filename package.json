@@ -34,17 +34,17 @@
   },
   "license": "ISC",
   "dependencies": {
-    "file-type": "^6.1.0",
+    "file-type": "^7.1.0",
     "mime-types": "^2.1.17",
-    "moment": "^2.18.1",
+    "moment": "^2.19.1",
     "read-chunk": "^2.1.0",
-    "validator": "^8.2.0"
+    "validator": "^9.0.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.5.3",
     "mocha-lcov-reporter": "^1.3.0",
-    "should": "^13.1.0"
+    "should": "^13.1.2"
   }
 }
