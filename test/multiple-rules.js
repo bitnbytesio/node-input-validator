@@ -12,18 +12,15 @@ describe('Multiple rules test', function () {
 
         it('should return true', async () => {
 
-
             let v = new Validator(r, {name: 'artisan'}, {name: 'required|minLength:5|maxLength:8'});
 
             let matched = await v.check();
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false due to minLength failed', async () => {
-
 
             let v = new Validator(r, {name: 'art'}, {name: 'required|minLength:5|maxLength:8'});
 
@@ -34,11 +31,9 @@ describe('Multiple rules test', function () {
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('name');
 
-
         });
 
         it('should return false due to maxLength failed', async () => {
-
 
             let v = new Validator(r, {name: 'artisangang'}, {name: 'required|minLength:5|maxLength:8'});
 
@@ -49,10 +44,8 @@ describe('Multiple rules test', function () {
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('name');
 
-
         });
 
     });
-
 
 });

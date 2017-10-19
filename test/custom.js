@@ -13,21 +13,23 @@ Validator.extend('even', async function (field, value) {
 
     if ((parseInt(value) % 2) == 0) {
         return true;
-    } else {
-        this.validator.addError(field, 'even');
-        return false;
     }
-
+    
+    this.validator.addError(field, 'even');
+    
+    return false;
+    
 });
 
 Validator.extend('status', async function (field, value, args) {
 
     if (args.indexOf(value) >= 0) {
         return true;
-    } else {
-        this.validator.addError(field, 'status');
-        return false;
     }
+    
+    this.validator.addError(field, 'status');
+    
+    return false;
 
 });
 
@@ -39,7 +41,6 @@ describe('Custom Rules', function () {
 
         it('should return true', async () => {
 
-
             let v = new Validator(r,
                 {number: '4'}, {number: "even|required"});
 
@@ -47,11 +48,9 @@ describe('Custom Rules', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r,
                 {number: '9'}, {number: "even|required"});
@@ -63,7 +62,6 @@ describe('Custom Rules', function () {
             v.errors.should.have.property('number').and.be.a.Object();
             v.errors.number.should.have.property('message', 'The value of the field must be even number.');
 
-
         });
 
     });
@@ -72,7 +70,6 @@ describe('Custom Rules', function () {
 
         it('should return true', async () => {
 
-
             let v = new Validator(r,
                 {status: 'draft'}, {status: "status:draft,published|required"});
 
@@ -80,11 +77,9 @@ describe('Custom Rules', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r,
                 {status: 'completed'}, {status: "status:draft,published|required"});
@@ -92,7 +87,6 @@ describe('Custom Rules', function () {
             let matched = await v.check();
 
             assert.equal(matched, false);
-
 
         });
 
@@ -103,7 +97,6 @@ describe('Custom Rules', function () {
 
         it('should return true', async () => {
 
-
             let v = new Validator(r,
                 {number: 'abc'}, {number: "regex:[abc]"});
 
@@ -111,11 +104,9 @@ describe('Custom Rules', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r,
                 {number: 'xyz'}, {number: "regex:[abc]"});
@@ -124,14 +115,12 @@ describe('Custom Rules', function () {
 
             assert.equal(matched, false);
 
-
         });
     });
 
     describe('custom', function () {
 
         it('should return true', async () => {
-
 
             let v = new Validator(r,
                 {remember: 'yes'}, {remember: 'custom'});
@@ -140,10 +129,11 @@ describe('Custom Rules', function () {
 
                 if (value === 'yes' || value === 'on') {
                     return true;
-                } else {
-                    this.validator.addError(field, 'custom');
-                    return false;
-                }
+                } 
+                
+                this.validator.addError(field, 'custom');
+                
+                return false;
 
             };
 
@@ -151,11 +141,9 @@ describe('Custom Rules', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r,
                 {remember: '1'}, {remember: 'custom'});
@@ -164,22 +152,19 @@ describe('Custom Rules', function () {
 
                 if (value === 'yes' || value === 'on') {
                     return true;
-                } else {
-                    v.addError(field, 'custom');
-                    return false;
                 }
+                
+                v.addError(field, 'custom');
+                
+                return false;
 
             };
 
             let matched = await v.check();
 
             assert.equal(matched, false);
-
-
-
-
+            
         });
-
 
     });
 });

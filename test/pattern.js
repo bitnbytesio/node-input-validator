@@ -12,18 +12,15 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-
             let v = new Validator(r, {name: 'Harcharan'}, {name: 'alpha'});
 
             let matched = await v.check();
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r, {name: '123456'}, {name: 'alpha'});
 
@@ -34,11 +31,9 @@ describe('Pattern', function () {
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('name');
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r, {name: 'ASD123456'}, {name: 'alpha'});
 
@@ -49,11 +44,9 @@ describe('Pattern', function () {
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('name');
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r, {name: 'ASD-QRT'}, {name: 'alpha'});
 
@@ -64,7 +57,6 @@ describe('Pattern', function () {
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('name');
 
-
         });
 
     });
@@ -74,18 +66,15 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-
             let v = new Validator(r, {name: 'HarcharanSingh'}, {name: 'alphaDash'});
 
             let matched = await v.check();
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return true', async () => {
-
 
             let v = new Validator(r, {name: 'Harcharan_Singh'}, {name: 'alphaDash'});
 
@@ -93,11 +82,9 @@ describe('Pattern', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return true', async () => {
-
 
             let v = new Validator(r, {name: 'Harcharan-Singh'}, {name: 'alphaDash'});
 
@@ -105,11 +92,9 @@ describe('Pattern', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r, {name: 'Harcharan Singh'}, {name: 'alphaDash'});
 
@@ -120,7 +105,6 @@ describe('Pattern', function () {
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('name');
 
-
         });
 
     });
@@ -130,18 +114,15 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-
             let v = new Validator(r, {uuid: 'QWERTY'}, {uuid: 'alphaNumeric'});
 
             let matched = await v.check();
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return true', async () => {
-
 
             let v = new Validator(r, {uuid: '123456'}, {uuid: 'alphaNumeric'});
 
@@ -149,12 +130,10 @@ describe('Pattern', function () {
 
             assert.equal(matched, true);
 
-
         });
 
 
         it('should return true', async () => {
-
 
             let v = new Validator(r, {uuid: 'QWERTY123'}, {uuid: 'alphaNumeric'});
 
@@ -162,11 +141,9 @@ describe('Pattern', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r, {uuid: 'QWERTY-13'}, {uuid: 'alphaNumeric'});
 
@@ -177,7 +154,6 @@ describe('Pattern', function () {
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('uuid');
 
-
         });
 
     });
@@ -186,18 +162,15 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-
             let v = new Validator(r, {email: 'artisangang@gmail.com'}, {email: 'required|email'});
 
             let matched = await v.check();
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r, {email: 'artisangang.gmail.com'}, {email: 'required|email'});
 
@@ -205,10 +178,8 @@ describe('Pattern', function () {
 
             assert.equal(matched, false);
 
-
         });
 
     });
-
 
 });
