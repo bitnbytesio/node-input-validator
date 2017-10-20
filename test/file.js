@@ -14,7 +14,6 @@ describe('File Rules', function () {
 
         it('should return true', async () => {
 
-
             let v = new Validator(r,
                 {file: fs.readFileSync('./test/files/file-small.png')}, {file: 'size:4kb'});
 
@@ -23,11 +22,9 @@ describe('File Rules', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return true', async () => {
-
 
             let v = new Validator(r,
                 {file: './test/files/file-small.png'}, {file: 'size:4kb'});
@@ -36,7 +33,6 @@ describe('File Rules', function () {
             let matched = await v.check();
 
             assert.equal(matched, true);
-
 
         });
 
@@ -57,7 +53,6 @@ describe('File Rules', function () {
 
         it('should return false', async () => {
 
-
             let v = new Validator(r,
                 {file: './test/files/file-small.png'}, {file: 'size:1kb'});
 
@@ -69,9 +64,7 @@ describe('File Rules', function () {
             should(v.errors).have.property('file');
             should(v.errors.file).have.property('message');
 
-
         });
-
 
     });
 
@@ -79,7 +72,6 @@ describe('File Rules', function () {
     describe('mime', function () {
 
         it('should return true', async () => {
-
 
             let v = new Validator(r,
                 {file: fs.readFileSync('./test/files/file-small.png')}, {file: 'size:4kb|mime:png,jpg'});
@@ -89,11 +81,9 @@ describe('File Rules', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return true', async () => {
-
 
             let v = new Validator(r,
                 {file: './test/files/file-small.png'}, {file: 'size:4kb|mime:png,jpg'});
@@ -102,7 +92,6 @@ describe('File Rules', function () {
             let matched = await v.check();
 
             assert.equal(matched, true);
-
 
         });
 
@@ -123,7 +112,6 @@ describe('File Rules', function () {
 
         it('should return false', async () => {
 
-
             let v = new Validator(r,
                 {file: './test/files/file-small.png'}, {file: 'size:1kb|mime:gif,bmp'});
 
@@ -135,9 +123,7 @@ describe('File Rules', function () {
             should(v.errors).have.property('file');
             should(v.errors.file).have.property('message');
 
-
         });
-
 
     });
 

@@ -12,7 +12,6 @@ describe('Conditions', function () {
 
         it('should return true', async () => {
 
-
             let v = new Validator(r,
                 {uuid: '123456'},
                 {uuid: 'required|in:123456,000000'});
@@ -21,11 +20,9 @@ describe('Conditions', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return true', async () => {
-
 
             let v = new Validator(r,
                 {uuid: '000000'},
@@ -35,11 +32,9 @@ describe('Conditions', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r,
                 {uuid: '25689'},
@@ -49,7 +44,6 @@ describe('Conditions', function () {
 
             assert.equal(matched, false);
 
-
         });
 
     });
@@ -57,7 +51,6 @@ describe('Conditions', function () {
     describe('same', function () {
 
         it('should return true', async () => {
-
 
             let v = new Validator(r,
                 {password: '000000', confirm_password: '000000'},
@@ -67,11 +60,9 @@ describe('Conditions', function () {
 
             assert.equal(matched, true);
 
-
         });
 
         it('should return false', async () => {
-
 
             let v = new Validator(r,
                 {password: '000000', confirm_password: '123456'},
@@ -80,7 +71,6 @@ describe('Conditions', function () {
             let matched = await v.check();
 
             assert.equal(matched, false);
-
 
         });
 

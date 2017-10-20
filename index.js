@@ -44,9 +44,7 @@ module.exports.koa = () => {
 
     return async (ctx, next) => {
 
-
         ctx.validate = async (inputs, rules, messages) => {
-
 
             let v = new Validator(
                 ctx,
@@ -54,7 +52,6 @@ module.exports.koa = () => {
                 rules,
                 messages || {}
             );
-
 
             return v;
         };

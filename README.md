@@ -56,10 +56,10 @@ Validator.extend('even', async function (field, value) {
 
     if( (parseInt(value) % 2) == 0 ){
 		return true;
-    } else {
-        this.validator.addError(field, 'even');
-        return false;
-    }
+    } 
+    
+    this.validator.addError(field, 'even');
+    return false;
 
 });
 
@@ -67,10 +67,10 @@ Validator.extend('status', async function (field, value, args) {
 
     if( args.indexOf(value) >= 0 ){
 		return true;
-    } else {
-        this.validator.addError(field, 'status');
-        return false;
     }
+    
+    this.validator.addError(field, 'status');
+    return false;
 
 });
 
@@ -88,10 +88,10 @@ validator.rules.validateCustom = async (field, value)  => {
 	    	
     if( value === 'yes' || value === 'on' ){
         return true;
-    }else{
-        this.validator.addError(field, 'custom');
-        return false;
     }
+    
+    this.validator.addError(field, 'custom');
+    return false;
 
 };
 ```
