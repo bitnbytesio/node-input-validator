@@ -42,7 +42,7 @@ describe('Custom Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(r,
-                {number: '4'}, {number: "even|required"});
+                {number: '4'}, {number: 'even|required'});
 
             let matched = await v.check();
 
@@ -53,7 +53,7 @@ describe('Custom Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(r,
-                {number: '9'}, {number: "even|required"});
+                {number: '9'}, {number: 'even|required'});
 
             let matched = await v.check();
 
@@ -71,7 +71,7 @@ describe('Custom Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(r,
-                {status: 'draft'}, {status: "status:draft,published|required"});
+                {status: 'draft'}, {status: 'status:draft,published|required'});
 
             let matched = await v.check();
 
@@ -82,7 +82,7 @@ describe('Custom Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(r,
-                {status: 'completed'}, {status: "status:draft,published|required"});
+                {status: 'completed'}, {status: 'status:draft,published|required'});
 
             let matched = await v.check();
 
@@ -98,7 +98,7 @@ describe('Custom Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(r,
-                {number: 'abc'}, {number: "regex:[abc]"});
+                {number: 'abc'}, {number: 'regex:[abc]'});
 
             let matched = await v.check();
 
@@ -109,7 +109,7 @@ describe('Custom Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(r,
-                {number: 'xyz'}, {number: "regex:[abc]"});
+                {number: 'xyz'}, {number: 'regex:[abc]'});
 
             let matched = await v.check();
 

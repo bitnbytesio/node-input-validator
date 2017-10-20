@@ -17,7 +17,7 @@ describe('Custom messages', function () {
         it('should return custom message', async () => {
 
             let v = new Validator(r,
-                {}, {number: "required"});
+                {}, {number: 'required'});
 
             let matched = await v.check();
 
@@ -31,7 +31,7 @@ describe('Custom messages', function () {
         it('should return custom message based on field', async () => {
 
             let v = new Validator(r,
-                {username:'test2017'}, {username: "required|alpha"}, {'username.alpha': 'Username is invalid.'});
+                {username:'test2017'}, {username: 'required|alpha'}, {'username.alpha': 'Username is invalid.'});
 
             let matched = await v.check();
 
