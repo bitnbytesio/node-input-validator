@@ -16,8 +16,6 @@ describe('Numbers', function () {
 
             let matched = await v.check();
 
-            console.log(v.errors);
-
             assert.equal(matched, true);
 
         });

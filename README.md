@@ -230,3 +230,52 @@ The field under validation must be string.
 
 **url**  
 The field under validation must be a valid URL.
+
+**Post Rules**
+
+There is set of rules which can be used to validate constraints of whole input, rather than validity of singular fields.
+
+*Usage*
+```javascript
+const v = require('node-input-validator');
+
+let r = {};   // first argument for constructor will always be blank object 
+              // This empty object (i.e. r in this case) will be used in future
+
+let validator = new v(r, {name:''}, {'*': 'any:name,surname'});
+
+validator.check().then(function (matched) {
+    console.log(matched);
+    console.log(validator.errors);
+});
+```
+
+Post validator errors are returned in the `*` key. There is also possibility to add custom function as validator
+with help of `addPostRule` method. Function will be called in context of validator object with input as parameter.
+
+```javascript
+const v = require('node-input-validator');
+
+let r = {};   // first argument for constructor will always be blank object 
+              // This empty object (i.e. r in this case) will be used in future
+
+let v = new Validator(r, {username: 'arnold', password: 'arnold123'}, {});
+
+v.addPostRule(async function(input) {
+
+    if (input.password.indexOf(input.username) >= 0) {
+        this.validator.addError('password', 'custom', 'Password cannot contain username'); 
+    }
+
+});
+
+```
+
+**any**
+Any of the fields must be present in input.
+
+**all**
+All of the fields must be present in input.
+
+
+ 
