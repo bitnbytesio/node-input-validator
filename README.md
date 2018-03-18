@@ -122,6 +122,42 @@ if (!isValid) {
 
 ```
 
+**Object Type Fileds Validation**
+```javascript
+    let v = new Validator(r,
+                {
+                    product: {id:'1',name:'',price:'', active:'yes'}
+                },
+                {
+                    'product': 'required|object',
+                    'product.id': 'required|integer',
+                    'product.name': 'required',
+                    'product.price': 'required|integer',
+                    'product.active': 'required|integer'
+                });
+
+    let matched = await v.check();
+```
+
+**Array Type Fileds Validation**
+```javascript
+    let v = new Validator({},
+                {
+                    plan: [
+                        {price:'25',title:'OK'},
+                        {price:'',title:''},
+                        {price:'30'},
+                        {price:'',title:'Title'}
+                    ]
+                },
+                {
+                    'plan.*.price': 'required|integer',
+                    'plan.*.title': 'required'
+                });
+
+    let matched = await v.check();
+```    
+
 **Rules**
 
 You can check test cases for rules.
