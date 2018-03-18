@@ -6,21 +6,27 @@
  */
 
 const Validator = require('./lib/validator'),
+      NuValidator = require('./lib/nuvalidator'),
       messages = require('./lib/messages');
 
+// old deperacted constructor
 module.exports = Validator;
 
-module.exports.Rules = Validator.Rules;
+// new validator
+module.exports.NuValidator = NuValidator;
+
+// rules 
+module.exports.Rules = NuValidator.Rules;
 
 /**
- * as custom validation rules
+ * add custom validation rules
  * @param rule
  * @param func
  */
 module.exports.extend = (rule, func) => {
 
     let name = 'validate' + rule.charAt(0).toUpperCase() + rule.slice(1);
-    Validator.Rules.prototype[name] = func;
+    NuValidator.Rules.prototype[name] = func;
 
 };
 
@@ -37,7 +43,7 @@ module.exports.messages = (custom_messages) => {
 };
 
 /**
- * koa muddleware
+ * old depercated koa muddleware, will be removed in future
  * @returns {function(*=, *)}
  */
 module.exports.koa = () => {
@@ -46,14 +52,35 @@ module.exports.koa = () => {
 
         ctx.validate = async (inputs, rules, messages) => {
 
-            let v = new Validator(
-                ctx,
+            let v = new NuValidator(
                 inputs,
                 rules,
                 messages || {}
             );
 
             return v;
+        };
+
+        await next();
+    };
+
+};
+
+
+// new latest validator, in future this will be renamed to koa from nukoa
+module.exports.nukoa = () => {
+
+    return async (ctx, next) => {
+
+        ctx.validate = async (inputs, rules, messages) => {
+
+            let v = new NuValidator(
+                inputs,
+                rules,
+                messages || {}
+            );
+
+            return await v.check();
         };
 
         await next();

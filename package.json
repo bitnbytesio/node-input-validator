@@ -32,6 +32,12 @@
     "name": "Harcharan Singh",
     "email": "artisangang@gmail.com"
   },
+  "contributors": [
+    {
+      "name": "Jakub Nietrzeba",
+      "url": "https://github.com/gluth"
+    }
+  ],
   "license": "ISC",
   "dependencies": {
     "file-type": "^7.6.0",
