@@ -32,10 +32,7 @@ Node Input Validator is a validation library for node.js. You can also extend li
 ```javascript
 const v = require('node-input-validator');
 
-let r = {};   // first argument for constructor will always be blank object 
-              // This empty object (i.e. r in this case) will be used in future
-
-let validator = new v(r, {name:''}, {name:'required|minLength:5'});
+let validator = new v({name:''}, {name:'required|minLength:5'});
 
 validator.check().then(function (matched) {
 	console.log(matched);
@@ -124,8 +121,7 @@ if (!isValid) {
 
 **Object Type Fileds Validation**
 ```javascript
-    let v = new Validator(r,
-                {
+    let v = new Validator({
                     product: {id:'1',name:'',price:'', active:'yes'}
                 },
                 {
@@ -141,8 +137,7 @@ if (!isValid) {
 
 **Array Type Fileds Validation**
 ```javascript
-    let v = new Validator({},
-                {
+    let v = new Validator({
                     plan: [
                         {price:'25',title:'OK'},
                         {price:'',title:''},
@@ -275,10 +270,7 @@ There is set of rules which can be used to validate constraints of whole input, 
 ```javascript
 const v = require('node-input-validator');
 
-let r = {};   // first argument for constructor will always be blank object 
-              // This empty object (i.e. r in this case) will be used in future
-
-let validator = new v(r, {name:''}, {'*': 'any:name,surname'});
+let validator = new v({name:''}, {'*': 'any:name,surname'});
 
 validator.check().then(function (matched) {
     console.log(matched);
@@ -292,10 +284,7 @@ with help of `addPostRule` method. Function will be called in context of validat
 ```javascript
 const v = require('node-input-validator');
 
-let r = {};   // first argument for constructor will always be blank object 
-              // This empty object (i.e. r in this case) will be used in future
-
-let v = new Validator(r, {username: 'arnold', password: 'arnold123'}, {});
+let v = new Validator({username: 'arnold', password: 'arnold123'}, {});
 
 v.addPostRule(async function(input) {
 

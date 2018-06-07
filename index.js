@@ -6,17 +6,17 @@
  */
 
 const Validator = require('./lib/validator'),
-      NuValidator = require('./lib/nuvalidator'),
-      messages = require('./lib/messages');
+      messages = require('./lib/messages/index');
 
-// old deperacted constructor
+// main validator class
 module.exports = Validator;
 
-// new validator
-module.exports.NuValidator = NuValidator;
+module.exports.setLang = (lang) => {
+    messages.defaultLang = lang;
+};
 
 // rules 
-module.exports.Rules = NuValidator.Rules;
+module.exports.Rules = Validator.Rules;
 
 /**
  * add custom validation rules
@@ -26,7 +26,7 @@ module.exports.Rules = NuValidator.Rules;
 module.exports.extend = (rule, func) => {
 
     let name = 'validate' + rule.charAt(0).toUpperCase() + rule.slice(1);
-    NuValidator.Rules.prototype[name] = func;
+    Validator.Rules.prototype[name] = func;
 
 };
 
@@ -34,53 +34,33 @@ module.exports.extend = (rule, func) => {
  * extend/upgrade messages for rules
  * @param custom_messages
  */
-module.exports.messages = (custom_messages) => {
+module.exports.messages = (custom_messages, lang = 'en') => {
 
     let keys = Object.keys(custom_messages);
     for (let i in keys) {
-        messages[ keys[i] ] = custom_messages[ keys[i] ];
+
+        if (typeof messages[lang] == 'undefined') {
+            messages[lang] = {};
+        }
+
+        messages[lang][ keys[i] ] = custom_messages[ keys[i] ];
     }
 };
 
-/**
- * old depercated koa muddleware, will be removed in future
- * @returns {function(*=, *)}
- */
+
 module.exports.koa = () => {
 
     return async (ctx, next) => {
 
         ctx.validate = async (inputs, rules, messages) => {
 
-            let v = new NuValidator(
+            let v = new Validator(
                 inputs,
                 rules,
                 messages || {}
             );
 
             return v;
-        };
-
-        await next();
-    };
-
-};
-
-
-// new latest validator, in future this will be renamed to koa from nukoa
-module.exports.nukoa = () => {
-
-    return async (ctx, next) => {
-
-        ctx.validate = async (inputs, rules, messages) => {
-
-            let v = new NuValidator(
-                inputs,
-                rules,
-                messages || {}
-            );
-
-            return await v.check();
         };
 
         await next();

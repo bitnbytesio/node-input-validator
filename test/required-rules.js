@@ -12,7 +12,7 @@ describe('requiredRules', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan Singh'}, {name: 'required'});
+            let v = new Validator({name: 'Harcharan Singh'}, {name: 'required'});
 
             let matched = await v.check();
 
@@ -22,7 +22,7 @@ describe('requiredRules', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {name: ''}, {name: 'required'});
+            let v = new Validator({name: ''}, {name: 'required'});
 
             let matched = await v.check();
 
@@ -40,7 +40,7 @@ describe('requiredRules', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan Singh', sex: 'male', age: 16}, {sex: 'requiredIf:age,16'});
+            let v = new Validator( {name: 'Harcharan Singh', sex: 'male', age: 16}, {sex: 'requiredIf:age,16'});
 
             let matched = await v.check();
 
@@ -50,7 +50,7 @@ describe('requiredRules', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan Singh', age: 16}, {sex: 'requiredIf:age,16'});
+            let v = new Validator( {name: 'Harcharan Singh', age: 16}, {sex: 'requiredIf:age,16'});
 
             let matched = await v.check();
 
@@ -68,7 +68,7 @@ describe('requiredRules', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan Singh', age: '16'}, {sex: 'requiredNotIf:age,16'});
+            let v = new Validator( {name: 'Harcharan Singh', age: '16'}, {sex: 'requiredNotIf:age,16'});
 
             let matched = await v.check();
 
@@ -78,7 +78,7 @@ describe('requiredRules', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan Singh', age: '15'}, {sex: 'requiredNotIf:age,16'});
+            let v = new Validator( {name: 'Harcharan Singh', age: '15'}, {sex: 'requiredNotIf:age,16'});
 
             let matched = await v.check();
 
@@ -96,7 +96,7 @@ describe('requiredRules', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan Singh', sex: 'male',  email: '', ip:''}, {email: 'email', ip: 'requiredWith:email|ip'});
+            let v = new Validator( {name: 'Harcharan Singh', sex: 'male',  email: '', ip:''}, {email: 'email', ip: 'requiredWith:email|ip'});
 
             let matched = await v.check();
 
@@ -106,7 +106,7 @@ describe('requiredRules', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan Singh', sex: 'male',  email: 'artisangang@gmail.com', ip:''}, {email: 'email', ip: 'requiredWith:email|ip'});
+            let v = new Validator( {name: 'Harcharan Singh', sex: 'male',  email: 'artisangang@gmail.com', ip:''}, {email: 'email', ip: 'requiredWith:email|ip'});
 
 
             let matched = await v.check();
@@ -126,7 +126,7 @@ describe('requiredRules', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan Singh', sex: 'male', age:'23'}, {sex: 'requiredWithout:age'});
+            let v = new Validator( {name: 'Harcharan Singh', sex: 'male', age:'23'}, {sex: 'requiredWithout:age'});
 
             let matched = await v.check();
 
@@ -136,7 +136,7 @@ describe('requiredRules', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan Singh'}, {sex: 'requiredWithout:age'});
+            let v = new Validator( {name: 'Harcharan Singh'}, {sex: 'requiredWithout:age'});
 
             let matched = await v.check();
 

@@ -12,7 +12,7 @@ describe('Objects', function () {
 
         it('Validate object properties', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {
                     product: {id:'1',name:'',price:'', active:'yes'}
                 },
@@ -34,7 +34,7 @@ describe('Objects', function () {
 
         it('Validate object:false case', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {
                     product: ''
                 },
@@ -53,7 +53,7 @@ describe('Objects', function () {
 
         it('Validate object:true case', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {
                     product: {}
                 },

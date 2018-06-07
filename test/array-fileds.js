@@ -12,7 +12,7 @@ describe('Array Fields', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {
                     plan: [
                         {price:'25',title:'OK'},

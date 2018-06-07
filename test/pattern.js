@@ -12,7 +12,7 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan'}, {name: 'alpha'});
+            let v = new Validator( {name: 'Harcharan'}, {name: 'alpha'});
 
             let matched = await v.check();
 
@@ -22,7 +22,7 @@ describe('Pattern', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {name: '123456'}, {name: 'alpha'});
+            let v = new Validator( {name: '123456'}, {name: 'alpha'});
 
             let matched = await v.check();
 
@@ -35,7 +35,7 @@ describe('Pattern', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {name: 'ASD123456'}, {name: 'alpha'});
+            let v = new Validator( {name: 'ASD123456'}, {name: 'alpha'});
 
             let matched = await v.check();
 
@@ -48,7 +48,7 @@ describe('Pattern', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {name: 'ASD-QRT'}, {name: 'alpha'});
+            let v = new Validator( {name: 'ASD-QRT'}, {name: 'alpha'});
 
             let matched = await v.check();
 
@@ -66,7 +66,7 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {name: 'HarcharanSingh'}, {name: 'alphaDash'});
+            let v = new Validator( {name: 'HarcharanSingh'}, {name: 'alphaDash'});
 
             let matched = await v.check();
 
@@ -76,7 +76,7 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan_Singh'}, {name: 'alphaDash'});
+            let v = new Validator( {name: 'Harcharan_Singh'}, {name: 'alphaDash'});
 
             let matched = await v.check();
 
@@ -86,7 +86,7 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan-Singh'}, {name: 'alphaDash'});
+            let v = new Validator( {name: 'Harcharan-Singh'}, {name: 'alphaDash'});
 
             let matched = await v.check();
 
@@ -96,7 +96,7 @@ describe('Pattern', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {name: 'Harcharan Singh'}, {name: 'alphaDash'});
+            let v = new Validator( {name: 'Harcharan Singh'}, {name: 'alphaDash'});
 
             let matched = await v.check();
 
@@ -114,7 +114,7 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {uuid: 'QWERTY'}, {uuid: 'alphaNumeric'});
+            let v = new Validator( {uuid: 'QWERTY'}, {uuid: 'alphaNumeric'});
 
             let matched = await v.check();
 
@@ -124,7 +124,7 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {uuid: '123456'}, {uuid: 'alphaNumeric'});
+            let v = new Validator( {uuid: '123456'}, {uuid: 'alphaNumeric'});
 
             let matched = await v.check();
 
@@ -135,7 +135,7 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {uuid: 'QWERTY123'}, {uuid: 'alphaNumeric'});
+            let v = new Validator( {uuid: 'QWERTY123'}, {uuid: 'alphaNumeric'});
 
             let matched = await v.check();
 
@@ -145,7 +145,7 @@ describe('Pattern', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {uuid: 'QWERTY-13'}, {uuid: 'alphaNumeric'});
+            let v = new Validator( {uuid: 'QWERTY-13'}, {uuid: 'alphaNumeric'});
 
             let matched = await v.check();
 
@@ -162,7 +162,7 @@ describe('Pattern', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r, {email: 'artisangang@gmail.com'}, {email: 'required|email'});
+            let v = new Validator( {email: 'artisangang@gmail.com'}, {email: 'required|email'});
 
             let matched = await v.check();
 
@@ -172,7 +172,7 @@ describe('Pattern', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r, {email: 'artisangang.gmail.com'}, {email: 'required|email'});
+            let v = new Validator( {email: 'artisangang.gmail.com'}, {email: 'required|email'});
 
             let matched = await v.check();
 

@@ -41,7 +41,7 @@ describe('Custom Rules', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {number: '4'}, {number: 'even|required'});
 
             let matched = await v.check();
@@ -52,7 +52,7 @@ describe('Custom Rules', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {number: '9'}, {number: 'even|required'});
 
             let matched = await v.check();
@@ -70,7 +70,7 @@ describe('Custom Rules', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {status: 'draft'}, {status: 'status:draft,published|required'});
 
             let matched = await v.check();
@@ -81,7 +81,7 @@ describe('Custom Rules', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {status: 'completed'}, {status: 'status:draft,published|required'});
 
             let matched = await v.check();
@@ -97,7 +97,7 @@ describe('Custom Rules', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {number: 'abc'}, {number: 'regex:[abc]'});
 
             let matched = await v.check();
@@ -108,7 +108,7 @@ describe('Custom Rules', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {number: 'xyz'}, {number: 'regex:[abc]'});
 
             let matched = await v.check();
@@ -122,7 +122,7 @@ describe('Custom Rules', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {remember: 'yes'}, {remember: 'custom'});
 
             v.rules.validateCustom = async (field, value, message) => {
@@ -145,7 +145,7 @@ describe('Custom Rules', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {remember: '1'}, {remember: 'custom'});
 
             v.rules.validateCustom = async (field, value) => {

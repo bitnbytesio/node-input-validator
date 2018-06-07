@@ -12,7 +12,7 @@ describe('Conditions', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {uuid: '123456'},
                 {uuid: 'required|in:123456,000000'});
 
@@ -24,7 +24,7 @@ describe('Conditions', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {uuid: '000000'},
                 {uuid: 'required|in:123456,000000'});
 
@@ -36,7 +36,7 @@ describe('Conditions', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {uuid: '25689'},
                 {uuid: 'required|in:123456,000000'});
 
@@ -52,7 +52,7 @@ describe('Conditions', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {password: '000000', confirm_password: '000000'},
                 {password: 'required', confirm_password: 'required|same:password'});
 
@@ -64,7 +64,7 @@ describe('Conditions', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator(r,
+            let v = new Validator(
                 {password: '000000', confirm_password: '123456'},
                 {password: 'required', confirm_password: 'required|same:password'});
 
