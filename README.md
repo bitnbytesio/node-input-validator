@@ -73,16 +73,9 @@ Validator.extend('status', async function (field, value, args) {
 
 ```
 
-**Extending/Overriding messages**
-```javascript
-Validator.messages({
-    required: 'The :attribute field must not be empty.',
-});
-```
-
 ```javascript
 validator.rules.validateCustom = async (field, value)  => {
-	    	
+            
     if( value === 'yes' || value === 'on' ){
         return true;
     }
@@ -91,6 +84,26 @@ validator.rules.validateCustom = async (field, value)  => {
     return false;
 
 };
+```
+
+**Extending/Overriding messages**
+```javascript
+Validator.messages({
+    required: 'The :attribute field must not be empty.',
+});
+```
+
+**Extending/Overriding messages in another language**
+```javascript
+Validator.messages({
+    required: ':attribute ਫੀਲਡ ਖਾਲੀ ਨਹੀਂ ਹੋਣਾ ਚਾਹੀਦਾ.',
+}, 'pb');
+```
+
+**Set/Modify default language**
+```javascript
+const validator = require('node-input-validator');
+validator.setLang('pb');
 ```
 
 **For Koa2**
@@ -155,13 +168,42 @@ if (!isValid) {
 
 **Rules**
 
-You can check test cases for rules.
+You can check test cases for rules usage/examples.
 
-required  
-requiredIf:age,16  
-requiredNotIf:age,16  
-requiredWith:age  
-requiredWithout:age  
+**required**
+The field under validation cannot be left blank.
+```javascript
+// required rule validation fails
+let v = new Validator({name:''}, {name:'required});
+```
+
+**requiredIf:field,value**
+The field under validation cannot be left blank, if provided seed value equals to provided value seed.
+```javascript
+// requiredIf rule validation fails, becoz email cannot be left blank if age is 16
+let v = new Validator({email:'', age:'16'}, {email:'requiredIf:age,16});
+```
+
+**requiredNotIf:field,value**
+The field under validation may left blank, if provided seed value equals to provided value seed.
+```javascript
+// requiredNotIf rule validation fails, becoz transport must be present in case age is not 16
+let v = new Validator({transport:'', age:'15'}, {transport:'requiredNotIf:age,16});
+```
+
+**requiredWith:field**
+ The field under validation may required in case provided seed present.
+```javascript
+// requiredWith rule validation fails, becoz email must in case age present.
+let v = new Validator({email:'', age:'17'}, {email:'requiredWith:age});
+```
+
+**requiredWithout:field** 
+ The field under validation may left blank in case provided seed present.
+```javascript
+// requiredWithout rule validation fails, becoz email is must in case phone not provided.
+let v = new Validator({email:''}, {email:'requiredWithout:phone});
+```
 
 **accepted**  
 The field under validation must be yes, on, 1, or true.
