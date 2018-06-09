@@ -174,35 +174,35 @@ You can check test cases for rules usage/examples.
 The field under validation cannot be left blank.
 ```javascript
 // required rule validation fails
-let v = new Validator({name:''}, {name:'required});
+let v = new Validator({name:''}, {name:'required'});
 ```
 
 **requiredIf:field,value**
 The field under validation cannot be left blank, if provided seed value equals to provided value seed.
 ```javascript
 // requiredIf rule validation fails, becoz email cannot be left blank if age is 16
-let v = new Validator({email:'', age:'16'}, {email:'requiredIf:age,16});
+let v = new Validator({email:'', age:'16'}, {email:'requiredIf:age,16'});
 ```
 
 **requiredNotIf:field,value**
 The field under validation may left blank, if provided seed value equals to provided value seed.
 ```javascript
 // requiredNotIf rule validation fails, becoz transport must be present in case age is not 16
-let v = new Validator({transport:'', age:'15'}, {transport:'requiredNotIf:age,16});
+let v = new Validator({transport:'', age:'15'}, {transport:'requiredNotIf:age,16'});
 ```
 
 **requiredWith:field**
  The field under validation may required in case provided seed present.
 ```javascript
 // requiredWith rule validation fails, becoz email must in case age present.
-let v = new Validator({email:'', age:'17'}, {email:'requiredWith:age});
+let v = new Validator({email:'', age:'17'}, {email:'requiredWith:age'});
 ```
 
 **requiredWithout:field** 
  The field under validation may left blank in case provided seed present.
 ```javascript
 // requiredWithout rule validation fails, becoz email is must in case phone not provided.
-let v = new Validator({email:''}, {email:'requiredWithout:phone});
+let v = new Validator({email:''}, {email:'requiredWithout:phone'});
 ```
 
 **accepted**  
@@ -226,26 +226,38 @@ The field under validation only contains ascii characters.
 **base64**  
 The field under validation must be valid base64 encoded string.
 
-**between:1,9**  
+**between:start,end**  
 The field under validation must be between provided values.
+```javascript
+let v = new Validator({age:''}, {age:'required|between:17,30'});
+```
 
 **boolean**  
 The field under validation must be 0/1, or true/false.
 
 **contains**  
 The field under validation must contains provided seeds.
+```javascript
+let v = new Validator({bio:''}, {bio:'required|contains:profile'});
+```
 
 **creditCard**  
 The field under validation must be valid credit card string.
 
 **dateFormat**  
 The field under validation must match the given date format.
+```javascript
+let v = new Validator({dob:''}, {dob:'required|dateFormat:YYYY-MM-DD'});
+```
 
 **digits**  
 The field under validation only contains digits.
 
 **digitsBetween**  
 The field under validation must be in between provided digit values.
+```javascript
+let v = new Validator({age:''}, {age:'required|digitsBetween:17,21'});
+```
 
 **email**  
 The field under validation must be formatted as an e-mail address.
@@ -255,6 +267,9 @@ The field under validation must be equal to given value.
 
 **in**  
 The field under validation must exist in the given list of values.
+```javascript
+let v = new Validator({status:''}, {status:'required|in:active,inactive,blocked'});
+```
 
 **integer**  
 The field under validation must be an integer.
@@ -268,23 +283,38 @@ The field under validation must be a valid JSON string.
 **latLong**   
 The field under validation must be a valid latitude-longitude coordinate.
 
-**max**  
-The field under validation must be less than given value.
-
 **mime**  
 The file under validation must have a MIME type corresponding to one of the listed extensions.
 
 **min**   
 The field under validation must be greater than given value.
+```javascript
+let v = new Validator({age:''}, {age:'required|min:21'});
+```
+
+**max**  
+The field under validation must be less than given value.
+```javascript
+let v = new Validator({age:''}, {age:'required|max:35'});
+```
 
 **maxLength**   
 The length of field under validation should be less than given value.
+```javascript
+let v = new Validator({username:''}, {username:'required|max:10'});
+```
 
 **minLength**  
 The length of field under validation  should be greater than given value.
+```javascript
+let v = new Validator({username:''}, {username:'required|max:10|min:5'});
+```
 
 **notIn**  
 The field under validation must not exist in the given list of values.
+```javascript
+let v = new Validator({status:''}, {status:'required|notIn:inactive,blocked'});
+```
 
 **numeric**  
 The field under validation must be numeric.
@@ -294,9 +324,12 @@ The field under validation must match the given regular expression.
 
 **same**  
 The given field must match the field under validation.
+```javascript
+let v = new Validator({password:''}, {password:'required|same:confirm_password'});
+```
 
 **size**  
-The file field  under validation must have a file size matching the given maximum value or should be between file size range.
+The file field under validation must have a file size matching the given maximum value or should be between file size range.
 
 **string**  
 The field under validation must be string.
@@ -343,6 +376,3 @@ Any of the fields must be present in input.
 
 **all**
 All of the fields must be present in input.
-
-
- 
