@@ -337,7 +337,21 @@ let v = new Validator({password:''}, {password:'required|same:confirm_password'}
 ```
 
 **size**  
-The file field under validation must have a file size matching the given maximum value or should be between file size range.
+The file field under validation must have a file size matching the given maximum value or should be between size range.
+Supported unit sufix: b,kb/k,mb/m,gb/g.
+```javascript
+// in below case, image file size should be under 4kb limit
+let v = new Validator({image:''}, {image:'required|size:4kb'});
+```
+
+```javascript
+// in below case, image file size should be between 1kb - 4kb
+let v = new Validator({image:''}, {image:'required|size:4kb,1kb'});
+```
+
+```javascript
+let v = new Validator({video:''}, {video:'required|size:10mb'});
+```
 
 **string**  
 The field under validation must be string.
