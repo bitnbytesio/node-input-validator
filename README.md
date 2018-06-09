@@ -24,6 +24,9 @@ Validation library for node.js
 
 Node Input Validator is a validation library for node.js. You can also extend library to add custom rules.
 
+**Note:** 
+Migrating from 1.2.2 to version 2x, just remove first param from validator constructor, ie. empty object. 
+
 **Installation**
 
 ```npm install node-input-validator```
