@@ -173,36 +173,36 @@ if (!isValid) {
 
 You can check test cases for rules usage/examples.
 
-**required**
+**required**  
 The field under validation cannot be left blank.
 ```javascript
 // required rule validation fails
 let v = new Validator({name:''}, {name:'required'});
 ```
 
-**requiredIf:field,value**
+**requiredIf:field,value**  
 The field under validation cannot be left blank, if provided seed value equals to provided value seed.
 ```javascript
 // requiredIf rule validation fails, becoz email cannot be left blank if age is 16
 let v = new Validator({email:'', age:'16'}, {email:'requiredIf:age,16'});
 ```
 
-**requiredNotIf:field,value**
+**requiredNotIf:field,value**  
 The field under validation may left blank, if provided seed value equals to provided value seed.
 ```javascript
 // requiredNotIf rule validation fails, becoz transport must be present in case age is not 16
 let v = new Validator({transport:'', age:'15'}, {transport:'requiredNotIf:age,16'});
 ```
 
-**requiredWith:field**
+**requiredWith:field**  
  The field under validation may required in case provided seed present.
 ```javascript
 // requiredWith rule validation fails, becoz email must in case age present.
 let v = new Validator({email:'', age:'17'}, {email:'requiredWith:age'});
 ```
 
-**requiredWithout:field** 
- The field under validation may left blank in case provided seed present.
+**requiredWithout:field**  
+The field under validation may left blank in case provided seed present.
 ```javascript
 // requiredWithout rule validation fails, becoz email is must in case phone not provided.
 let v = new Validator({email:''}, {email:'requiredWithout:phone'});
@@ -252,6 +252,9 @@ The field under validation must match the given date format.
 ```javascript
 let v = new Validator({dob:''}, {dob:'required|dateFormat:YYYY-MM-DD'});
 ```
+
+**decimal**  
+The field under validation must be decimal.
 
 **digits**  
 The field under validation only contains digits.
@@ -318,6 +321,8 @@ The field under validation must not exist in the given list of values.
 ```javascript
 let v = new Validator({status:''}, {status:'required|notIn:inactive,blocked'});
 ```
+**notContains**  
+The field under validation must not contains provided seeds.
 
 **numeric**  
 The field under validation must be numeric.
