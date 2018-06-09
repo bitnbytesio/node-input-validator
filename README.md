@@ -195,6 +195,7 @@ let v = new Validator({transport:'', age:'15'}, {transport:'requiredNotIf:age,16
 ```
 
 **requiredWith:field**  
+**requiredWith:field,field,field**  
  The field under validation may required in case provided seed present.
 ```javascript
 // requiredWith rule validation fails, becoz email must in case age present.
@@ -202,14 +203,21 @@ let v = new Validator({email:'', age:'17'}, {email:'requiredWith:age'});
 ```
 
 **requiredWithout:field**  
+**requiredWithout:field,field,field**  
 The field under validation may left blank in case provided seed present.
 ```javascript
-// requiredWithout rule validation fails, becoz email is must in case phone not provided.
-let v = new Validator({email:''}, {email:'requiredWithout:phone'});
+// requiredWithout rule validation fails, becoz email is must in case phone,pan not provided.
+let v = new Validator({email:'', username:''}, {email:'requiredWithout:phone,pan', username:'requiredWithout:email'});
 ```
 
 **accepted**  
 The field under validation must be yes, on, 1, or true.
+
+**after**  
+The field under validation must be date after provided seed.
+```javascript
+let v = new Validator({joining:''}, {joining:'required|after:2018-02-10'});
+```
 
 **alpha**  
 The field under validation must be entirely alphabetic characters.
@@ -228,6 +236,12 @@ The field under validation only contains ascii characters.
 
 **base64**  
 The field under validation must be valid base64 encoded string.
+
+**before**  
+The field under validation must be date before provided seed.
+```javascript
+let v = new Validator({joining:''}, {joining:'required|before:2018-02-10'});
+```
 
 **between:start,end**  
 The field under validation must be between provided values.
@@ -251,7 +265,8 @@ The field under validation must be valid credit card string.
 The field under validation must match the given date format.
 ```javascript
 let v = new Validator({dob:''}, {dob:'required|dateFormat:YYYY-MM-DD'});
-```
+```  
+Check https://momentjs.com/docs/ for supported formats
 
 **decimal**  
 The field under validation must be decimal.

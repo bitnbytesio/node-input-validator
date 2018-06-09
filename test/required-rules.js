@@ -8,7 +8,7 @@ let r = {};
 
 describe('requiredRules', function () {
 
-    describe('required', function () {
+    describe('#required', function () {
 
         it('should return true', async () => {
 
@@ -36,7 +36,7 @@ describe('requiredRules', function () {
     });
 
 
-    describe('requiredIf', function () {
+    describe('#requiredIf', function () {
 
         it('should return true', async () => {
 
@@ -64,23 +64,27 @@ describe('requiredRules', function () {
     });
 
 
-    describe('requiredNotIf', function () {
+    describe('#requiredNotIf', function () {
 
-        it('should return true', async () => {
+        it('Check for both pass and fail', async () => {
 
-            let v = new Validator( {name: 'Harcharan Singh', age: '16'}, {sex: 'requiredNotIf:age,16'});
+            let v,matched;
 
-            let matched = await v.check();
+            v = new Validator( 
+                {name: 'Harcharan Singh', age: '16'}, 
+                {sex: 'requiredNotIf:age,16'});
+
+            matched = await v.check();
 
             assert.equal(matched, true);
 
-        });
+       
 
-        it('should return false', async () => {
+            v = new Validator( 
+                {name: 'Harcharan Singh', age: '15'}, 
+                {sex: 'requiredNotIf:age,16'});
 
-            let v = new Validator( {name: 'Harcharan Singh', age: '15'}, {sex: 'requiredNotIf:age,16'});
-
-            let matched = await v.check();
+            matched = await v.check();
 
             assert.equal(matched, false);
 
@@ -92,53 +96,87 @@ describe('requiredRules', function () {
     });
 
 
-    describe('requiredWith', function () {
+    describe('#requiredWith', function () {
 
-        it('should return true', async () => {
+        it('With single and Multiple seeds', async () => {
 
-            let v = new Validator( {name: 'Harcharan Singh', sex: 'male',  email: '', ip:''}, {email: 'email', ip: 'requiredWith:email|ip'});
+            let v,matched;
 
-            let matched = await v.check();
+            // validate with single seed
+            v = new Validator( 
+                {name: 'Harcharan Singh', sex: 'male',  email: '', ip:''}, 
+                {email: 'email', ip: 'requiredWith:email|ip'});
+
+            matched = await v.check();
 
             assert.equal(matched, true);
 
-        });
+            // validate with multiple seeds
+            v = new Validator( 
+                {name: 'Harcharan Singh', sex: 'male',  email: '', ip:''}, 
+                {email: 'requiredWith:name,sex'});
 
-        it('should return false', async () => {
-
-            let v = new Validator( {name: 'Harcharan Singh', sex: 'male',  email: 'artisangang@gmail.com', ip:''}, {email: 'email', ip: 'requiredWith:email|ip'});
-
-
-            let matched = await v.check();
+            matched = await v.check();
 
             assert.equal(matched, false);
 
+             // validate with multiple seeds
+            v = new Validator( 
+                {name: 'Harcharan Singh', sex: 'male',  email: 'artisangang@gmail.com', ip:''}, 
+                {email: 'requiredWith:name,sex'});
+
+            matched = await v.check();
+
+            assert.equal(matched, true);
+
+            // check for fails
+            v = new Validator( 
+                {name: 'Harcharan Singh', sex: 'male',  email: 'artisangang@gmail.com', ip:''}, 
+                {email: 'email', ip: 'requiredWith:email|ip'});
+
+            matched = await v.check();
+            assert.equal(matched, false);
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('ip');
 
+
         });
+
+
 
     });
 
 
 
-    describe('requiredWithout', function () {
+    describe('#requiredWithout', function () {
 
-        it('should return true', async () => {
+        it('With single and multiple seeds', async () => {
 
-            let v = new Validator( {name: 'Harcharan Singh', sex: 'male', age:'23'}, {sex: 'requiredWithout:age'});
+            let v,matched;
 
-            let matched = await v.check();
+            v = new Validator( 
+                {name: 'Harcharan Singh', sex: 'male', age:''}, 
+                {sex: 'requiredWithout:age'});
+
+            matched = await v.check();
 
             assert.equal(matched, true);
 
-        });
 
-        it('should return false', async () => {
+            v = new Validator( 
+                {name: 'Harcharan Singh', sex: '', age:''}, 
+                {sex: 'requiredWithout:age,name'});
 
-            let v = new Validator( {name: 'Harcharan Singh'}, {sex: 'requiredWithout:age'});
+            matched = await v.check();
 
-            let matched = await v.check();
+            assert.equal(matched, false);
+
+       
+            v = new Validator( 
+                {name: 'Harcharan Singh'}, 
+                {sex: 'requiredWithout:age'});
+
+            matched = await v.check();
 
             assert.equal(matched, false);
 
