@@ -8,24 +8,22 @@
     "cover": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "engines": {
-    "node": ">=7"
+    "node": ">=7.6"
   },
   "keywords": [
-    "koa",
-    "express",
-    "middleware",
     "validation",
     "validator",
-    "node-validator",
-    "koa-validation",
-    "koa-validator",
-    "express-validation",
-    "express-validator",
-    "koa validation",
-    "express validation",
-    "file validation",
+    "data validation",
     "input validation",
-    "form validation"
+    "input validator",
+    "form validation",
+    "form validator",
+    "node validator",
+    "laravel",
+    "validator for js",
+    "koa",
+    "express",
+    "file validation"
   ],
   "repository": "artisangang/node-input-validator",
   "author": {
@@ -48,6 +46,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.1",
+    "eslint": "^4.19.1",
     "istanbul": "^0.4.5",
     "mocha": "^5",
     "mocha-lcov-reporter": "^1.3.0",
