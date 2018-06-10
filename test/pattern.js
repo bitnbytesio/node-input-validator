@@ -8,177 +8,291 @@ let r = {};
 
 describe('Pattern', function () {
 
-    describe('alpha', function () {
+    it('#alpha', async () => {
+        
+        let v = new Validator( {name: 'Harcharan'}, {name: 'alpha'});
 
-        it('should return true', async () => {
+        let matched = await v.check();
 
-            let v = new Validator( {name: 'Harcharan'}, {name: 'alpha'});
+        assert.equal(matched, true);
 
-            let matched = await v.check();
+   
 
-            assert.equal(matched, true);
+        v = new Validator( {name: '123456'}, {name: 'alpha'});
 
-        });
+        matched = await v.check();
 
-        it('should return false', async () => {
+        assert.equal(matched, false);
 
-            let v = new Validator( {name: '123456'}, {name: 'alpha'});
+        should(v.errors).be.an.instanceOf(Object);
+        should(v.errors).have.property('name');
 
-            let matched = await v.check();
 
-            assert.equal(matched, false);
+        v = new Validator( {name: 'ASD123456'}, {name: 'alpha'});
 
-            should(v.errors).be.an.instanceOf(Object);
-            should(v.errors).have.property('name');
+        matched = await v.check();
 
-        });
+        assert.equal(matched, false);
 
-        it('should return false', async () => {
+        should(v.errors).be.an.instanceOf(Object);
+        should(v.errors).have.property('name');
 
-            let v = new Validator( {name: 'ASD123456'}, {name: 'alpha'});
+   
 
-            let matched = await v.check();
+        v = new Validator( {name: 'ASD-QRT'}, {name: 'alpha'});
 
-            assert.equal(matched, false);
+        matched = await v.check();
 
-            should(v.errors).be.an.instanceOf(Object);
-            should(v.errors).have.property('name');
+        assert.equal(matched, false);
 
-        });
+        should(v.errors).be.an.instanceOf(Object);
+        should(v.errors).have.property('name');
 
-        it('should return false', async () => {
+        
+    });
 
-            let v = new Validator( {name: 'ASD-QRT'}, {name: 'alpha'});
 
-            let matched = await v.check();
+    it('#alphaDash', async () => {
 
-            assert.equal(matched, false);
+       
 
-            should(v.errors).be.an.instanceOf(Object);
-            should(v.errors).have.property('name');
+        let v = new Validator( {name: 'HarcharanSingh'}, {name: 'alphaDash'});
 
-        });
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+   
+
+        v = new Validator( {name: 'Harcharan_Singh'}, {name: 'alphaDash'});
+
+        matched = await v.check();
+
+        assert.equal(matched, true);
+
+   
+
+        v = new Validator( {name: 'Harcharan-Singh'}, {name: 'alphaDash'});
+
+        matched = await v.check();
+
+        assert.equal(matched, true);
+
+   
+
+        v = new Validator( {name: 'Harcharan Singh'}, {name: 'alphaDash'});
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+        should(v.errors).be.an.instanceOf(Object);
+        should(v.errors).have.property('name');
+
+       
 
     });
 
 
-    describe('alphaDash', function () {
+    it('#alphaNumeric', async ()  => {
 
-        it('should return true', async () => {
+       
 
-            let v = new Validator( {name: 'HarcharanSingh'}, {name: 'alphaDash'});
+        let v = new Validator( {uuid: 'QWERTY'}, {uuid: 'alphaNumeric'});
 
-            let matched = await v.check();
+        let matched = await v.check();
 
-            assert.equal(matched, true);
+        assert.equal(matched, true);
 
-        });
+    
 
-        it('should return true', async () => {
+        v = new Validator( {uuid: '123456'}, {uuid: 'alphaNumeric'});
 
-            let v = new Validator( {name: 'Harcharan_Singh'}, {name: 'alphaDash'});
+        matched = await v.check();
 
-            let matched = await v.check();
+        assert.equal(matched, true);
 
-            assert.equal(matched, true);
+   
 
-        });
+        v = new Validator( {uuid: 'QWERTY123'}, {uuid: 'alphaNumeric'});
 
-        it('should return true', async () => {
+        matched = await v.check();
 
-            let v = new Validator( {name: 'Harcharan-Singh'}, {name: 'alphaDash'});
+        assert.equal(matched, true);
 
-            let matched = await v.check();
+   
 
-            assert.equal(matched, true);
+        v = new Validator( {uuid: 'QWERTY-13'}, {uuid: 'alphaNumeric'});
 
-        });
+        matched = await v.check();
 
-        it('should return false', async () => {
+        assert.equal(matched, false);
 
-            let v = new Validator( {name: 'Harcharan Singh'}, {name: 'alphaDash'});
+        should(v.errors).be.an.instanceOf(Object);
+        should(v.errors).have.property('uuid');
 
-            let matched = await v.check();
-
-            assert.equal(matched, false);
-
-            should(v.errors).be.an.instanceOf(Object);
-            should(v.errors).have.property('name');
-
-        });
+        
 
     });
 
+     it('#ascii', async () => {
 
-    describe('alphaNumeric', function () {
+        let v = new Validator( {uuid: 'QWERTY-13&pound'}, {uuid: 'ascii'});
 
-        it('should return true', async () => {
+        let matched = await v.check();
 
-            let v = new Validator( {uuid: 'QWERTY'}, {uuid: 'alphaNumeric'});
+        assert.equal(matched, true);
 
-            let matched = await v.check();
+   
 
-            assert.equal(matched, true);
+        v = new Validator( {uuid: 'QWERTY-13£'}, {uuid: 'ascii'});
 
-        });
+        matched = await v.check();
 
-        it('should return true', async () => {
+        assert.equal(matched, false);
 
-            let v = new Validator( {uuid: '123456'}, {uuid: 'alphaNumeric'});
-
-            let matched = await v.check();
-
-            assert.equal(matched, true);
-
-        });
+     });
 
 
-        it('should return true', async () => {
+     it('#base64', async () => {
 
-            let v = new Validator( {uuid: 'QWERTY123'}, {uuid: 'alphaNumeric'});
+        let v = new Validator( {uuid: 'UGx1dG8gU29mdHdhcmVz'}, {uuid: 'base64'});
 
-            let matched = await v.check();
+        let matched = await v.check();
 
-            assert.equal(matched, true);
+        assert.equal(matched, true);
 
-        });
+   
 
-        it('should return false', async () => {
+        v = new Validator( {uuid: 'abcdefghijk'}, {uuid: 'base64'});
 
-            let v = new Validator( {uuid: 'QWERTY-13'}, {uuid: 'alphaNumeric'});
+        matched = await v.check();
 
-            let matched = await v.check();
+        assert.equal(matched, false);
 
-            assert.equal(matched, false);
+     });
 
-            should(v.errors).be.an.instanceOf(Object);
-            should(v.errors).have.property('uuid');
+      it('#creditCard', async () => {
 
-        });
+        let v = new Validator( {cc: '5290846149643995'}, {cc: 'creditCard'});
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+   
+
+        v = new Validator( {cc: '42569815'}, {cc: 'creditCard'});
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+     });
+
+    it('#latLong', async () => {
+
+        let v = new Validator( {cordinates: '37.7192,-127.1023'}, {cordinates: 'latLong'});
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+   
+
+        v = new Validator( {cordinates: '390,890'}, {cordinates: 'latLong'});
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+     });
+
+    it('#email', async () => {
+
+      
+
+        let v = new Validator( {email: 'artisangang@gmail.com'}, {email: 'required|email'});
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+   
+
+        v = new Validator( {email: 'artisangang.gmail.com'}, {email: 'required|email'});
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+       
 
     });
 
-    describe('email', function () {
+     it('#json', async () => {
 
-        it('should return true', async () => {
+      
 
-            let v = new Validator( {email: 'artisangang@gmail.com'}, {email: 'required|email'});
+        let v = new Validator( {data: '["192.168.1.1","127.0.0.1"]'}, {data: 'required|json'});
 
-            let matched = await v.check();
+        let matched = await v.check();
 
-            assert.equal(matched, true);
+        assert.equal(matched, true);
 
-        });
+   
 
-        it('should return false', async () => {
+        v = new Validator( {data: 'artisangang.gmail.com'}, {data: 'required|json'});
 
-            let v = new Validator( {email: 'artisangang.gmail.com'}, {email: 'required|email'});
+        matched = await v.check();
 
-            let matched = await v.check();
+        assert.equal(matched, false);
 
-            assert.equal(matched, false);
+       
 
-        });
+    });
+
+    it('#ip', async () => {
+
+      
+
+        let v = new Validator( {ip: '192.168.1.1'}, {ip: 'required|ip'});
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+   
+
+        v = new Validator( {ip: 'artisangang.gmail.com'}, {ip: 'required|ip'});
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+       
+
+    });
+
+    it('#url', async () => {
+
+      
+
+        let v = new Validator( {url: 'http://www.github.com'}, {url: 'required|url'});
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+   
+
+        v = new Validator( {url: 'artisangang'}, {url: 'required|url'});
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+       
 
     });
 

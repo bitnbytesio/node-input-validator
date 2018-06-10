@@ -46,6 +46,12 @@ describe('requiredRules', function () {
 
             assert.equal(matched, true);
 
+            //v = new Validator( {name: 'Harcharan Singh', sex: 'male', age: 16}, {sex: 'requiredIf'});
+
+            //matched = await v.check();
+
+            //assert.throws( async () => { await v.check() }, Error);
+
         });
 
         it('should return false', async () => {
@@ -58,6 +64,12 @@ describe('requiredRules', function () {
 
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('sex');
+
+            v = new Validator( {name: 'Harcharan Singh', sex: 16}, {sex: 'requiredIf:sex,16'});
+
+            matched = await v.check();
+
+            assert.equal(matched, false);
 
         });
 

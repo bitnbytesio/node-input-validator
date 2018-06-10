@@ -25,7 +25,9 @@ Validation library for node.js
 Node Input Validator is a validation library for node.js. You can also extend library to add custom rules.
 
 **Note:** 
-Migrating from 1.2.2 to version 2x, just remove first param from validator constructor, ie. empty object. 
+Migrating from 1.2.2 to version 2x, just remove first param from validator constructor, ie. empty object.
+*Breaking Changes*
+Changes in behaviour of digits and digitsBetween 
 
 **Installation**
 
@@ -243,8 +245,8 @@ The field under validation must be date before provided seed.
 let v = new Validator({joining:''}, {joining:'required|before:2018-02-10'});
 ```
 
-**between:start,end**  
-The field under validation must be between provided values.
+**lengthBetween:start,end**  
+The field under validation value length must be between provided values.
 ```javascript
 let v = new Validator({age:''}, {age:'required|between:17,30'});
 ```
@@ -271,13 +273,13 @@ Check https://momentjs.com/docs/ for supported formats
 **decimal**  
 The field under validation must be decimal.
 
-**digits**  
-The field under validation only contains digits.
+**digits:length**  
+The field under validation must be numeric and must have an exact length of value.
 
-**digitsBetween**  
-The field under validation must be in between provided digit values.
+**digitsBetween:min,max**  
+The field under validation must have a length between provided min and max values.
 ```javascript
-let v = new Validator({age:''}, {age:'required|digitsBetween:17,21'});
+let v = new Validator({phone:''}, {age:'required|digitsBetween:10,13'});
 ```
 
 **email**  

@@ -4,6 +4,8 @@ const should = require('should');
 
 const Validator = require('../index');
 
+Validator.setLang('en');
+
 Validator.messages({
     required: 'The :attribute field must not be empty.',
 });

@@ -20,6 +20,8 @@ describe('Numbers', function () {
 
         });
 
+      
+
         it('should return false', async () => {
 
             let v = new Validator( {price: 'null'}, {age: 'required|numeric'});
@@ -76,11 +78,29 @@ describe('Numbers', function () {
 
     });
 
-    describe('digitsBetween', function () {
+    describe('#digits,#digitsBetween', function () {
+
+        it('#digits', async () => {
+
+            let v = new Validator( {phone: '8699987073'}, {phone: 'required|digits:10'});
+
+            let matched = await v.check();
+
+            assert.equal(matched, true);
+
+
+            v = new Validator( {phone: '789456'}, {phone: 'required|digits:10'});
+
+            matched = await v.check();
+
+            assert.equal(matched, false);
+
+        });
+
 
         it('should return true', async () => {
 
-            let v = new Validator( {age: '19'}, {age: 'required|digitsBetween:16,21'});
+            let v = new Validator( {phone: '8699987073'}, {phone: 'required|digitsBetween:10,13'});
 
             let matched = await v.check();
 
@@ -90,27 +110,27 @@ describe('Numbers', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator( {age: '26'}, {age: 'required|digitsBetween:16,21'});
+            let v = new Validator( {phone: '789456'}, {phone: 'required|digitsBetween:10,13'});
 
             let matched = await v.check();
 
             assert.equal(matched, false);
 
             should(v.errors).be.an.instanceOf(Object);
-            should(v.errors).have.property('age');
+            should(v.errors).have.property('phone');
 
         });
 
         it('should return false', async () => {
 
-            let v = new Validator( {age: 'adult'}, {age: 'required|digitsBetween:16,21'});
+            let v = new Validator( {phone: '869998707378945'}, {phone: 'required|digitsBetween:10,13'});
 
             let matched = await v.check();
 
             assert.equal(matched, false);
 
             should(v.errors).be.an.instanceOf(Object);
-            should(v.errors).have.property('age');
+            should(v.errors).have.property('phone');
 
         });
 

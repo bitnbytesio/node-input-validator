@@ -47,7 +47,7 @@ module.exports.messages = (custom_messages, lang = 'en') => {
     }
 };
 
-
+/* istanbul ignore next */
 module.exports.koa = () => {
 
     return async (ctx, next) => {
