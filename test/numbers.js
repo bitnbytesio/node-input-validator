@@ -12,7 +12,7 @@ describe('Numbers', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator( {price: '19.50', quantity: '5'}, {price: 'required|numeric', quantity: 'required|numeric'});
+            let v = new Validator({ price: '19.50', quantity: '5' }, { price: 'required|numeric', quantity: 'required|numeric' });
 
             let matched = await v.check();
 
@@ -20,11 +20,11 @@ describe('Numbers', function () {
 
         });
 
-      
+
 
         it('should return false', async () => {
 
-            let v = new Validator( {price: 'null'}, {age: 'required|numeric'});
+            let v = new Validator({ price: 'null' }, { age: 'required|numeric' });
 
             let matched = await v.check();
 
@@ -34,7 +34,7 @@ describe('Numbers', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator( {age: '19'}, {age: 'required|integer'});
+            let v = new Validator({ age: '19' }, { age: 'required|integer' });
 
             let matched = await v.check();
 
@@ -44,7 +44,7 @@ describe('Numbers', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator( {age: 'adult'}, {age: 'required|integer'});
+            let v = new Validator({ age: 'adult' }, { age: 'required|integer' });
 
             let matched = await v.check();
 
@@ -55,7 +55,7 @@ describe('Numbers', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator( {age: '19'}, {age: 'required|integer|max:21|min:16'});
+            let v = new Validator({ age: '19' }, { age: 'required|integer|max:21|min:16' });
 
             let matched = await v.check();
 
@@ -65,7 +65,7 @@ describe('Numbers', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator( {age: '27'}, {age: 'required|integer|max:21|min:16'});
+            let v = new Validator({ age: '27' }, { age: 'required|integer|max:21|min:16' });
 
             let matched = await v.check();
 
@@ -82,14 +82,14 @@ describe('Numbers', function () {
 
         it('#digits', async () => {
 
-            let v = new Validator( {phone: '8699987073'}, {phone: 'required|digits:10'});
+            let v = new Validator({ phone: '8699987073' }, { phone: 'required|digits:10' });
 
             let matched = await v.check();
 
             assert.equal(matched, true);
 
 
-            v = new Validator( {phone: '789456'}, {phone: 'required|digits:10'});
+            v = new Validator({ phone: '789456' }, { phone: 'required|digits:10' });
 
             matched = await v.check();
 
@@ -100,7 +100,7 @@ describe('Numbers', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator( {phone: '8699987073'}, {phone: 'required|digitsBetween:10,13'});
+            let v = new Validator({ phone: '8699987073' }, { phone: 'required|digitsBetween:10,13' });
 
             let matched = await v.check();
 
@@ -110,7 +110,7 @@ describe('Numbers', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator( {phone: '789456'}, {phone: 'required|digitsBetween:10,13'});
+            let v = new Validator({ phone: '789456' }, { phone: 'required|digitsBetween:10,13' });
 
             let matched = await v.check();
 
@@ -123,7 +123,7 @@ describe('Numbers', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator( {phone: '869998707378945'}, {phone: 'required|digitsBetween:10,13'});
+            let v = new Validator({ phone: '869998707378945' }, { phone: 'required|digitsBetween:10,13' });
 
             let matched = await v.check();
 

@@ -12,7 +12,7 @@ describe('Edge Cases', function () {
 
         it('should ignore undefined and not required fields', async () => {
 
-            let v = new Validator( {field: undefined}, {field: 'string'});
+            let v = new Validator({ field: undefined }, { field: 'string' });
 
             let matched = await v.check();
             assert.equal(matched, true);
@@ -22,7 +22,7 @@ describe('Edge Cases', function () {
 
         it('should reject undefined and required fields', async () => {
 
-            let v = new Validator( {field: undefined}, {field: 'required|string'});
+            let v = new Validator({ field: undefined }, { field: 'required|string' });
 
             let matched = await v.check();
             assert.equal(matched, false);
@@ -35,7 +35,7 @@ describe('Edge Cases', function () {
 
         it('should ignore null and not required fields', async () => {
 
-            let v = new Validator( {field: null}, {field: 'string'});
+            let v = new Validator({ field: null }, { field: 'string' });
 
             let matched = await v.check();
             assert.equal(matched, true);
@@ -45,7 +45,7 @@ describe('Edge Cases', function () {
 
         it('should reject null and required fields', async () => {
 
-            let v = new Validator( {field: null}, {field: 'required|string'});
+            let v = new Validator({ field: null }, { field: 'required|string' });
 
             let matched = await v.check();
             assert.equal(matched, false);
@@ -58,7 +58,7 @@ describe('Edge Cases', function () {
 
         it('should ignore empty string in not required fields', async () => {
 
-            let v = new Validator( {field: ''}, {field: 'string'});
+            let v = new Validator({ field: '' }, { field: 'string' });
 
             let matched = await v.check();
             assert.equal(matched, true);
@@ -68,7 +68,7 @@ describe('Edge Cases', function () {
 
         it('should reject empty string in required fields', async () => {
 
-            let v = new Validator( {field: ''}, {field: 'required|string'});
+            let v = new Validator({ field: '' }, { field: 'required|string' });
 
             let matched = await v.check();
             assert.equal(matched, false);

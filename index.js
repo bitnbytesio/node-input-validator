@@ -6,7 +6,7 @@
  */
 
 const Validator = require('./lib/validator'),
-      messages = require('./lib/messages/index');
+    messages = require('./lib/messages/index');
 
 // main validator class
 module.exports = Validator;
@@ -43,7 +43,7 @@ module.exports.messages = (custom_messages, lang = 'en') => {
             messages[lang] = {};
         }
 
-        messages[lang][ keys[i] ] = custom_messages[ keys[i] ];
+        messages[lang][keys[i]] = custom_messages[keys[i]];
     }
 };
 

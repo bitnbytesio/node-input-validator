@@ -1,5 +1,6 @@
 Validation Library
 ==================
+
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 [![Coverage Status](https://coveralls.io/repos/github/artisangang/node-input-validator/badge.svg?branch=master)](https://coveralls.io/github/artisangang/node-input-validator?branch=master)
@@ -17,21 +18,20 @@ Validation Library
 [node-image]: https://img.shields.io/badge/node.js-%3E=_7.6-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 
-
-
 Validation library for node.js
-
 
 Node Input Validator is a validation library for node.js. You can also extend library to add custom rules.
 
-**Note:** 
+**Note:**  
 Migrating from 1.2.2 to version 2x, just remove first param from validator constructor, ie. empty object.
 *Breaking Changes*
 Changes in behaviour of digits and digitsBetween 
 
 **Installation**
 
-```npm install node-input-validator```
+```shell
+npm install node-input-validator
+```
 
 **Usage**
 ```javascript
@@ -415,3 +415,6 @@ Any of the fields must be present in input.
 
 **all**
 All of the fields must be present in input.
+
+#### Typescript Support
+Typings expermental  

@@ -23,7 +23,7 @@ describe('Custom messages', function () {
         it('should return custom message', async () => {
 
             let v = new Validator(
-                {}, {number: 'required'});
+                {}, { number: 'required' });
 
             let matched = await v.check();
 
@@ -34,10 +34,10 @@ describe('Custom messages', function () {
 
         });
 
-         it('should return custom message in another language', async () => {
+        it('should return custom message in another language', async () => {
 
             let v = new Validator(
-                {}, {number: 'required'});
+                {}, { number: 'required' });
 
             v.setLang('pb');
 
@@ -53,7 +53,7 @@ describe('Custom messages', function () {
         it('should return custom message based on field', async () => {
 
             let v = new Validator(
-                {username:'test2017'}, {username: 'required|alpha'}, {'username.alpha': 'Username is invalid.'});
+                { username: 'test2017' }, { username: 'required|alpha' }, { 'username.alpha': 'Username is invalid.' });
 
             let matched = await v.check();
 
@@ -64,10 +64,10 @@ describe('Custom messages', function () {
 
         });
 
-         it('should return custom message based on rule', async () => {
+        it('should return custom message based on rule', async () => {
 
             let v = new Validator(
-                {username:'test2017'}, {username: 'required|alpha'}, {'username.alpha': 'Username is must.'});
+                { username: 'test2017' }, { username: 'required|alpha' }, { 'username.alpha': 'Username is must.' });
 
             let matched = await v.check();
 

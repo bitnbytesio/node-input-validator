@@ -14,11 +14,11 @@ Validator.extend('even', async function (field, value) {
     if ((parseInt(value) % 2) == 0) {
         return true;
     }
-    
+
     this.validator.addError(field, 'even');
-    
+
     return false;
-    
+
 });
 
 Validator.extend('status', async function (field, value, args) {
@@ -26,9 +26,9 @@ Validator.extend('status', async function (field, value, args) {
     if (args.indexOf(value) >= 0) {
         return true;
     }
-    
+
     this.validator.addError(field, 'status');
-    
+
     return false;
 
 });
@@ -42,7 +42,7 @@ describe('Custom Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(
-                {number: '4'}, {number: 'even|required'});
+                { number: '4' }, { number: 'even|required' });
 
             let matched = await v.check();
 
@@ -53,7 +53,7 @@ describe('Custom Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(
-                {number: '9'}, {number: 'even|required'});
+                { number: '9' }, { number: 'even|required' });
 
             let matched = await v.check();
 
@@ -71,7 +71,7 @@ describe('Custom Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(
-                {status: 'draft'}, {status: 'status:draft,published|required'});
+                { status: 'draft' }, { status: 'status:draft,published|required' });
 
             let matched = await v.check();
 
@@ -82,7 +82,7 @@ describe('Custom Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(
-                {status: 'completed'}, {status: 'status:draft,published|required'});
+                { status: 'completed' }, { status: 'status:draft,published|required' });
 
             let matched = await v.check();
 
@@ -98,7 +98,7 @@ describe('Custom Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(
-                {number: 'abc'}, {number: 'regex:[abc]'});
+                { number: 'abc' }, { number: 'regex:[abc]' });
 
             let matched = await v.check();
 
@@ -109,7 +109,7 @@ describe('Custom Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(
-                {number: 'xyz'}, {number: 'regex:[abc]'});
+                { number: 'xyz' }, { number: 'regex:[abc]' });
 
             let matched = await v.check();
 
@@ -123,16 +123,16 @@ describe('Custom Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(
-                {remember: 'yes'}, {remember: 'custom'});
+                { remember: 'yes' }, { remember: 'custom' });
 
             v.rules.validateCustom = async (field, value, message) => {
 
                 if (value === 'yes' || value === 'on') {
                     return true;
-                } 
-                
+                }
+
                 this.validator.addError(field, 'custom');
-                
+
                 return false;
 
             };
@@ -146,16 +146,16 @@ describe('Custom Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(
-                {remember: '1'}, {remember: 'custom'});
+                { remember: '1' }, { remember: 'custom' });
 
             v.rules.validateCustom = async (field, value) => {
 
                 if (value === 'yes' || value === 'on') {
                     return true;
                 }
-                
+
                 v.addError(field, 'custom');
-                
+
                 return false;
 
             };
@@ -163,7 +163,7 @@ describe('Custom Rules', function () {
             let matched = await v.check();
 
             assert.equal(matched, false);
-            
+
         });
 
     });

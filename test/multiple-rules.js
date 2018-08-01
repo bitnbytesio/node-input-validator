@@ -12,7 +12,7 @@ describe('Multiple rules test', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator( {name: 'artisan'}, {name: 'required|minLength:5|maxLength:8|alpha'});
+            let v = new Validator({ name: 'artisan' }, { name: 'required|minLength:5|maxLength:8|alpha' });
 
             let matched = await v.check();
 
@@ -22,7 +22,7 @@ describe('Multiple rules test', function () {
 
         it('should return false due to minLength failed', async () => {
 
-            let v = new Validator( {name: 'art'}, {name: 'required|minLength:5|maxLength:8|alpha'});
+            let v = new Validator({ name: 'art' }, { name: 'required|minLength:5|maxLength:8|alpha' });
 
             let matched = await v.check();
 
@@ -35,7 +35,7 @@ describe('Multiple rules test', function () {
 
         it('should return false due to maxLength failed', async () => {
 
-            let v = new Validator( {name: 'artisangang'}, {name: 'required|minLength:5|maxLength:8'});
+            let v = new Validator({ name: 'artisangang' }, { name: 'required|minLength:5|maxLength:8' });
 
             let matched = await v.check();
 

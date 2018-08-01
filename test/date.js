@@ -14,7 +14,7 @@ describe('Dates', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator( {dob: '1992-02-28'}, {dob: 'required|dateFormat:YYYY-MM-DD'});
+            let v = new Validator({ dob: '1992-02-28' }, { dob: 'required|dateFormat:YYYY-MM-DD' });
 
             let matched = await v.check();
             assert.equal(matched, true);
@@ -24,7 +24,7 @@ describe('Dates', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator( {dob: '1992-28-02'}, {dob: 'required|dateFormat:YYYY-MM-DD'});
+            let v = new Validator({ dob: '1992-28-02' }, { dob: 'required|dateFormat:YYYY-MM-DD' });
 
             let matched = await v.check();
 
@@ -42,7 +42,7 @@ describe('Dates', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator( {dob: '1990-02-28'}, {dob: 'required|dateFormat:YYYY-MM-DD|before:1991-01-01'});
+            let v = new Validator({ dob: '1990-02-28' }, { dob: 'required|dateFormat:YYYY-MM-DD|before:1991-01-01' });
 
             let matched = await v.check();
             assert.equal(matched, true);
@@ -52,7 +52,7 @@ describe('Dates', function () {
 
         it('should return false', async () => {
 
-            let v = new Validator( {dob: '1993-28-02'}, {dob: 'required|dateFormat:YYYY-MM-DD|before:1992-12-31'});
+            let v = new Validator({ dob: '1993-28-02' }, { dob: 'required|dateFormat:YYYY-MM-DD|before:1992-12-31' });
 
             let matched = await v.check();
 
@@ -66,28 +66,28 @@ describe('Dates', function () {
 
         it('should return true', async () => {
 
-            let v,matched;
+            let v, matched;
 
-            v = new Validator( {dob: '1990-02-28'}, {dob: 'required|dateFormat:YYYY-MM-DD|after:1990-01-01'});
+            v = new Validator({ dob: '1990-02-28' }, { dob: 'required|dateFormat:YYYY-MM-DD|after:1990-01-01' });
 
             matched = await v.check();
             assert.equal(matched, true);
-     
-
-            v = new Validator( {dob: '1993-28-02'}, {dob: 'required|dateFormat:YYYY-MM-DD|after:2000-12-31'});
-
-            matched = await v.check();
-
-            assert.equal(matched, false);
 
 
-            v = new Validator( {dob: '1993-32-50'}, {dob: 'required|dateFormat:YYYY-MM-DD|after:2000-12-31'});
+            v = new Validator({ dob: '1993-28-02' }, { dob: 'required|dateFormat:YYYY-MM-DD|after:2000-12-31' });
 
             matched = await v.check();
 
             assert.equal(matched, false);
 
-            v = new Validator( {dob: '1993-28-02'}, {dob: 'required|dateFormat:YYYY-MM-DD|after:2000-15-31'});
+
+            v = new Validator({ dob: '1993-32-50' }, { dob: 'required|dateFormat:YYYY-MM-DD|after:2000-12-31' });
+
+            matched = await v.check();
+
+            assert.equal(matched, false);
+
+            v = new Validator({ dob: '1993-28-02' }, { dob: 'required|dateFormat:YYYY-MM-DD|after:2000-15-31' });
 
             matched = await v.check();
 

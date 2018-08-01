@@ -15,7 +15,7 @@ describe('File Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(
-                {file: fs.readFileSync('./test/files/file-small.png')}, {file: 'size:4kb'});
+                { file: fs.readFileSync('./test/files/file-small.png') }, { file: 'size:4kb' });
 
 
             let matched = await v.check();
@@ -27,7 +27,7 @@ describe('File Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(
-                {file: './test/files/file-small.png'}, {file: 'size:4kb'});
+                { file: './test/files/file-small.png' }, { file: 'size:4kb' });
 
 
             let matched = await v.check();
@@ -39,7 +39,7 @@ describe('File Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(
-                {file: fs.readFileSync('./test/files/file-small.png')}, {file: 'size:1kb'});
+                { file: fs.readFileSync('./test/files/file-small.png') }, { file: 'size:1kb' });
 
 
             let matched = await v.check();
@@ -54,7 +54,7 @@ describe('File Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(
-                {file: './test/files/file-small.png'}, {file: 'size:1kb'});
+                { file: './test/files/file-small.png' }, { file: 'size:1kb' });
 
 
             let matched = await v.check();
@@ -74,7 +74,7 @@ describe('File Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(
-                {file: fs.readFileSync('./test/files/file-small.png')}, {file: 'size:4kb|mime:png,jpg'});
+                { file: fs.readFileSync('./test/files/file-small.png') }, { file: 'size:4kb|mime:png,jpg' });
 
 
             let matched = await v.check();
@@ -86,7 +86,7 @@ describe('File Rules', function () {
         it('should return true', async () => {
 
             let v = new Validator(
-                {file: './test/files/file-small.png'}, {file: 'size:4kb|mime:png,jpg'});
+                { file: './test/files/file-small.png' }, { file: 'size:4kb|mime:png,jpg' });
 
 
             let matched = await v.check();
@@ -98,7 +98,7 @@ describe('File Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(
-                {file: fs.readFileSync('./test/files/file-small.png')}, {file: 'size:1kb|mime:gif,bmp'});
+                { file: fs.readFileSync('./test/files/file-small.png') }, { file: 'size:1kb|mime:gif,bmp' });
 
 
             let matched = await v.check();
@@ -113,7 +113,7 @@ describe('File Rules', function () {
         it('should return false', async () => {
 
             let v = new Validator(
-                {file: './test/files/file-small.png'}, {file: 'size:1kb|mime:gif,bmp'});
+                { file: './test/files/file-small.png' }, { file: 'size:1kb|mime:gif,bmp' });
 
 
             let matched = await v.check();
