@@ -1,7 +1,5 @@
 const assert = require('assert');
 
-const should = require('should');
-
 const Validator = require('../index');
 
 const mixValidator = require('../lib/rules/mix.js');
@@ -75,15 +73,15 @@ describe('Conditions', function () {
 
             // assertion 1
             v = new Validator(
-                { tnc: 'true', remember: 'false' },
-                { tnc: 'required|boolean', remember: 'required|boolean' });
+                { tnc: 'true', remember: false, prime: 'false', verified: true },
+                { tnc: 'required|boolean', remember: 'required|boolean', prime: 'required|boolean', verified: 'required|boolean' });
 
             matched = await v.check();
 
             assert.equal(matched, true);
 
             v = new Validator(
-                { tnc: '1', remember: '0' },
+                { tnc: '1', remember: '0', prime: 0, verified: 1 },
                 { tnc: 'required|boolean', remember: 'required|boolean' });
 
             matched = await v.check();

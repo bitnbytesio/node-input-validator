@@ -12,7 +12,7 @@ describe('Numbers', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator({ price: '19.50', quantity: '5' }, { price: 'required|numeric', quantity: 'required|numeric' });
+            let v = new Validator({ price: '19.50', quantity: 5 }, { price: 'required|numeric', quantity: 'required|numeric' });
 
             let matched = await v.check();
 
@@ -34,7 +34,7 @@ describe('Numbers', function () {
 
         it('should return true', async () => {
 
-            let v = new Validator({ age: '19' }, { age: 'required|integer' });
+            let v = new Validator({ age: 19, status: '9' }, { age: 'required|integer', status: 'required|integer' });
 
             let matched = await v.check();
 

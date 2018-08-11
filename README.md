@@ -154,6 +154,18 @@ if (!isValid) {
 ```
 
 **Array Type Fileds Validation**
+
+```javascript
+    let v = new Validator({
+                    roles: ['admin', 'manager', 'member']
+                },
+                {
+                    'roles.*': 'required|string'
+                });
+
+    let matched = await v.check();
+```    
+
 ```javascript
     let v = new Validator({
                     plan: [
