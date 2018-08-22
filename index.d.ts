@@ -8,10 +8,13 @@ declare class Validator {
 
     lang: string;
 
+    constructor(inputs: any, rules: any, customMessages?: any = {});
 
-    constructor(inputs: any, rules: any, customMessages: any = {});
+    static make(rules: any): Validator;
 
-    check(inputs?: any);
+    apply(inputs: any): self;
+
+    check(): Promise;
 
     setLang(lang: string);
 
