@@ -23,8 +23,9 @@ Validation library for node.js
 Node Input Validator is a validation library for node.js. You can also extend library to add custom rules.
 
 **Note:**  
-Migrating from 1.2.2 to version 2x, just remove first param from validator constructor, ie. empty object.
-*Breaking Changes*
+Migrating from 1.x to version 2.x, just remove first param from validator constructor, ie. empty object.
+
+**Breaking Changes in 2.x**  
 Changes in behaviour of digits and digitsBetween 
 
 **Installation**
@@ -33,7 +34,8 @@ Changes in behaviour of digits and digitsBetween
 npm install node-input-validator
 ```
 
-**Usage**
+**Usage**  
+Simple Example  
 ```javascript
 const v = require('node-input-validator');
 
@@ -45,8 +47,70 @@ validator.check().then(function (matched) {
 });
 ```
 
-**Extending**
+```javascript
+const v = require('node-input-validator');
 
+app.post('login', function (req, res) {
+
+    let validator = new v( req.body, {
+        email:'required|email',
+        password: 'required'
+        });
+
+    validator.check().then(function (matched) {
+        if (!matched) {
+            res.status(422).send(validator.errors);
+        }
+    });
+})
+```
+With async/await  
+```javascript
+const v = require('node-input-validator');
+
+router.post('login', async function (ctx) {
+
+    let validator = new v( ctx.request.body, {
+        email:'required|email',
+        password: 'required'
+        });
+
+    let matched = await validator.check();
+
+    if (!matched) {
+        ctx.status = 422;
+        ctx.body = validator.errors;
+        return;
+    }
+    
+})
+```
+
+Pre-Initiate for performance  
+```javascript
+const Validator = require('node-input-validator');
+
+const loginRules = Validator.make({
+        email:'required|email',
+        password: 'required'
+        });
+
+router.post('login', async function (ctx) {
+
+ 
+    let matched = await loginRules.apply(ctx.request.body);
+
+    if (!matched) {
+        ctx.status = 422;
+        ctx.body = validator.errors;
+        return;
+    }
+    
+})
+```
+
+**Extending**  
+Placeholder in messages, :attribute will be replaced with field name, :value with field value and :arg0, :arg1 ...n with arguments passed to rule.
 ```javascript
 
 Validator.messages({
@@ -95,6 +159,8 @@ validator.rules.validateCustom = async (field, value)  => {
 ```javascript
 Validator.messages({
     required: 'The :attribute field must not be empty.',
+    email: 'E-mail must be a valid email address.',
+    'password.required': 'Password should not be left blank'
 });
 ```
 
@@ -137,48 +203,48 @@ if (!isValid) {
 
 ```
 
-**Object Type Fileds Validation**
+**Object Fileds Validation**
 ```javascript
     let v = new Validator({
-                    product: {id:'1',name:'',price:'', active:'yes'}
-                },
-                {
-                    'product': 'required|object',
-                    'product.id': 'required|integer',
-                    'product.name': 'required',
-                    'product.price': 'required|integer',
-                    'product.active': 'required|integer'
-                });
+            product: {id:'1',name:'',price:'', active:'yes'}
+        },
+        {
+            'product': 'required|object',
+            'product.id': 'required|integer',
+            'product.name': 'required',
+            'product.price': 'required|integer',
+            'product.active': 'required|integer'
+        });
 
     let matched = await v.check();
 ```
 
-**Array Type Fileds Validation**
+**Array Fileds Validation**
 
 ```javascript
     let v = new Validator({
-                    roles: ['admin', 'manager', 'member']
-                },
-                {
-                    'roles.*': 'required|string'
-                });
+            roles: ['admin', 'manager', 'member']
+        },
+        {
+            'roles.*': 'required|string'
+        });
 
     let matched = await v.check();
 ```    
 
 ```javascript
     let v = new Validator({
-                    plan: [
-                        {price:'25',title:'OK'},
-                        {price:'',title:''},
-                        {price:'30'},
-                        {price:'',title:'Title'}
-                    ]
-                },
-                {
-                    'plan.*.price': 'required|integer',
-                    'plan.*.title': 'required'
-                });
+            plan: [
+                {price:'25',title:'OK'},
+                {price:'',title:''},
+                {price:'30'},
+                {price:'',title:'Title'}
+            ]
+        },
+        {
+            'plan.*.price': 'required|integer',
+            'plan.*.title': 'required'
+        });
 
     let matched = await v.check();
 ```    
