@@ -296,4 +296,216 @@ describe('Pattern', function () {
 
     });
 
+    it('#domain', async () => {
+
+
+
+        let v = new Validator({ url: 'github.com' }, { url: 'required|domain' });
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+        v = new Validator({ url: 'www.github.com' }, { url: 'required|domain' });
+
+        matched = await v.check();
+
+        assert.equal(matched, true);
+
+
+
+        v = new Validator({ url: 'artisangang' }, { url: 'required|domain' });
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+
+
+    });
+
+
+    it('#hash', async () => {
+
+
+
+        let v = new Validator({ id: 'fd1baf48377a9f644f9af89abbee29f6' }, { id: 'required|hash:md5' });
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+        v = new Validator({ id: '3de76d4897cfdfd9a44c66d124640a0d943ed592' }, { id: 'required|hash:sha1' });
+
+        matched = await v.check();
+
+        assert.equal(matched, true);
+
+
+
+        v = new Validator({ url: 'artisangang' }, { url: 'required|hash:sha512' });
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+
+
+    });
+
+
+    it('#hexColor', async () => {
+
+
+
+        let v = new Validator({ id: '#FF0000' }, { id: 'required|hexColor' });
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+        v = new Validator({ id: 'FF0000' }, { id: 'required|hexColor' });
+
+        matched = await v.check();
+
+        assert.equal(matched, true);
+
+        v = new Validator({ id: 'fff' }, { id: 'required|hexColor' });
+
+        matched = await v.check();
+
+        assert.equal(matched, true);
+
+        v = new Validator({ id: 'f00' }, { id: 'required|hexColor' });
+
+        matched = await v.check();
+
+        assert.equal(matched, true);
+
+
+
+        v = new Validator({ id: 'abcd' }, { id: 'required|hexColor' });
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+
+
+    });
+
+    it('#hex', async () => {
+
+
+
+        let v = new Validator({ id: '69206d206a7573742074657374696e67' }, { id: 'required|hex' });
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);      
+
+
+        v = new Validator({ url: 'artisangang' }, { url: 'required|hex' });
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+
+
+    });
+
+
+    it('#Iso8601', async () => {
+
+
+
+        let v = new Validator({ id: '2018-09-04T15:14:06+00:00' }, { id: 'required|iso8601' });
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+
+        v = new Validator({ url: 'artisangang' }, { url: 'required|iso8601' });
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+
+
+    });
+
+    it('#MacAddress', async () => {
+
+
+
+        let v = new Validator({ id: '00:14:22:01:23:45' }, { id: 'required|macAddress' });
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+
+        v = new Validator({ url: 'artisangang' }, { url: 'required|macAddress' });
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+
+
+    });
+
+    it('#PhoneNumber', async () => {
+
+
+
+        let v = new Validator({ id: '+918699987073' }, { id: 'required|phoneNumber' });
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+
+        v = new Validator({ id: '+1-541-754-3010' }, { id: 'required|phoneNumber' });
+        matched = await v.check();
+
+        assert.equal(matched, true);
+
+
+        v = new Validator({ url: 'artisangang' }, { url: 'required|phoneNumber' });
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+
+
+    });
+
+
+    it('#MongoId', async () => {
+
+
+
+        let v = new Validator({ id: '507f191e810c19729de860ea' }, { id: 'required|mongoId' });
+
+        let matched = await v.check();
+
+        assert.equal(matched, true);
+
+
+      
+        v = new Validator({ url: 'artisangang' }, { url: 'required|mongoId' });
+
+        matched = await v.check();
+
+        assert.equal(matched, false);
+
+
+
+    });
+
 });

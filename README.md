@@ -360,11 +360,36 @@ The field under validation must have a length between provided min and max value
 let v = new Validator({phone:''}, {age:'required|digitsBetween:10,13'});
 ```
 
+**domain**  
+The field under validation must a qualified domain.
+```javascript
+let v = new Validator({domaon:'github.com'}, {domain:'required|domain'});
+```
+
 **email**  
 The field under validation must be formatted as an e-mail address.
 
 **equals**  
 The field under validation must be equal to given value.
+
+**hash:algo**  
+The field under validation must be a valid hash as per provided seed.
+```javascript
+ let v = new Validator({ 
+        id: 'fd1baf48377a9f644f9af89abbee29f6' 
+     }, 
+     { 
+         id: 'required|hash:md5' 
+     });
+
+```
+Supported algorithms: md4, md5, sha1, sha256, sha384, sha512, ripemd128, ripemd160, tiger128, tiger160, tiger192, crc32, crc32b.
+
+**hexColor**  
+The field under validation must be valid hex color code.
+
+**hex**  
+The field under validation must be valid hex.
 
 **in**  
 The field under validation must exist in the given list of values.
@@ -378,11 +403,22 @@ The field under validation must be an integer.
 **ip**  
 The field under validation must be an IP address.
 
+**iso8601**  
+The field under validation must be valid Iso8601 date.
+
 **json**   
 The field under validation must be a valid JSON string.
 
 **latLong**   
 The field under validation must be a valid latitude-longitude coordinate.
+
+
+**macAddress**  
+The field under validation should be a valid Mac Address.
+```javascript
+let v = new Validator({ id: '00:14:22:01:23:45' }, { id: 'required|macAddress' });
+;
+```
 
 **mime**  
 The file under validation must have a MIME type corresponding to one of the listed extensions.
@@ -406,10 +442,17 @@ let v = new Validator({username:''}, {username:'required|max:10'});
 ```
 
 **minLength**  
-The length of field under validation  should be greater than given value.
+The length of field under validation should be greater than given value.
 ```javascript
 let v = new Validator({username:''}, {username:'required|max:10|min:5'});
 ```
+
+**mongoId**  
+The field under validation should be a valid MongoDB ID.
+```javascript
+let v = new Validator({id:''}, {id:'required|mongoId'});
+```
+
 
 **notIn**  
 The field under validation must not exist in the given list of values.
@@ -421,6 +464,9 @@ The field under validation must not contains provided seeds.
 
 **numeric**  
 The field under validation must be numeric.
+
+**phoneNumber**  
+The field under validation must be a valid phone number.
 
 **regex**  
 The field under validation must match the given regular expression.
