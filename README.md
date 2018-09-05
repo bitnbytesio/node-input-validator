@@ -86,29 +86,6 @@ router.post('login', async function (ctx) {
 })
 ```
 
-Pre-Initiate for performance  
-```javascript
-const Validator = require('node-input-validator');
-
-const loginRules = Validator.make({
-        email:'required|email',
-        password: 'required'
-        });
-
-router.post('login', async function (ctx) {
-
- 
-    let matched = await loginRules.apply(ctx.request.body);
-
-    if (!matched) {
-        ctx.status = 422;
-        ctx.body = validator.errors;
-        return;
-    }
-    
-})
-```
-
 **Extending**  
 Placeholder in messages, :attribute will be replaced with field name, :value with field value and :arg0, :arg1 ...n with arguments passed to rule.
 ```javascript
