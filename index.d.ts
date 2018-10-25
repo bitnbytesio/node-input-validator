@@ -10,11 +10,13 @@ declare class Validator {
 
     constructor(inputs: any, rules: any, customMessages?: any = {});
 
-    static make(rules: any): Validator;
+    static make(inputs: any, rules: any, messages:any = {}): Validator;
 
-    apply(inputs: any): self;
+    apply(inputs: any): Promise;
 
     check(): Promise;
+
+    fails(): Promise;
 
     setLang(lang: string);
 

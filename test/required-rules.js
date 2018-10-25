@@ -1,7 +1,5 @@
 const assert = require('assert');
 
-const should = require('should');
-
 const Validator = require('../index');
 
 let r = {};
@@ -46,11 +44,35 @@ describe('requiredRules', function () {
 
             assert.equal(matched, true);
 
-            //v = new Validator( {name: 'Harcharan Singh', sex: 'male', age: 16}, {sex: 'requiredIf'});
+            v = new Validator({ remember: 'false', age: 16 }, { remember: 'requiredIf:age,16'});
 
-            //matched = await v.check();
+            matched = await v.check();
 
-            //assert.throws( async () => { await v.check() }, Error);
+            assert.equal(matched, true);
+
+            v = new Validator({ remember: false, age: 16 }, { remember: 'requiredIf:age,16' });
+
+            matched = await v.check();
+
+            assert.equal(matched, true);
+
+            v = new Validator({ remember: 0, age: 16 }, { remember: 'requiredIf:age,16' });
+
+            matched = await v.check();
+
+            assert.equal(matched, true);
+
+            v = new Validator({ remember: true, age: 16 }, { remember: 'requiredIf:age,16' });
+
+            matched = await v.check();
+
+            assert.equal(matched, true);
+
+            v = new Validator({ age: 16 }, { remember: 'requiredIf:age,16' });
+
+            matched = await v.check();
+
+            assert.equal(matched, false);
 
         });
 

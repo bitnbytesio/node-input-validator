@@ -1,7 +1,5 @@
 const assert = require('assert');
 
-const should = require('should');
-
 const Validator = require('../index');
 
 let r = {};
@@ -72,6 +70,19 @@ describe('Post', function () {
             let matched = await v.check();
 
             assert.equal(matched, false);
+
+            v = new Validator({ username: 'arnold', password: '123456' }, {});
+
+            v.addPostRule(async function (input) {
+
+                if (input.password.indexOf(input.username) >= 0) {
+                    this.validator.addError('password', 'custom', 'Password cannot contain username');
+                }
+            });
+
+            matched = await v.check();
+
+            assert.equal(matched, true);
 
         });
 
