@@ -44,7 +44,7 @@ describe('requiredRules', function () {
 
             assert.equal(matched, true);
 
-            v = new Validator({ remember: 'false', age: 16 }, { remember: 'requiredIf:age,16'});
+            v = new Validator({ remember: 'false', age: 16 }, { remember: 'requiredIf:age,16' });
 
             matched = await v.check();
 
@@ -87,11 +87,53 @@ describe('requiredRules', function () {
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('sex');
 
-            v = new Validator({ name: 'Harcharan Singh', sex: 16 }, { sex: 'requiredIf:sex,16' });
+            v = new Validator({ name: 'Harcharan Singh', age: '16' }, { sex: 'requiredIf:age,16' });
 
             matched = await v.check();
 
             assert.equal(matched, false);
+
+        });
+
+        it('with multiple fields', async () => {
+
+            let v = new Validator(
+                {
+                    name: 'Harcharan Singh',
+                    age: 16,
+                    parent: 'yes',
+                    type: 'subscribed',
+                    email: 'artisangang@gmail.com'
+                },
+                {
+                    email: 'requiredIf:age,16,parent,yes,type,subscribed'
+                }
+            );
+
+            let matched = await v.check();
+
+            assert.equal(matched, true);
+
+
+
+            v = new Validator(
+                {
+                    name: 'Harcharan Singh',
+                    age: 16,
+                    parent: 'yes',
+                    type: 'subscribed',
+                },
+                {
+                    email: 'requiredIf:age,16,parent,yes,type,subscribed'
+                }
+            );
+
+            matched = await v.check();
+
+            assert.equal(matched, false);
+
+            should(v.errors).be.an.instanceOf(Object);
+            should(v.errors).have.property('email');
 
         });
 
@@ -115,7 +157,7 @@ describe('requiredRules', function () {
 
 
             v = new Validator(
-                { name: 'Harcharan Singh', age: '15' },
+                { name: 'Harcharan Singh', age: 15, sex: 'male' },
                 { sex: 'requiredNotIf:age,16' });
 
             matched = await v.check();
@@ -124,6 +166,45 @@ describe('requiredRules', function () {
 
             should(v.errors).be.an.instanceOf(Object);
             should(v.errors).have.property('sex');
+
+
+            v = new Validator(
+                {
+                    name: 'Harcharan Singh',
+                    age: 16,
+                    parent: 'yes',
+                    type: 'subscribed',
+                    //email: 'artisangang@gmail.com'
+                },
+                {
+                    email: 'requiredNotIf:age,16,parent,yes,type,subscribed'
+                }
+            );
+
+            matched = await v.check();
+
+
+            assert.equal(matched, true);
+
+            v = new Validator(
+                {
+                    name: 'Harcharan Singh',
+                    age: 16,
+                    parent: 'yes',
+                    type: 'subscribed',
+                    email: 'artisangang@gmail.com'
+                },
+                {
+                    email: 'requiredNotIf:age,16,parent,yes,type,subscribed'
+                }
+            );
+
+            matched = await v.check();
+
+            assert.equal(matched, false);
+
+            should(v.errors).be.an.instanceOf(Object);
+            should(v.errors).have.property('email');
 
         });
 
@@ -189,19 +270,24 @@ describe('requiredRules', function () {
             let v, matched;
 
             v = new Validator(
-                { name: 'Harcharan Singh', sex: 'male', age: '' },
-                { sex: 'requiredWithout:age' });
+                { name: 'Harcharan Singh', sex: 'male' },
+                { sex: 'requiredWithout:age' }
+            );
 
             matched = await v.check();
+
+            console.log('2', v.errors, matched);
 
             assert.equal(matched, true);
 
 
             v = new Validator(
-                { name: 'Harcharan Singh', sex: '', age: '' },
+                { name: '', sex: '', age: '' },
                 { sex: 'requiredWithout:age,name' });
 
             matched = await v.check();
+
+            console.log('2', v.errors, matched);
 
             assert.equal(matched, false);
 
@@ -211,6 +297,8 @@ describe('requiredRules', function () {
                 { sex: 'requiredWithout:age' });
 
             matched = await v.check();
+
+            console.log('3', v.errors, matched);
 
             assert.equal(matched, false);
 
