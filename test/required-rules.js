@@ -270,36 +270,28 @@ describe('requiredRules', function () {
             let v, matched;
 
             v = new Validator(
-                { name: 'Harcharan Singh', sex: 'male' },
+                { name: 'Harcharan Singh', sex: '', age: '26' },
                 { sex: 'requiredWithout:age' }
             );
 
             matched = await v.check();
-
-            console.log('2', v.errors, matched);
-
             assert.equal(matched, true);
 
 
             v = new Validator(
-                { name: '', sex: '', age: '' },
-                { sex: 'requiredWithout:age,name' });
+                { name: 'Harcharan Singh', sex: 'male', age: '26' },
+                { sex: 'requiredWithout:age' }
+            );
 
             matched = await v.check();
+            assert.equal(matched, true);
 
-            console.log('2', v.errors, matched);
-
-            assert.equal(matched, false);
-
-
+          
             v = new Validator(
                 { name: 'Harcharan Singh' },
                 { sex: 'requiredWithout:age' });
 
             matched = await v.check();
-
-            console.log('3', v.errors, matched);
-
             assert.equal(matched, false);
 
             should(v.errors).be.an.instanceOf(Object);
