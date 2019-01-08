@@ -1,5 +1,5 @@
-Validation Library
-==================
+# Validation Library
+
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -23,32 +23,33 @@ Validation library for node.js
 
 Node Input Validator is a validation library for node.js. You can also extend library to add custom rules.
 
-**Note:**  
-Migrating from 1.x to version 2.x, just remove first param from validator constructor, ie. empty object.
-
-**Breaking Changes in 2.x**  
-Changes in behaviour of digits and digitsBetween 
-
-**Installation**
+## Installation
 
 ```shell
-npm install node-input-validator
+npm install --save node-input-validator
 ```
 
-**Usage**  
+## Usage
+
 Simple Example  
+
 ```javascript
+
 const v = require('node-input-validator');
 
 let validator = new v({name:''}, {name:'required|minLength:5'});
 
 validator.check().then(function (matched) {
-	console.log(matched);
-	console.log(validator.errors);
+    console.log(matched);
+    console.log(validator.errors);
 });
+
 ```
 
+Example usage in express application
+
 ```javascript
+
 const v = require('node-input-validator');
 
 app.post('login', function (req, res) {
@@ -56,17 +57,22 @@ app.post('login', function (req, res) {
     let validator = new v( req.body, {
         email:'required|email',
         password: 'required'
-        });
+    });
 
     validator.check().then(function (matched) {
         if (!matched) {
             res.status(422).send(validator.errors);
         }
     });
+
 })
+
 ```
-With async/await  
+
+With async/await
+
 ```javascript
+
 const v = require('node-input-validator');
 
 router.post('login', async function (ctx) {
@@ -83,105 +89,13 @@ router.post('login', async function (ctx) {
         ctx.body = validator.errors;
         return;
     }
-    
+
 })
-```
-
-**Extending**  
-Placeholder in messages, :attribute will be replaced with field name, :value with field value and :arg0, :arg1 ...n with arguments passed to rule.
-```javascript
-
-Validator.messages({
-    even: 'The value of the field must be even number.',
-    status: 'Invalid status'
-});
-
-Validator.extend('even', async function (field, value) {
-
-    if( (parseInt(value) % 2) == 0 ){
-		return true;
-    } 
-    
-    this.validator.addError(field, 'even');
-    return false;
-
-});
-
-Validator.extend('status', async function (field, value, args) {
-
-    if( args.indexOf(value) >= 0 ){
-		return true;
-    }
-    
-    this.validator.addError(field, 'status');
-    return false;
-
-});
 
 ```
 
-```javascript
-validator.rules.validateCustom = async (field, value)  => {
-            
-    if( value === 'yes' || value === 'on' ){
-        return true;
-    }
-    
-    this.validator.addError(field, 'custom');
-    return false;
+### Objects Validation
 
-};
-```
-
-**Extending/Overriding messages**
-```javascript
-Validator.messages({
-    required: 'The :attribute field must not be empty.',
-    email: 'E-mail must be a valid email address.',
-    'password.required': 'Password should not be left blank'
-});
-```
-
-**Extending/Overriding messages in another language**
-```javascript
-Validator.messages({
-    required: ':attribute ਫੀਲਡ ਖਾਲੀ ਨਹੀਂ ਹੋਣਾ ਚਾਹੀਦਾ.',
-}, 'pb');
-```
-
-**Set/Modify default language**
-```javascript
-const validator = require('node-input-validator');
-validator.setLang('pb');
-```
-
-**For Koa2**
-Attach koa middleware
-```javascript
-const validator = require('node-input-validator');
-app.use(validator.koa());
-```
-Controller Example
-```javascript
-
-let v = await ctx.validate(ctx.request.body, {
-		name:'required|maxLength:50', 
-		username:'required|maxLength:15',
-		email:'required|email',
-		password:'required'
-	});
-
-
-let isValid = await v.check();
-
-if (!isValid) {
-	// return validation errors
-	ctx.body = v.errors;
-}
-
-```
-
-**Object Fileds Validation**
 ```javascript
     let v = new Validator({
             product: {id:'1',name:'',price:'', active:'yes'}
@@ -197,18 +111,19 @@ if (!isValid) {
     let matched = await v.check();
 ```
 
-**Array Fileds Validation**
+### Array Validation
 
 ```javascript
     let v = new Validator({
             roles: ['admin', 'manager', 'member']
         },
         {
+            'roles': 'required|array',
             'roles.*': 'required|string'
         });
 
     let matched = await v.check();
-```    
+```
 
 ```javascript
     let v = new Validator({
@@ -220,26 +135,142 @@ if (!isValid) {
             ]
         },
         {
+            'plan': 'required|array',
             'plan.*.price': 'required|integer',
             'plan.*.title': 'required'
         });
 
     let matched = await v.check();
-```    
+```
 
-**Rules**
+## Extending
+
+Placeholder in messages, :attribute will be replaced with field name, :value with field value and :arg0, :arg1 ...n with arguments passed to rule.
+
+### Add/Update rule based messages
+
+```javascript
+
+Validator.messages({
+    required: 'The :attribute field must not be empty.',
+    email: 'E-mail must be a valid email address.',
+    even: 'The value of the field must be even number.',
+    status: 'Invalid status'
+});
+
+```
+
+### Add custom messages
+
+```javascript
+
+//Note: Default language is English (en).
+
+Validator.customMessages({
+    'username.required': 'When username attribute required rule failed.',
+    username: 'Default message for username attribute.'
+});
+
+```
+
+### Add/Update rules default message in another language
+
+Currenlty this package only support english, But you can easliy add messages in another language.
+
+```javascript
+
+Validator.messages({
+    required: ':attribute ਫੀਲਡ ਖਾਲੀ ਨਹੀਂ ਹੋਣਾ ਚਾਹੀਦਾ.',
+}, 'pb');
+
+```
+
+#### Set default language
+
+```javascript
+
+const validator = require('node-input-validator');
+validator.setLang('pb');
+
+```
+
+### Add your own custom validation rules
+
+```javascript
+
+Validator.extend('even', async function (field, value) {
+
+    if( (parseInt(value) % 2) == 0 ){
+        return true;
+    }
+
+    return false;
+
+});
+
+Validator.extend('status', async function (field, value, args) {
+
+    if( args.indexOf(value) >= 0 ){
+        return true;
+    }
+
+    return false;
+
+});
+
+```
+
+**For Koa2**
+Attach koa middleware
+
+```javascript
+
+const validator = require('node-input-validator');
+app.use(validator.koa());
+
+```
+
+Then in controller
+
+```javascript
+
+let v = await ctx.validate(ctx.request.body, {
+        name:'required|maxLength:50', 
+        username:'required|maxLength:15',
+        email:'required|email',
+        password:'required'
+    });
+
+
+let isValid = await v.check();
+
+if (!isValid) {
+    // return validation errors
+    ctx.body = v.errors;
+    ctx.status = 422;
+
+    return;
+}
+
+```
+
+## Rules
 
 You can check test cases for rules usage/examples.
 
 **required**  
 The field under validation cannot be left blank.
+
 ```javascript
+
 // required rule validation fails
 let v = new Validator({name:''}, {name:'required'});
+
 ```
 
 **requiredIf:field,value**  
 The field under validation cannot be left blank, if provided seed value equals to provided value seed.
+
 ```javascript
 // requiredIf rule validation fails, becoz email cannot be left blank if age is 16
 let v = new Validator({email:'', age:'16'}, {email:'requiredIf:age,16'});
@@ -247,6 +278,7 @@ let v = new Validator({email:'', age:'16'}, {email:'requiredIf:age,16'});
 
 **requiredNotIf:field,value**  
 The field under validation may left blank, if provided seed value equals to provided value seed.
+
 ```javascript
 // requiredNotIf rule validation fails, becoz transport must be present in case age is not 16
 let v = new Validator({transport:'', age:'15'}, {transport:'requiredNotIf:age,16'});
@@ -255,6 +287,7 @@ let v = new Validator({transport:'', age:'15'}, {transport:'requiredNotIf:age,16
 **requiredWith:field**  
 **requiredWith:field,field,field**  
  The field under validation may required in case provided seed present.
+
 ```javascript
 // requiredWith rule validation fails, becoz email must in case age present.
 let v = new Validator({email:'', age:'17'}, {email:'requiredWith:age'});
@@ -263,6 +296,7 @@ let v = new Validator({email:'', age:'17'}, {email:'requiredWith:age'});
 **requiredWithout:field**  
 **requiredWithout:field,field,field**  
 The field under validation may left blank in case provided seed present.
+
 ```javascript
 // requiredWithout rule validation fails, becoz email is must in case phone,pan not provided.
 let v = new Validator({email:'', username:''}, {email:'requiredWithout:phone,pan', username:'requiredWithout:email'});
@@ -271,8 +305,9 @@ let v = new Validator({email:'', username:''}, {email:'requiredWithout:phone,pan
 **accepted**  
 The field under validation must be yes, on, 1, or true.
 
-**after**  
+**after:YYYY-MM-DD**  
 The field under validation must be date after provided seed.
+
 ```javascript
 let v = new Validator({joining:''}, {joining:'required|after:2018-02-10'});
 ```
@@ -295,54 +330,50 @@ The field under validation only contains ascii characters.
 **base64**  
 The field under validation must be valid base64 encoded string.
 
-**before**  
-The field under validation must be date before provided seed.
-```javascript
-let v = new Validator({joining:''}, {joining:'required|before:2018-02-10'});
-```
-
-**lengthBetween:start,end**  
-The field under validation value length must be between provided values.
-```javascript
-let v = new Validator({age:''}, {age:'required|between:17,30'});
-```
+**between:min,max**  
+The field under validation must be betwwen min and max seed. This will work with number valus as well as with arrays using array count.
 
 **boolean**  
-The field under validation must be 0/1, or true/false.
+**boolean:custom**
+The field under validation must be boolean (true, false, 'true', 'false', 0, 1, '0', '1') or in custom seed.
 
-**contains**  
+**contains:value**  
 The field under validation must contains provided seeds.
+
 ```javascript
-let v = new Validator({bio:''}, {bio:'required|contains:profile'});
+let v = new Validator({bio:'My profile is: example.com'}, {bio:'required|contains:profile'});
 ```
 
 **creditCard**  
 The field under validation must be valid credit card string.
 
-**dateFormat**  
+**date**  
+The field under validation must be a valid date (YYYY-MM-DD).
+
+**dateFormat:format**  
 The field under validation must match the given date format.
+
 ```javascript
 let v = new Validator({dob:''}, {dob:'required|dateFormat:YYYY-MM-DD'});
 ```  
+
 Check https://momentjs.com/docs/ for supported formats
 
 **decimal**  
-The field under validation must be decimal.
+The field under validation must be a decimal value.
 
 **digits:length**  
-The field under validation must be numeric and must have an exact length of value.
+The field under validation must be numeric and must have an exact length.
 
 **digitsBetween:min,max**  
 The field under validation must have a length between provided min and max values.
+
 ```javascript
 let v = new Validator({phone:''}, {age:'required|digitsBetween:10,13'});
 ```
 
 **domain**  
 The field under validation must a qualified domain.
-```javascript
-let v = new Validator({domaon:'github.com'}, {domain:'required|domain'});
-```
 
 **email**  
 The field under validation must be formatted as an e-mail address.
@@ -352,25 +383,28 @@ The field under validation must be equal to given value.
 
 **hash:algo**  
 The field under validation must be a valid hash as per provided seed.
+
 ```javascript
  let v = new Validator({ 
-        id: 'fd1baf48377a9f644f9af89abbee29f6' 
-     }, 
-     { 
-         id: 'required|hash:md5' 
+        id: 'fd1baf48377a9f644f9af89abbee29f6'
+     },
+     {
+         id: 'required|hash:md5'
      });
 
 ```
-Supported algorithms: md4, md5, sha1, sha256, sha384, sha512, ripemd128, ripemd160, tiger128, tiger160, tiger192, crc32, crc32b.
 
-**hexColor**  
-The field under validation must be valid hex color code.
+Supported algorithms: md4, md5, sha1, sha256, sha384, sha512, ripemd128, ripemd160, tiger128, tiger160, tiger192, crc32, crc32b.
 
 **hex**  
 The field under validation must be valid hex.
 
-**in**  
+**hexColor**  
+The field under validation must be valid hex color code.
+
+**in:a,b...n**  
 The field under validation must exist in the given list of values.
+
 ```javascript
 let v = new Validator({status:''}, {status:'required|in:active,inactive,blocked'});
 ```
@@ -384,61 +418,77 @@ The field under validation must be an IP address.
 **iso8601**  
 The field under validation must be valid Iso8601 date.
 
-**json**   
+**json**
 The field under validation must be a valid JSON string.
 
-**latLong**   
+**latLong**
 The field under validation must be a valid latitude-longitude coordinate.
 
+**lengthBetween:min,max**  
+The field under validation value length must be between provided values.
+
+```javascript
+let v = new Validator({age:''}, {age:'required|between:17,30'});
+```
 
 **macAddress**  
 The field under validation should be a valid Mac Address.
+
 ```javascript
 let v = new Validator({ id: '00:14:22:01:23:45' }, { id: 'required|macAddress' });
 ;
 ```
 
-**mime**  
-The file under validation must have a MIME type corresponding to one of the listed extensions.
-
-**min**   
-The field under validation must be greater than given value.
-```javascript
-let v = new Validator({age:''}, {age:'required|min:21'});
-```
-
 **max**  
 The field under validation must be less than given value.
+
 ```javascript
 let v = new Validator({age:''}, {age:'required|max:35'});
 ```
 
-**maxLength**   
+**maxLength**
 The length of field under validation should be less than given value.
+
 ```javascript
 let v = new Validator({username:''}, {username:'required|max:10'});
 ```
 
+**mime**  
+The file under validation must have a MIME type corresponding to one of the listed extensions.
+
+**min**
+The field under validation must be greater than given value.
+
+```javascript
+let v = new Validator({age:''}, {age:'required|min:21'});
+```
+
 **minLength**  
 The length of field under validation should be greater than given value.
+
 ```javascript
 let v = new Validator({username:''}, {username:'required|max:10|min:5'});
 ```
 
 **mongoId**  
 The field under validation should be a valid MongoDB ID.
+
 ```javascript
 let v = new Validator({id:''}, {id:'required|mongoId'});
 ```
 
+**notContains:value**  
+The field under validation may not contains provided seeds.
 
 **notIn**  
 The field under validation must not exist in the given list of values.
+
 ```javascript
 let v = new Validator({status:''}, {status:'required|notIn:inactive,blocked'});
 ```
-**notContains**  
-The field under validation must not contains provided seeds.
+
+**nullable**  
+The field under validation is required only is not left empty.
 
 **numeric**  
 The field under validation must be numeric.
@@ -451,13 +501,16 @@ The field under validation must match the given regular expression.
 
 **same**  
 The given field must match the field under validation.
+
 ```javascript
 let v = new Validator({password:''}, {password:'required|same:confirm_password'});
 ```
 
-**size**  
+**size:max**
+**size:max,min**  
 The file field under validation must have a file size matching the given maximum value or should be between size range.
 Supported unit sufix: b,kb/k,mb/m,gb/g.
+
 ```javascript
 // in below case, image file size should be under 4kb limit
 let v = new Validator({image:''}, {image:'required|size:4kb'});
@@ -472,6 +525,9 @@ let v = new Validator({image:''}, {image:'required|size:4kb,1kb'});
 let v = new Validator({video:''}, {video:'required|size:10mb'});
 ```
 
+**sometimes**  
+The field under validation is required if present.
+
 **string**  
 The field under validation must be string.
 
@@ -479,10 +535,8 @@ The field under validation must be string.
 The field under validation must be a valid URL.
 
 **Post Rules**
-
 There is set of rules which can be used to validate constraints of whole input, rather than validity of singular fields.
 
-*Usage*
 ```javascript
 const v = require('node-input-validator');
 
@@ -518,5 +572,6 @@ Any of the fields must be present in input.
 **all**
 All of the fields must be present in input.
 
-#### Typescript Support
+### Typescript Support
+
 Typings expermental  

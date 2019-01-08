@@ -4,19 +4,19 @@ const Validator = require('../index');
 
 let r = {};
 
-describe('crash test', function () {
+describe('crash', function () {
 
-    describe('#clousers and hex', function () {
 
-        it('should return true', async () => {
 
-            let v = new Validator({ name: function () {}, tape: 0x023 }, { name: 'required', tape: 'required|integer' });
+    it('passing clousers and hex', async () => {
 
-            let matched = await v.check();
+        let v = new Validator({ name: function () { }, tape: 0x023 }, { name: 'required', tape: 'required|integer' });
 
-            assert.equal(matched, true);
+        let matched = await v.check();
 
-        });       
+        assert.equal(matched, true);
 
     });
+
+
 });

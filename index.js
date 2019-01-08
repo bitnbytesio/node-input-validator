@@ -5,18 +5,18 @@
  * https://github.com/artisangang/node-input-validator
  */
 
-const Validator = require('./lib/validator'),
-    messages = require('./lib/messages/index');
+const Validator = require('./src/index');
+const messages = require('./src/messages');
 
 // main validator class
 module.exports = Validator;
 
+/**
+ * set default language
+ */
 module.exports.setLang = (lang) => {
     messages.defaultLang = lang;
 };
-
-// rules 
-module.exports.Rules = Validator.Rules;
 
 /**
  * add custom validation rules
@@ -25,26 +25,35 @@ module.exports.Rules = Validator.Rules;
  */
 module.exports.extend = (rule, func) => {
 
-    let name = 'validate' + rule.charAt(0).toUpperCase() + rule.slice(1);
-    Validator.Rules.prototype[name] = func;
+    Validator.rules[rule] = func;
 
 };
 
 /**
- * extend/upgrade messages for rules
- * @param custom_messages
+ * extend/update validation rule default messages
  */
-module.exports.messages = (custom_messages, lang = 'en') => {
+module.exports.messages = (newMessages, lang = 'en') => {
 
-    let keys = Object.keys(custom_messages);
-    for (let i in keys) {
-
-        if (typeof messages[lang] == 'undefined') {
-            messages[lang] = {};
-        }
-
-        messages[lang][keys[i]] = custom_messages[keys[i]];
+    if (typeof messages[lang] == 'undefined') {
+        messages[lang] = {};
     }
+
+    messages[lang] = Object.assign(messages[lang], newMessages);
+
+};
+
+/**
+ * add/update your own custom validation messages
+ */
+module.exports.customMessages = (customMessages, lang = 'en') => {
+
+
+    if (typeof messages[lang] == 'undefined') {
+        messages[lang] = {};
+    }
+
+    messages[lang].custom = Object.assign(messages[lang].custom || {}, customMessages);
+
 };
 
 /* istanbul ignore next */

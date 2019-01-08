@@ -1,7 +1,5 @@
 const assert = require('assert');
 
-const should = require('should');
-
 const Validator = require('../index');
 
 let r = {};
