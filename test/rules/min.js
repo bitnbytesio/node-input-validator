@@ -59,7 +59,7 @@ describe('min', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('min', 'attribute', '',18));
 
     });
 

@@ -35,7 +35,7 @@ describe('ascii', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.username.message, v.parseMessage('ascii', 'username'));
+        assert.equal(v.errors.username.message, v.parseExistingMessageOnly('ascii', 'username'));
 
     });
 

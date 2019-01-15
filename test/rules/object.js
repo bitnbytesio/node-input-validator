@@ -44,7 +44,7 @@ describe('object', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.features.message, v.parseExistingMessageOnly('object', 'features', '',4));
 
     });
 

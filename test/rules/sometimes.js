@@ -16,6 +16,8 @@ describe('#sametimes', function () {
 
         assert.equal(matched, false);
 
+        assert.equal(v.errors.password.message, v.parseExistingMessageOnly('sometimes', 'password', '',4));
+
     });
 
     it('should pass', async () => {

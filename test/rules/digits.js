@@ -26,14 +26,15 @@ describe('digits', function () {
 
         const v = new Validator(
             { attribute: 'a12' },
-            { attribute: 'digits' }
+            { attribute: 'digits:10' }
         );
 
         const matched = await v.check();
 
 
         assert.equal(matched, false);
-
+        
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digits', 'attribute', '', '10'));
 
     });
 

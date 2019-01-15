@@ -51,6 +51,8 @@ describe('size', function () {
 
         assert.equal(matched, false);
 
+        assert.equal(v.errors.file.message, v.parseExistingMessageOnly('size', 'file', '','1kb'));
+
 
     });
 

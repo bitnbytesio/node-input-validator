@@ -34,14 +34,14 @@ describe('phoneNumber', function () {
 
     it('validation should fail: with invalid value', async () => {
 
-        const v = new Validator({ url: 'artisangang' }, { url: 'phoneNumber' });
+        const v = new Validator({ attribute: 'artisangang' }, { attribute: 'phoneNumber' });
 
         const matched = await v.check();
 
         assert.equal(matched, false);
 
 
-        //console.log(v.errors);
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('phoneNumber', 'attribute', '',4));
 
     });
 

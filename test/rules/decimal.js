@@ -60,7 +60,7 @@ describe('decimal', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.attribute.message, v.parseMessage('decimal', 'attribute'));
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('decimal', 'attribute'));
 
     });
 

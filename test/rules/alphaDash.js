@@ -74,7 +74,7 @@ describe('alphaDash', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.username.message, v.parseMessage('alphaDash', 'username'));
+        assert.equal(v.errors.username.message, v.parseExistingMessageOnly('alphaDash', 'username'));
 
 
     });

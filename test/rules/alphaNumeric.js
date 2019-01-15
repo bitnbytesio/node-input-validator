@@ -48,7 +48,7 @@ describe('alphaNumeric', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.username.message, v.parseMessage('alphaNumeric', 'username'));
+        assert.equal(v.errors.username.message, v.parseExistingMessageOnly('alphaNumeric', 'username'));
     });
 
     it('validation should fail: with 123', async () => {

@@ -28,17 +28,17 @@ describe('regex', function () {
 
 
         let v = new Validator(
-            { number: 'xyz' }, { number: 'regex:[abc]' });
+            { attribute: 'xyz' }, { attribute: 'regex:[abc]' });
 
         let matched = await v.check();
 
         assert.equal(matched, false);
 
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('regex', 'attribute', '',4));
+
     });
 
 
-    //console.log(v.errors);
-
-
+  
 
 });

@@ -32,7 +32,7 @@ describe('mime', function () {
     it('should return false', async () => {
 
         let v = new Validator(
-            { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:1kb|mime:gif,bmp' });
+            { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'mime:gif,bmp' });
 
 
         let matched = await v.check();
@@ -44,13 +44,16 @@ describe('mime', function () {
     it('should return false', async () => {
 
         let v = new Validator(
-            { file: './test/stubs/file-small.png' }, { file: 'size:1kb|mime:gif,bmp' });
+            { file: './test/stubs/file-small.png' }, { file: 'mime:gif,bmp' });
 
 
         let matched = await v.check();
 
         assert.equal(matched, false);
 
+        console.log(v.errors.file.message);
+
+        assert.equal(v.errors.file.message, v.parseExistingMessageOnly('mime', 'file', '', ['gif', 'bmp']));
 
     });
 

@@ -287,7 +287,7 @@ class Validator {
                 value = String(value);
                 break;
 
-                
+
 
         }
 
@@ -493,17 +493,24 @@ class Validator {
             message = message.replace(':attribute', field);
         }
 
-        if (Array.isArray(args)) {
-            for (let i = 0; i < 10; i++) {
-                if (message.indexOf(':arg' + i) >= 0) {
-                    message = message.replace(':arg' + i, args[i]);
-                } else {
-                    break;
-                }
-            }
-        } else {
-            message = message.replace(':arg0', args).replace(':arg', args);
+        if (message.indexOf(':args') !== -1) {
+            message = message.replace(':args', args.toString());
         }
+
+        if (!Array.isArray(args)) {
+            args = [args];
+        }
+
+        for (let i = 0; i < 10; i++) {
+            if (message.indexOf(':arg' + i) >= 0) {
+                message = message.replace(':arg' + i, args[i]);
+            } else {
+                break;
+            }
+        }
+        // } else {
+        //     message = message.replace(':arg0', args).replace(':arg', args);
+        // }
 
         if (message.indexOf(':value') !== -1) {
             if (typeof value === 'object') {
@@ -512,6 +519,58 @@ class Validator {
                 message = message.replace(':value', 'undefined');
             } else {
                 message = message.replace(':value', this.validations[field].value.toString());
+            }
+        }
+
+        return message.replace('_', ' ');
+
+    }
+
+    /**
+    *  this is only used in testing
+    * @param {*} rule 
+    * @param {*} field 
+    * @param {*} value 
+    * @param {*} args 
+    */
+    parseExistingMessageOnly(rule, field, value, args) {
+
+
+        let message = messages[this.lang].custom[field + '.' + rule] ||
+            messages[this.lang][rule] ||
+            messages[this.lang].custom[field] || 'Messages is missing for rule ' + rule;
+
+
+        if (message.indexOf(':attribute') !== -1) {
+            message = message.replace(':attribute', field);
+        }
+
+        if (message.indexOf(':args') !== -1) {
+            message = message.replace(':args', args.toString());
+        }
+
+        if (!Array.isArray(args)) {
+            args = [args];
+        }
+
+        for (let i = 0; i < 10; i++) {
+            if (message.indexOf(':arg' + i) >= 0) {
+                message = message.replace(':arg' + i, args[i]);
+            } else {
+                break;
+            }
+        }
+        // } else {
+        //     message = message.replace(':arg0', args).replace(':arg', args);
+        // }
+
+        if (message.indexOf(':value') !== -1) {
+            if (typeof value === 'object') {
+                message = message.replace(':value', JSON.stringify(value));
+            } else if (typeof value === 'undefined') {
+                message = message.replace(':value', 'undefined');
+            } else {
+                message = message.replace(':value', value.toString());
             }
         }
 

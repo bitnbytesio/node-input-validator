@@ -72,7 +72,7 @@ describe('boolean', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.attribute.message, v.parseMessage('boolean', 'attribute'));
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('boolean', 'attribute'));
 
     });
 

@@ -46,7 +46,7 @@ describe('accepted', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.attribute.message, v.parseMessage('accepted', 'attribute'));
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('accepted', 'attribute'));
 
     });
 
@@ -61,7 +61,7 @@ describe('accepted', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.attribute.message, v.parseMessage('accepted', 'attribute'));
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('accepted', 'attribute'));
 
     });
 

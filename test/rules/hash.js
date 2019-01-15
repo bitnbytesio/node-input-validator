@@ -33,7 +33,7 @@ describe('hash', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('hash', 'attribute', '', 'md5'));
 
     });
 

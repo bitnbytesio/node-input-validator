@@ -33,7 +33,7 @@ describe('iso8601', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('iso8601', 'attribute', ''));
 
     });
 

@@ -54,6 +54,8 @@ describe('#requiredWith', function () {
         // should(v.errors).be.an.instanceOf(Object);
         // should(v.errors).have.property('ip');
 
+        assert.equal(v.errors.ip.message, v.parseExistingMessageOnly('requiredWith', 'ip', '',4));
+
 
     });
 

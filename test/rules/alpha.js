@@ -32,7 +32,7 @@ describe('alpha', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.username.message, v.parseMessage('alpha', 'username'));
+        assert.equal(v.errors.username.message, v.parseExistingMessageOnly('alpha', 'username'));
 
     });
 

@@ -45,6 +45,8 @@ describe('requiredRules', function () {
 
             assert.equal(matched, false);
 
+            assert.equal(v.errors.name.message, v.parseExistingMessageOnly('required', 'name', '',4));
+
         });
 
     });

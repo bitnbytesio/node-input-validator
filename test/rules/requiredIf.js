@@ -65,6 +65,8 @@ describe('requiredIf', function () {
 
         assert.equal(matched, false);
 
+        assert.equal(v.errors.remember.message, v.parseExistingMessageOnly('requiredIf', 'remember', '',['age', '16']));
+
     });
 
     it('should return false', async () => {

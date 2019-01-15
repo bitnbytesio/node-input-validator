@@ -69,6 +69,7 @@ describe('#requiredNotIf', function () {
         const matched = await v.check();
 
         assert.equal(matched, false);
+        assert.equal(v.errors.email.message, v.parseExistingMessageOnly('requiredNotIf', 'email', '',4));
 
         // should(v.errors).be.an.instanceOf(Object);
         // should(v.errors).have.property('email');

@@ -109,7 +109,7 @@ describe('between: with array', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.features.message, v.parseMessage('between', 'features', [1, 2], [3, 6]));
+        assert.equal(v.errors.features.message, v.parseExistingMessageOnly('between', 'features', [1, 2], [3, 6]));
     });
 
 });

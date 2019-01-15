@@ -45,7 +45,7 @@ describe('date', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.attribute.message, v.parseMessage('date', 'attribute'));
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('date', 'attribute'));
 
     });
 

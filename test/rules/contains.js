@@ -33,7 +33,7 @@ describe('contains', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.attribute.message, v.parseMessage('contains', 'attribute'));
+        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('contains', 'attribute', '', 'yes'));
 
     });
 

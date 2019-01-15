@@ -21,7 +21,7 @@ describe('#before', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.dob.message, v.parseMessage('dateFormat', 'dob', '', 'YYYY-MM-DD'));
+        assert.equal(v.errors.dob.message, v.parseExistingMessageOnly('dateFormat', 'dob', '', 'YYYY-MM-DD'));
 
     });
 

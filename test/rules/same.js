@@ -28,6 +28,8 @@ describe('#same', function () {
 
         assert.equal(matched, false);
 
+        assert.equal(v.errors.confirm_password.message, v.parseExistingMessageOnly('same', 'confirm_password', '','password'));
+
     });
 
 });
