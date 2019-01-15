@@ -1,5 +1,8 @@
 const moment = require('moment');
 
+/**
+ * default supported data formats
+ */
 const dateFormats = [
     moment.ISO_8601,
     'DD-MM-YYYY',

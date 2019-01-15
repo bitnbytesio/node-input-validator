@@ -8,6 +8,11 @@ const implicitRules = [
 
 module.exports.implicitRules = implicitRules;
 
+/**
+ * apply rules
+ * @param {*} field
+ * @param {*} validator
+ */
 module.exports.applyRules = async function apply(field, validator) {
 
     let proceed = true;
@@ -101,6 +106,11 @@ module.exports.applyRules = async function apply(field, validator) {
 
 }
 
+/**
+ * apply post rules
+ * @param {*} rule
+ * @param {*} validator
+ */
 module.exports.applyPostRules = async function postApply(rule, validator) {
 
     if (rule.rule == 'function') {

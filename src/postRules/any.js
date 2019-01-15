@@ -1,4 +1,10 @@
-
+/**
+ * post validation rule any
+ * @param {*} seletedValues
+ * @param {Array} args
+ * @this Validator
+ * @returns Promise<boolean>
+ */
 module.exports = async function any(seletedValues, args) {
 
     const values = this.inputs;

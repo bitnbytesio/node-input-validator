@@ -61,15 +61,34 @@ module.exports.koa = () => {
 
     return async (ctx, next) => {
 
-        ctx.validate = async (inputs, rules, messages) => {
+        ctx.validationErrors = function validationErrors(errors) {
+            return { body: { errors: errors, message: 'The given data is invalid.' } }
+        }
 
-            let v = new Validator(
-                inputs,
+        ctx.validate = async (rules, inputs, customMessages) => {
+
+            const v = new Validator(
+                inputs || Object.assign({}, this.request.body, this.request.files),
                 rules,
-                messages || {}
+                customMessages
+            );
+
+            if (await v.fails()) {
+                this.throw(422, this.validationErrors(v.errors));
+            }
+
+        };
+
+        ctx.validator = async (rules, inputs, customMessages) => {
+
+            const v = new Validator(
+                inputs || Object.assign({}, this.request.body, this.request.files),
+                rules,
+                customMessages
             );
 
             return v;
+
         };
 
         await next();

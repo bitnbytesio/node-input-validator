@@ -220,6 +220,55 @@ Validator.extend('status', async function (field, value, args) {
 
 ```
 
+Some example of using database in rules
+
+```javascript
+
+// use this rules as unique:seed
+// unique:<Mongoose Model>,<Field Name>,<ID to Ignore, This is optional>
+
+const Validator = require('node-input-validator');
+const mongoose = require('mongoose');
+
+Validator.extend('unique', async function (field, value, args) {
+
+// default field is email in this example
+    let filed = args[1] || 'email';
+
+    let condition = {};
+
+    condition[filed] = value;
+
+    // add ignore condition
+    if (args[2]) {
+        condition['_id'] = { $ne: mongoose.Types.ObjectId(args[2]) };
+    }
+
+    let emailExist = await mongoose.model(args[0]).findOne(condition).select(field);
+
+    // email already exists
+    if (emailExist) {
+        return false;
+    }
+
+    return true;
+
+});
+
+// example usage of upper extended rule
+
+new Validator({
+    email: 'required|email|unique:User,email'
+}, inputs);
+
+// in case to ignore specific id
+
+new Validator({
+    email: 'required|email|unique:User,email,5c2f29e9cefa7718a54f8ff1'
+}, inputs);
+
+```
+
 **For Koa2**
 Attach koa middleware
 
@@ -234,23 +283,39 @@ Then in controller
 
 ```javascript
 
-let v = await ctx.validate(ctx.request.body, {
-        name:'required|maxLength:50', 
-        username:'required|maxLength:15',
-        email:'required|email',
-        password:'required'
-    });
+// if validation fails, this will auto abort request with status code 422 and errors in body
+await ctx.validate({
+    name:'required|maxLength:50', 
+    username:'required|maxLength:15',
+    email:'required|email',
+    password:'required'
+});
 
+// validation passes
+// do some code
 
-let isValid = await v.check();
+```
 
-if (!isValid) {
-    // return validation errors
-    ctx.body = v.errors;
+In case you wants control over validator, Then use
+
+```javascript
+
+// if validation fails, this will auto abort request with status code 422 and errors in body
+const v = await ctx.validator({
+    name:'required|maxLength:50', 
+    username:'required|maxLength:15',
+    email:'required|email',
+    password:'required'
+});
+
+// in case validation fails
+if (v.fails()) {
     ctx.status = 422;
-
+    ctx.body = v.errors;
     return;
 }
+
+// do some code
 
 ```
 

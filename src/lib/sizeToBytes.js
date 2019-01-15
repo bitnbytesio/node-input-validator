@@ -1,3 +1,8 @@
+/**
+ * convert size into bytes
+ * @param {string} size
+ * @returns {Number}
+ */
 module.exports = function sizeToBytes(size) {
 
     size = size.toString().toLowerCase();

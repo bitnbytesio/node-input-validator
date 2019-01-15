@@ -5,11 +5,13 @@ const { applyRules, implicitRules, applyPostRules } = require('./validator');
 const empty = require('./lib/empty');
 const filters = require('./filters');
 
-
+/**
+ * @class Validator
+ */
 class Validator {
 
     /**
-     * create validator session
+     * @constructor
      * @param {*} inputs 
      * @param {*} rules 
      * @param {*} customMessages 
@@ -52,7 +54,7 @@ class Validator {
     }
 
     /**
-     * create validator from array
+     * make validator for arrya rules
      * @param {*} inputs 
      * @param {*} rules 
      * @param {*} messages 
@@ -124,8 +126,9 @@ class Validator {
     }
 
     /**
-     * check for empty values
+     * check if given value is empty or not
      * @param {*} value 
+     * @returns {boolean}
      */
     isEmpty(value) {
 
@@ -220,7 +223,7 @@ class Validator {
 
     /**
      * validate input against rule
-     * @param field
+     * @param {*} field 
      * @returns {Promise.<void>}
      */
     async evaluteInputs(field) {
@@ -291,6 +294,11 @@ class Validator {
         return value;
     }
 
+    /**
+     * parse input value
+     * @param {*} field 
+     * @param {*} multiple 
+     */
     inputVal(field, multiple = false) {
 
         let val = this.inputs[field] || '';
@@ -370,6 +378,10 @@ class Validator {
 
     }
 
+    /**
+     * make rules from array
+     * @param {*} rules 
+     */
     makeValidationsFromArray(rules) {
 
 
