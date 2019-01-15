@@ -1,7 +1,7 @@
 {
   "name": "node-input-validator",
   "version": "3.1.0-rc2",
-  "description": "validation library",
+  "description": "validation library for nodejs",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive ./test",
