@@ -21,8 +21,8 @@ describe('alphaNumeric', function () {
 
     });
 
-    
-    it('validation should fail: with now123', async () => {
+
+    it('validation should pass: with now123', async () => {
 
         const v = new Validator(
             { username: 'now123' },
@@ -48,8 +48,7 @@ describe('alphaNumeric', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
-
+        assert.equal(v.errors.username.message, v.parseMessage('alphaNumeric', 'username'));
     });
 
     it('validation should fail: with 123', async () => {

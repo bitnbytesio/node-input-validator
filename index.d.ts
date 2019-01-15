@@ -55,7 +55,7 @@ declare class Validator {
 
     populateRule(attribute: any);
 
-    parseMessage(rule: any, field: any, value: any, args: any);
+    parseMessage(rule: any, field: any, value?: any, args: any = []);
 }
 
 

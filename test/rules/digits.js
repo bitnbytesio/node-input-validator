@@ -20,7 +20,7 @@ describe('digits', function () {
         assert.equal(matched, true);
 
     });
-   
+
 
     it('validation should fail: invalid val', async () => {
 
@@ -34,7 +34,6 @@ describe('digits', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
 
     });
 

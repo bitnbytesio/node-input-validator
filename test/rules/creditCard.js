@@ -71,7 +71,7 @@ describe('creditCard', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.cc.message, v.parseMessage('creditCard', 'cc'));
 
     });
 

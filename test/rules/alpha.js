@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
-
 let r = {};
 
 
@@ -33,7 +32,7 @@ describe('alpha', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.username.message, v.parseMessage('alpha', 'username'));
 
     });
 

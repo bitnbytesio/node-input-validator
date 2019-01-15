@@ -2,6 +2,7 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
+const messages = require('../../src/messages/en/messages');
 
 let r = {};
 
@@ -45,14 +46,14 @@ describe('accepted', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.attribute.message, v.parseMessage('accepted', 'attribute'));
 
     });
 
     it('validation should fail: mising attribute', async () => {
 
         const v = new Validator(
-            { },
+            {},
             { attribute: 'accepted' }
         );
 
@@ -60,7 +61,7 @@ describe('accepted', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.attribute.message, v.parseMessage('accepted', 'attribute'));
 
     });
 

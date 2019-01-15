@@ -44,8 +44,7 @@ describe('array', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
-
+        assert.equal(v.errors.features.message, v.parseMessage('array', 'features'));
     });
 
 

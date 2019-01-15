@@ -32,7 +32,7 @@ describe('base64', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.username.message, v.parseMessage('base64', 'username'));
 
     });
 

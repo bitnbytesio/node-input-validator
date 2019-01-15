@@ -45,7 +45,7 @@ describe('dateFormat', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.attribute.message, v.parseMessage('dateFormat', 'attribute', '', 'YYYY-MM-DD'));
 
     });
 

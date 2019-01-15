@@ -35,7 +35,7 @@ describe('alphaDash', function () {
     });
 
     
-    it('validation should fail: with now123', async () => {
+    it('validation should pass: with now123', async () => {
 
         const v = new Validator(
             { username: 'now123' },
@@ -45,12 +45,10 @@ describe('alphaDash', function () {
         const matched = await v.check();
 
         assert.equal(matched, true);
-
-        //console.log(v.errors);
-
+        
     });
 
-    it('validation should fail: with now-123', async () => {
+    it('validation should pass: with now-123', async () => {
 
         const v = new Validator(
             { username: 'now-123' },
@@ -76,7 +74,8 @@ describe('alphaDash', function () {
 
         assert.equal(matched, false);
 
-        //console.log(v.errors);
+        assert.equal(v.errors.username.message, v.parseMessage('alphaDash', 'username'));
+
 
     });
 
