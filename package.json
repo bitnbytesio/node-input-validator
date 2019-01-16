@@ -4,8 +4,8 @@
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive ./test",
-    "cover": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha"
+    "test": "mocha --recursive",
+    "cover": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --recursive"
   },
   "engines": {
     "node": ">=7.6"

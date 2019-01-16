@@ -73,6 +73,7 @@ class Validator {
      * @param {*} rules 
      * @param {*} messages 
      */
+    /* istanbul ignore next */
     static create(rules, messages = {}) {
 
         return new Validator({}, rules, messages);
@@ -82,6 +83,7 @@ class Validator {
      * apply rules on custom inputs
      * @param {*} inputs 
      */
+    /* istanbul ignore next */
     async apply(inputs) {
 
         let v = new Validator(inputs, {});
@@ -112,6 +114,7 @@ class Validator {
      * @param {*} filters 
      * @param {*} filterInputs 
      */
+    /* istanbul ignore next */
     static filter(filters, filterInputs) {
         this.filters = filters;
         this.filterInputs = filterInputs;
@@ -121,6 +124,7 @@ class Validator {
      * set default language for session only
      * @param {*} lang 
      */
+
     setLang(lang) {
         this.lang = lang;
     }
@@ -484,9 +488,9 @@ class Validator {
 
 
         if (!message) {
-            message = messages[this.lang].custom[field + '.' + rule] ||
+            message = messages[this.lang].custom && messages[this.lang].custom[field + '.' + rule] ||
                 messages[this.lang][rule] ||
-                messages[this.lang].custom[field] || defaultMessage;
+                messages[this.lang].custom  && messages[this.lang].custom[field] || defaultMessage;
         }
 
         if (message.indexOf(':attribute') !== -1) {
@@ -533,6 +537,7 @@ class Validator {
     * @param {*} value 
     * @param {*} args 
     */
+   /* istanbul ignore next */
     parseExistingMessageOnly(rule, field, value, args) {
 
 

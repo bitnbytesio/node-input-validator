@@ -9,6 +9,18 @@ Validator.messages({
     status: 'Invalid status.'
 });
 
+Validator.messages({
+    even: 'Even number bharo.',
+    status: 'Galat Status.'
+}, 'pb');
+
+
+
+Validator.customMessages({
+    'status.required': 'Status khali nahi hona chahiye.'
+}, 'hi');
+
+
 Validator.extend('even', async function (field, value) {
 
     if ((parseInt(value) % 2) == 0) {
@@ -57,6 +69,28 @@ describe('Custom Rules', function () {
 
             v.errors.should.have.property('number').and.be.a.Object();
             v.errors.number.should.have.property('message', 'The value of the field must be an even number.');
+
+        });
+
+        it('PB: should return false', async () => {
+
+            //Validator.setLang('pb');
+
+            let v = new Validator(
+                { number: '9' }, { number: 'even|required' });
+
+                v.setLang('pb');
+
+            let matched = await v.check();
+
+            assert.equal(matched, false);
+
+            //console.log(v.errors);
+
+            v.errors.should.have.property('number').and.be.a.Object();
+            v.errors.number.should.have.property('message', 'Even number bharo.');
+
+            Validator.setLang('en');
 
         });
 
@@ -112,9 +146,9 @@ describe('Custom Rules', function () {
             let v = new Validator(
                 { status: 'completed' }, { status: 'status:draft,published|required' });
 
-            let matched = await v.check();
+            let matched = await v.fails();
 
-            assert.equal(matched, false);
+            assert.equal(matched, true);
 
         });
 

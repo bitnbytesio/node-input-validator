@@ -3,7 +3,7 @@
  * @param {string} size
  * @returns {Number}
  */
-module.exports = function sizeToBytes(size) {
+module.exports = function sizeToBytes(size) { 
 
     size = size.toString().toLowerCase();
 
@@ -27,6 +27,7 @@ module.exports = function sizeToBytes(size) {
         return parseInt(size.replace('b', ''));
     }
 
+    /* istanbul ignore next */
     return parseInt(size) * 1024;
 
 }
