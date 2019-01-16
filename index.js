@@ -65,7 +65,7 @@ module.exports.koa = () => {
             return { body: { errors: errors, message: 'The given data is invalid.' } }
         }
 
-        ctx.validate = async (rules, inputs, customMessages) => {
+        ctx.validate = async function validate(rules, inputs, customMessages) {
 
             const v = new Validator(
                 inputs || Object.assign({}, this.request.body, this.request.files),
@@ -75,11 +75,12 @@ module.exports.koa = () => {
 
             if (await v.fails()) {
                 this.throw(422, this.validationErrors(v.errors));
+
             }
 
         };
 
-        ctx.validator = async (rules, inputs, customMessages) => {
+        ctx.validator = async function validator(rules, inputs, customMessages) {
 
             const v = new Validator(
                 inputs || Object.assign({}, this.request.body, this.request.files),
@@ -91,7 +92,25 @@ module.exports.koa = () => {
 
         };
 
-        await next();
+
+        try {
+
+            await next();
+
+        } catch (err) {
+
+            if (err.status && err.status == 422) {
+
+                ctx.type = 'json';
+                ctx.status = 422;
+                ctx.body = err.body;
+                return;
+            }
+
+            throw err;
+
+        }
+
     };
 
 };

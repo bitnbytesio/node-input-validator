@@ -27,6 +27,8 @@ describe('#same', function () {
 
         assert.equal(matched, false);
 
+        assert.equal(v.errors.url.message, v.parseExistingMessageOnly('url', 'url'));
+
     });
 
 });

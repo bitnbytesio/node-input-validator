@@ -275,6 +275,8 @@ Attach koa middleware
 ```javascript
 
 const validator = require('node-input-validator');
+
+// keep this under your error handler
 app.use(validator.koa());
 
 ```

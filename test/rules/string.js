@@ -28,6 +28,7 @@ describe('empty string', function () {
 
         let matched = await v.check();
         assert.equal(matched, false);
+        assert.equal(v.errors.field.message, v.parseExistingMessageOnly('string', 'field'));
 
     });
 
@@ -37,6 +38,8 @@ describe('empty string', function () {
 
         let matched = await v.check();
         assert.equal(matched, false);
+
+       
 
     });
 
