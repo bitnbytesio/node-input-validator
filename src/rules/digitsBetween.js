@@ -1,8 +1,10 @@
-const numeric = require('./numeric'), integer = require('./integer');
+const numeric = require('./numeric'), integer = require('./integer'), empty = require('../lib/empty');
 
 module.exports = async function digitsBetween(field, value, args) {
 
-    if (!numeric(field, value)) {
+    //const isNumeric = numeric(field, value);
+
+    if (!(await numeric(field, value))) {
         return false;
     }
 
@@ -12,11 +14,11 @@ module.exports = async function digitsBetween(field, value, args) {
     }
 
     let [min, max] = args;
-       
-    if (!integer(field,min) || !integer(field,max)) {
+
+    if (!(await integer(field, min)) || !(await integer(field, max))) {
         throw new Error('Seeds must be integer for digits between rule.');
     }
-    
+
 
     min = parseInt(min);
     max = parseInt(max);

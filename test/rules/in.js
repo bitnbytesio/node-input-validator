@@ -21,6 +21,19 @@ describe('in', function () {
 
     });
 
+    it('validation should pass', async () => {
+
+        const v = new Validator(
+            { attribute: 'public' },
+            { attribute: 'in:public' }
+        );
+
+        const matched = await v.check();
+
+        assert.equal(matched, true);
+
+    });
+
 
     it('validation should fail: mising attribute', async () => {
 

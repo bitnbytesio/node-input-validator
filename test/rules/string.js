@@ -6,7 +6,7 @@ describe('empty string', function () {
 
     it('should ignore empty string in not required fields', async () => {
 
-        let v = new Validator({ field: '' }, { field: 'string' });
+        let v = new Validator({ field: 'test' }, { field: 'string' });
 
         let matched = await v.check();
         assert.equal(matched, true);

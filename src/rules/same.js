@@ -1,10 +1,7 @@
 
 module.exports = async function same(field, value, otherField) {
 
-    if (typeof otherField !== 'string') {
-        return false;
-    }
-
+    
     otherField = otherField.split('.').filter((e) => e !== '');
 
     let otherValue;

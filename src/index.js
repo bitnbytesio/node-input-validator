@@ -275,7 +275,11 @@ class Validator {
             }
         });
 
-        //console.log('after key split', value);
+
+
+        if (value === null) {
+            return value;
+        }
 
         switch (typeof value) {
 
@@ -291,7 +295,9 @@ class Validator {
                 value = String(value);
                 break;
 
-
+            case 'undefined':
+                value = '';
+                break;
 
         }
 
@@ -305,10 +311,10 @@ class Validator {
      */
     inputVal(field, multiple = false) {
 
-        let val = this.inputs[field] || '';
+        //let val = this.inputs[field] || '';
 
         if (multiple == true) {
-            val = this.parseKey(field, this.inputs);
+            this.parseKey(field, this.inputs);
         }
 
         return this.parseKey(field, this.inputs);
@@ -353,6 +359,7 @@ class Validator {
                     multiple: (multipleFields > 0),
                     path: field.split('.'),
                     required: false,
+                    nullable: false,
                     rules: []
                 };
 
@@ -370,6 +377,10 @@ class Validator {
                     this.rule = { rule: argsplit[0], args: (args.length > 1) ? args : args[0] };
                 } else {
                     this.rule = { rule: argsplit[0] };
+                }
+
+                if (this.rule.rule == 'nullable') {
+                    this.validations[field].nullable = true;
                 }
 
                 this.populateRule(field);
@@ -490,7 +501,7 @@ class Validator {
         if (!message) {
             message = messages[this.lang].custom && messages[this.lang].custom[field + '.' + rule] ||
                 messages[this.lang][rule] ||
-                messages[this.lang].custom  && messages[this.lang].custom[field] || defaultMessage;
+                messages[this.lang].custom && messages[this.lang].custom[field] || defaultMessage;
         }
 
         if (message.indexOf(':attribute') !== -1) {
@@ -537,7 +548,7 @@ class Validator {
     * @param {*} value 
     * @param {*} args 
     */
-   /* istanbul ignore next */
+    /* istanbul ignore next */
     parseExistingMessageOnly(rule, field, value, args) {
 
 

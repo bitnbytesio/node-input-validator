@@ -71,6 +71,12 @@ module.exports.applyRules = async function apply(field, validator) {
 
         const rule = field.rules[r].rule;
 
+        //console.log('field value is', field.value);
+
+        if (rule == 'nullable' || field.nullable === true && field.value == null) {
+            continue;
+        }
+
         if (typeof validationRules[rule] !== 'function') {
             throw new Error('Invalid Validation Rule: ' + rule + ' does not exist');
         }
