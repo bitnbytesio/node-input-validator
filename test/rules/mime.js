@@ -3,6 +3,8 @@ const assert = require('assert'),
 
 const Validator = require('../../index');
 
+const mime = require('../../src/rules/mime');
+
 describe('mime', function () {
 
     it('should return true', async () => {
@@ -16,6 +18,7 @@ describe('mime', function () {
         assert.equal(matched, true);
 
     });
+
 
     it('should return true', async () => {
 
@@ -56,5 +59,32 @@ describe('mime', function () {
         assert.equal(v.errors.file.message, v.parseExistingMessageOnly('mime', 'file', '', ['gif', 'bmp']));
 
     });
+
+});
+
+describe('mime direct checks', function () {
+
+    it('should return true', async () => {
+        await mime('file', { mime: 'png' }, ['png']);
+    });
+
+
+    it('should return true', async () => {
+        await mime('file', { type: 'png' }, ['png']);
+    });
+
+
+    it('should return true', async () => {
+        await mime('file', { mimetype: 'png' }, ['png']);
+    });
+
+    it('should return true', async () => {
+        try {
+            await mime('file', {}, ['png']);
+        } catch (e) {
+            assert.equal(e, 'Error: MIME rule only accepts Buffer,file path or type/mime property in file object.');
+        }
+    });
+
 
 });
