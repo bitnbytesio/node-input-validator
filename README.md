@@ -298,6 +298,40 @@ await ctx.validate({
 
 ```
 
+With custom inputs
+
+```javascript
+
+// if validation fails, this will auto abort request with status code 422 and errors in body
+await ctx.validate({
+    name:'required|maxLength:50', 
+    username:'required|maxLength:15',
+    email:'required|email',
+    password:'required'
+}, ctx.request.body);
+
+// validation passes
+// do some code
+
+```
+
+With custom inputs and custom messages
+
+```javascript
+
+// if validation fails, this will auto abort request with status code 422 and errors in body
+await ctx.validate({
+    name:'required|maxLength:50', 
+    username:'required|maxLength:15',
+    email:'required|email',
+    password:'required'
+}, ctx.request.body, {email: 'E-mail is required'});
+
+// validation passes
+// do some code
+
+```
+
 In case you wants control over validator, Then use
 
 ```javascript
@@ -320,6 +354,8 @@ if (v.fails()) {
 // do some code
 
 ```
+
+This method (ctx.validator(rules,inputs={}, messages={})) also support same options as like ctx.validate
 
 ## Rules
 
