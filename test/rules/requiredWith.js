@@ -17,6 +17,19 @@ describe('#requiredWith', function () {
 
         assert.equal(matched, true);
     });
+    it('should pass', async () => {
+
+        let v, matched;
+
+        // validate with single seed
+        v = new Validator(
+            { name: 'Harcharan Singh', sex: 'male', address:{street:"fantastic"} , ip: '' },
+            { email: 'email', sex: 'requiredWith:address.street' });
+
+        matched = await v.check();
+
+        assert.equal(matched, true);
+    });
 
     it('should fail', async () => {
 
@@ -29,7 +42,17 @@ describe('#requiredWith', function () {
 
         assert.equal(matched, false);
     });
+    it('should fail', async () => {
 
+        // validate with multiple seeds
+        const v = new Validator(
+            { name: 'Harcharan Singh', address:{street:"fantastic"} , email: '', ip: '' },
+            { email: 'requiredWith:name,address.street' });
+
+        const matched = await v.check();
+
+        assert.equal(matched, false);
+    });
 
     it('should pass', async () => {
         // validate with multiple seeds

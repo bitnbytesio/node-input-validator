@@ -1,4 +1,5 @@
 const empty = require('../lib/empty');
+const {pathIndex} = require('../lib/ObjectIndex');
 
 module.exports = async function requiredIf(field, value, args) {
 
@@ -24,8 +25,8 @@ module.exports = async function requiredIf(field, value, args) {
         }
 
         // field is required if all values are presented
-        if (!empty(this.inputs[requiredField])
-            && this.inputs[requiredField].toString() == requiredValue) {
+        if (!empty(pathIndex(this.inputs,requiredField))
+            && pathIndex(this.inputs,requiredField).toString() == requiredValue) {
             required = true;
         } else {
             required = false;

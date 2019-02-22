@@ -18,6 +18,25 @@ describe('requiredIf', function () {
 
     it('should return true', async () => {
 
+        const v = new Validator({ name: 'Harcharan Singh',address:{street:"fantastic"}, age: 16 }, { age: 'requiredIf:address.street,fantastic' });
+
+        const matched = await v.check();
+
+        assert.equal(matched, true);
+
+    });
+    it('should return false', async () => {
+
+        const v = new Validator({ name: 'Harcharan Singh',address:{street:"fantastic"} }, { age: 'requiredIf:address.street,fantastic' });
+
+        const matched = await v.check();
+
+        assert.equal(matched, false);
+
+    });
+
+    it('should return true', async () => {
+
         const v = new Validator({ remember: 'false', age: 16 }, { remember: 'requiredIf:age,16' });
 
         const matched = await v.check();

@@ -1,4 +1,5 @@
 const empty = require('../lib/empty');
+const {pathIndex} = require('../lib/ObjectIndex');
 
 module.exports = async function requiredWith(field, value, args) {
 
@@ -16,7 +17,7 @@ module.exports = async function requiredWith(field, value, args) {
             continue;
         }
 
-        if (!empty(this.inputs[args[i]])) {
+        if (!empty(pathIndex(this.inputs,args[i]))) {
             required = true;
             break;
         }
