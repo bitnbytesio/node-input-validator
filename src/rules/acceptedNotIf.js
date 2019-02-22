@@ -38,7 +38,9 @@ module.exports = async function acceptedIf(field, value, args) {
             break
         }
     }
-
+    console.log(canbetrue);
+    console.log(value);
+    console.log(acceptedValues.indexOf(value));
     if (canbetrue && acceptedValues.indexOf(value)>= 0) {
         return false;
     }
