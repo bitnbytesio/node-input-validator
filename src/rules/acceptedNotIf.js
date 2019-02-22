@@ -24,10 +24,6 @@ module.exports = async function acceptedIf(field, value, args) {
         if (requiredField == field) {
             return false;
         }
-        if(!empty(pathIndex(this.inputs,requiredField))
-            && !acceptedValues.indexOf(pathIndex(this.inputs,requiredField)) >= 0){
-          return true;
-        }
 
         // field can be true if all values are presented
         if (!empty(pathIndex(this.inputs,requiredField))
@@ -38,9 +34,6 @@ module.exports = async function acceptedIf(field, value, args) {
             break
         }
     }
-    console.log(canbetrue);
-    console.log(value);
-    console.log(acceptedValues.indexOf(value));
     if (canbetrue && acceptedValues.indexOf(value)>= 0) {
         return false;
     }
