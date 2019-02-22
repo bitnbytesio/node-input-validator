@@ -1,5 +1,7 @@
 module.exports = {
     accepted: 'The :attribute must be accepted.',
+    acceptedIf: 'The :attribute should be accepted if the parameter :agr0 it\'s :agr1.',
+    acceptedNotIf: 'The :attribute can\'t be accepted if the parameter :agr0 it\'s :agr1.',
     activeUrl: 'The :attribute is not a valid url.',
     after: 'The :attribute must be a date after :agr0.',
     afterOrEqual: 'The :attribute must be a date after or equal :agr0.',
