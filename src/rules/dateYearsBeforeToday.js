@@ -6,7 +6,7 @@ module.exports = async function dateYearsBeforeToday(field, value, days) {
 
     let mAfterDate, mDate;
 
-    mAfterDate = moment('', dateFormats).add(days, 'years');
+    mAfterDate = moment().add(days, 'years');
     mDate = moment(value, dateFormats);
 
     /* istanbul ignore next */
