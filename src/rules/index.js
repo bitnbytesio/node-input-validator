@@ -1,4 +1,6 @@
 exports.accepted = require('./accepted');
+exports.acceptedIf = require('./acceptedIf');
+exports.acceptedNotIf = require('./acceptedNotIf');
 exports.alpha = require('./alpha');
 exports.alphaDash = require('./alphaDash');
 exports.alphaNumeric = require('./alphaNumeric');
