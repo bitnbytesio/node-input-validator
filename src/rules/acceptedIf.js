@@ -1,7 +1,7 @@
 const empty = require('../lib/empty');
 const {pathIndex} = require('../lib/ObjectIndex');
 
-module.exports = async function requiredIf(field, value, args) {
+module.exports = async function acceptedIf(field, value, args) {
 
     if (!args || args.length < 2) {
 
@@ -14,8 +14,9 @@ module.exports = async function requiredIf(field, value, args) {
         throw new Error('Invalid arguments supplied for field ' + field + ' in requiredIf rule.');
         return false;
     }
+    let acceptedValues = [true, 'true', 1, '1', 'yes', 'on'];
 
-    let required = false;
+    let canbetrue = false;
     for (let start = 0; start < args.length; start += 2) {
         let requiredField = args[start];
         let requiredValue = args[start + 1];
@@ -24,17 +25,16 @@ module.exports = async function requiredIf(field, value, args) {
             return false;
         }
 
-        // field is required if all values are presented
+        // field can be true if all values are presented
         if (!empty(pathIndex(this.inputs,requiredField))
             && pathIndex(this.inputs,requiredField).toString() == requiredValue) {
-            required = true;
+            canbetrue = true;
         } else {
-            required = false;
+            canbetrue = false;
             break
         }
     }
-
-    if (required && empty(value)) {
+    if (canbetrue && !(acceptedValues.indexOf(value)>= 0)) {
         return false;
     }
 

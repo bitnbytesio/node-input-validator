@@ -1,4 +1,6 @@
 exports.accepted = require('./accepted');
+exports.acceptedIf = require('./acceptedIf');
+exports.acceptedNotIf = require('./acceptedNotIf');
 exports.alpha = require('./alpha');
 exports.alphaDash = require('./alphaDash');
 exports.alphaNumeric = require('./alphaNumeric');
@@ -12,6 +14,10 @@ exports.creditCard = require('./creditCard');
 exports.date = require('./date');
 exports.dateFormat = require('./dateFormat');
 exports.dateAfter = require('./dateAfter');
+exports.dateDaysAfterToday = require('./dateDaysAfterToday');
+exports.dateYearsAfterToday = require('./dateYearsAfterToday');
+exports.dateDaysBeforeToday = require('./dateDaysBeforeToday');
+exports.dateYearsBeforeToday = require('./dateYearsBeforeToday');
 exports.dateBefore = require('./dateBefore');
 exports.decimal = require('./decimal');
 exports.digits = require('./digits');
