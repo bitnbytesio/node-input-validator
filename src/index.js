@@ -12,9 +12,9 @@ class Validator {
 
     /**
      * @constructor
-     * @param {*} inputs 
-     * @param {*} rules 
-     * @param {*} customMessages 
+     * @param {*} inputs
+     * @param {*} rules
+     * @param {*} customMessages
      */
     constructor(inputs, rules, customMessages = {}) {
 
@@ -55,9 +55,9 @@ class Validator {
 
     /**
      * make validator for arrya rules
-     * @param {*} inputs 
-     * @param {*} rules 
-     * @param {*} messages 
+     * @param {*} inputs
+     * @param {*} rules
+     * @param {*} messages
      */
     static make(inputs, rules, messages = {}) {
 
@@ -70,8 +70,8 @@ class Validator {
 
     /**
      * create validator
-     * @param {*} rules 
-     * @param {*} messages 
+     * @param {*} rules
+     * @param {*} messages
      */
     /* istanbul ignore next */
     static create(rules, messages = {}) {
@@ -81,7 +81,7 @@ class Validator {
 
     /**
      * apply rules on custom inputs
-     * @param {*} inputs 
+     * @param {*} inputs
      */
     /* istanbul ignore next */
     async apply(inputs) {
@@ -111,8 +111,8 @@ class Validator {
 
     /**
      * set before/after filters
-     * @param {*} filters 
-     * @param {*} filterInputs 
+     * @param {*} filters
+     * @param {*} filterInputs
      */
     /* istanbul ignore next */
     static filter(filters, filterInputs) {
@@ -122,7 +122,7 @@ class Validator {
 
     /**
      * set default language for session only
-     * @param {*} lang 
+     * @param {*} lang
      */
 
     setLang(lang) {
@@ -131,7 +131,7 @@ class Validator {
 
     /**
      * check if given value is empty or not
-     * @param {*} value 
+     * @param {*} value
      * @returns {boolean}
      */
     isEmpty(value) {
@@ -161,8 +161,8 @@ class Validator {
      *
      * post rule is applied to whole input and is used to check constraints
      * across multiple fields
-     * 
-     * @param rule    
+     *
+     * @param rule
     */
     addPostRule(rule) {
 
@@ -188,7 +188,7 @@ class Validator {
     }
 
     /**
-     * add set of post rules 
+     * add set of post rules
      *
      * @param rules {string[]}
      */
@@ -227,7 +227,7 @@ class Validator {
 
     /**
      * validate input against rule
-     * @param {*} field 
+     * @param {*} field
      * @returns {Promise.<void>}
      */
     async evaluteInputs(field) {
@@ -306,8 +306,8 @@ class Validator {
 
     /**
      * parse input value
-     * @param {*} field 
-     * @param {*} multiple 
+     * @param {*} field
+     * @param {*} multiple
      */
     inputVal(field, multiple = false) {
 
@@ -321,8 +321,8 @@ class Validator {
     }
 
     /**
-     * 
-     * @param {*} rules 
+     *
+     * @param {*} rules
      */
     parseRules(rules) {
 
@@ -345,7 +345,7 @@ class Validator {
             let multipleFields = -1;
 
             if (field === '*') {
-                return this.addPostRules(rules[field].split('|'));
+                return this.addPostRules(rules[field].split('\|\s*(?![^()]*\))'));
             }
 
             //console.log('in loop', field);
@@ -366,7 +366,7 @@ class Validator {
 
             }
 
-            rsplit = rules[field].split('|');
+            rsplit = rules[field].split('\|\s*(?![^()]*\))');
 
             let rs;
 
@@ -395,7 +395,7 @@ class Validator {
 
     /**
      * make rules from array
-     * @param {*} rules 
+     * @param {*} rules
      */
     makeValidationsFromArray(rules) {
 
@@ -471,11 +471,11 @@ class Validator {
     }
 
     /**
-     * 
-     * @param {*} rule 
-     * @param {*} field 
-     * @param {*} value 
-     * @param {*} args 
+     *
+     * @param {*} rule
+     * @param {*} field
+     * @param {*} value
+     * @param {*} args
      */
     parseMessage(rule, field, value, args) {
 
@@ -483,7 +483,7 @@ class Validator {
          * 1. check for attribute.rule
          * 2. check for rule
          * 3. check for attribute
-         * 4. fallback to default message 
+         * 4. fallback to default message
          */
 
         let message;
@@ -543,10 +543,10 @@ class Validator {
 
     /**
     *  this is only used in testing
-    * @param {*} rule 
-    * @param {*} field 
-    * @param {*} value 
-    * @param {*} args 
+    * @param {*} rule
+    * @param {*} field
+    * @param {*} value
+    * @param {*} args
     */
     /* istanbul ignore next */
     parseExistingMessageOnly(rule, field, value, args) {
