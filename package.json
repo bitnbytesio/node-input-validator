@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "3.2.0",
+  "version": "3.2.0-rc1",
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "index.js",
   "scripts": {
@@ -28,12 +28,25 @@
     "image",
     "mimes"
   ],
-  "repository": "SergiBanos/node-input-validator",
+  "repository": "artisangang/node-input-validator",
   "author": {
-    "name": "Sergi Baños",
+    "name": "Harcharan Singh",
     "email": "artisangang@gmail.com"
   },
-
+  "contributors": [
+    {
+      "name": "Jakub Nietrzeba",
+      "url": "https://github.com/gluth"
+    },
+    {
+      "name": "Sergi Baños",
+      "url": "https://github.com/SergiBanos"
+    },
+    {
+      "name": "Nitin Mehra",
+      "url": "https://github.com/cybersultan"
+    }
+  ],
   "license": "ISC",
   "dependencies": {
     "file-type": "^10.7.0",

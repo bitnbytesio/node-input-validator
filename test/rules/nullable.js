@@ -49,5 +49,21 @@ describe('nullable', function () {
         assert.equal(matched, true);
     });  
 
+    it('should pass', async () => {
+
+        let v, matched;
+
+        v = new Validator(
+            { attribute: null },
+            { attribute: 'nullable|alpha|required' });
+
+        matched = await v.check();
+
+        console.log(v.errors);
+
+        assert.equal(matched, true);
+    });  
+
+
 
 });
