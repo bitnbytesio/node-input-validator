@@ -345,7 +345,7 @@ class Validator {
             let multipleFields = -1;
 
             if (field === '*') {
-                return this.addPostRules(rules[field].split('\|\s*(?![^()]*\))'));
+                return this.addPostRules(rules[field].split(/\|\s*(?![^()]*\))/));
             }
 
             //console.log('in loop', field);
@@ -366,7 +366,7 @@ class Validator {
 
             }
 
-            rsplit = rules[field].split('\|\s*(?![^()]*\))');
+            rsplit = rules[field].split(/\|\s*(?![^()]*\))/);
 
             let rs;
 
