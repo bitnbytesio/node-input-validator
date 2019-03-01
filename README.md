@@ -453,6 +453,22 @@ The field under validation must be valid credit card string.
 **date**  
 The field under validation must be a valid date (YYYY-MM-DD).
 
+**dateAfterToday:number,unit**  
+The field under validation must be a valid date after provided seed.
+
+```javascript
+let v = new Validator({expiry:'2019-02-28'}, {expiry:'required|dateAfterToday:2,days'});
+```
+
+see moment docs(https://momentjs.com/docs/#/manipulating/add/) for supported units.
+
+**dateBeforeToday:number,unit**  
+The field under validation must be a valid date before provided seed.
+
+```javascript
+let v = new Validator({valid:'2019-02-28'}, {valid:'required|dateBeforeToday:2,months'});
+```
+
 **dateFormat:format**  
 The field under validation must match the given date format.
 
