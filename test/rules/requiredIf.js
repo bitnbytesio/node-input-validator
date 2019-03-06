@@ -6,7 +6,7 @@ const Validator = require('../../index');
 describe('requiredIf', function () {
 
 
-    it('should return true', async () => {
+    it('single seed test: should return true', async () => {
 
         const v = new Validator({ name: 'Harcharan Singh', sex: 'male', age: 16 }, { sex: 'requiredIf:age,16' });
 
@@ -16,18 +16,18 @@ describe('requiredIf', function () {
 
     });
 
-    it('should return true', async () => {
+    it('with nested seed: should return true', async () => {
 
-        const v = new Validator({ name: 'Harcharan Singh',address:{street:"fantastic"}, age: 16 }, { age: 'requiredIf:address.street,fantastic' });
+        const v = new Validator({ name: 'Harcharan Singh', address: { street: "fantastic" }, age: 16 }, { age: 'requiredIf:address.street,fantastic' });
 
         const matched = await v.check();
 
         assert.equal(matched, true);
 
     });
-    it('should return false', async () => {
+    it('with nested seed: should return false', async () => {
 
-        const v = new Validator({ name: 'Harcharan Singh',address:{street:"fantastic"} }, { age: 'requiredIf:address.street,fantastic' });
+        const v = new Validator({ name: 'Harcharan Singh', address: { street: "fantastic" } }, { age: 'requiredIf:address.street,fantastic' });
 
         const matched = await v.check();
 
@@ -35,7 +35,7 @@ describe('requiredIf', function () {
 
     });
 
-    it('should return true', async () => {
+    it('with false as string: should return true', async () => {
 
         const v = new Validator({ remember: 'false', age: 16 }, { remember: 'requiredIf:age,16' });
 
@@ -45,27 +45,31 @@ describe('requiredIf', function () {
 
     });
 
-    it('should return true', async () => {
+    it('with false as boolean: should return true', async () => {
 
         const v = new Validator({ remember: false, age: 16 }, { remember: 'requiredIf:age,16' });
 
         const matched = await v.check();
 
+        console.log(v.errors);
+
         assert.equal(matched, true);
 
     });
 
-    it('should return true', async () => {
+    it('with 0 as int: should return true', async () => {
 
         const v = new Validator({ remember: 0, age: 16 }, { remember: 'requiredIf:age,16' });
 
         const matched = await v.check();
 
+        console.log(v.errors);
+
         assert.equal(matched, true);
 
     });
 
-    it('should return true', async () => {
+    it('with true as boolean: should return true', async () => {
 
         const v = new Validator({ remember: true, age: 16 }, { remember: 'requiredIf:age,16' });
 
@@ -84,7 +88,7 @@ describe('requiredIf', function () {
 
         assert.equal(matched, false);
 
-        assert.equal(v.errors.remember.message, v.parseExistingMessageOnly('requiredIf', 'remember', '',['age', '16']));
+        assert.equal(v.errors.remember.message, v.parseExistingMessageOnly('requiredIf', 'remember', '', ['age', '16']));
 
     });
 

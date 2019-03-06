@@ -2,7 +2,7 @@ const v = require('validator');
 
 module.exports = async function alpha(field, value) {
 
-    if (v.isAlpha(value)) {
+    if (v.isAlpha(String(value))) {
 
         return true;
     }

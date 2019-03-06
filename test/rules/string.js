@@ -13,6 +13,33 @@ describe('empty string', function () {
 
     });
 
+    it('should reject integer in string fields', async () => {
+
+        let v = new Validator({ field: 1 }, { field: 'string' });
+
+        let matched = await v.check();
+        assert.equal(matched, false);
+
+    });
+
+    it('should reject boolean in string fields', async () => {
+
+        let v = new Validator({ field: true }, { field: 'string' });
+
+        let matched = await v.check();
+        assert.equal(matched, false);
+
+    });
+
+    it('should reject boolean false in string fields', async () => {
+
+        let v = new Validator({ field: false }, { field: 'string' });
+
+        let matched = await v.check();
+        assert.equal(matched, false);
+
+    });
+
     it('should reject array in string fields', async () => {
 
         let v = new Validator({ field: [1, 2] }, { field: 'string' });

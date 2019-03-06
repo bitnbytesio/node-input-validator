@@ -287,13 +287,13 @@ class Validator {
                 value = value.trim();
                 break;
 
-            case 'boolean':
-                value = String(value);
-                break;
+            // case 'boolean':
+            //     value = String(value);
+            //     break;
 
-            case 'number':
-                value = String(value);
-                break;
+            // case 'number':
+            //     value = String(value);
+            //     break;
 
             case 'undefined':
                 value = '';

@@ -2,6 +2,8 @@ const validationRules = require('./rules');
 const postValidationRules = require('./postRules');
 const filters = require('./filters');
 
+const reallyEmpty = require('./lib/empty').reallyEmpty;
+
 const implicitRules = [
     'required', 'requiredIf', 'requiredNotIf', 'requiredWith', 'requiredWithout', 'accepted', 'sometimes', 'nullable'
 ];
@@ -30,11 +32,7 @@ module.exports.applyRules = async function apply(field, validator) {
 
             let item = validator.inputs[fieldArr[0]][i];
 
-            //console.log(item, fieldArr);
-
             let indexedField = fieldName.replace('*', i);
-
-            //fieldWithIndex.push(indexedField);
 
             let value = '';
 
@@ -62,16 +60,7 @@ module.exports.applyRules = async function apply(field, validator) {
 
         field.value = validator.inputVal(field.field, field.multiple);
 
-        // if (field.value == false) {
-        //     field.value = String(field.value);
-        // }
-
-        //console.log('validated rule', field.rules[r], field);
-        //console.log('--------------------------------------');
-
         const rule = field.rules[r].rule;
-
-        //console.log('field value is', field.value);
 
         if (rule == 'nullable' || field.nullable === true && field.value == null) {
             continue;
@@ -81,11 +70,11 @@ module.exports.applyRules = async function apply(field, validator) {
             throw new Error('Invalid Validation Rule: ' + rule + ' does not exist');
         }
 
-        if (!field.required && validator.isEmpty(field.value)) {
+        if (!field.required && reallyEmpty(field.value)) {
             continue;
         }
 
-        let ruleArgs = [field.field, field.value || ''];
+        let ruleArgs = [field.field, field.value];
 
         if (field.rules[r].args) {
             ruleArgs.push(field.rules[r].args);
