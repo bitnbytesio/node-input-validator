@@ -1,37 +1,37 @@
 declare class Validator {
 
-    errors: any = {};
+    errors: any;
 
-    validations: any = {};
+    validations: any;
 
-    filters: any = {};
+    filters: any;
 
     lang: string;
 
-    postValidations: any = [];
+    postValidations: any;
 
-    inputs: any = {};
+    inputs: any;
 
-    filterInputs: any = {};
+    filterInputs: any;
 
-    rules: any = {};
+    rules: any;
 
-    customMessages: any = {};
+    customMessages: any;
 
 
-    constructor(inputs: any, rules: any, customMessages?: any = {});
+    constructor(inputs: any, rules: any, customMessages: any);
 
-    static make(inputs: any, rules: any, messages: any = {}): Validator;
+    static make(inputs: any, rules: any, messages: any): Validator;
 
     static create(rules: any, messages: any = {}): Validator;
 
-    apply(inputs: any): Promise;
+    apply(inputs: any): Promise<any>;
 
-    check(): Promise;
+    check(): Promise<any>;
 
-    fails(): Promise;
+    fails(): Promise<any>;
 
-    passes(): Promise;
+    passes(): Promise<any>;
 
     setLang(lang: string);
 
@@ -47,7 +47,7 @@ declare class Validator {
 
     parseKey(key: any, data: any): any;
 
-    inputVal(attribute: any, multiple: boolean = false): any;
+    inputVal(attribute: any, multiple: boolean): any;
 
     parseRules(rules: any);
 
@@ -63,21 +63,21 @@ declare class Validator {
 
 declare namespace Validator {
 
-    declare function setLang(lang: string);
+    function setLang(lang: string);
 
-    declare function extend(
+    function extend(
         rule: string,
         func: any
     );
 
-    declare function messages(
+    function messages(
         newMessages: any,
-        lang: string = 'en'
+        lang: string
     );
 
-    declare function customMessages(
+    function customMessages(
         customMessages: any,
-        lang: string = 'en'
+        lang: string
     );
 
     function koa();
