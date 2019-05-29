@@ -23,7 +23,7 @@ declare class Validator {
 
     static make(inputs: any, rules: any, messages: any): Validator;
 
-    static create(rules: any, messages: any = {}): Validator;
+    static create(rules: any, messages): Validator;
 
     apply(inputs: any): Promise<any>;
 
@@ -43,7 +43,7 @@ declare class Validator {
 
     addPostRules(rules: Array<any>): void;
 
-    check(): Promise;
+    check(): Promise<any>;
 
     parseKey(key: any, data: any): any;
 
@@ -55,9 +55,9 @@ declare class Validator {
 
     populateRule(attribute: any);
 
-    parseMessage(rule: any, field: any, value?: any, args: any = []);
+    parseMessage(rule: any, field: any, value?: any, args: any);
 
-    parseExistingMessageOnly(rule: any, field: any, value?: any, args: any = []);
+    parseExistingMessageOnly(rule: any, field: any, value?: any, args: any);
 }
 
 
