@@ -19,7 +19,7 @@ declare class Validator {
     customMessages: any;
 
 
-    constructor(inputs: any, rules: any, customMessages: any);
+    constructor(inputs: any, rules: any, customMessages?: any);
 
     static make(inputs: any, rules: any, messages: any): Validator;
 
@@ -55,9 +55,9 @@ declare class Validator {
 
     populateRule(attribute: any);
 
-    parseMessage(rule: any, field: any, value?: any, args: any);
+    parseMessage(rule: any, field: any, value?: any, args?: any);
 
-    parseExistingMessageOnly(rule: any, field: any, value?: any, args: any);
+    parseExistingMessageOnly(rule: any, field: any, value?: any, args?: any);
 }
 
 
@@ -72,12 +72,12 @@ declare namespace Validator {
 
     function messages(
         newMessages: any,
-        lang: string
+        lang?: string
     );
 
     function customMessages(
         customMessages: any,
-        lang: string
+        lang?: string
     );
 
     function koa();
