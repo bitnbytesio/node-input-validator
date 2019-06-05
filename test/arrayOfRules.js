@@ -11,6 +11,10 @@ describe('Multiple rules test', function () {
         it('should return true', async () => {
 
             //{ name: 'required|minLength:5|maxLength:8|alpha' }
+            // @ts-ignore
+            let vi = Validator.make(
+                { name: 'artisan' }
+                );
 
             let v = Validator.make(
                 { name: 'artisan' },

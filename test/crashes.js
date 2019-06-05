@@ -39,6 +39,63 @@ describe('crash', function () {
 
 });
 
+
+describe('acceptedIf exception', () => {
+    it('acceptedIf: Checking for invalid arguments', async () => {
+
+        try {
+
+            let v = new Validator({ attribute: "Harcharan Singh" }, { attribute: 'required|acceptedIf' });
+
+            await v.check();
+
+            // assert.equal(matched, true);
+        } catch (e) {
+            assert.equal(e, 'Error: Invalid arguments supplied for field attribute in acceptedIf rule.');
+        }
+
+        try {
+
+            let v = new Validator({ attribute: "Harcharan Singh" }, { attribute: 'required|acceptedIf:1,2,3' });
+
+            await v.check();
+
+            // assert.equal(matched, true);
+        } catch (e) {
+            assert.equal(e, 'Error: Invalid arguments supplied for field attribute in acceptedIf rule.');
+        }
+
+    });
+});
+
+describe('acceptedNotIf exception', () => {
+    it('acceptedNotIf: Checking for invalid arguments', async () => {
+
+        try {
+
+            let v = new Validator({ attribute: "Harcharan Singh" }, { attribute: 'required|acceptedNotIf' });
+
+            await v.check();
+
+            // assert.equal(matched, true);
+        } catch (e) {
+            assert.equal(e, 'Error: Invalid arguments supplied for field attribute in acceptedNotIf rule.');
+        }
+
+        try {
+
+            let v = new Validator({ attribute: "Harcharan Singh" }, { attribute: 'required|acceptedNotIf:1,2,3' });
+
+            await v.check();
+
+            // assert.equal(matched, true);
+        } catch (e) {
+            assert.equal(e, 'Error: Invalid arguments supplied for field attribute in acceptedNotIf rule.');
+        }
+
+    });
+});
+
 describe('between exception', () => {
     it('Between: Checking for invalid seed count', async () => {
 
@@ -50,7 +107,7 @@ describe('between exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: The number of arguments for between in the field attribute are invalid.');
+            assert.equal(e, 'The number of arguments for between in the field attribute are invalid.');
         }
 
     });
@@ -66,7 +123,7 @@ describe('between exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: Seeds must be integer for between rule.');
+            assert.equal(e, 'Seeds must be integer for attribute under between rule.');
         }
 
     });
@@ -81,7 +138,7 @@ describe('between exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: Seeds must be integer for between rule.');
+            assert.equal(e, 'Seeds must be integer for attribute under between rule.');
         }
 
     });
@@ -97,7 +154,7 @@ describe('between exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: Seed min must be less then max in between.');
+            assert.equal(e, 'Seed min must be less then max in between rule for attribute.');
         }
 
     });
@@ -192,7 +249,7 @@ describe('digitsBetween exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: The number of arguments for digits between in the field attribute are invalid.');
+            assert.equal(e, 'The number of arguments for digits between rule in the field attribute are invalid.');
         }
 
     });
@@ -208,7 +265,7 @@ describe('digitsBetween exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: Seeds must be integer for digits between rule.');
+            assert.equal(e, 'Seeds must be integer for attribute under digits between rule.');
         }
 
     });
@@ -223,7 +280,7 @@ describe('digitsBetween exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: Seeds must be integer for digits between rule.');
+            assert.equal(e, 'Seeds must be integer for digits between rule.');
         }
 
     });
@@ -239,8 +296,104 @@ describe('digitsBetween exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: Seed min must be less then max in digits between.');
+            assert.equal(e, 'Seed min must be less then max in digits between rule for attribute.');
         }
 
     });
-})
+});
+
+
+
+describe('max exception', () => {
+    it('max: Checking for invalid seed', async () => {
+
+        try {
+
+            let v = new Validator({ attribute: "Harcharan Singh" }, { attribute: 'required|max:test' });
+
+            await v.check();
+
+            // assert.equal(matched, true);
+        } catch (e) {
+            assert.equal(e, 'Seed in max rule for attribute must be a number.');
+        }
+
+
+    });
+});
+
+
+describe('min exception', () => {
+    it('min: Checking for invalid seed', async () => {
+
+        try {
+
+            let v = new Validator({ attribute: "Harcharan Singh" }, { attribute: 'required|min:test' });
+
+            await v.check();
+
+            // assert.equal(matched, true);
+        } catch (e) {
+            assert.equal(e, 'Seed in min rule for attribute must be a number.');
+        }
+
+
+    });
+});
+
+
+
+describe('maxLength exception', () => {
+    it('maxLength: Checking for invalid seed', async () => {
+
+        try {
+
+            let v = new Validator({ attribute: "Harcharan Singh" }, { attribute: 'required|maxLength:test' });
+
+            await v.check();
+
+            // assert.equal(matched, true);
+        } catch (e) {
+            assert.equal(e, 'Seed in maxLength rule for attribute must be a number.');
+        }
+
+
+    });
+});
+
+
+describe('minLength exception', () => {
+    it('minLength: Checking for invalid seed', async () => {
+
+        try {
+
+            let v = new Validator({ attribute: "Harcharan Singh" }, { attribute: 'required|minLength:test' });
+
+            await v.check();
+
+            // assert.equal(matched, true);
+        } catch (e) {
+            assert.equal(e, 'Seed in minLength rule for attribute must be a number.');
+        }
+
+
+    });
+});
+
+describe('digits exception', () => {
+    it('digits: Checking for invalid seed', async () => {
+
+        try {
+
+            let v = new Validator({ attribute: "Harcharan Singh" }, { attribute: 'required|digits:test' });
+
+            await v.check();
+
+            // assert.equal(matched, true);
+        } catch (e) {
+            assert.equal(e, 'Please provide a numeric value for attribute under digits rule.');
+        }
+
+
+    });
+});

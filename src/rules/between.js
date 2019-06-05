@@ -5,13 +5,13 @@ const numeric = require('./numeric'),
 module.exports = async function between(attribute, value, args) {
 
     if (!Array.isArray(args) && args.length !== 2) {
-        throw new Error('The number of arguments for between in the field ' + attribute + ' are invalid.');
+        throw 'The number of arguments for between in the field ' + attribute + ' are invalid.';
     }
 
     let [min, max] = args;
 
-    if (!numeric(min) || !numeric(max)) {
-        throw new Error('Seeds must be integer for between rule.');
+    if (!(await numeric(attribute, min)) || !(await numeric(attribute, max))) {
+        throw 'Seeds must be integer for ' + attribute + ' under between rule.';
     }
 
     min = parseFloat(min);
@@ -19,7 +19,7 @@ module.exports = async function between(attribute, value, args) {
 
     if (min >= max) {
 
-        throw new Error('Seed min must be less then max in between.');
+        throw 'Seed min must be less then max in between rule for ' + attribute + '.';
     }
 
 
