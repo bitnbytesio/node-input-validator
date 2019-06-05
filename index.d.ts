@@ -21,6 +21,8 @@ declare class Validator {
 
     constructor(inputs: any, rules: any, customMessages?: any = {});
 
+    setAttributeNames(niceNames: any);
+
     static make(inputs: any, rules: any, messages: any = {}): Validator;
 
     static create(rules: any, messages: any = {}): Validator;

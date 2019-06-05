@@ -194,6 +194,26 @@ validator.setLang('pb');
 
 ```
 
+### Using Custom Attribute Names
+
+```javascript
+
+const validator = require('node-input-validator');
+
+let v = new validator( ctx.request.body, {
+            phone:'required',
+            dob: 'required'
+        });
+
+v.setAttributeNames({
+    phone: 'phone number',
+    dob: 'Date of Birth'
+});
+
+```
+
+In error messages you will get "phone number" instead of phone. For Example: in case required rule failed, Error message will be: The phone number field is mandatory.
+
 ### Add your own custom validation rules
 
 ```javascript
@@ -616,7 +636,8 @@ The field under validation must be numeric.
 The field under validation must be a valid phone number.
 
 **regex**  
-The field under validation must match the given regular expression.
+The field under validation must match the given regular expression.  
+Note: Currently regex rules break on using colon (:) or pipe delimiters.
 
 **same**  
 The given field must match the field under validation.

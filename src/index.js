@@ -51,6 +51,16 @@ class Validator {
         // parse rules
         this.parseRules(rules);
 
+        this.attributeNames = {};
+
+    }
+
+    /**
+     * set attributes nice names
+     * @param {*} niceNames 
+     */
+    setAttributeNames(niceNames) {
+        this.attributeNames = niceNames;
     }
 
     /**
@@ -505,7 +515,15 @@ class Validator {
         }
 
         if (message.indexOf(':attribute') !== -1) {
-            message = message.replace(':attribute', field);
+
+            let attributeName = field;
+
+            // check if attribute has some nice name
+            if (this.attributeNames[field]) {
+                attributeName = this.attributeNames[field];
+            }
+
+            message = message.replace(':attribute', attributeName);
         }
 
         if (message.indexOf(':args') !== -1) {

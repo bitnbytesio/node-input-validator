@@ -79,7 +79,7 @@ describe('Custom Rules', function () {
             let v = new Validator(
                 { number: '9' }, { number: 'even|required' });
 
-                v.setLang('pb');
+            v.setLang('pb');
 
             let matched = await v.check();
 
@@ -154,6 +154,36 @@ describe('Custom Rules', function () {
 
     });
 
+
+
+});
+
+describe('Nice Names', function () {
+
+    describe('Using custom attribute names', function () {
+
+        it('should return true', async () => {
+
+            let v = new Validator(
+                { status: 'draft' },
+                { status: 'status:pending,published|required' },
+                { status: 'The :attribute value is invalid.' }
+            );
+
+            v.setAttributeNames({
+                status: 'queue status'
+            })
+
+            let matched = await v.check();
+
+            assert.equal(matched, false);
+
+            v.errors.should.have.property('status').and.be.a.Object();
+            v.errors.status.should.have.property('message', 'The queue status value is invalid.');
+
+        });
+
+    });
 
 
 });
