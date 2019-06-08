@@ -14,7 +14,7 @@ describe('Multiple rules test', function () {
             // @ts-ignore
             let vi = Validator.make(
                 { name: 'artisan' }
-                );
+            );
 
             let v = Validator.make(
                 { name: 'artisan' },
@@ -42,10 +42,10 @@ describe('Multiple rules test', function () {
 
             assert.equal(matched, false);
 
-  
+
         });
 
-        it('should return false due to maxLength failed', async () => {
+        it('should return false due to lengthBetween failed', async () => {
 
             let v = Validator.make(
                 { uid: 'abcdefghi' },
@@ -57,7 +57,19 @@ describe('Multiple rules test', function () {
             assert.equal(matched, false);
 
 
-      
+        });
+
+        it('regex delimiters fix', async () => {
+
+            let v = Validator.make(
+                { uid: 'xyz' },
+                {
+                    uid: ['required', ['regex', 'abc|xyz']]
+                });
+            let matched = await v.check();
+
+            assert.equal(matched, true);
+
 
         });
 

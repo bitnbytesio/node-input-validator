@@ -58,8 +58,8 @@
   "devDependencies": {
     "@types/mocha": "^5.2.7",
     "@types/moment": "^2.13.0",
-    "@types/validator": "^10.11.0",
-    "coveralls": "^3.0.3",
+    "@types/validator": "^10.11.1",
+    "coveralls": "^3.0.4",
     "eslint": "^5.16.0",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^5",
