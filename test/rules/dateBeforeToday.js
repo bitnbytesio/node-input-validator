@@ -12,7 +12,7 @@ describe('#dateBeforeToday', function () {
 
         let v, matched;
 
-        v = new Validator({ dob: moment().subtract(1, 'days').format('YYYY-MM-DD') }, { dob: 'required|dateFormat:YYYY-MM-DD|dateBeforeToday:1,days' });
+        v = new Validator({ dob: moment().subtract(1, 'days').format('YYYY-MM-DD') }, { dob: 'required|dateFormat:YYYY-MM-DD|dateBeforeToday:1' });
 
         matched = await v.check();
         assert.equal(matched, true);

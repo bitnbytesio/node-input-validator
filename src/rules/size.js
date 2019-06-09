@@ -7,15 +7,17 @@ module.exports = async function validateSize(field, file, args) {
 
     let max, min, size;
 
-    if (args && Array.isArray(args)) {
-
-        max = sizeToBytes(args[0]);
-        if (args.length >= 2) {
-            min = sizeToBytes(args[1]);
-        }
-    } else {
-        max = sizeToBytes(args);
+    if (!Array.isArray(args)) {
+        args = [args];
     }
+
+    max = sizeToBytes(args[0]);
+    if (args.length >= 2) {
+        min = sizeToBytes(args[1]);
+    }
+    // } else {
+    //     max = sizeToBytes(args);
+    // }
 
     if (file.size) {
         size = file.size;

@@ -50,21 +50,24 @@ module.exports = async function validateMime(field, file, args) {
         throw new Error('MIME rule only accepts Buffer,file path or type/mime property in file object.');
     }
 
+    // if single arg, convert it to array
+    if (!Array.isArray(args)) {
+        args = [args];
+    }
 
-    if (Array.isArray(args)) {
-        for (var i = 0; i < args.length; ++i) {
-            if (mime.lookup(args[i]) !== mtype) {
-                success = false;
-            } else {
-                success = true;
-                break;
-            }
-        }
-    } else {
-        if (mime.lookup(args) !== mtype) {
+    for (var i = 0; i < args.length; ++i) {
+        if (mime.lookup(args[i]) !== mtype) {
             success = false;
+        } else {
+            success = true;
+            break;
         }
     }
+    // } else {
+    //     if (mime.lookup(args) !== mtype) {
+    //         success = false;
+    //     }
+    // }
 
     if (!success) {
 
