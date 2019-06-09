@@ -6,14 +6,13 @@ module.exports = async function acceptedIf(field, value, args) {
     if (!args || args.length < 2) {
 
         throw new Error('Invalid arguments supplied for field ' + field + ' in acceptedIf rule.');
-        return false;
     }
 
     if (args.length % 2 !== 0) {
 
         throw new Error('Invalid arguments supplied for field ' + field + ' in acceptedIf rule.');
-        return false;
     }
+    
     let acceptedValues = [true, 'true', 1, '1', 'yes', 'on'];
 
     let canbetrue = false;

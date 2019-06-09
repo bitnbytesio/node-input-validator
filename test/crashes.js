@@ -172,7 +172,7 @@ describe('lengthBetween exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: The number of arguments for length between in the field attribute are invalid.');
+            assert.equal(e, 'The number of arguments for length between in the field attribute are invalid.');
         }
 
     });
@@ -188,7 +188,7 @@ describe('lengthBetween exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: Seeds must be integer for lengthBetween rule.');
+            assert.equal(e, 'Seeds must be integer for lengthBetween rule.');
         }
 
     });
@@ -203,7 +203,7 @@ describe('lengthBetween exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: Seeds must be integer for lengthBetween rule.');
+            assert.equal(e, 'Seeds must be integer for lengthBetween rule.');
         }
 
     });
@@ -219,7 +219,7 @@ describe('lengthBetween exception', () => {
 
             // assert.equal(matched, true);
         } catch (e) {
-            assert.equal(e, 'Error: Seed min must be less then max in lengthBetween.');
+            assert.equal(e, 'Seed min must be less then max in lengthBetween.');
         }
 
     });

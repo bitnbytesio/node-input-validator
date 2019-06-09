@@ -16,6 +16,17 @@ describe('#dateAfterToday', function () {
 
     });
 
+    it('without second seed', async () => {
+
+        let v, matched;
+
+        v = new Validator({ dob: moment().add(2, 'days').format('YYYY-MM-DD') }, { dob: 'required|dateFormat:YYYY-MM-DD|dateAfterToday:1' });
+
+        matched = await v.check();
+        assert.equal(matched, true);
+
+    });
+
 
     it('should return false', async () => {
 

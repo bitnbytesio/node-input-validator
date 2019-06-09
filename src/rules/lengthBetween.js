@@ -3,13 +3,18 @@ const integer = require('./integer');
 module.exports = async function lengthBetween(attribute, value, args) {
 
     if (!Array.isArray(args) && args.length !== 2) {
-        throw new Error('The number of arguments for length between in the field ' + attribute + ' are invalid.');
+        throw 'The number of arguments for length between in the field ' + attribute + ' are invalid.';
     }
 
     let [min, max] = args;
 
-    if (!integer(min.toString()) || !integer(max.toString())) {
-        throw new Error('Seeds must be integer for lengthBetween rule.');
+    let [isIntMin, isIntMax] = await Promise.all([
+        integer(attribute, min.toString()),
+        integer(max.toString()),
+    ]);
+
+    if (!isIntMin || !isIntMin) {
+        throw 'Seeds must be integer for lengthBetween rule.';
     }
 
     min = parseInt(min);
@@ -17,7 +22,7 @@ module.exports = async function lengthBetween(attribute, value, args) {
 
     if (min >= max) {
 
-        throw new Error('Seed min must be less then max in lengthBetween.');
+        throw 'Seed min must be less then max in lengthBetween.';
     }
 
     // if (Array.isArray(attribute)) {

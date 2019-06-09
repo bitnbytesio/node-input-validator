@@ -31,7 +31,7 @@ module.exports = async function between(attribute, value, args) {
         return true;
     }
 
-    if (numeric(value)) {
+    if (await numeric(attribute, value)) {
 
         value = Number(value);
 
