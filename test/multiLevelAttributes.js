@@ -26,6 +26,24 @@ describe('Array Fields', function () {
 
     });
 
+    it('rule accepting another fileds as seed', async () => {
+
+        let v = new Validator(
+            {
+                range: {min : 2, max: 5}
+            },
+            {
+                'range.min': 'required|integer',
+                'range.max': 'required|integer|gt:range.min',
+            });
+
+        let matched = await v.check();
+
+
+        assert.equal(matched, true);
+
+    });
+
     it('should pass', async () => {
 
         let v = new Validator(
