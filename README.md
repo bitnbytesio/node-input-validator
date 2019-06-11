@@ -143,6 +143,21 @@ router.post('login', async function (ctx) {
     let matched = await v.check();
 ```
 
+### Array of rules
+
+Usefull in case of using colon (:) / pipe delimiters in rules like dateFormat / regex.
+
+```javascript
+
+ let v = Validator.make(
+            { uid: 'abcdefghi' },
+            {
+                uid: ['required', ['lengthBetween', '5', '8'], 'alpha']
+            });
+let matched = await v.check();
+
+```
+
 ## Extending
 
 Placeholder in messages, :attribute will be replaced with field name, :value with field value and :arg0, :arg1 ...n with arguments passed to rule.
@@ -492,6 +507,8 @@ let v = new Validator({valid:'2019-02-28'}, {valid:'required|dateBeforeToday:2,m
 **dateFormat:format**  
 The field under validation must match the given date format.
 
+Note: use array of rules style declaration to deal with colon (:) in time formats.
+
 ```javascript
 let v = new Validator({dob:''}, {dob:'required|dateFormat:YYYY-MM-DD'});
 ```  
@@ -636,8 +653,9 @@ The field under validation must be numeric.
 The field under validation must be a valid phone number.
 
 **regex**  
-The field under validation must match the given regular expression.  
-Note: Currently regex rules break on using colon (:) or pipe delimiters.
+The field under validation must match the given regular expression.
+
+Note: Currently regex rules break on using colon (:) or pipe delimiters. Use array of rules style declaration instead of string.
 
 **same**  
 The given field must match the field under validation.
