@@ -20,6 +20,9 @@ describe('Objects', function () {
                 'product.name': 'required',
                 'product.price': 'required|integer',
                 'product.active': 'required|integer'
+            },
+            {
+                product: 'The given product is invalid :value.'
             });
 
         let matched = await v.check();

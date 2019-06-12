@@ -99,14 +99,14 @@ describe('Custom Rules', function () {
             let v = new Validator(
                 { number: '9' },
                 { number: 'even|required' },
-                { 'number.even': 'Invalid number.' });
+                { 'number.even': 'Invalid number :value.' });
 
             let matched = await v.check();
 
             assert.equal(matched, false);
 
             v.errors.should.have.property('number').and.be.a.Object();
-            v.errors.number.should.have.property('message', 'Invalid number.');
+            v.errors.number.should.have.property('message', 'Invalid number 9.');
 
         });
 

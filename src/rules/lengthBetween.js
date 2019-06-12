@@ -42,5 +42,6 @@ module.exports = async function lengthBetween(attribute, value, args) {
         return true;
     }
 
+     /* istanbul ignore next */
     return false;
 }

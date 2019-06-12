@@ -144,8 +144,9 @@ class Validator {
      * @param {*} value 
      * @returns {boolean}
      */
+     /* istanbul ignore next */
     isEmpty(value) {
-
+       
         return empty(value);
     }
 
@@ -546,6 +547,7 @@ class Validator {
         // }
 
         if (message.indexOf(':value') !== -1) {
+            /* istanbul ignore next */
             if (typeof value === 'object') {
                 message = message.replace(':value', JSON.stringify(this.validations[field].value));
             } else if (typeof this.validations[field].value === 'undefined') {

@@ -56,5 +56,21 @@ describe('gte', function () {
 
     });
 
+    it('validation should fail due to nan in another field', async () => {
+
+        const v = new Validator(
+            { min: 'abc', max: '25' },
+            {
+                min: 'required',
+                max: 'required|integer|gte:min'
+            }
+        );
+
+        const matched = await v.check();
+
+        assert.equal(matched, false);
+
+    });
+
 
 });

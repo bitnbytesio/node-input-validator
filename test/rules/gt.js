@@ -40,5 +40,21 @@ describe('gt', function () {
 
     });
 
+    it('validation should fail due to nan in another field', async () => {
+
+        const v = new Validator(
+            { min: 'abc', max: '25' },
+            {
+                min: 'required',
+                max: 'required|integer|gt:min'
+            }
+        );
+
+        const matched = await v.check();
+
+        assert.equal(matched, false);
+
+    });
+
 
 });
