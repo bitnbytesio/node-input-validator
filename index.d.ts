@@ -84,7 +84,7 @@ declare namespace Validator {
 
     function koa();
 
-    export { setLang, extend, messages, koa };
+    export { setLang, extend, messages, customMessages, koa };
 }
 
 export = Validator;

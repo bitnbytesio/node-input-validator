@@ -537,6 +537,14 @@ The field under validation must be formatted as an e-mail address.
 **equals**  
 The field under validation must be equal to given value.
 
+**gt:another_field**  
+<sub>Added in: v3.4</sub>  
+The field under validation must be greater then another field value. This rule is for Numbers comparision.
+
+**gte:another_field**  
+<sub>Added in: v3.4</sub>  
+The field under validation must be greater or equals to another field value. This rule is for Numbers comparision.
+
 **hash:algo**  
 The field under validation must be a valid hash as per provided seed.
 
@@ -586,6 +594,14 @@ The field under validation value length must be between provided values.
 ```javascript
 let v = new Validator({age:''}, {age:'required|between:17,30'});
 ```
+
+**lt:another_field**  
+<sub>Added in: v3.4</sub>  
+The field under validation must be less then another field value. This rule is for Numbers comparision.
+
+**lte:another_field**  
+<sub>Added in: v3.4</sub>  
+The field under validation must be less or equals to another field value. This rule is for Numbers comparision.
 
 **macAddress**  
 The field under validation should be a valid Mac Address.

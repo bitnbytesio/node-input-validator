@@ -9,10 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- gt: greater then another field rle
-- gte: greater then or equals another field rle
-- lt: less then another field rle
-- lte: less then or equals another field rle
+- nothing
 
 ### Changed
 
@@ -33,6 +30,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 - nothing
+
+## [3.4.0]
+
+### Added
+
+- gt: greater then another field rule
+- gte: greater then or equals another field rule
+- lt: less then another field rule
+- lte: less then or equals another field rule
+
+### Fixed
+
+- typings
+- multiple underscore (_) replacement with space issue
 
 ## [3.3.0]
 

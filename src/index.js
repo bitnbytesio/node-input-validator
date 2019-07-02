@@ -557,7 +557,7 @@ class Validator {
             }
         }
 
-        return message.replace('_', ' ');
+        return message.replace(/_/g, ' ');
 
     }
 
