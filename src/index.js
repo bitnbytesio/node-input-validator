@@ -377,7 +377,7 @@ class Validator {
 
             }
 
-            rsplit = rules[field].split('|');
+            rsplit = rules[field].toString().split('|');
 
             let rs;
 
