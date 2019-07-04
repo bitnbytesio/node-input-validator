@@ -31,6 +31,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - nothing
 
+## [3.4.1]
+
+### Fixed
+
+- crash in case of using non-string rules in constructor will now fails with exception of in valid rule
+
 ## [3.4.0]
 
 ### Added
