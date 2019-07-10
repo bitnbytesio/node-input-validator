@@ -497,6 +497,10 @@ The field under validation only contains letters and numbers.
 **array**  
 The field under validation must be an array.
 
+**arrayUnique**
+<sub>Added in: v3.5</sub>  
+The field under validation must be an array and must contains unique values.
+
 **ascii**  
 The field under validation only contains ascii characters.
 
@@ -619,6 +623,11 @@ The field under validation must be valid Iso8601 date.
 
 **json**
 The field under validation must be a valid JSON string.
+
+**length:max**
+**length:max,min**  
+<sub>Added in: v3.5</sub>  
+The field under validation must be less then or equals to max seed provided in rule. In case of min,max seed, field under validation must be less or equals to max seed and less then min seed. Can only be used with strings|arrays or any other object that supports length (str.length) property.
 
 **latLong**
 The field under validation must be a valid latitude-longitude coordinate.

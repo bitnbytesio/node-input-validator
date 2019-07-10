@@ -31,6 +31,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - nothing
 
+## [3.5.0]
+
+### Added
+
+- arrayUnique: array must contains unique values
+- length: length rule with max and min (optional) seed
+
 ## [3.4.2]
 
 ### Added
