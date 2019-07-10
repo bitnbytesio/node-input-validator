@@ -6,6 +6,7 @@ exports.alphaDash = require('./alphaDash');
 exports.alphaNumeric = require('./alphaNumeric');
 exports.array = require('./array');
 exports.arrayUnique = require('./arrayUnique');
+exports.arrayUniqueObjects = require('./arrayUniqueObjects');
 exports.ascii = require('./ascii');
 exports.base64 = require('./base64');
 exports.between = require('./between');

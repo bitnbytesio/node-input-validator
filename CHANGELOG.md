@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - arrayUnique: array must contains unique values
+- arrayUniqueObjects: array of objects must have unique attribute as per seed
 - length: length rule with max and min (optional) seed
 
 ## [3.4.2]

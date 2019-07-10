@@ -11,6 +11,7 @@ module.exports = {
     alphaNumeric: 'The :attribute can only contain letters and numbers.',
     array: 'The :attribute must be an array.',
     arrayUnique: 'The :attribute must be an array of unique values.',
+    arrayUniqueObjects: 'The :attribute must be an array of unique :args attributes of object.',
     ascii: 'The :attribute can only contains valid ascii characters.',
     base64: 'The :attribute must be a valid base64 string.',
     before: 'The :attribute must be a date before :arg0.',
