@@ -31,6 +31,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - nothing
 
+## [3.4.2]
+
+### Added
+
+- Example of custom rule using other attributes
+
 ## [3.4.1]
 
 ### Fixed

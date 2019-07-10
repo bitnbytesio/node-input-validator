@@ -255,6 +255,41 @@ Validator.extend('status', async function (field, value, args) {
 
 ```
 
+Example of using other fileds in rule
+
+```javascript
+
+Validator.extend('sumOfFields', async function (field, value, args) {
+
+    if (args.length !== 2) {
+        throw "Invalid seed for rule sumOfFields";
+    }
+
+    // use this.inputs to get another attributes
+
+    const anotherValue = Number(this.inputs[args[0]]);
+
+    const eq = Number(args[1]);
+
+    if ((Number(value) + anotherValue) !== eq) {
+        return false;
+    }
+
+    return true;
+
+});
+
+ let v = new Validator(
+    { num1: '50', num2: '50' }, 
+    { num1: 'sumOfFields:num2,100|required' }
+    );
+
+let matched = await v.check();
+
+assert.equal(matched, true);
+
+```
+
 Some example of using database in rules
 
 ```javascript

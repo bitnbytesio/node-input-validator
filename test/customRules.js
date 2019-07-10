@@ -41,11 +41,64 @@ Validator.extend('status', async function (field, value, args) {
 
 });
 
+Validator.extend('sumOfFields', async function (field, value, args) {
+
+    if (args.length !== 2) {
+        throw "Invalid seed for rule sumOfFields";
+    }
+
+    const anotherValue = Number(this.inputs[args[0]]);
+
+    const eq = Number(args[1]);
+
+    if ((Number(value) + anotherValue) !== eq) {
+        return false;
+    }
+
+    return true;
+
+});
+
 let r = {};
 
 describe('Custom Rules', function () {
 
     describe('Using custom rule even', function () {
+
+
+        it('sumOfFields:should return true', async () => {
+
+            let v = new Validator(
+                { num1: '50', num2: '50' }, { num1: 'sumOfFields:num2,100|required' });
+
+            let matched = await v.check();
+
+            assert.equal(matched, true);
+
+        });
+
+        it('sumOfFields:should return false value is greater', async () => {
+
+            let v = new Validator(
+                { num1: '50', num2: '51' }, { num1: 'sumOfFields:num2,100|required' });
+
+            let matched = await v.check();
+
+            assert.equal(matched, false);
+
+        });
+
+        it('sumOfFields:hould return false value is less', async () => {
+
+            let v = new Validator(
+                { num1: '50', num2: '49' }, { num1: 'sumOfFields:num2,100|required' });
+
+            let matched = await v.check();
+
+            assert.equal(matched, false);
+
+        });
+
 
         it('should return true', async () => {
 
