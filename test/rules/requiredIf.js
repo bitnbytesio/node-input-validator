@@ -80,6 +80,34 @@ describe('requiredIf', function () {
 
     });
 
+    it('should return false for invalid seed length', async () => {
+
+        try {
+        const v = new Validator({ age: 16 }, { remember: 'requiredIf:age' });
+
+        const matched = await v.check();
+        } catch (e) {
+            assert.equal(e, 'Error: Invalid arguments supplied for field remember in requiredIf rule.');
+        }
+
+        //assert.equal(v.errors.remember.message, v.parseExistingMessageOnly('requiredIf', 'remember', '', ['age', '16']));
+
+    });
+
+    it('should return false for missing seed length', async () => {
+
+        try {
+        const v = new Validator({ age: 16 }, { remember: 'requiredIf' });
+
+        const matched = await v.check();
+        } catch (e) {
+            assert.equal(e, 'Error: Invalid arguments supplied for field remember in requiredIf rule.');
+        }
+
+        //assert.equal(v.errors.remember.message, v.parseExistingMessageOnly('requiredIf', 'remember', '', ['age', '16']));
+
+    });
+
     it('should return false', async () => {
 
         const v = new Validator({ age: 16 }, { remember: 'requiredIf:age,16' });

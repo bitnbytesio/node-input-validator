@@ -5,6 +5,20 @@ const Validator = require('../../index');
 
 describe('arrayUnique', function () {
 
+    it('validation should fail with non array', async () => {
+
+        const v = new Validator(
+            { features: 'test' },
+            { features: 'arrayUnique' }
+        );
+
+        const matched = await v.check();
+
+        assert.equal(matched, false);
+
+    });
+
+
     it('validation should pass: []', async () => {
 
         const v = new Validator(

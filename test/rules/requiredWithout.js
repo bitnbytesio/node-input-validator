@@ -5,6 +5,21 @@ const Validator = require('../../index');
 
 describe('requiredWithout', function () {
 
+
+    it('should return false for missing seed length', async () => {
+
+        try {
+        const v = new Validator({ age: 16 }, { remember: 'requiredWithout' });
+
+        const matched = await v.check();
+        } catch (e) {
+            assert.equal(e, 'Invalid arguments supplied for field remember in requiredWithout rule.');
+        }
+
+        //assert.equal(v.errors.remember.message, v.parseExistingMessageOnly('requiredIf', 'remember', '', ['age', '16']));
+
+    });
+
     it('should pass', async () => {
 
 

@@ -6,13 +6,13 @@ module.exports = async function requiredIf(field, value, args) {
     if (!args || args.length < 2) {
 
         throw new Error('Invalid arguments supplied for field ' + field + ' in requiredIf rule.');
-        return false;
+       
     }
 
     if (args.length % 2 !== 0) {
 
         throw new Error('Invalid arguments supplied for field ' + field + ' in requiredIf rule.');
-        return false;
+        
     }
 
     let required = false;

@@ -5,6 +5,19 @@ const Validator = require('../../index');
 
 describe('arrayUniqueObjects', function () {
 
+    it('validation should fail with non array', async () => {
+
+        const v = new Validator(
+            { features: 'test' },
+            { features: 'arrayUniqueObjects:id' }
+        );
+
+        const matched = await v.check();
+
+        assert.equal(matched, false);
+
+    });
+
 
     it('validation should pass: with single attribute', async () => {
 
@@ -50,7 +63,7 @@ describe('arrayUniqueObjects', function () {
 
     });
 
-     it('validation should fail for duplicates', async () => {
+    it('validation should fail for duplicates', async () => {
 
 
         const v = new Validator(

@@ -3,11 +3,11 @@ const {pathIndex} = require('../lib/ObjectIndex');
 
 module.exports = async function requiredWithout(field, value, args) {
 
-    if (!Array.isArray(args)) args = [args];
-
-    if (!args.length) {
-        throw new Error('Invalid arguments supplied for field ' + field + ' in required with rule.');
+    if (!args) {
+        throw 'Invalid arguments supplied for field ' + field + ' in requiredWithout rule.';
     }
+
+    if (!Array.isArray(args)) args = [args];
 
     let i, required = false;
 
