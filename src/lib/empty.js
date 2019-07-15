@@ -5,7 +5,8 @@
  */
 module.exports = function empty(value) {
 
-    if (!value) {
+    // small patch for integer value 0 in required rules
+    if (!value && value !== 0) {
         return true;
     }
 

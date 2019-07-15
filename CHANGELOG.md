@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - requiredwith, requiredWithout throw exception in case of invalid seed
+- integer 0 makes required rule to failed, as 0 was considered as empty
 
 ## [3.4.2]
 

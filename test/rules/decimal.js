@@ -47,6 +47,32 @@ describe('decimal', function () {
 
     });
 
+    it('validation should pass with 0 as integer', async () => {
+
+        const v = new Validator(
+            { attribute: 0 },
+            { attribute: 'required|decimal' }
+        );
+
+        const matched = await v.check();
+
+        assert.equal(matched, true);
+
+    });
+
+    it('validation should pass with 0 as string', async () => {
+
+        const v = new Validator(
+            { attribute: '0' },
+            { attribute: 'required|decimal' }
+        );
+
+        const matched = await v.check();
+
+        assert.equal(matched, true);
+
+    });
+
 
     it('validation should fail: invalid val', async () => {
 
