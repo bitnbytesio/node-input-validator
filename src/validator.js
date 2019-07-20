@@ -21,12 +21,9 @@ module.exports.applyRules = async function apply(field, validator) {
 
     if (field.multiple) {
 
-
         let fieldArr = field.path;
 
         let fieldName = field.field;
-
-
 
         for (let i in validator.inputs[fieldArr[0]]) {
 

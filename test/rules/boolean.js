@@ -21,6 +21,32 @@ describe('boolean', function () {
 
     });
 
+    it('validation should pass: with false as boolean', async () => {
+
+        const v = new Validator(
+            { attribute: false },
+            { attribute: 'boolean' }
+        );
+
+        const matched = await v.check();
+
+        assert.equal(matched, true);
+
+    });
+
+    it('validation should pass: with 0 as integer', async () => {
+
+        const v = new Validator(
+            { attribute: 0 },
+            { attribute: 'boolean' }
+        );
+
+        const matched = await v.check();
+
+        assert.equal(matched, true);
+
+    });
+
     it('validation should pass: with 0', async () => {
 
         const v = new Validator(
@@ -76,5 +102,5 @@ describe('boolean', function () {
 
     });
 
-   
+
 });
