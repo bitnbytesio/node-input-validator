@@ -525,6 +525,14 @@ let v = new Validator({dob:''}, {dob:'required|dateFormat:YYYY-MM-DD'});
 
 Check https://momentjs.com/docs/ for supported formats
 
+**dateiso**  
+<sub>Added in: v3.6</sub>  
+The field under validation must be a valid iso date.
+
+**datetime**  
+<sub>Added in: v3.6</sub>  
+The field under validation must match YYYY-MM-DD HH:mm:ss format.
+
 **decimal**  
 The field under validation must be a decimal value.
 

@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "3.5.0",
+  "version": "3.6.0-rc1",
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "index.js",
   "scripts": {
@@ -50,6 +50,7 @@
   "license": "ISC",
   "dependencies": {
     "file-type": "^10.11.0",
+    "image-size": "^0.7.4",
     "mime-types": "^2.1.24",
     "moment": "^2.24.0",
     "read-chunk": "^3.2.0",

@@ -30,6 +30,7 @@ module.exports = {
     dateBefore: 'The :attribute must be a date before :arg0.',
     dateBeforeToday: 'The :attribute must be a date before :arg0 :arg1.',
     dateFormat: 'The :attribute does not match the date format :arg0.',
+    datetime: 'The :attribute must be a valid datetime(YYYY-MM-DD HH:mm:ss).',
     decimal: 'The :attribute must be a valid decimal value.',
     different: 'The :attribute and :arg0 must be different.',
     digits: 'The :attribute must be of :arg0 digits.',

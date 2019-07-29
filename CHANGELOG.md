@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- nothing
+- datetime: attribute must be in format YYYY-MM-DD HH:mm:ss
+- dateiso: attribute must be valid iso date
 
 ### Changed
 
