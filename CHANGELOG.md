@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- nothing
+- required rule empty check was failing in case of boolean false and int 0
 
 ### Security
 

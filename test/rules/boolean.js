@@ -25,7 +25,33 @@ describe('boolean', function () {
 
         const v = new Validator(
             { attribute: false },
-            { attribute: 'boolean' }
+            { attribute: 'required|boolean' }
+        );
+
+        const matched = await v.check();
+
+        assert.equal(matched, true);
+
+    });
+
+
+    it('validation should pass with nested: with false as boolean', async () => {
+
+        const v = new Validator(
+            {
+                name: 'test',
+                attribute: [
+                    {
+                        captain: false,
+                        email: 'user@yopmail.com'
+                    }
+                ]
+            },
+            {
+                name: 'required|string',
+                attribute: 'required|arrayUniqueObjects:email',
+                'attribute.*.captain': 'required|boolean'
+            }
         );
 
         const matched = await v.check();
