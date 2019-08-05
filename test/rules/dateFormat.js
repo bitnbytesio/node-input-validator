@@ -3,52 +3,42 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('dateFormat', function () {
+describe('dateFormat', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '2018-12-26'},
+        {attribute: 'dateFormat:YYYY-MM-DD'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: '2018-12-26' },
-            { attribute: 'dateFormat:YYYY-MM-DD' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '2018/01/26'},
+        {attribute: 'dateFormat:YYYY/MM/DD'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, true);
+  });
 
-    it('validation should pass', async () => {
+  it('validation should fail: invalid value', async () => {
+    const v = new Validator(
+        {attribute: '12 12 18'},
+        {attribute: 'dateFormat:YYYY-MM-DD'}
+    );
 
-        const v = new Validator(
-            { attribute: '2018/01/26' },
-            { attribute: 'dateFormat:YYYY/MM/DD' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, false);
 
-        assert.equal(matched, true);
-
-    });
-
-    it('validation should fail: invalid value', async () => {
-
-        const v = new Validator(
-            { attribute: '12 12 18' },
-            { attribute: 'dateFormat:YYYY-MM-DD' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('dateFormat', 'attribute', '', 'YYYY-MM-DD'));
-
-    });
-
-
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('dateFormat', 'attribute', '', 'YYYY-MM-DD'));
+  });
 });

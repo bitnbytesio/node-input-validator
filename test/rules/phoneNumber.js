@@ -3,46 +3,37 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('phoneNumber', function () {
+describe('phoneNumber', function() {
+  it('validation should pass', async () => {
+    const v = new Validator({id: '+918699987073'}, {id: 'phoneNumber'});
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator({ id: '+918699987073' }, { id: 'phoneNumber' });
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
-    it('validation should pass', async () => {
+  it('validation should pass', async () => {
+    const v = new Validator({id: '+1-541-754-3010'}, {id: 'phoneNumber'});
+    const matched = await v.check();
 
-        const v = new Validator({ id: '+1-541-754-3010' }, { id: 'phoneNumber' });
-        const matched = await v.check();
+    assert.equal(matched, true);
 
-        assert.equal(matched, true);
-
-        //console.log(v.errors);
-
-    });
+    // console.log(v.errors);
+  });
 
 
+  it('validation should fail: with invalid value', async () => {
+    const v = new Validator({attribute: 'artisangang'}, {attribute: 'phoneNumber'});
 
-    it('validation should fail: with invalid value', async () => {
+    const matched = await v.check();
 
-        const v = new Validator({ attribute: 'artisangang' }, { attribute: 'phoneNumber' });
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
+    assert.equal(matched, false);
 
 
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('phoneNumber', 'attribute', '',4));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('phoneNumber', 'attribute', '', 4));
+  });
 });

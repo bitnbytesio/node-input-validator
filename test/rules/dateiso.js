@@ -3,65 +3,53 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('dateiso', function () {
+describe('dateiso', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '2019-07-01T10:10:00'},
+        {attribute: 'dateiso'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: '2019-07-01T10:10:00' },
-            { attribute: 'dateiso' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '2019-07-01T10:10:00.00Z'},
+        {attribute: 'dateiso'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, true);
+  });
 
-    it('validation should pass', async () => {
+  it('validation should fail: invalid format', async () => {
+    const v = new Validator(
+        {attribute: '01/26/2018'},
+        {attribute: 'dateiso'}
+    );
 
-        const v = new Validator(
-            { attribute: '2019-07-01T10:10:00.00Z' },
-            { attribute: 'dateiso' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, false);
+  });
 
-        assert.equal(matched, true);
+  it('validation should fail: invalid value', async () => {
+    const v = new Validator(
+        {attribute: '12 12 18'},
+        {attribute: 'dateiso'}
+    );
 
-    });
+    const matched = await v.check();
 
-    it('validation should fail: invalid format', async () => {
+    assert.equal(matched, false);
 
-        const v = new Validator(
-            { attribute: '01/26/2018' },
-            { attribute: 'dateiso' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-    });
-
-    it('validation should fail: invalid value', async () => {
-
-        const v = new Validator(
-            { attribute: '12 12 18' },
-            { attribute: 'dateiso' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('dateiso', 'attribute'));
-
-    });
-
-
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('dateiso', 'attribute'));
+  });
 });

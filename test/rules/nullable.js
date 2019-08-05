@@ -3,67 +3,57 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-describe('nullable', function () {
+describe('nullable', function() {
+  it('should fail', async () => {
+    const v = new Validator(
+        {attribute: 'email'},
+        {attribute: 'nullable|email'});
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+
+    // assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('nullable', 'attribute', '',4));
+  });
+
+  it('attribute absent, should fail', async () => {
+    let v; let matched;
+
+    v = new Validator(
+        { },
+        {attribute: 'nullable|email'});
+
+    matched = await v.check();
+
+    assert.equal(matched, false);
+  });
 
 
-    it('should fail', async () => {
+  it('should pass', async () => {
+    let v; let matched;
 
-        const v = new Validator(
-            { attribute: "email" },
-            { attribute: 'nullable|email' });
+    v = new Validator(
+        {attribute: null},
+        {attribute: 'nullable|email'});
 
-        const matched = await v.check();
+    matched = await v.check();
 
-        assert.equal(matched, false);
+    console.log(v.errors);
 
-        //assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('nullable', 'attribute', '',4));
+    assert.equal(matched, true);
+  });
 
-    });
+  it('should pass', async () => {
+    let v; let matched;
 
-    it('attribute absent, should fail', async () => {
+    v = new Validator(
+        {attribute: null},
+        {attribute: 'nullable|alpha|required'});
 
-        let v, matched;
+    matched = await v.check();
 
-        v = new Validator(
-            { },
-            { attribute: 'nullable|email' });
+    console.log(v.errors);
 
-        matched = await v.check();
-
-        assert.equal(matched, false);
-    });
-
-
-    it('should pass', async () => {
-
-        let v, matched;
-
-        v = new Validator(
-            { attribute: null },
-            { attribute: 'nullable|email' });
-
-        matched = await v.check();
-
-        console.log(v.errors);
-
-        assert.equal(matched, true);
-    });  
-
-    it('should pass', async () => {
-
-        let v, matched;
-
-        v = new Validator(
-            { attribute: null },
-            { attribute: 'nullable|alpha|required' });
-
-        matched = await v.check();
-
-        console.log(v.errors);
-
-        assert.equal(matched, true);
-    });  
-
-
-
+    assert.equal(matched, true);
+  });
 });

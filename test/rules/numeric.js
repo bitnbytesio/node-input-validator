@@ -3,65 +3,54 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('numeric', function () {
+describe('numeric', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '12'},
+        {attribute: 'numeric'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: '12' },
-            { attribute: 'numeric' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 12},
+        {attribute: 'numeric'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, true);
+  });
 
-    it('validation should pass', async () => {
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {attribute: 12.5},
+        {attribute: 'numeric'}
+    );
 
-        const v = new Validator(
-            { attribute: 12 },
-            { attribute: 'numeric' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
-
-    it('validation should fail', async () => {
-
-        const v = new Validator(
-            { attribute: 12.5 },
-            { attribute: 'numeric' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {attribute: 'draft'},
+        {attribute: 'numeric'}
+    );
 
-    it('validation should fail', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: 'draft' },
-            { attribute: 'numeric' }
-        );
+    assert.equal(matched, false);
 
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('numeric', 'attribute', '',4));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('numeric', 'attribute', '', 4));
+  });
 });

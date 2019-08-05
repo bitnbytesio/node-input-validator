@@ -3,42 +3,28 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('regex', function () {
+describe('regex', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {number: 'abc'}, {number: 'regex:[abc]'});
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        let v = new Validator(
-            { number: 'abc' }, { number: 'regex:[abc]' });
-
-        let matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {attribute: 'xyz'}, {attribute: 'regex:[abc]'});
 
+    const matched = await v.check();
 
+    assert.equal(matched, false);
 
-    it('validation should fail', async () => {
-
-
-
-        let v = new Validator(
-            { attribute: 'xyz' }, { attribute: 'regex:[abc]' });
-
-        let matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('regex', 'attribute', '',4));
-
-    });
-
-
-  
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('regex', 'attribute', '', 4));
+  });
 });

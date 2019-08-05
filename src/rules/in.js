@@ -1,15 +1,11 @@
 module.exports = async function _in(field, value, args) {
+  if (!Array.isArray(args)) {
+    args = [args];
+  }
 
-    if (!Array.isArray(args)) {
+  if (args.indexOf(value) < 0) {
+    return false;
+  }
 
-        args = [args];
-    }
-
-    if (args.indexOf(value) < 0) {
-
-        return false;
-    }
-
-    return true;
-
-}
+  return true;
+};

@@ -2,39 +2,29 @@
  * post validation rule all
  * @param {*} seletedValues
  * @param {Array} args
+ * @return {Promise<boolean>}
  * @this Validator
- * @returns Promise<boolean>
  */
 module.exports = async function all(seletedValues, args) {
+  const values = this.inputs;
 
-    const values = this.inputs;
+  let result = true;
 
-    let result = true;
-
-    for (let k in args) {
-
-        if (values[args[k]] === undefined) {
-
-            result = false;
-            break;
-
-        }
-
+  for (const k in args) {
+    if (values[args[k]] === undefined) {
+      result = false;
+      break;
     }
+  }
 
-    if (result) {
+  if (result) {
+    return true;
+  }
 
-        return true;
+  for (const k in args) {
+    const field = args[k];
+    this.addError(field, 'required', this.parseMessage('required', field, values[field], args));
+  }
 
-    }
-
-    for (let k in args) {
-
-        let field = args[k];
-        this.addError(field, 'required', this.parseMessage('required', field, values[field], args));
-
-    }
-
-    return false;
-
-}
+  return false;
+};

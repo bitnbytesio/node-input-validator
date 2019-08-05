@@ -1,8 +1,11 @@
 
 module.exports = async function string(field, value) {
-    if (typeof value !== 'string') {
-        return false;
-    }
+  // console.log(...arguments);
+  // process.exit(1);
 
-    return true;
-}
+  if (typeof value !== 'string') {
+    return false;
+  }
+
+  return true;
+};

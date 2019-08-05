@@ -3,38 +3,32 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('max', function () {
+describe('max', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '20'},
+        {attribute: 'max:20'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: '20' },
-            { attribute: 'max:20' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
 
-        assert.equal(matched, true);
+  it('validation should fail: invalida value', async () => {
+    const v = new Validator(
+        {attribute: '19'},
+        {attribute: 'max:18'}
+    );
 
-    });
-    
+    const matched = await v.check();
 
-    it('validation should fail: invalida value', async () => {
+    assert.equal(matched, false);
 
-        const v = new Validator(
-            { attribute: '19' },
-            { attribute: 'max:18' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('max', 'attribute', '', 18));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('max', 'attribute', '', 18));
+  });
 });

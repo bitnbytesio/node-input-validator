@@ -3,38 +3,32 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('notIn', function () {
+describe('notIn', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 'public'},
+        {attribute: 'notIn:private,draft'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: 'public' },
-            { attribute: 'notIn:private,draft' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
-    it('validation should fail: misnotIng attribute', async () => {
+  it('validation should fail: misnotIng attribute', async () => {
+    const v = new Validator(
+        {attribute: 'draft'},
+        {attribute: 'notIn:public,draft'}
+    );
 
-        const v = new Validator(
-            { attribute: 'draft' },
-            { attribute: 'notIn:public,draft' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, false);
 
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('notIn', 'attribute', '', ['public', 'draft']));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('notIn', 'attribute', '', ['public', 'draft']));
+  });
 });

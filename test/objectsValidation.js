@@ -2,74 +2,62 @@ const assert = require('assert');
 
 const Validator = require('../index');
 
-let r = {};
+const r = {};
 
-describe('Objects', function () {
+describe('Objects', function() {
+  it('Validate object properties', async () => {
+    const v = new Validator(
+        {
+          product: {id: '1', name: '', price: '', active: 'yes'},
+        },
+        {
+          'product': 'required|object',
+          'product.id': 'required|integer',
+          'product.name': 'required',
+          'product.price': 'required|integer',
+          'product.active': 'required|integer',
+        },
+        {
+          product: 'The given product is invalid :value.',
+        });
 
+    const matched = await v.check();
 
+    v.errors.should.have.keys('product.name', 'product.price', 'product.active');
 
-    it('Validate object properties', async () => {
+    assert.equal(matched, false);
+  });
 
-        let v = new Validator(
-            {
-                product: { id: '1', name: '', price: '', active: 'yes' }
-            },
-            {
-                'product': 'required|object',
-                'product.id': 'required|integer',
-                'product.name': 'required',
-                'product.price': 'required|integer',
-                'product.active': 'required|integer'
-            },
-            {
-                product: 'The given product is invalid :value.'
-            });
+  it('Validate object:false case', async () => {
+    const v = new Validator(
+        {
+          product: '',
+        },
+        {
+          'product': 'required|object',
 
-        let matched = await v.check();
+        });
 
-        v.errors.should.have.keys('product.name', 'product.price', 'product.active');
+    const matched = await v.check();
 
-        assert.equal(matched, false);
+    v.errors.should.have.keys('product');
 
-    });
+    assert.equal(matched, false);
+  });
 
-    it('Validate object:false case', async () => {
+  it('Validate object:true case', async () => {
+    const v = new Validator(
+        {
+          product: {},
+        },
+        {
+          'product': 'required|object',
 
-        let v = new Validator(
-            {
-                product: ''
-            },
-            {
-                'product': 'required|object',
+        });
 
-            });
-
-        let matched = await v.check();
-
-        v.errors.should.have.keys('product');
-
-        assert.equal(matched, false);
-
-    });
-
-    it('Validate object:true case', async () => {
-
-        let v = new Validator(
-            {
-                product: {}
-            },
-            {
-                'product': 'required|object',
-
-            });
-
-        let matched = await v.check();
+    const matched = await v.check();
 
 
-        assert.equal(matched, true);
-
-    });
-
-
-
+    assert.equal(matched, true);
+  });
 });

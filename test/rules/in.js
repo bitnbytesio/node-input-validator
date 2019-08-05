@@ -3,51 +3,43 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('in', function () {
+describe('in', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 'public'},
+        {attribute: 'in:private,public,draft'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: 'public' },
-            { attribute: 'in:private,public,draft' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 'public'},
+        {attribute: 'in:public'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
-
-    it('validation should pass', async () => {
-
-        const v = new Validator(
-            { attribute: 'public' },
-            { attribute: 'in:public' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
-    it('validation should fail: mising attribute', async () => {
+  it('validation should fail: mising attribute', async () => {
+    const v = new Validator(
+        {attribute: 'draft'},
+        {attribute: 'in:public,private'}
+    );
 
-        const v = new Validator(
-            { attribute: 'draft' },
-            { attribute: 'in:public,private' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, false);
 
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('in', 'attribute', ''));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('in', 'attribute', ''));
+  });
 });

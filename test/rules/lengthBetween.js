@@ -3,69 +3,57 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('lengthBetween: string', function () {
+describe('lengthBetween: string', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {age: 'unamea'},
+        {age: 'lengthBetween:5,10'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { age: 'unamea' },
-            { age: 'lengthBetween:5,10' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {age: 'name'},
+        {age: 'lengthBetween:5,21'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, false);
 
-    it('validation should fail', async () => {
-
-        const v = new Validator(
-            { age: 'name' },
-            { age: 'lengthBetween:5,21' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        //console.log(v.errors);
-
-    });
-
+    // console.log(v.errors);
+  });
 });
 
-describe('lengthBetween: with array', function () {
+describe('lengthBetween: with array', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {features: [1, 2, 3, 4]},
+        {features: 'lengthBetween:3,5'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { features: [1, 2, 3, 4] },
-            { features: 'lengthBetween:3,5' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {features: [1, 2]},
+        {features: 'lengthBetween:3,6'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, false);
 
-    it('validation should fail', async () => {
-
-        const v = new Validator(
-            { features: [1, 2] },
-            { features: 'lengthBetween:3,6' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.features.message, v.parseExistingMessageOnly('lengthBetween', 'features', '', [3,6]));
-
-    });
-
+    assert.equal(v.errors.features.message, v.parseExistingMessageOnly('lengthBetween', 'features', '', [3, 6]));
+  });
 });

@@ -3,58 +3,49 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('gt', function () {
+describe('gt', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {min: '20', max: '25'},
+        {
+          min: 'required|integer',
+          max: 'required|integer|gt:min',
+        }
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { min: '20', max: '25' },
-            {
-                min: 'required|integer',
-                max: 'required|integer|gt:min'
-            }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {min: '30', max: '25'},
+        {
+          min: 'required|integer',
+          max: 'required|integer|gt:min',
+        }
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, false);
+  });
 
-    it('validation should fail', async () => {
+  it('validation should fail due to nan in another field', async () => {
+    const v = new Validator(
+        {min: 'abc', max: '25'},
+        {
+          min: 'required',
+          max: 'required|integer|gt:min',
+        }
+    );
 
-        const v = new Validator(
-            { min: '30', max: '25' },
-            {
-                min: 'required|integer',
-                max: 'required|integer|gt:min'
-            }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-    });
-
-    it('validation should fail due to nan in another field', async () => {
-
-        const v = new Validator(
-            { min: 'abc', max: '25' },
-            {
-                min: 'required',
-                max: 'required|integer|gt:min'
-            }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-    });
-
-
+    assert.equal(matched, false);
+  });
 });

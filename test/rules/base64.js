@@ -3,37 +3,31 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('base64', function () {
+describe('base64', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {username: 'dGhpcyBpcyB0ZXN0aW5nLi4u'},
+        {username: 'base64'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { username: 'dGhpcyBpcyB0ZXN0aW5nLi4u' },
-            { username: 'base64' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {username: 'gYhKkdInjUnjUUmkH'},
+        {username: 'base64'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, false);
 
-    it('validation should fail', async () => {
-
-        const v = new Validator(
-            { username: 'gYhKkdInjUnjUUmkH' },
-            { username: 'base64' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.username.message, v.parseExistingMessageOnly('base64', 'username'));
-
-    });
-
+    assert.equal(v.errors.username.message, v.parseExistingMessageOnly('base64', 'username'));
+  });
 });

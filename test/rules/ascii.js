@@ -3,40 +3,32 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('ascii', function () {
+describe('ascii', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {username: 'sfsf46546*/-=-!@#$%^&*()_+!?><:"{}[];'},
+        {username: 'ascii'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { username: 'sfsf46546*/-=-!@#$%^&*()_+!?><:"{}[];' },
-            { username: 'ascii' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {username: 'uname€'},
+        {username: 'ascii'}
+    );
 
+    const matched = await v.check();
 
-    it('validation should fail', async () => {
+    assert.equal(matched, false);
 
-        const v = new Validator(
-            { username: 'uname€' },
-            { username: 'ascii' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.username.message, v.parseExistingMessageOnly('ascii', 'username'));
-
-    });
-
+    assert.equal(v.errors.username.message, v.parseExistingMessageOnly('ascii', 'username'));
+  });
 });

@@ -3,91 +3,77 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('decimal', function () {
+describe('decimal', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '12.50'},
+        {attribute: 'decimal'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: '12.50' },
-            { attribute: 'decimal' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 12.55},
+        {attribute: 'decimal'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, true);
+  });
 
-    it('validation should pass', async () => {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 12},
+        {attribute: 'decimal'}
+    );
 
-        const v = new Validator(
-            { attribute: 12.55 },
-            { attribute: 'decimal' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, true);
+  });
 
-        assert.equal(matched, true);
+  it('validation should pass with 0 as integer', async () => {
+    const v = new Validator(
+        {attribute: 0},
+        {attribute: 'required|decimal'}
+    );
 
-    });
+    const matched = await v.check();
 
-    it('validation should pass', async () => {
+    assert.equal(matched, true);
+  });
 
-        const v = new Validator(
-            { attribute: 12 },
-            { attribute: 'decimal' }
-        );
+  it('validation should pass with 0 as string', async () => {
+    const v = new Validator(
+        {attribute: '0'},
+        {attribute: 'required|decimal'}
+    );
 
-        const matched = await v.check();
+    const matched = await v.check();
 
-        assert.equal(matched, true);
-
-    });
-
-    it('validation should pass with 0 as integer', async () => {
-
-        const v = new Validator(
-            { attribute: 0 },
-            { attribute: 'required|decimal' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
-
-    it('validation should pass with 0 as string', async () => {
-
-        const v = new Validator(
-            { attribute: '0' },
-            { attribute: 'required|decimal' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
-    it('validation should fail: invalid val', async () => {
+  it('validation should fail: invalid val', async () => {
+    const v = new Validator(
+        {attribute: 'a12'},
+        {attribute: 'decimal'}
+    );
 
-        const v = new Validator(
-            { attribute: 'a12' },
-            { attribute: 'decimal' }
-        );
-
-        const matched = await v.check();
+    const matched = await v.check();
 
 
-        assert.equal(matched, false);
+    assert.equal(matched, false);
 
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('decimal', 'attribute'));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('decimal', 'attribute'));
+  });
 });

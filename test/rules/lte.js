@@ -3,74 +3,63 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('lte', function () {
+describe('lte', function() {
+  it('validation should pass with greater seed', async () => {
+    const v = new Validator(
+        {min: '20', max: '25'},
+        {
+          min: 'required|integer|lte:max',
+          max: 'required|integer',
+        }
+    );
 
-    it('validation should pass with greater seed', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { min: '20', max: '25' },
-            {
-                min: 'required|integer|lte:max',
-                max: 'required|integer'
-            }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass with equal', async () => {
+    const v = new Validator(
+        {min: '20', max: '20'},
+        {
+          min: 'required|integer|lte:max',
+          max: 'required|integer',
+        }
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, true);
+  });
 
-    it('validation should pass with equal', async () => {
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {min: '30', max: '25'},
+        {
+          min: 'required|integer|lte:max',
+          max: 'required|integer',
+        }
+    );
 
-        const v = new Validator(
-            { min: '20', max: '20' },
-            {
-                min: 'required|integer|lte:max',
-                max: 'required|integer'
-            }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, false);
+  });
 
-        assert.equal(matched, true);
+  it('validation should fail due to nan in another field', async () => {
+    const v = new Validator(
+        {min: '30', max: 'abc'},
+        {
+          min: 'required|integer|lte:max',
+          max: 'required',
+        }
+    );
 
-    });
+    const matched = await v.check();
 
-    it('validation should fail', async () => {
-
-        const v = new Validator(
-            { min: '30', max: '25' },
-            {
-                min: 'required|integer|lte:max',
-                max: 'required|integer'
-            }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-    });
-
-    it('validation should fail due to nan in another field', async () => {
-
-        const v = new Validator(
-            { min: '30', max: 'abc' },
-            {
-                min: 'required|integer|lte:max',
-                max: 'required'
-            }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-    });
-
-
+    assert.equal(matched, false);
+  });
 });

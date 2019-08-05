@@ -2,101 +2,91 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
-describe('#requiredNotIf', function () {
+describe('#requiredNotIf', function() {
+  it('validation should pass', async () => {
+    let v; let matched;
 
-    it('validation should pass', async () => {
+    v = new Validator(
+        {name: 'Harcharan Singh', age: '16'},
+        {sex: 'requiredNotIf:age,16'});
 
-        let v, matched;
+    matched = await v.check();
 
-        v = new Validator(
-            { name: 'Harcharan Singh', age: '16' },
-            { sex: 'requiredNotIf:age,16' });
+    assert.equal(matched, true);
+  });
+  it('validation should pass', async () => {
+    let v; let matched;
 
-        matched = await v.check();
+    v = new Validator(
+        {name: 'Harcharan Singh', address: {street: 'fantastic'}},
+        {age: 'requiredNotIf:address.street,fantastic'});
 
-        assert.equal(matched, true);
+    matched = await v.check();
 
-    });
-    it('validation should pass', async () => {
+    assert.equal(matched, true);
+  });
 
-        let v, matched;
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {name: 'Harcharan Singh', age: 15, sex: 'male'},
+        {sex: 'requiredNotIf:age,16'});
 
-        v = new Validator(
-            { name: 'Harcharan Singh', address:{street:"fantastic"} },
-            { age: 'requiredNotIf:address.street,fantastic' });
+    const matched = await v.check();
 
-        matched = await v.check();
+    assert.equal(matched, false);
+  });
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {name: 'Harcharan Singh', address: {street: 'fantastic'}, age: 15},
+        {age: 'requiredNotIf:address.street,fantastic'});
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, false);
+  });
 
-    it('validation should fail', async () => {
+  // should(v.errors).be.an.instanceOf(Object);
+  // should(v.errors).have.property('sex');
 
-        const v = new Validator(
-            { name: 'Harcharan Singh', age: 15, sex: 'male' },
-            { sex: 'requiredNotIf:age,16' });
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {
+          name: 'Harcharan Singh',
+          age: 16,
+          parent: 'yes',
+          type: 'subscribed',
+          // email: 'artisangang@gmail.com'
+        },
+        {
+          email: 'requiredNotIf:age,16,parent,yes,type,subscribed',
+        }
+    );
 
-        const matched = await v.check();
+    const matched = await v.check();
 
-        assert.equal(matched, false);
-    });
-    it('validation should fail', async () => {
+    assert.equal(matched, true);
+  });
 
-        const v = new Validator(
-            { name: 'Harcharan Singh', address:{street:"fantastic"}, age: 15,},
-            { age: 'requiredNotIf:address.street,fantastic' });
+  it('validation should fail', async () => {
+    const v = new Validator(
+        {
+          name: 'Harcharan Singh',
+          age: 16,
+          parent: 'yes',
+          type: 'subscribed',
+          email: 'artisangang@gmail.com',
+        },
+        {
+          email: 'requiredNotIf:age,16,parent,yes,type,subscribed',
+        }
+    );
 
-        const matched = await v.check();
+    const matched = await v.check();
 
-        assert.equal(matched, false);
-    });
+    assert.equal(matched, false);
+    assert.equal(v.errors.email.message, v.parseExistingMessageOnly('requiredNotIf', 'email', '', 4));
 
     // should(v.errors).be.an.instanceOf(Object);
-    // should(v.errors).have.property('sex');
-
-    it('validation should pass', async () => {
-        const v = new Validator(
-            {
-                name: 'Harcharan Singh',
-                age: 16,
-                parent: 'yes',
-                type: 'subscribed',
-                //email: 'artisangang@gmail.com'
-            },
-            {
-                email: 'requiredNotIf:age,16,parent,yes,type,subscribed'
-            }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-    });
-
-    it('validation should fail', async () => {
-
-        const v = new Validator(
-            {
-                name: 'Harcharan Singh',
-                age: 16,
-                parent: 'yes',
-                type: 'subscribed',
-                email: 'artisangang@gmail.com'
-            },
-            {
-                email: 'requiredNotIf:age,16,parent,yes,type,subscribed'
-            }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-        assert.equal(v.errors.email.message, v.parseExistingMessageOnly('requiredNotIf', 'email', '',4));
-
-        // should(v.errors).be.an.instanceOf(Object);
-        // should(v.errors).have.property('email');
-
-    });
-
+    // should(v.errors).have.property('email');
+  });
 });

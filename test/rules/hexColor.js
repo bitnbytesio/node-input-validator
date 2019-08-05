@@ -3,64 +3,54 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('hexColor', function () {
+describe('hexColor', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '#FFFFFF'},
+        {attribute: 'hexColor'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: '#FFFFFF' },
-            { attribute: 'hexColor' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '#000'},
+        {attribute: 'hexColor'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, true);
+  });
 
-    it('validation should pass', async () => {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 'f00'},
+        {attribute: 'hexColor'}
+    );
 
-        const v = new Validator(
-            { attribute: '#000' },
-            { attribute: 'hexColor' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
-
-    it('validation should pass', async () => {
-
-        const v = new Validator(
-            { attribute: 'f00' },
-            { attribute: 'hexColor' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
-    it('validation should fail: mising attribute', async () => {
+  it('validation should fail: mising attribute', async () => {
+    const v = new Validator(
+        {attribute: 'Yes, Node is awesome'},
+        {attribute: 'hexColor'}
+    );
 
-        const v = new Validator(
-            { attribute: 'Yes, Node is awesome' },
-            { attribute: 'hexColor' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, false);
 
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('hexColor', 'attribute', ''));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('hexColor', 'attribute', ''));
+  });
 });

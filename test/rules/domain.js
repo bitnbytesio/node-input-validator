@@ -3,65 +3,54 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('domain', function () {
+describe('domain', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 'example.com'},
+        {attribute: 'domain'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: 'example.com' },
-            { attribute: 'domain' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 'www.example.com'},
+        {attribute: 'domain'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, true);
+  });
 
-    it('validation should pass', async () => {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 'http://www.example.com'},
+        {attribute: 'domain'}
+    );
 
-        const v = new Validator(
-            { attribute: 'www.example.com' },
-            { attribute: 'domain' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
-
-    it('validation should pass', async () => {
-
-        const v = new Validator(
-            { attribute: 'http://www.example.com' },
-            { attribute: 'domain' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-    });
+    assert.equal(matched, false);
+  });
 
 
+  it('validation should fail: mising attribute', async () => {
+    const v = new Validator(
+        {attribute: 'localhost'},
+        {attribute: 'domain'}
+    );
 
-    it('validation should fail: mising attribute', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: 'localhost' },
-            { attribute: 'domain' }
-        );
+    assert.equal(matched, false);
 
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('domain', 'attribute', ''));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('domain', 'attribute', ''));
+  });
 });

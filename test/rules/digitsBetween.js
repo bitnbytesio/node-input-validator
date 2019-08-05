@@ -3,100 +3,83 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('digitsBetween', function () {
+describe('digitsBetween', function() {
+  it('validation should throw error of invalid seed', async () => {
+    try {
+      const v = new Validator(
+          {attribute: '1250'},
+          {attribute: 'digitsBetween:4,6'}
+      );
+
+      const matched = await v.check();
+    } catch (e) {
+      assert.equal(e, 'Seeds must be integer for attribute under digits between rule.');
+    }
+  });
+
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '1250'},
+        {attribute: 'digitsBetween:4,6'}
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, true);
+  });
+
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: '125012'},
+        {attribute: 'digitsBetween:4,6'}
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, true);
+  });
+
+  it('validation should fail: invalid min', async () => {
+    const v = new Validator(
+        {attribute: '1'},
+        {attribute: 'digitsBetween:2,3'}
+    );
+
+    const matched = await v.check();
 
 
-    it('validation should throw error of invalid seed', async () => {
+    assert.equal(matched, false);
 
-        try {
-            const v = new Validator(
-                { attribute: '1250' },
-                { attribute: 'digitsBetween:4,6' }
-            );
+    // console.log(v.errors);
+  });
 
-            const matched = await v.check();
-        } catch (e) {
-            assert.equal(e, 'Seeds must be integer for attribute under digits between rule.');
-        }
+  it('validation should fail: invalid max', async () => {
+    const v = new Validator(
+        {attribute: '123456'},
+        {attribute: 'digitsBetween:2,3'}
+    );
 
-
-
-    });
-
-    it('validation should pass', async () => {
-
-        const v = new Validator(
-            { attribute: '1250' },
-            { attribute: 'digitsBetween:4,6' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
-
-    it('validation should pass', async () => {
-
-        const v = new Validator(
-            { attribute: '125012' },
-            { attribute: 'digitsBetween:4,6' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
-
-    it('validation should fail: invalid min', async () => {
-
-        const v = new Validator(
-            { attribute: '1' },
-            { attribute: 'digitsBetween:2,3' }
-        );
-
-        const matched = await v.check();
+    const matched = await v.check();
 
 
-        assert.equal(matched, false);
+    assert.equal(matched, false);
 
-        //console.log(v.errors);
+    // console.log(v.errors);
+  });
 
-    });
+  it('validation should fail: invalid val', async () => {
+    const v = new Validator(
+        {attribute: 'asdfd'},
+        {attribute: 'digitsBetween:2,3'}
+    );
 
-    it('validation should fail: invalid max', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: '123456' },
-            { attribute: 'digitsBetween:2,3' }
-        );
+    assert.equal(matched, false);
 
-        const matched = await v.check();
-
-
-        assert.equal(matched, false);
-
-        //console.log(v.errors);
-
-    });
-
-    it('validation should fail: invalid val', async () => {
-
-        const v = new Validator(
-            { attribute: 'asdfd' },
-            { attribute: 'digitsBetween:2,3' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digitsBetween', 'attribute', '', [2, 3]));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digitsBetween', 'attribute', '', [2, 3]));
+  });
 });

@@ -3,38 +3,32 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('email', function () {
+describe('email', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 'user@example.com'},
+        {attribute: 'email'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: 'user@example.com' },
-            { attribute: 'email' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
-    it('validation should fail: mising attribute', async () => {
+  it('validation should fail: mising attribute', async () => {
+    const v = new Validator(
+        {attribute: 'form@example'},
+        {attribute: 'email'}
+    );
 
-        const v = new Validator(
-            { attribute: 'form@example' },
-            { attribute: 'email' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, false);
 
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('email', 'attribute', ''));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('email', 'attribute', ''));
+  });
 });

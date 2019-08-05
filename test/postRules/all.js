@@ -2,29 +2,23 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
-let r = {};
+const r = {};
 
 
-describe('all', function () {
+describe('all', function() {
+  it('should return true when all fields exists', async () => {
+    const v = new Validator({field1: '1', field2: '2', field3: '3'}, {'*': 'all:field1,field2,field3'});
 
-    it('should return true when all fields exists', async () => {
+    const matched = await v.check();
 
-        let v = new Validator({ field1: '1', field2: '2', field3: '3' }, { '*': 'all:field1,field2,field3' });
+    assert.equal(matched, true);
+  });
 
-        let matched = await v.check();
+  it('should return false when there is one field missing', async () => {
+    const v = new Validator({field1: '1', field2: '2'}, {'*': 'all:field1,field2,field3'});
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
-
-    it('should return false when there is one field missing', async () => {
-
-        let v = new Validator({ field1: '1', field2: '2' }, { '*': 'all:field1,field2,field3' });
-
-        let matched = await v.check();
-
-        assert.equal(matched, false);
-
-    });
-
+    assert.equal(matched, false);
+  });
 });

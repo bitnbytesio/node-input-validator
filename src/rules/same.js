@@ -1,26 +1,24 @@
 
 module.exports = async function same(field, value, otherField) {
+  otherField = otherField.split('.').filter((e) => e !== '');
 
-    
-    otherField = otherField.split('.').filter((e) => e !== '');
+  let otherValue;
 
-    let otherValue;
-
-    otherField.map((item) => {
-        if (typeof otherValue === 'undefined') {
-            otherValue = this.inputs && this.inputs[item];
-        } else {
-            otherValue = otherValue[item];
-        }
-    });
-
+  otherField.map((item) => {
     if (typeof otherValue === 'undefined') {
-        return false;
+      otherValue = this.inputs && this.inputs[item];
+    } else {
+      otherValue = otherValue[item];
     }
+  });
 
-    if (otherValue != value) {
-        return false;
-    }
+  if (typeof otherValue === 'undefined') {
+    return false;
+  }
 
-    return true;
-}
+  if (otherValue != value) {
+    return false;
+  }
+
+  return true;
+};

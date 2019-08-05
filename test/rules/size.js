@@ -1,59 +1,48 @@
-const assert = require('assert'),
-    fs = require('fs');
+const assert = require('assert');
+const fs = require('fs');
 
 const Validator = require('../../index');
 
-describe('size', function () {
-
-    it('should return true', async () => {
-
-        let v = new Validator(
-            { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:4kb' });
+describe('size', function() {
+  it('should return true', async () => {
+    const v = new Validator(
+        {file: fs.readFileSync('./test/stubs/file-small.png')}, {file: 'size:4kb'});
 
 
-        let matched = await v.check();
+    const matched = await v.check();
 
-        assert.equal(matched, true);
+    assert.equal(matched, true);
+  });
 
-    });
-
-    it('should return true', async () => {
-
-        let v = new Validator(
-            { file: { path: './test/stubs/file-small.png' } }, { file: 'size:4kb' });
+  it('should return true', async () => {
+    const v = new Validator(
+        {file: {path: './test/stubs/file-small.png'}}, {file: 'size:4kb'});
 
 
-        let matched = await v.check();
+    const matched = await v.check();
 
-        assert.equal(matched, true);
+    assert.equal(matched, true);
+  });
 
-    });
-
-    it('should return false', async () => {
-
-        let v = new Validator(
-            { file: { buffer: fs.readFileSync('./test/stubs/file-small.png') } }, { file: 'size:1kb' });
+  it('should return false', async () => {
+    const v = new Validator(
+        {file: {buffer: fs.readFileSync('./test/stubs/file-small.png')}}, {file: 'size:1kb'});
 
 
-        let matched = await v.check();
+    const matched = await v.check();
 
-        assert.equal(matched, false);
+    assert.equal(matched, false);
+  });
 
-    });
-
-    it('should return false', async () => {
-
-        let v = new Validator(
-            { file: './test/stubs/file-small.png' }, { file: 'size:1kb' });
+  it('should return false', async () => {
+    const v = new Validator(
+        {file: './test/stubs/file-small.png'}, {file: 'size:1kb'});
 
 
-        let matched = await v.check();
+    const matched = await v.check();
 
-        assert.equal(matched, false);
+    assert.equal(matched, false);
 
-        assert.equal(v.errors.file.message, v.parseExistingMessageOnly('size', 'file', '', '1kb'));
-
-
-    });
-
+    assert.equal(v.errors.file.message, v.parseExistingMessageOnly('size', 'file', '', '1kb'));
+  });
 });

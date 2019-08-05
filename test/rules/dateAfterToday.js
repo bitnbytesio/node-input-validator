@@ -3,41 +3,33 @@ const assert = require('assert');
 
 const moment = require('moment');
 
-describe('#dateAfterToday', function () {
+describe('#dateAfterToday', function() {
+  it('should return true', async () => {
+    let v; let matched;
 
-    it('should return true', async () => {
+    v = new Validator({dob: moment().add(2, 'days').format('YYYY-MM-DD')}, {dob: 'required|dateFormat:YYYY-MM-DD|dateAfterToday:1,days'});
 
-        let v, matched;
+    matched = await v.check();
+    assert.equal(matched, true);
+  });
 
-        v = new Validator({ dob: moment().add(2, 'days').format('YYYY-MM-DD') }, { dob: 'required|dateFormat:YYYY-MM-DD|dateAfterToday:1,days' });
+  it('without second seed', async () => {
+    let v; let matched;
 
-        matched = await v.check();
-        assert.equal(matched, true);
+    v = new Validator({dob: moment().add(2, 'days').format('YYYY-MM-DD')}, {dob: 'required|dateFormat:YYYY-MM-DD|dateAfterToday:1'});
 
-    });
-
-    it('without second seed', async () => {
-
-        let v, matched;
-
-        v = new Validator({ dob: moment().add(2, 'days').format('YYYY-MM-DD') }, { dob: 'required|dateFormat:YYYY-MM-DD|dateAfterToday:1' });
-
-        matched = await v.check();
-        assert.equal(matched, true);
-
-    });
+    matched = await v.check();
+    assert.equal(matched, true);
+  });
 
 
-    it('should return false', async () => {
+  it('should return false', async () => {
+    const v = new Validator({dob: '2019-02-28'}, {dob: 'required|dateFormat:YYYY-MM-DD|dateAfterToday:2,days'});
 
-        let v = new Validator({ dob: '2019-02-28' }, { dob: 'required|dateFormat:YYYY-MM-DD|dateAfterToday:2,days' });
+    const matched = await v.check();
 
-        let matched = await v.check();
+    assert.equal(matched, false);
 
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.dob.message, v.parseExistingMessageOnly('dateAfterToday', 'dob', '2019-02-28', ['2', 'days']));
-
-    });
-
+    assert.equal(v.errors.dob.message, v.parseExistingMessageOnly('dateAfterToday', 'dob', '2019-02-28', ['2', 'days']));
+  });
 });

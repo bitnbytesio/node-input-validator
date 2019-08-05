@@ -3,49 +3,40 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-describe('#sametimes', function () {
+describe('#sametimes', function() {
+  it('should fail', async () => {
+    const v = new Validator(
+        {password: '', confirm_password: 'password'},
+        {password: 'sometimes', confirm_password: 'sometimes|alpha'});
 
+    const matched = await v.check();
 
-    it('should fail', async () => {
+    assert.equal(matched, false);
 
-        const v = new Validator(
-            { password: '', confirm_password: 'password' },
-            { password: 'sometimes', confirm_password: 'sometimes|alpha' });
+    assert.equal(v.errors.password.message, v.parseExistingMessageOnly('sometimes', 'password', '', 4));
+  });
 
-        const matched = await v.check();
+  it('should pass', async () => {
+    let v; let matched;
 
-        assert.equal(matched, false);
+    v = new Validator(
+        {password: '000000', confirm_password: '000000'},
+        {password: 'sometimes', confirm_password: 'sometimes|same:password'});
 
-        assert.equal(v.errors.password.message, v.parseExistingMessageOnly('sometimes', 'password', '',4));
+    matched = await v.check();
 
-    });
+    assert.equal(matched, true);
+  });
 
-    it('should pass', async () => {
+  it('should pass', async () => {
+    let v; let matched;
 
-        let v, matched;
+    v = new Validator(
+        {},
+        {password: 'sometimes', confirm_password: 'sometimes|same:password'});
 
-        v = new Validator(
-            { password: '000000', confirm_password: '000000' },
-            { password: 'sometimes', confirm_password: 'sometimes|same:password' });
+    matched = await v.check();
 
-        matched = await v.check();
-
-        assert.equal(matched, true);
-    });
-
-    it('should pass', async () => {
-
-        let v, matched;
-
-        v = new Validator(
-            {},
-            { password: 'sometimes', confirm_password: 'sometimes|same:password' });
-
-        matched = await v.check();
-
-        assert.equal(matched, true);
-    });
-
-
-
+    assert.equal(matched, true);
+  });
 });

@@ -5,44 +5,38 @@ const should = require('should');
 const Validator = require('../index');
 
 Validator.messages({
-    even: 'The value of the field must be an even number.',
-    status: 'Invalid status.'
+  even: 'The value of the field must be an even number.',
+  status: 'Invalid status.',
 });
 
 Validator.messages({
-    even: 'Even number bharo.',
-    status: 'Galat Status.'
+  even: 'Even number bharo.',
+  status: 'Galat Status.',
 }, 'pb');
 
 
-
 Validator.customMessages({
-    'status.required': 'Status khali nahi hona chahiye.'
+  'status.required': 'Status khali nahi hona chahiye.',
 }, 'hi');
 
 
-Validator.extend('even', async function (field, value) {
+Validator.extend('even', async function(field, value) {
+  if ((parseInt(value) % 2) == 0) {
+    return true;
+  }
 
-    if ((parseInt(value) % 2) == 0) {
-        return true;
-    }
-
-    return false;
-
+  return false;
 });
 
-Validator.extend('status', async function (field, value, args) {
+Validator.extend('status', async function(field, value, args) {
+  if (args.indexOf(value) >= 0) {
+    return true;
+  }
 
-    if (args.indexOf(value) >= 0) {
-        return true;
-    }
-
-    return false;
-
+  return false;
 });
 
-let r = {};
-
+const r = {};
 
 
 // describe('Custom Messages', function () {

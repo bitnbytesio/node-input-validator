@@ -3,33 +3,28 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-describe('#same', function () {
+describe('#same', function() {
+  it('should pass', async () => {
+    let v; let matched;
 
-    it('should pass', async () => {
+    v = new Validator(
+        {password: '000000', confirm_password: '000000'},
+        {password: 'required', confirm_password: 'required|same:password'});
 
-        let v, matched;
+    matched = await v.check();
 
-        v = new Validator(
-            { password: '000000', confirm_password: '000000' },
-            { password: 'required', confirm_password: 'required|same:password' });
+    assert.equal(matched, true);
+  });
 
-        matched = await v.check();
+  it('should fail', async () => {
+    const v = new Validator(
+        {password: '000000', confirm_password: '123456'},
+        {password: 'required', confirm_password: 'required|same:password'});
 
-        assert.equal(matched, true);
-    })
+    const matched = await v.check();
 
-    it('should fail', async () => {
+    assert.equal(matched, false);
 
-        const v = new Validator(
-            { password: '000000', confirm_password: '123456' },
-            { password: 'required', confirm_password: 'required|same:password' });
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.confirm_password.message, v.parseExistingMessageOnly('same', 'confirm_password', '','password'));
-
-    });
-
+    assert.equal(v.errors.confirm_password.message, v.parseExistingMessageOnly('same', 'confirm_password', '', 'password'));
+  });
 });

@@ -2,77 +2,57 @@ const assert = require('assert');
 
 const Validator = require('../index');
 
-let r = {};
+const r = {};
 
-describe('Edge Cases', function () {
+describe('Edge Cases', function() {
+  describe('undefined', function() {
+    it('should ignore undefined and not required fields', async () => {
+      const v = new Validator({field: undefined}, {field: 'string'});
 
-    describe('undefined', function () {
-
-        it('should ignore undefined and not required fields', async () => {
-
-            let v = new Validator({ field: undefined }, { field: 'string' });
-
-            let matched = await v.check();
-            assert.equal(matched, true);
-
-        });
-
-
-        it('should reject undefined and required fields', async () => {
-
-            let v = new Validator({ field: undefined }, { field: 'required|string' });
-
-            let matched = await v.check();
-            assert.equal(matched, false);
-
-        });
-
+      const matched = await v.check();
+      assert.equal(matched, true);
     });
 
-    describe('null', function () {
 
-        it('should ignore null and not required fields', async () => {
+    it('should reject undefined and required fields', async () => {
+      const v = new Validator({field: undefined}, {field: 'required|string'});
 
-            let v = new Validator({ field: null }, { field: 'string' });
+      const matched = await v.check();
+      assert.equal(matched, false);
+    });
+  });
 
-            let matched = await v.check();
-            assert.equal(matched, true);
+  describe('null', function() {
+    it('should ignore null and not required fields', async () => {
+      const v = new Validator({field: null}, {field: 'string'});
 
-        });
-
-
-        it('should reject null and required fields', async () => {
-
-            let v = new Validator({ field: null }, { field: 'required|string' });
-
-            let matched = await v.check();
-            assert.equal(matched, false);
-
-        });
-
+      const matched = await v.check();
+      assert.equal(matched, true);
     });
 
-    describe('empty string', function () {
 
-        it('should ignore empty string in not required fields', async () => {
+    it('should reject null and required fields', async () => {
+      const v = new Validator({field: null}, {field: 'required|string'});
 
-            let v = new Validator({ field: '' }, { field: 'string' });
+      const matched = await v.check();
+      assert.equal(matched, false);
+    });
+  });
 
-            let matched = await v.check();
-            assert.equal(matched, true);
+  describe('empty string', function() {
+    it('should ignore empty string in not required fields', async () => {
+      const v = new Validator({field: ''}, {field: 'string'});
 
-        });
-
-
-        it('should reject empty string in required fields', async () => {
-
-            let v = new Validator({ field: '' }, { field: 'required|string' });
-
-            let matched = await v.check();
-            assert.equal(matched, false);
-
-        });
-
+      const matched = await v.check();
+      assert.equal(matched, true);
     });
 
+
+    it('should reject empty string in required fields', async () => {
+      const v = new Validator({field: ''}, {field: 'required|string'});
+
+      const matched = await v.check();
+      assert.equal(matched, false);
+    });
+  });
 });

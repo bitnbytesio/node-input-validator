@@ -3,34 +3,26 @@
  * @param {*} seletedValues
  * @param {Array} args
  * @this Validator
- * @returns Promise<boolean>
+ * @return {Promise<boolean>}
  */
 module.exports = async function any(seletedValues, args) {
+  const values = this.inputs;
 
-    const values = this.inputs;
+  for (const k in args) {
+    const field = args[k];
 
-    for (let k in args) {
-
-        let field = args[k];
-
-        if (values[field]) {
-
-            return true;
-
-        }
-
+    if (values[field]) {
+      return true;
     }
+  }
 
-    for (let k in args) {
+  for (const k in args) {
+    const field = args[k];
 
-        let field = args[k];
+    this.addError(field, 'required', this.parseMessage('required', field, values[field], args));
+  }
 
-        this.addError(field, 'required', this.parseMessage('required', field, values[field], args));
+  this.addError('*', 'any', this.parseMessage('any', '*', values, args));
 
-    }
-
-    this.addError('*', 'any', this.parseMessage('any', '*', values, args));
-
-    return false;
-
-}
+  return false;
+};

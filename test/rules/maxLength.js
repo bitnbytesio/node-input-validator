@@ -3,37 +3,32 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('maxLength', function () {
+describe('maxLength', function() {
+  it('validation should pass', async () => {
+    const v = new Validator(
+        {attribute: 'uname'},
+        {attribute: 'maxLength:10'}
+    );
 
-    it('validation should pass', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: 'uname' },
-            { attribute: 'maxLength:10' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
-    it('validation should fail: invalida value', async () => {
+  it('validation should fail: invalida value', async () => {
+    const v = new Validator(
+        {attribute: 'uname'},
+        {attribute: 'maxLength:4'}
+    );
 
-        const v = new Validator(
-            { attribute: 'uname' },
-            { attribute: 'maxLength:4' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, false);
 
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('maxLength', 'attribute', '',4));
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('maxLength', 'attribute', '', 4));
+  });
 });

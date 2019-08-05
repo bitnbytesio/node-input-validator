@@ -3,51 +3,40 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-describe('object', function () {
+describe('object', function() {
+  it('validation should pass: []', async () => {
+    const v = new Validator(
+        {features: {}},
+        {features: 'object'}
+    );
 
-    it('validation should pass: []', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { features: {} },
-            { features: 'object' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass: with [1,2,3]', async () => {
+    const v = new Validator(
+        {features: {status: 'draft'}},
+        {features: 'object'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
-
-    it('validation should pass: with [1,2,3]', async () => {
-
-        const v = new Validator(
-            { features: { status: 'draft' } },
-            { features: 'object' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
+    assert.equal(matched, true);
+  });
 
 
+  it('validation should fail: invalid value', async () => {
+    const v = new Validator(
+        {features: 'no'},
+        {features: 'object'}
+    );
 
-    it('validation should fail: invalid value', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { features: 'no' },
-            { features: 'object' }
-        );
+    assert.equal(matched, false);
 
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.features.message, v.parseExistingMessageOnly('object', 'features', '',4));
-
-    });
-
-
-
+    assert.equal(v.errors.features.message, v.parseExistingMessageOnly('object', 'features', '', 4));
+  });
 });

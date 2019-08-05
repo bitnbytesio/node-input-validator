@@ -3,110 +3,93 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-let r = {};
+const r = {};
 
 
-describe('alphaDash', function () {
+describe('alphaDash', function() {
+  it('validation should pass: with example', async () => {
+    const v = new Validator(
+        {username: 'example'},
+        {username: 'alphaDash'}
+    );
 
-    it('validation should pass: with example', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { username: 'example' },
-            { username: 'alphaDash' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass: with example-test', async () => {
+    const v = new Validator(
+        {username: 'example-test'},
+        {username: 'alphaDash'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
-
-    it('validation should pass: with example-test', async () => {
-
-        const v = new Validator(
-            { username: 'example-test' },
-            { username: 'alphaDash' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-    });
-
-    
-    it('validation should pass: with now123', async () => {
-
-        const v = new Validator(
-            { username: 'now123' },
-            { username: 'alphaDash' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-        
-    });
-
-    it('validation should pass: with now-123', async () => {
-
-        const v = new Validator(
-            { username: 'now-123' },
-            { username: 'alphaDash' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, true);
-
-        //console.log(v.errors);
-
-    });
-
-    it('validation should fail: with u@name', async () => {
-
-        const v = new Validator(
-            { username: 'u@name' },
-            { username: 'alphaDash' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.username.message, v.parseExistingMessageOnly('alphaDash', 'username'));
+    assert.equal(matched, true);
+  });
 
 
-    });
+  it('validation should pass: with now123', async () => {
+    const v = new Validator(
+        {username: 'now123'},
+        {username: 'alphaDash'}
+    );
 
-    it('validation should fail: with 123', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { username: '123' },
-            { username: 'alphaDash' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass: with now-123', async () => {
+    const v = new Validator(
+        {username: 'now-123'},
+        {username: 'alphaDash'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-        //console.log(v.errors);
+    assert.equal(matched, true);
 
-    });
+    // console.log(v.errors);
+  });
 
-    it('validation should fail: with u_name', async () => {
+  it('validation should fail: with u@name', async () => {
+    const v = new Validator(
+        {username: 'u@name'},
+        {username: 'alphaDash'}
+    );
 
-        const v = new Validator(
-            { username: 'u_name' },
-            { username: 'alphaDash' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, false);
 
-        assert.equal(matched, true);
+    assert.equal(v.errors.username.message, v.parseExistingMessageOnly('alphaDash', 'username'));
+  });
 
-        //console.log(v.errors);
+  it('validation should fail: with 123', async () => {
+    const v = new Validator(
+        {username: '123'},
+        {username: 'alphaDash'}
+    );
 
-    });
+    const matched = await v.check();
 
+    assert.equal(matched, true);
+
+    // console.log(v.errors);
+  });
+
+  it('validation should fail: with u_name', async () => {
+    const v = new Validator(
+        {username: 'u_name'},
+        {username: 'alphaDash'}
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, true);
+
+    // console.log(v.errors);
+  });
 });

@@ -4,65 +4,55 @@ const Validator = require('../../index');
 
 const messages = require('../../src/messages/en/messages');
 
-let r = {};
+const r = {};
 
 
-describe('accepted', function () {
+describe('accepted', function() {
+  it('validation should pass: with yes', async () => {
+    const v = new Validator(
+        {attribute: 'yes'},
+        {attribute: 'accepted'}
+    );
 
-    it('validation should pass: with yes', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: 'yes' },
-            { attribute: 'accepted' }
-        );
+    assert.equal(matched, true);
+  });
 
-        const matched = await v.check();
+  it('validation should pass: with custom', async () => {
+    const v = new Validator(
+        {attribute: 'ok'},
+        {attribute: 'accepted:ok'}
+    );
 
-        assert.equal(matched, true);
+    const matched = await v.check();
 
-    });
+    assert.equal(matched, true);
+  });
 
-    it('validation should pass: with custom', async () => {
+  it('validation should fail: invalid value', async () => {
+    const v = new Validator(
+        {attribute: 'no'},
+        {attribute: 'accepted'}
+    );
 
-        const v = new Validator(
-            { attribute: 'ok' },
-            { attribute: 'accepted:ok' }
-        );
+    const matched = await v.check();
 
-        const matched = await v.check();
+    assert.equal(matched, false);
 
-        assert.equal(matched, true);
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('accepted', 'attribute'));
+  });
 
-    });
+  it('validation should fail: mising attribute', async () => {
+    const v = new Validator(
+        {},
+        {attribute: 'accepted'}
+    );
 
-    it('validation should fail: invalid value', async () => {
+    const matched = await v.check();
 
-        const v = new Validator(
-            { attribute: 'no' },
-            { attribute: 'accepted' }
-        );
+    assert.equal(matched, false);
 
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('accepted', 'attribute'));
-
-    });
-
-    it('validation should fail: mising attribute', async () => {
-
-        const v = new Validator(
-            {},
-            { attribute: 'accepted' }
-        );
-
-        const matched = await v.check();
-
-        assert.equal(matched, false);
-
-        assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('accepted', 'attribute'));
-
-    });
-
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('accepted', 'attribute'));
+  });
 });

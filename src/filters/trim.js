@@ -2,8 +2,8 @@
 /**
  * trim filter
  * @param {string} value
- * @returns {Promise.<string>}
+ * @return {Promise.<string>}
  */
-module.exports = async function trim(value) { /* istanbul ignore next */
-    return value.trim();
-}
+module.exports = async function trim(value) {/* istanbul ignore next */
+  return value.trim();
+};
