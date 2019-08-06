@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- datetime: attribute must be in format YYYY-MM-DD HH:mm:ss
-- dateiso: attribute must be valid iso date
+- nothing
 
 ### Changed
 
@@ -26,12 +25,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- required: empty check was failing in case of boolean false and int 0
-- lengthBetween: no error in case of invalid maximum seed
+- nothing
 
 ### Security
 
-- nothing
+## [3.6.0]
+
+### Added
+
+- datetime: attribute must be in format YYYY-MM-DD HH:mm:ss
+- dateiso: attribute must be valid iso date
+
+### Fixed
+
+- required: empty check was failing in case of boolean false and int 0
+- lengthBetween: no error in case of invalid maximum seed
 
 ## [3.5.0]
 

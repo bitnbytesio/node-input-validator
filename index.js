@@ -71,6 +71,8 @@ module.exports.koa = () => {
       if (await v.fails()) {
         this.throw(422, this.validationErrors(v.errors));
       }
+
+      return v;
     };
 
     ctx.validator = async function validator(rules, inputs, customMessages) {
