@@ -1,5 +1,5 @@
 const messages = require('../messages/index');
-const {camelToSentance} = require('./str');
+const {camelToSentance, snakeToSentance} = require('./str');
 
 /**
  * parse message
@@ -22,21 +22,25 @@ module.exports = function messageParser({V, rule, field, value, args, defaultMes
 
   if (V.hasCustomMessages) {
     message = V.customMessages[field + '.' + rule] ||
-            V.customMessages[rule] ||
-            V.customMessages[field];
+      V.customMessages[rule] ||
+      V.customMessages[field];
   }
 
 
   if (!message) {
     message = messages[V.lang].custom && messages[V.lang].custom[field + '.' + rule] ||
-            messages[V.lang][rule] ||
-            messages[V.lang].custom && messages[V.lang].custom[field] || defaultMessage;
+      messages[V.lang][rule] ||
+      messages[V.lang].custom && messages[V.lang].custom[field] || defaultMessage;
   }
 
   // replace attribute name
   if (message.indexOf(':attribute') >= 0) {
     // convert camel to sentance and replce _ with space
-    let attributeName = camelToSentance(field).replace(/_/g, ' ');
+    let attributeName = field;
+
+    if (attributeName.indexOf('.') < 0) {
+      attributeName = camelToSentance(snakeToSentance(field));
+    }
 
     // check if attribute has some nice name
     if (V.attributeNames[field]) {

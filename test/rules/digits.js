@@ -18,11 +18,10 @@ describe('digits', function() {
     assert.equal(matched, true);
   });
 
-
   it('validation should fail: invalid val', async () => {
     const v = new Validator(
-        {attribute: 'a12'},
-        {attribute: 'digits:10'}
+        {attribute: 'abcd'},
+        {attribute: 'digits:4'}
     );
 
     const matched = await v.check();
@@ -30,6 +29,49 @@ describe('digits', function() {
 
     assert.equal(matched, false);
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digits', 'attribute', '', '10'));
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digits', 'attribute', '', '4'));
+  });
+
+  it('validation should fail: invalid length', async () => {
+    const v = new Validator(
+        {attribute: '123456'},
+        {attribute: 'digits:8'}
+    );
+
+    const matched = await v.check();
+
+
+    assert.equal(matched, false);
+
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digits', 'attribute', '', '8'));
+  });
+
+  it('validation should fail: not digits', async () => {
+    const v = new Validator(
+        {attribute: '1234-567'},
+        {attribute: 'digits:8'}
+    );
+
+    const matched = await v.check();
+
+
+    assert.equal(matched, false);
+
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digits', 'attribute', '', '8'));
+  });
+
+
+  it('validation should fail: due to .', async () => {
+    const v = new Validator(
+        {attribute: '120.50'},
+        {attribute: 'digits:5'}
+    );
+
+    const matched = await v.check();
+
+
+    assert.equal(matched, false);
+
+    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digits', 'attribute', '', '5'));
   });
 });

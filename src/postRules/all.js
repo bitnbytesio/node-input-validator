@@ -22,8 +22,10 @@ module.exports = async function all(seletedValues, args) {
   }
 
   for (const k in args) {
-    const field = args[k];
-    this.addError(field, 'required', this.parseMessage('required', field, values[field], args));
+    if (args.hasOwnProperty(k)) {
+      const field = args[k];
+      this.addError(field, 'required', this.parseMessage('required', field, values[field], args));
+    }
   }
 
   return false;

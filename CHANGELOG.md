@@ -29,6 +29,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+- nothing
+
+## [3.6.3]
+
+### Fixed
+
+- breaking changes in message parser for 3.6.* fixed
+
+## [3.6.2]
+
+### Fixed
+
+- digits rule was not checking for digits
+
+## [3.6.1]
+
+### Fixed
+
+- double space in case of camel case attributes
+
 ## [3.6.0]
 
 ### Added
