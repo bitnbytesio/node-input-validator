@@ -31,6 +31,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - nothing
 
+## [3.6.4]
+
+### Fixed
+
+- breaking changes in message parser due to trimStart for 3.6.* fixed
+
 ## [3.6.3]
 
 ### Fixed
