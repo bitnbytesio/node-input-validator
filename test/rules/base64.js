@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('base64', function() {
+describe('base64', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {username: 'dGhpcyBpcyB0ZXN0aW5nLi4u'},
-        {username: 'base64'}
+      { username: 'dGhpcyBpcyB0ZXN0aW5nLi4u' },
+      { username: 'base64' },
     );
 
     const matched = await v.check();
@@ -20,8 +17,8 @@ describe('base64', function() {
 
   it('validation should fail', async () => {
     const v = new Validator(
-        {username: 'gYhKkdInjUnjUUmkH'},
-        {username: 'base64'}
+      { username: 'gYhKkdInjUnjUUmkH' },
+      { username: 'base64' },
     );
 
     const matched = await v.check();

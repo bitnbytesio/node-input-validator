@@ -7,13 +7,14 @@ module.exports = async function arrayUniqueObjects(field, value, args) {
 
 
   const result = new Set(value.map((o) => {
-    let field = '';
+    let output = '';
 
+    // eslint-disable-next-line no-restricted-syntax
     for (const attr of args) {
-      field += o[attr];
+      output += o[attr];
     }
 
-    return field;
+    return output;
   }));
 
 

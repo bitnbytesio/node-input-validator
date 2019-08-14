@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('lengthBetween: string', function() {
+describe('lengthBetween: string', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {age: 'unamea'},
-        {age: 'lengthBetween:5,10'}
+      { age: 'unamea' },
+      { age: 'lengthBetween:5,10' },
     );
 
     const matched = await v.check();
@@ -20,8 +17,8 @@ describe('lengthBetween: string', function() {
 
   it('validation should fail', async () => {
     const v = new Validator(
-        {age: 'name'},
-        {age: 'lengthBetween:5,21'}
+      { age: 'name' },
+      { age: 'lengthBetween:5,21' },
     );
 
     const matched = await v.check();
@@ -32,11 +29,11 @@ describe('lengthBetween: string', function() {
   });
 });
 
-describe('lengthBetween: with array', function() {
+describe('lengthBetween: with array', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {features: [1, 2, 3, 4]},
-        {features: 'lengthBetween:3,5'}
+      { features: [1, 2, 3, 4] },
+      { features: 'lengthBetween:3,5' },
     );
 
     const matched = await v.check();
@@ -46,8 +43,8 @@ describe('lengthBetween: with array', function() {
 
   it('validation should fail', async () => {
     const v = new Validator(
-        {features: [1, 2]},
-        {features: 'lengthBetween:3,6'}
+      { features: [1, 2] },
+      { features: 'lengthBetween:3,6' },
     );
 
     const matched = await v.check();

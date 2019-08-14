@@ -3,17 +3,14 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('gte', function() {
+describe('gte', () => {
   it('validation should pass with greater seed', async () => {
     const v = new Validator(
-        {min: '20', max: '25'},
-        {
-          min: 'required|integer',
-          max: 'required|integer|gte:min',
-        }
+      { min: '20', max: '25' },
+      {
+        min: 'required|integer',
+        max: 'required|integer|gte:min',
+      },
     );
 
     const matched = await v.check();
@@ -23,11 +20,11 @@ describe('gte', function() {
 
   it('validation should pass with equal', async () => {
     const v = new Validator(
-        {min: '20', max: '20'},
-        {
-          min: 'required|integer',
-          max: 'required|integer|gte:min',
-        }
+      { min: '20', max: '20' },
+      {
+        min: 'required|integer',
+        max: 'required|integer|gte:min',
+      },
     );
 
     const matched = await v.check();
@@ -37,11 +34,11 @@ describe('gte', function() {
 
   it('validation should fail', async () => {
     const v = new Validator(
-        {min: '30', max: '25'},
-        {
-          min: 'required|integer',
-          max: 'required|integer|gte:min',
-        }
+      { min: '30', max: '25' },
+      {
+        min: 'required|integer',
+        max: 'required|integer|gte:min',
+      },
     );
 
     const matched = await v.check();
@@ -51,11 +48,11 @@ describe('gte', function() {
 
   it('validation should fail due to nan in another field', async () => {
     const v = new Validator(
-        {min: 'abc', max: '25'},
-        {
-          min: 'required',
-          max: 'required|integer|gte:min',
-        }
+      { min: 'abc', max: '25' },
+      {
+        min: 'required',
+        max: 'required|integer|gte:min',
+      },
     );
 
     const matched = await v.check();

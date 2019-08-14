@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('email', function() {
+describe('email', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 'user@example.com'},
-        {attribute: 'email'}
+      { attribute: 'user@example.com' },
+      { attribute: 'email' },
     );
 
     const matched = await v.check();
@@ -21,8 +18,8 @@ describe('email', function() {
 
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
-        {attribute: 'form@example'},
-        {attribute: 'email'}
+      { attribute: 'form@example' },
+      { attribute: 'email' },
     );
 
     const matched = await v.check();

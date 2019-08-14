@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('domain', function() {
+describe('domain', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 'example.com'},
-        {attribute: 'domain'}
+      { attribute: 'example.com' },
+      { attribute: 'domain' },
     );
 
     const matched = await v.check();
@@ -20,8 +17,8 @@ describe('domain', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 'www.example.com'},
-        {attribute: 'domain'}
+      { attribute: 'www.example.com' },
+      { attribute: 'domain' },
     );
 
     const matched = await v.check();
@@ -31,8 +28,8 @@ describe('domain', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 'http://www.example.com'},
-        {attribute: 'domain'}
+      { attribute: 'http://www.example.com' },
+      { attribute: 'domain' },
     );
 
     const matched = await v.check();
@@ -43,8 +40,8 @@ describe('domain', function() {
 
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
-        {attribute: 'localhost'},
-        {attribute: 'domain'}
+      { attribute: 'localhost' },
+      { attribute: 'domain' },
     );
 
     const matched = await v.check();

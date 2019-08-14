@@ -3,9 +3,9 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-describe('#same', function() {
+describe('#same', () => {
   it('#url', async () => {
-    const v = new Validator({url: 'http://www.github.com'}, {url: 'required|url'});
+    const v = new Validator({ url: 'http://www.github.com' }, { url: 'required|url' });
 
     const matched = await v.check();
 
@@ -13,7 +13,7 @@ describe('#same', function() {
   });
 
   it('should fail', async () => {
-    const v = new Validator({url: 'artisangang'}, {url: 'required|url'});
+    const v = new Validator({ url: 'artisangang' }, { url: 'required|url' });
 
     const matched = await v.check();
 

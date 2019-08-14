@@ -1,5 +1,5 @@
-const sizeToBytes = require('../lib/sizeToBytes');
 const fs = require('fs');
+const sizeToBytes = require('../lib/sizeToBytes');
 
 module.exports = async function validateSize(field, file, args) {
   // const success = true;
@@ -23,15 +23,11 @@ module.exports = async function validateSize(field, file, args) {
   } else if (typeof file === 'string') {
     try {
       size = fs.statSync(file).size;
-    } catch (e) {
-
-    }
+    } catch (e) {}
   } else if (file.path && typeof file.path === 'string') {
     try {
       size = fs.statSync(file.path).size;
-    } catch (e) {
-
-    }
+    } catch (e) {}
   } else if (file instanceof Buffer) {
     size = file.byteLength;
   } else if (file.buffer && file.buffer instanceof Buffer) {

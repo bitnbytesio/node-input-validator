@@ -2,15 +2,11 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
-
-const r = {};
-
-
-describe('mongoId', function() {
+describe('mongoId', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '5c33010638eb95186574b64a'},
-        {attribute: 'mongoId'}
+      { attribute: '5c33010638eb95186574b64a' },
+      { attribute: 'mongoId' },
     );
 
     const matched = await v.check();
@@ -21,8 +17,8 @@ describe('mongoId', function() {
 
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
-        {attribute: '1945690'},
-        {attribute: 'mongoId'}
+      { attribute: '1945690' },
+      { attribute: 'mongoId' },
     );
 
     const matched = await v.check();

@@ -1,12 +1,14 @@
 const messages = require('../messages/index');
-const {camelToSentance, snakeToSentance} = require('./str');
+const { camelToSentance, snakeToSentance } = require('./str');
 
 /**
  * parse message
  * @param {*} param0
  * @return {string}
  */
-module.exports = function messageParser({V, rule, field, value, args, defaultMessage = null}) {
+module.exports = function messageParser({
+  V, rule, field, value, args, defaultMessage = null,
+}) {
   /**
      * 1. check for attribute.rule
      * 2. check for rule
@@ -21,16 +23,17 @@ module.exports = function messageParser({V, rule, field, value, args, defaultMes
   }
 
   if (V.hasCustomMessages) {
-    message = V.customMessages[field + '.' + rule] ||
-      V.customMessages[rule] ||
-      V.customMessages[field];
+    message = V.customMessages[`${field}.${rule}`]
+      || V.customMessages[rule]
+      || V.customMessages[field];
   }
 
 
   if (!message) {
-    message = messages[V.lang].custom && messages[V.lang].custom[field + '.' + rule] ||
-      messages[V.lang][rule] ||
-      messages[V.lang].custom && messages[V.lang].custom[field] || defaultMessage;
+    message = (messages[V.lang].custom && messages[V.lang].custom[`${field}.${rule}`])
+      || messages[V.lang][rule]
+      || (messages[V.lang].custom && messages[V.lang].custom[field])
+      || defaultMessage;
   }
 
   // replace attribute name
@@ -62,8 +65,8 @@ module.exports = function messageParser({V, rule, field, value, args, defaultMes
 
   // find and replace each arg
   for (let i = 0; i < 10; i++) {
-    if (message.indexOf(':arg' + i) >= 0) {
-      message = message.replace(':arg' + i, args[i]);
+    if (message.indexOf(`:arg${i}`) >= 0) {
+      message = message.replace(`:arg${i}`, args[i]);
     } else {
       break;
     }

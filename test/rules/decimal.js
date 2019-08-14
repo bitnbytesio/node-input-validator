@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('decimal', function() {
+describe('decimal', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '12.50'},
-        {attribute: 'decimal'}
+      { attribute: '12.50' },
+      { attribute: 'decimal' },
     );
 
     const matched = await v.check();
@@ -20,8 +17,8 @@ describe('decimal', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 12.55},
-        {attribute: 'decimal'}
+      { attribute: 12.55 },
+      { attribute: 'decimal' },
     );
 
     const matched = await v.check();
@@ -31,8 +28,8 @@ describe('decimal', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 12},
-        {attribute: 'decimal'}
+      { attribute: 12 },
+      { attribute: 'decimal' },
     );
 
     const matched = await v.check();
@@ -42,8 +39,8 @@ describe('decimal', function() {
 
   it('validation should pass with 0 as integer', async () => {
     const v = new Validator(
-        {attribute: 0},
-        {attribute: 'required|decimal'}
+      { attribute: 0 },
+      { attribute: 'required|decimal' },
     );
 
     const matched = await v.check();
@@ -53,8 +50,8 @@ describe('decimal', function() {
 
   it('validation should pass with 0 as string', async () => {
     const v = new Validator(
-        {attribute: '0'},
-        {attribute: 'required|decimal'}
+      { attribute: '0' },
+      { attribute: 'required|decimal' },
     );
 
     const matched = await v.check();
@@ -65,8 +62,8 @@ describe('decimal', function() {
 
   it('validation should fail: invalid val', async () => {
     const v = new Validator(
-        {attribute: 'a12'},
-        {attribute: 'decimal'}
+      { attribute: 'a12' },
+      { attribute: 'decimal' },
     );
 
     const matched = await v.check();

@@ -3,13 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('regex', function() {
+describe('regex', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {number: 'abc'}, {number: 'regex:[abc]'});
+      { number: 'abc' }, { number: 'regex:[abc]' },
+    );
 
     const matched = await v.check();
 
@@ -19,7 +17,8 @@ describe('regex', function() {
 
   it('validation should fail', async () => {
     const v = new Validator(
-        {attribute: 'xyz'}, {attribute: 'regex:[abc]'});
+      { attribute: 'xyz' }, { attribute: 'regex:[abc]' },
+    );
 
     const matched = await v.check();
 

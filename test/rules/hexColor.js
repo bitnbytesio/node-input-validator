@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('hexColor', function() {
+describe('hexColor', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '#FFFFFF'},
-        {attribute: 'hexColor'}
+      { attribute: '#FFFFFF' },
+      { attribute: 'hexColor' },
     );
 
     const matched = await v.check();
@@ -20,8 +17,8 @@ describe('hexColor', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '#000'},
-        {attribute: 'hexColor'}
+      { attribute: '#000' },
+      { attribute: 'hexColor' },
     );
 
     const matched = await v.check();
@@ -31,8 +28,8 @@ describe('hexColor', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 'f00'},
-        {attribute: 'hexColor'}
+      { attribute: 'f00' },
+      { attribute: 'hexColor' },
     );
 
     const matched = await v.check();
@@ -43,8 +40,8 @@ describe('hexColor', function() {
 
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
-        {attribute: 'Yes, Node is awesome'},
-        {attribute: 'hexColor'}
+      { attribute: 'Yes, Node is awesome' },
+      { attribute: 'hexColor' },
     );
 
     const matched = await v.check();

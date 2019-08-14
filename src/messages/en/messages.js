@@ -84,7 +84,7 @@ module.exports = {
   url: 'The :attribute format is invalid.',
   any: 'At least one of :attribute fields must be provided',
   custom: {
-    'custom_attribute': 'Message gies here.',
+    custom_attribute: 'Message gies here.',
     'custom_attribute.rule': 'Message gies here.',
   },
   _default: 'The :attribute value is malformed.',

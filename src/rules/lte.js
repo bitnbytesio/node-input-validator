@@ -1,4 +1,4 @@
-const {pathIndex} = require('../lib/ObjectIndex');
+const { pathIndex } = require('../lib/ObjectIndex');
 const numeric = require('./numeric');
 
 module.exports = async function gte(field, value, anotherField) {

@@ -2,34 +2,33 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
-describe('#requiredNotIf', function() {
+describe('#requiredNotIf', () => {
   it('validation should pass', async () => {
-    let v; let matched;
+    const v = new Validator(
+      { name: 'Harcharan Singh', age: '16' },
+      { sex: 'requiredNotIf:age,16' },
+    );
 
-    v = new Validator(
-        {name: 'Harcharan Singh', age: '16'},
-        {sex: 'requiredNotIf:age,16'});
-
-    matched = await v.check();
+    const matched = await v.check();
 
     assert.equal(matched, true);
   });
   it('validation should pass', async () => {
-    let v; let matched;
+    const v = new Validator(
+      { name: 'Harcharan Singh', address: { street: 'fantastic' } },
+      { age: 'requiredNotIf:address.street,fantastic' },
+    );
 
-    v = new Validator(
-        {name: 'Harcharan Singh', address: {street: 'fantastic'}},
-        {age: 'requiredNotIf:address.street,fantastic'});
-
-    matched = await v.check();
+    const matched = await v.check();
 
     assert.equal(matched, true);
   });
 
   it('validation should fail', async () => {
     const v = new Validator(
-        {name: 'Harcharan Singh', age: 15, sex: 'male'},
-        {sex: 'requiredNotIf:age,16'});
+      { name: 'Harcharan Singh', age: 15, sex: 'male' },
+      { sex: 'requiredNotIf:age,16' },
+    );
 
     const matched = await v.check();
 
@@ -37,8 +36,9 @@ describe('#requiredNotIf', function() {
   });
   it('validation should fail', async () => {
     const v = new Validator(
-        {name: 'Harcharan Singh', address: {street: 'fantastic'}, age: 15},
-        {age: 'requiredNotIf:address.street,fantastic'});
+      { name: 'Harcharan Singh', address: { street: 'fantastic' }, age: 15 },
+      { age: 'requiredNotIf:address.street,fantastic' },
+    );
 
     const matched = await v.check();
 
@@ -50,16 +50,16 @@ describe('#requiredNotIf', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {
-          name: 'Harcharan Singh',
-          age: 16,
-          parent: 'yes',
-          type: 'subscribed',
-          // email: 'artisangang@gmail.com'
-        },
-        {
-          email: 'requiredNotIf:age,16,parent,yes,type,subscribed',
-        }
+      {
+        name: 'Harcharan Singh',
+        age: 16,
+        parent: 'yes',
+        type: 'subscribed',
+        // email: 'artisangang@gmail.com'
+      },
+      {
+        email: 'requiredNotIf:age,16,parent,yes,type,subscribed',
+      },
     );
 
     const matched = await v.check();
@@ -69,16 +69,16 @@ describe('#requiredNotIf', function() {
 
   it('validation should fail', async () => {
     const v = new Validator(
-        {
-          name: 'Harcharan Singh',
-          age: 16,
-          parent: 'yes',
-          type: 'subscribed',
-          email: 'artisangang@gmail.com',
-        },
-        {
-          email: 'requiredNotIf:age,16,parent,yes,type,subscribed',
-        }
+      {
+        name: 'Harcharan Singh',
+        age: 16,
+        parent: 'yes',
+        type: 'subscribed',
+        email: 'artisangang@gmail.com',
+      },
+      {
+        email: 'requiredNotIf:age,16,parent,yes,type,subscribed',
+      },
     );
 
     const matched = await v.check();

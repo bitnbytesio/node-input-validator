@@ -3,11 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-describe('array', function() {
+describe('array', () => {
   it('validation should pass: []', async () => {
     const v = new Validator(
-        {features: []},
-        {features: 'array'}
+      { features: [] },
+      { features: 'array' },
     );
 
     const matched = await v.check();
@@ -17,8 +17,8 @@ describe('array', function() {
 
   it('validation should pass: with [1,2,3]', async () => {
     const v = new Validator(
-        {features: [1, 2, 3]},
-        {features: 'array'}
+      { features: [1, 2, 3] },
+      { features: 'array' },
     );
 
     const matched = await v.check();
@@ -29,8 +29,8 @@ describe('array', function() {
 
   it('validation should fail: invalid value', async () => {
     const v = new Validator(
-        {features: 'no'},
-        {features: 'array'}
+      { features: 'no' },
+      { features: 'array' },
     );
 
     const matched = await v.check();

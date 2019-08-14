@@ -2,11 +2,10 @@ const assert = require('assert');
 
 const Validator = require('../index');
 
-const r = {};
 
-describe('crash', function() {
+describe('crash', () => {
   it('passing clousers and hex', async () => {
-    const v = new Validator({name: function() { }, tape: 0x023}, {name: 'required', tape: 'required|integer'});
+    const v = new Validator({ name() { }, tape: 0x023 }, { name: 'required', tape: 'required|integer' });
 
     const matched = await v.passes();
 
@@ -16,7 +15,7 @@ describe('crash', function() {
 
   it('Checking for invalid rule', async () => {
     try {
-      const v = new Validator({name: 'Harcharan Singh'}, {name: 'required|fullName'});
+      const v = new Validator({ name: 'Harcharan Singh' }, { name: 'required|fullName' });
 
       await v.check();
 
@@ -31,7 +30,7 @@ describe('crash', function() {
 describe('acceptedIf exception', () => {
   it('acceptedIf: Checking for invalid arguments', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|acceptedIf'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|acceptedIf' });
 
       await v.check();
 
@@ -41,7 +40,7 @@ describe('acceptedIf exception', () => {
     }
 
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|acceptedIf:1,2,3'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|acceptedIf:1,2,3' });
 
       await v.check();
 
@@ -55,7 +54,7 @@ describe('acceptedIf exception', () => {
 describe('acceptedNotIf exception', () => {
   it('acceptedNotIf: Checking for invalid arguments', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|acceptedNotIf'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|acceptedNotIf' });
 
       await v.check();
 
@@ -65,7 +64,7 @@ describe('acceptedNotIf exception', () => {
     }
 
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|acceptedNotIf:1,2,3'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|acceptedNotIf:1,2,3' });
 
       await v.check();
 
@@ -79,7 +78,7 @@ describe('acceptedNotIf exception', () => {
 describe('between exception', () => {
   it('Between: Checking for invalid seed count', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|between:a'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|between:a' });
 
       await v.check();
 
@@ -92,7 +91,7 @@ describe('between exception', () => {
 
   it('Between: Checking for invalid seed min', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|between:a,10'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|between:a,10' });
 
       await v.check();
 
@@ -104,7 +103,7 @@ describe('between exception', () => {
 
   it('Between: Checking for invalid seed max', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|between:10,b'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|between:10,b' });
 
       await v.check();
 
@@ -117,7 +116,7 @@ describe('between exception', () => {
 
   it('Between: Checking for invalid seed min and max', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|between:10,5'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|between:10,5' });
 
       await v.check();
 
@@ -132,7 +131,7 @@ describe('between exception', () => {
 describe('lengthBetween exception', () => {
   it('Between: Checking for invalid seed count', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|lengthBetween:a'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|lengthBetween:a' });
 
       await v.check();
 
@@ -145,7 +144,7 @@ describe('lengthBetween exception', () => {
 
   it('Between: Checking for invalid seed min', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|lengthBetween:a,10'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|lengthBetween:a,10' });
 
       await v.check();
 
@@ -157,7 +156,7 @@ describe('lengthBetween exception', () => {
 
   it('Between: Checking for invalid seed max', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|lengthBetween:10,b'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|lengthBetween:10,b' });
 
       await v.check();
 
@@ -170,7 +169,7 @@ describe('lengthBetween exception', () => {
 
   it('Between: Checking for invalid seed min and max', async () => {
     try {
-      const v = new Validator({attribute: '789456'}, {attribute: 'required|lengthBetween:10,5'});
+      const v = new Validator({ attribute: '789456' }, { attribute: 'required|lengthBetween:10,5' });
 
       await v.check();
 
@@ -183,7 +182,7 @@ describe('lengthBetween exception', () => {
 
 describe('digitsBetween exception', () => {
   it('Non numeric value', async () => {
-    const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|digitsBetween'});
+    const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|digitsBetween' });
 
     const matched = await v.check();
 
@@ -192,7 +191,7 @@ describe('digitsBetween exception', () => {
 
   it('Between: Checking for invalid seed count', async () => {
     try {
-      const v = new Validator({attribute: '789456'}, {attribute: 'required|digitsBetween:a'});
+      const v = new Validator({ attribute: '789456' }, { attribute: 'required|digitsBetween:a' });
 
       await v.check();
 
@@ -205,7 +204,7 @@ describe('digitsBetween exception', () => {
 
   it('Between: Checking for invalid seed min', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|digitsBetween:a,10'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|digitsBetween:a,10' });
 
       await v.check();
 
@@ -217,7 +216,7 @@ describe('digitsBetween exception', () => {
 
   it('Between: Checking for invalid seed max', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|digitsBetween:10,b'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|digitsBetween:10,b' });
 
       await v.check();
 
@@ -230,7 +229,7 @@ describe('digitsBetween exception', () => {
 
   it('Between: Checking for invalid seed min and max', async () => {
     try {
-      const v = new Validator({attribute: '789456123'}, {attribute: 'required|digitsBetween:10,5'});
+      const v = new Validator({ attribute: '789456123' }, { attribute: 'required|digitsBetween:10,5' });
 
       await v.check();
 
@@ -245,7 +244,7 @@ describe('digitsBetween exception', () => {
 describe('max exception', () => {
   it('max: Checking for invalid seed', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|max:test'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|max:test' });
 
       await v.check();
 
@@ -260,7 +259,7 @@ describe('max exception', () => {
 describe('min exception', () => {
   it('min: Checking for invalid seed', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|min:test'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|min:test' });
 
       await v.check();
 
@@ -275,7 +274,7 @@ describe('min exception', () => {
 describe('maxLength exception', () => {
   it('maxLength: Checking for invalid seed', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|maxLength:test'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|maxLength:test' });
 
       await v.check();
 
@@ -290,7 +289,7 @@ describe('maxLength exception', () => {
 describe('minLength exception', () => {
   it('minLength: Checking for invalid seed', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|minLength:test'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|minLength:test' });
 
       await v.check();
 
@@ -304,7 +303,7 @@ describe('minLength exception', () => {
 describe('digits exception', () => {
   it('digits: Checking for invalid seed', async () => {
     try {
-      const v = new Validator({attribute: 'Harcharan Singh'}, {attribute: 'required|digits:test'});
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|digits:test' });
 
       await v.check();
 

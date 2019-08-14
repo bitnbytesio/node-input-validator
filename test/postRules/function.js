@@ -2,14 +2,11 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
-const r = {};
-
-
-describe('function', function() {
+describe('function', () => {
   it('should use custom function', async () => {
-    let v = new Validator({username: 'arnold', password: 'arnold123'}, {});
+    let v = new Validator({ username: 'arnold', password: 'arnold123' }, {});
 
-    v.addPostRule(async function(input) {
+    v.addPostRule(async function passwordRule(input) {
       if (input.password.indexOf(input.username) >= 0) {
         this.addError('password', 'custom', 'Password cannot contain username');
       }
@@ -19,9 +16,9 @@ describe('function', function() {
 
     assert.equal(matched, false);
 
-    v = new Validator({username: 'arnold', password: '123456'}, {});
+    v = new Validator({ username: 'arnold', password: '123456' }, {});
 
-    v.addPostRule(async function(input) {
+    v.addPostRule(async function anotherPasswordRule(input) {
       if (input.password.indexOf(input.username) >= 0) {
         this.addError('password', 'custom', 'Password cannot contain username');
       }
@@ -32,4 +29,3 @@ describe('function', function() {
     assert.equal(matched, true);
   });
 });
-

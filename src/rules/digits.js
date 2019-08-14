@@ -1,5 +1,5 @@
-const numeric = require('./numeric');
 const v = require('validator');
+const numeric = require('./numeric');
 
 module.exports = async function digits(field, value, dNumber) {
   if (!(await numeric(field, dNumber))) {
@@ -10,7 +10,7 @@ module.exports = async function digits(field, value, dNumber) {
     return false;
   }
 
-  if (dNumber != value.toString().length) {
+  if (Number(dNumber) !== value.toString().length) {
     return false;
   }
 

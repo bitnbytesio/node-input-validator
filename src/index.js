@@ -1,7 +1,8 @@
+/* eslint-disable no-restricted-syntax */
 const rules = require('./rules/index');
 const postRules = require('./postRules/index');
 const messages = require('./messages/index');
-const {applyRules, implicitRules, applyPostRules} = require('./validator');
+const { applyRules, implicitRules, applyPostRules } = require('./validator');
 const empty = require('./lib/empty');
 // const filters = require('./filters/index');
 
@@ -14,10 +15,10 @@ class Validator {
   /**
      * @constructor
      * @param {*} inputs
-     * @param {*} rules
+     * @param {*} validationsRules
      * @param {*} customMessages
      */
-  constructor(inputs, rules, customMessages = {}) {
+  constructor(inputs, validationsRules, customMessages = {}) {
     // errors collections
     this.errors = {};
 
@@ -49,7 +50,7 @@ class Validator {
     }
 
     // parse rules
-    this.parseRules(rules);
+    this.parseRules(validationsRules);
 
     this.attributeNames = {};
   }
@@ -65,27 +66,28 @@ class Validator {
   /**
      * make validator for arrya rules
      * @param {*} inputs
-     * @param {*} rules
-     * @param {*} messages
+     * @param {*} validationRules
+     * @param {*} customMessages
      * @return {Validator}
      */
-  static make(inputs, rules, messages = {}) {
-    const v = new Validator(inputs, {}, messages);
+  static make(inputs, validationRules, customMessages = {}) {
+    const v = new Validator(inputs, {}, customMessages);
 
-    v.makeValidationsFromArray(rules);
+    v.makeValidationsFromArray(validationRules);
 
     return v;
   }
 
   /**
      * create validator
-     * @param {*} rules
-     * @param {*} messages
+     * @param {*} validationRules
+     * @param {*} customMessages
      * @return {Validator}
      */
-  static create(rules, messages = {}) {
+  /* istanbul ignore next */
+  static create(validationRules, customMessages = {}) {
     /* istanbul ignore next */
-    return new Validator({}, rules, messages);
+    return new Validator({}, rules, customMessages);
   }
 
   /**
@@ -95,10 +97,11 @@ class Validator {
   async apply(inputs) {
     /* istanbul ignore next */
     const v = new Validator(inputs, {});
-
+    /* istanbul ignore next */
     v.validations = this.validations;
+    /* istanbul ignore next */
     v.postValidations = this.postValidations;
-
+    /* istanbul ignore next */
     return v;
   }
 
@@ -114,8 +117,8 @@ class Validator {
    * check if validation passes
    * @return {Promise}
    */
-  async passes() {
-    return await this.check();
+  passes() {
+    return this.check();
   }
 
   /* istanbul ignore next */
@@ -158,8 +161,8 @@ class Validator {
      */
   addError(key, rule, message) {
     this.errors[key] = {
-      message: message,
-      rule: rule,
+      message,
+      rule,
     };
   }
 
@@ -184,22 +187,26 @@ class Validator {
     rule = rule.split(':', 2);
     const ruleName = rule[0];
     const ruleFields = rule[1].split(','); // there always be a list of fields
-    const values = ruleFields.reduce((acc, field) => (acc[field] = this.parseKey(field, this.inputs), acc), {});
+    // eslint-disable-next-line no-return-assign
+    const values = ruleFields.reduce((acc, field) => {
+      acc[field] = this.parseKey(field, this.inputs);
+      return [acc[field], acc];
+    }, {});
 
     this.postValidations.push({
       rule: ruleName,
       params: ruleFields,
-      values: values,
+      values,
     });
   }
 
   /**
    * add set of post rules
    *
-   * @param {string[]} rules
+   * @param {string[]} postRulesObj
    */
-  addPostRules(rules) {
-    rules.map((rule) => this.addPostRule(rule));
+  addPostRules(postRulesObj) {
+    postRulesObj.map((rule) => this.addPostRule(rule));
   }
 
   /**
@@ -227,7 +234,7 @@ class Validator {
       await Promise.all(validations);
     }
 
-    return (this.errors && Object.keys(this.errors) && Object.keys(this.errors).length) ? false : true;
+    return !((this.errors && Object.keys(this.errors) && Object.keys(this.errors).length));
   }
 
   /**
@@ -240,6 +247,7 @@ class Validator {
       await applyRules(field, this);
     }
   }
+
   /**
      * validate input as a whole against post rule
      * @param {*} rule
@@ -259,13 +267,11 @@ class Validator {
     let value;
     // let self = this;
 
-    const keySplit = key.split('.').filter(function(e) {
-      return e !== '';
-    });
+    const keySplit = key.split('.').filter((e) => e !== '');
 
     // console.log('Key Split', keySplit);
 
-    keySplit.map(function(item) {
+    keySplit.map((item) => {
       if (typeof value === 'undefined') {
         value = data && data[item];
       } else {
@@ -300,7 +306,7 @@ class Validator {
   inputVal(field, multiple = false) {
     // let val = this.inputs[field] || '';
 
-    if (multiple == true) {
+    if (multiple === true) {
       this.parseKey(field, this.inputs);
     }
 
@@ -309,11 +315,11 @@ class Validator {
 
   /**
      *
-     * @param {*} rules
+     * @param {*} rulesToParse
      * @return {*}
      */
-  parseRules(rules) {
-    if (!rules || !Object.keys(rules).length) {
+  parseRules(rulesToParse) {
+    if (!rulesToParse || !Object.keys(rulesToParse).length) {
       return;
     }
 
@@ -324,8 +330,8 @@ class Validator {
     let field;
 
     // here r is field name
-    for (field in rules) {
-      if (!rules.hasOwnProperty(field)) {
+    for (field in rulesToParse) {
+      if (!rulesToParse.hasOwnProperty(field)) {
         continue;
       }
       // console.log('rules->', r);
@@ -333,7 +339,8 @@ class Validator {
       let multipleFields = -1;
 
       if (field === '*') {
-        return this.addPostRules(rules[field].split('|'));
+        this.addPostRules(rulesToParse[field].split('|'));
+        return;
       }
 
       // console.log('in loop', field);
@@ -342,7 +349,7 @@ class Validator {
         multipleFields = field.indexOf('*');
 
         this.validations[field] = {
-          field: field,
+          field,
           multiple: (multipleFields > 0),
           path: field.split('.'),
           required: false,
@@ -351,7 +358,7 @@ class Validator {
         };
       }
 
-      rsplit = rules[field].toString().split('|');
+      rsplit = rulesToParse[field].toString().split('|');
 
       let rs;
 
@@ -362,12 +369,12 @@ class Validator {
         argsplit = rsplit[rs].split(':');
         if (typeof argsplit[1] !== 'undefined') {
           args = argsplit[1].split(',');
-          this.rule = {rule: argsplit[0], args: (args.length > 1) ? args : args[0]};
+          this.rule = { rule: argsplit[0], args: (args.length > 1) ? args : args[0] };
         } else {
-          this.rule = {rule: argsplit[0]};
+          this.rule = { rule: argsplit[0] };
         }
 
-        if (this.rule.rule == 'nullable') {
+        if (this.rule.rule === 'nullable') {
           this.validations[field].nullable = true;
         }
 
@@ -380,19 +387,20 @@ class Validator {
 
   /**
      * make rules from array
-     * @param {*} rules
+     * @param {*} arrayRules
      * @return {*}
      */
-  makeValidationsFromArray(rules) {
-    if (!rules || !Object.keys(rules).length) {
+  makeValidationsFromArray(arrayRules) {
+    if (!arrayRules || !Object.keys(arrayRules).length) {
       return;
     }
 
     let field; let fieldRule;
 
     // here r is field name
-    for (field in rules) {
-      if (!rules.hasOwnProperty(field)) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (field in arrayRules) {
+      if (!arrayRules.hasOwnProperty(field)) {
         continue;
       }
 
@@ -400,7 +408,8 @@ class Validator {
       let multipleFields = 0;
 
       if (field === '*') {
-        return this.addPostRules(rules[field]);
+        this.addPostRules(arrayRules[field]);
+        return;
       }
 
       // console.log('in loop', field);
@@ -409,7 +418,7 @@ class Validator {
         multipleFields = field.indexOf('*');
 
         this.validations[field] = {
-          field: field,
+          field,
           multiple: (multipleFields > 0),
           path: field.split('.'),
           required: false,
@@ -418,7 +427,8 @@ class Validator {
       }
 
 
-      for (fieldRule of rules[field]) {
+      // eslint-disable-next-line no-restricted-syntax
+      for (fieldRule of arrayRules[field]) {
         let args = [];
 
         if (fieldRule instanceof Array) {
@@ -426,7 +436,7 @@ class Validator {
           fieldRule = fieldRule.splice(0, 1).toString();
         }
 
-        this.rule = {rule: fieldRule, args: (args.length == 1) ? args[0] : args};
+        this.rule = { rule: fieldRule, args: (args.length === 1) ? args[0] : args };
 
         this.populateRule(field);
       }
@@ -459,7 +469,9 @@ class Validator {
      * @return {string}
      */
   parseMessage(rule, field, value, args) {
-    return messageParser({V: this, rule, field, value, args});
+    return messageParser({
+      V: this, rule, field, value, args,
+    });
   }
 
   /**
@@ -472,7 +484,9 @@ class Validator {
     */
   parseExistingMessageOnly(rule, field, value, args) {
     /* istanbul ignore next */
-    return messageParser({V: this, rule, field, value, args, defaultMessage: 'Message is missing for rule ' + rule});
+    return messageParser({
+      V: this, rule, field, value, args, defaultMessage: `Message is missing for rule ${rule}`,
+    });
   }
 }
 

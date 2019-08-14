@@ -2,24 +2,26 @@ const assert = require('assert');
 
 const Validator = require('../index');
 
-const r = {};
 
-describe('Objects', function() {
+describe('Objects', () => {
   it('Validate object properties', async () => {
     const v = new Validator(
-        {
-          product: {id: '1', name: '', price: '', active: 'yes'},
+      {
+        product: {
+          id: '1', name: '', price: '', active: 'yes',
         },
-        {
-          'product': 'required|object',
-          'product.id': 'required|integer',
-          'product.name': 'required',
-          'product.price': 'required|integer',
-          'product.active': 'required|integer',
-        },
-        {
-          product: 'The given product is invalid :value.',
-        });
+      },
+      {
+        product: 'required|object',
+        'product.id': 'required|integer',
+        'product.name': 'required',
+        'product.price': 'required|integer',
+        'product.active': 'required|integer',
+      },
+      {
+        product: 'The given product is invalid :value.',
+      },
+    );
 
     const matched = await v.check();
 
@@ -30,13 +32,14 @@ describe('Objects', function() {
 
   it('Validate object:false case', async () => {
     const v = new Validator(
-        {
-          product: '',
-        },
-        {
-          'product': 'required|object',
+      {
+        product: '',
+      },
+      {
+        product: 'required|object',
 
-        });
+      },
+    );
 
     const matched = await v.check();
 
@@ -47,13 +50,14 @@ describe('Objects', function() {
 
   it('Validate object:true case', async () => {
     const v = new Validator(
-        {
-          product: {},
-        },
-        {
-          'product': 'required|object',
+      {
+        product: {},
+      },
+      {
+        product: 'required|object',
 
-        });
+      },
+    );
 
     const matched = await v.check();
 

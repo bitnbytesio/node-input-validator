@@ -2,14 +2,12 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
-const r = {};
 
-
-describe('alpha', function() {
+describe('alpha', () => {
   it('validation should pass: with example', async () => {
     const v = new Validator(
-        {username: 'example'},
-        {username: 'alpha'}
+      { username: 'example' },
+      { username: 'alpha' },
     );
 
     const matched = await v.check();
@@ -20,8 +18,8 @@ describe('alpha', function() {
 
   it('validation should fail: with now123', async () => {
     const v = new Validator(
-        {username: 'now123'},
-        {username: 'alpha'}
+      { username: 'now123' },
+      { username: 'alpha' },
     );
 
     const matched = await v.check();
@@ -33,8 +31,8 @@ describe('alpha', function() {
 
   it('validation should fail: with u@name', async () => {
     const v = new Validator(
-        {username: 'u@name'},
-        {username: 'alpha'}
+      { username: 'u@name' },
+      { username: 'alpha' },
     );
 
     const matched = await v.check();
@@ -46,8 +44,8 @@ describe('alpha', function() {
 
   it('validation should fail: with 123', async () => {
     const v = new Validator(
-        {username: '123'},
-        {username: 'alpha'}
+      { username: '123' },
+      { username: 'alpha' },
     );
 
     const matched = await v.check();

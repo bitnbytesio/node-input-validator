@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('minLength', function() {
+describe('minLength', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 'uname'},
-        {attribute: 'minLength:5'}
+      { attribute: 'uname' },
+      { attribute: 'minLength:5' },
     );
 
     const matched = await v.check();
@@ -21,8 +18,8 @@ describe('minLength', function() {
 
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
-        {attribute: 'uname'},
-        {attribute: 'minLength:6'}
+      { attribute: 'uname' },
+      { attribute: 'minLength:6' },
     );
 
     const matched = await v.check();

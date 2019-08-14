@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('contains', function() {
+describe('contains', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 'This package is awesome.'},
-        {attribute: 'contains:package'}
+      { attribute: 'This package is awesome.' },
+      { attribute: 'contains:package' },
     );
 
     const matched = await v.check();
@@ -21,8 +18,8 @@ describe('contains', function() {
 
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
-        {attribute: 'Yes, Node is awesome'},
-        {attribute: 'contains:yes'}
+      { attribute: 'Yes, Node is awesome' },
+      { attribute: 'contains:yes' },
     );
 
     const matched = await v.check();

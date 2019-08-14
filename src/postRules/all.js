@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /**
  * post validation rule all
  * @param {*} seletedValues

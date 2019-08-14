@@ -2,12 +2,12 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
-describe('#requiredWith', function() {
+describe('#requiredWith', () => {
   it('should return false for missing seed length', async () => {
     try {
-      const v = new Validator({age: 16}, {remember: 'requiredWith'});
+      const v = new Validator({ age: 16 }, { remember: 'requiredWith' });
 
-      const matched = await v.check();
+      await v.check();
     } catch (e) {
       assert.equal(e, 'Invalid arguments supplied for field remember in required with rule.');
     }
@@ -16,26 +16,28 @@ describe('#requiredWith', function() {
   });
 
   it('should pass', async () => {
-    let v; let matched;
-
     // validate with single seed
-    v = new Validator(
-        {name: 'Harcharan Singh', sex: 'male', email: '', ip: ''},
-        {email: 'email', ip: 'requiredWith:email|ip'});
+    const v = new Validator(
+      {
+        name: 'Harcharan Singh', sex: 'male', email: '', ip: '',
+      },
+      { email: 'email', ip: 'requiredWith:email|ip' },
+    );
 
-    matched = await v.check();
+    const matched = await v.check();
 
     assert.equal(matched, true);
   });
   it('should pass', async () => {
-    let v; let matched;
-
     // validate with single seed
-    v = new Validator(
-        {name: 'Harcharan Singh', sex: 'male', address: {street: 'fantastic'}, ip: ''},
-        {email: 'email', sex: 'requiredWith:address.street'});
+    const v = new Validator(
+      {
+        name: 'Harcharan Singh', sex: 'male', address: { street: 'fantastic' }, ip: '',
+      },
+      { email: 'email', sex: 'requiredWith:address.street' },
+    );
 
-    matched = await v.check();
+    const matched = await v.check();
 
     assert.equal(matched, true);
   });
@@ -43,8 +45,11 @@ describe('#requiredWith', function() {
   it('should fail', async () => {
     // validate with multiple seeds
     const v = new Validator(
-        {name: 'Harcharan Singh', sex: 'male', email: '', ip: ''},
-        {email: 'requiredWith:name,sex'});
+      {
+        name: 'Harcharan Singh', sex: 'male', email: '', ip: '',
+      },
+      { email: 'requiredWith:name,sex' },
+    );
 
     const matched = await v.check();
 
@@ -53,8 +58,11 @@ describe('#requiredWith', function() {
   it('should fail', async () => {
     // validate with multiple seeds
     const v = new Validator(
-        {name: 'Harcharan Singh', address: {street: 'fantastic'}, email: '', ip: ''},
-        {email: 'requiredWith:name,address.street'});
+      {
+        name: 'Harcharan Singh', address: { street: 'fantastic' }, email: '', ip: '',
+      },
+      { email: 'requiredWith:name,address.street' },
+    );
 
     const matched = await v.check();
 
@@ -64,8 +72,11 @@ describe('#requiredWith', function() {
   it('should pass', async () => {
     // validate with multiple seeds
     const v = new Validator(
-        {name: 'Harcharan Singh', sex: 'male', email: 'artisangang@gmail.com', ip: ''},
-        {email: 'requiredWith:name,sex'});
+      {
+        name: 'Harcharan Singh', sex: 'male', email: 'artisangang@gmail.com', ip: '',
+      },
+      { email: 'requiredWith:name,sex' },
+    );
 
     const matched = await v.check();
 
@@ -75,8 +86,11 @@ describe('#requiredWith', function() {
   it('should fail', async () => {
     // check for fails
     const v = new Validator(
-        {name: 'Harcharan Singh', sex: 'male', email: 'artisangang@gmail.com', ip: ''},
-        {email: 'email', ip: 'requiredWith:email|ip'});
+      {
+        name: 'Harcharan Singh', sex: 'male', email: 'artisangang@gmail.com', ip: '',
+      },
+      { email: 'email', ip: 'requiredWith:email|ip' },
+    );
 
     const matched = await v.check();
     assert.equal(matched, false);

@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('ascii', function() {
+describe('ascii', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {username: 'sfsf46546*/-=-!@#$%^&*()_+!?><:"{}[];'},
-        {username: 'ascii'}
+      { username: 'sfsf46546*/-=-!@#$%^&*()_+!?><:"{}[];' },
+      { username: 'ascii' },
     );
 
     const matched = await v.check();
@@ -21,8 +18,8 @@ describe('ascii', function() {
 
   it('validation should fail', async () => {
     const v = new Validator(
-        {username: 'uname€'},
-        {username: 'ascii'}
+      { username: 'uname€' },
+      { username: 'ascii' },
     );
 
     const matched = await v.check();

@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('ip', function() {
+describe('ip', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '192.168.1.14'},
-        {attribute: 'ip'}
+      { attribute: '192.168.1.14' },
+      { attribute: 'ip' },
     );
 
     const matched = await v.check();
@@ -21,8 +18,8 @@ describe('ip', function() {
 
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
-        {attribute: 'Yes, Node is awesome'},
-        {attribute: 'ip'}
+      { attribute: 'Yes, Node is awesome' },
+      { attribute: 'ip' },
     );
 
     const matched = await v.check();

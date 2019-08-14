@@ -3,10 +3,10 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
-describe('requiredRules', function() {
-  describe('#required', function() {
+describe('requiredRules', () => {
+  describe('#required', () => {
     it('should return true', async () => {
-      const v = new Validator({name: 'Harcharan Singh'}, {name: 'required'});
+      const v = new Validator({ name: 'Harcharan Singh' }, { name: 'required' });
 
       const matched = await v.check();
 
@@ -14,7 +14,7 @@ describe('requiredRules', function() {
     });
 
     it('should return false', async () => {
-      const v = new Validator({name: ''}, {name: 'required'});
+      const v = new Validator({ name: '' }, { name: 'required' });
 
       const matched = await v.check();
 
@@ -22,7 +22,7 @@ describe('requiredRules', function() {
     });
 
     it('should return false', async () => {
-      const v = new Validator({name: ''}, {name: 'required|min:1'});
+      const v = new Validator({ name: '' }, { name: 'required|min:1' });
 
       const matched = await v.check();
 
@@ -30,7 +30,7 @@ describe('requiredRules', function() {
     });
 
     it('should return false', async () => {
-      const v = new Validator({email: ''}, {name: 'required|email'});
+      const v = new Validator({ email: '' }, { name: 'required|email' });
 
       const matched = await v.check();
 

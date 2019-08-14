@@ -2,7 +2,7 @@ const validationRules = require('./rules/index');
 const postValidationRules = require('./postRules/index');
 // const filters = require('./filters');
 
-const reallyEmpty = require('./lib/empty').reallyEmpty;
+const { reallyEmpty } = require('./lib/empty');
 
 const implicitRules = [
   'required',
@@ -47,6 +47,7 @@ module.exports.applyRules = async function apply(field, validator) {
       //   value = item;
       // }
 
+      // eslint-disable-next-line no-await-in-loop
       proceed = await apply({
         field: indexedField,
         multiple: false,
@@ -59,16 +60,17 @@ module.exports.applyRules = async function apply(field, validator) {
   }
 
   for (let r = 0; r < field.rules.length; r++) {
+    // eslint-disable-next-line no-param-reassign
     field.value = validator.inputVal(field.field, field.multiple);
 
-    const rule = field.rules[r].rule;
+    const { rule } = field.rules[r];
 
-    if (rule == 'nullable' || field.nullable === true && field.value == null) {
+    if (rule === 'nullable' || (field.nullable === true && field.value === null)) {
       continue;
     }
 
     if (typeof validationRules[rule] !== 'function') {
-      throw new Error('Invalid Validation Rule: ' + rule + ' does not exist');
+      throw new Error(`Invalid Validation Rule: ${rule} does not exist`);
     }
 
     if (!field.required && reallyEmpty(field.value)) {
@@ -81,19 +83,23 @@ module.exports.applyRules = async function apply(field, validator) {
       ruleArgs.push(field.rules[r].args);
     }
 
+    // eslint-disable-next-line no-await-in-loop
     const result = await validationRules[rule].apply(validator, ruleArgs);
 
     if (result && implicitRules.indexOf(field.rules[r].rule) > 0) {
+      // eslint-disable-next-line no-param-reassign
       field.required = false;
     }
 
     if (!result) {
       // validator.validations[field.field].value in place of file.value
+      // eslint-disable-next-line no-param-reassign
       field.message = validator.parseMessage(
-          field.rules[r].rule,
-          field.field,
-          field.value,
-          field.rules[r].args);
+        field.rules[r].rule,
+        field.field,
+        field.value,
+        field.rules[r].args,
+      );
       validator.addError(field.field, field.rules[r].rule, field.message);
       proceed = false;
       break;
@@ -109,9 +115,11 @@ module.exports.applyRules = async function apply(field, validator) {
  * @param {*} validator
  */
 module.exports.applyPostRules = async function postApply(rule, validator) {
-  if (rule.rule == 'function') {
+  if (rule.rule === 'function') {
+    // eslint-disable-next-line no-return-await
     return await rule.params.apply(validator, [rule.values]);
   }
 
+  // eslint-disable-next-line no-return-await
   return await postValidationRules[rule.rule].apply(validator, [rule.values, rule.params]);
 };

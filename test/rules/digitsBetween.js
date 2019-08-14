@@ -3,18 +3,15 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('digitsBetween', function() {
+describe('digitsBetween', () => {
   it('validation should throw error of invalid seed', async () => {
     try {
       const v = new Validator(
-          {attribute: '1250'},
-          {attribute: 'digitsBetween:4,6'}
+        { attribute: '1250' },
+        { attribute: 'digitsBetween:4,6' },
       );
 
-      const matched = await v.check();
+      await v.check();
     } catch (e) {
       assert.equal(e, 'Seeds must be integer for attribute under digits between rule.');
     }
@@ -22,8 +19,8 @@ describe('digitsBetween', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '1250'},
-        {attribute: 'digitsBetween:4,6'}
+      { attribute: '1250' },
+      { attribute: 'digitsBetween:4,6' },
     );
 
     const matched = await v.check();
@@ -33,8 +30,8 @@ describe('digitsBetween', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '125012'},
-        {attribute: 'digitsBetween:4,6'}
+      { attribute: '125012' },
+      { attribute: 'digitsBetween:4,6' },
     );
 
     const matched = await v.check();
@@ -44,8 +41,8 @@ describe('digitsBetween', function() {
 
   it('validation should fail: invalid min', async () => {
     const v = new Validator(
-        {attribute: '1'},
-        {attribute: 'digitsBetween:2,3'}
+      { attribute: '1' },
+      { attribute: 'digitsBetween:2,3' },
     );
 
     const matched = await v.check();
@@ -58,8 +55,8 @@ describe('digitsBetween', function() {
 
   it('validation should fail: invalid max', async () => {
     const v = new Validator(
-        {attribute: '123456'},
-        {attribute: 'digitsBetween:2,3'}
+      { attribute: '123456' },
+      { attribute: 'digitsBetween:2,3' },
     );
 
     const matched = await v.check();
@@ -72,8 +69,8 @@ describe('digitsBetween', function() {
 
   it('validation should fail: invalid val', async () => {
     const v = new Validator(
-        {attribute: 'asdfd'},
-        {attribute: 'digitsBetween:2,3'}
+      { attribute: 'asdfd' },
+      { attribute: 'digitsBetween:2,3' },
     );
 
     const matched = await v.check();

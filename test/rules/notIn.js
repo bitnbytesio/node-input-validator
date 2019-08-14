@@ -2,15 +2,11 @@ const assert = require('assert');
 
 const Validator = require('../../index');
 
-
-const r = {};
-
-
-describe('notIn', function() {
+describe('notIn', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 'public'},
-        {attribute: 'notIn:private,draft'}
+      { attribute: 'public' },
+      { attribute: 'notIn:private,draft' },
     );
 
     const matched = await v.check();
@@ -21,8 +17,8 @@ describe('notIn', function() {
 
   it('validation should fail: misnotIng attribute', async () => {
     const v = new Validator(
-        {attribute: 'draft'},
-        {attribute: 'notIn:public,draft'}
+      { attribute: 'draft' },
+      { attribute: 'notIn:public,draft' },
     );
 
     const matched = await v.check();

@@ -3,12 +3,9 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('phoneNumber', function() {
+describe('phoneNumber', () => {
   it('validation should pass', async () => {
-    const v = new Validator({id: '+918699987073'}, {id: 'phoneNumber'});
+    const v = new Validator({ id: '+918699987073' }, { id: 'phoneNumber' });
 
     const matched = await v.check();
 
@@ -17,7 +14,7 @@ describe('phoneNumber', function() {
 
 
   it('validation should pass', async () => {
-    const v = new Validator({id: '+1-541-754-3010'}, {id: 'phoneNumber'});
+    const v = new Validator({ id: '+1-541-754-3010' }, { id: 'phoneNumber' });
     const matched = await v.check();
 
     assert.equal(matched, true);
@@ -27,7 +24,7 @@ describe('phoneNumber', function() {
 
 
   it('validation should fail: with invalid value', async () => {
-    const v = new Validator({attribute: 'artisangang'}, {attribute: 'phoneNumber'});
+    const v = new Validator({ attribute: 'artisangang' }, { attribute: 'phoneNumber' });
 
     const matched = await v.check();
 

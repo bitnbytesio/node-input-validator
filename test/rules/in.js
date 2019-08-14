@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('in', function() {
+describe('in', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 'public'},
-        {attribute: 'in:private,public,draft'}
+      { attribute: 'public' },
+      { attribute: 'in:private,public,draft' },
     );
 
     const matched = await v.check();
@@ -20,8 +17,8 @@ describe('in', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 'public'},
-        {attribute: 'in:public'}
+      { attribute: 'public' },
+      { attribute: 'in:public' },
     );
 
     const matched = await v.check();
@@ -32,8 +29,8 @@ describe('in', function() {
 
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
-        {attribute: 'draft'},
-        {attribute: 'in:public,private'}
+      { attribute: 'draft' },
+      { attribute: 'in:public,private' },
     );
 
     const matched = await v.check();

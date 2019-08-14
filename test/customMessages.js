@@ -1,6 +1,3 @@
-const assert = require('assert');
-
-const should = require('should');
 
 const Validator = require('../index');
 
@@ -20,23 +17,21 @@ Validator.customMessages({
 }, 'hi');
 
 
-Validator.extend('even', async function(field, value) {
-  if ((parseInt(value) % 2) == 0) {
+Validator.extend('even', async (field, value) => {
+  if ((parseInt(value) % 2) === 0) {
     return true;
   }
 
   return false;
 });
 
-Validator.extend('status', async function(field, value, args) {
+Validator.extend('status', async (field, value, args) => {
   if (args.indexOf(value) >= 0) {
     return true;
   }
 
   return false;
 });
-
-const r = {};
 
 
 // describe('Custom Messages', function () {

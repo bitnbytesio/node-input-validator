@@ -3,11 +3,12 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-describe('nullable', function() {
+describe('nullable', () => {
   it('should fail', async () => {
     const v = new Validator(
-        {attribute: 'email'},
-        {attribute: 'nullable|email'});
+      { attribute: 'email' },
+      { attribute: 'nullable|email' },
+    );
 
     const matched = await v.check();
 
@@ -17,42 +18,36 @@ describe('nullable', function() {
   });
 
   it('attribute absent, should fail', async () => {
-    let v; let matched;
+    const v = new Validator(
+      {},
+      { attribute: 'nullable|email' },
+    );
 
-    v = new Validator(
-        { },
-        {attribute: 'nullable|email'});
-
-    matched = await v.check();
+    const matched = await v.check();
 
     assert.equal(matched, false);
   });
 
 
   it('should pass', async () => {
-    let v; let matched;
+    const v = new Validator(
+      { attribute: null },
+      { attribute: 'nullable|email' },
+    );
 
-    v = new Validator(
-        {attribute: null},
-        {attribute: 'nullable|email'});
-
-    matched = await v.check();
-
-    console.log(v.errors);
+    const matched = await v.check();
 
     assert.equal(matched, true);
   });
 
   it('should pass', async () => {
-    let v; let matched;
+    const v = new Validator(
+      { attribute: null },
+      { attribute: 'nullable|alpha|required' },
+    );
 
-    v = new Validator(
-        {attribute: null},
-        {attribute: 'nullable|alpha|required'});
+    const matched = await v.check();
 
-    matched = await v.check();
-
-    console.log(v.errors);
 
     assert.equal(matched, true);
   });

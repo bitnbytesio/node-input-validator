@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('numeric', function() {
+describe('numeric', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '12'},
-        {attribute: 'numeric'}
+      { attribute: '12' },
+      { attribute: 'numeric' },
     );
 
     const matched = await v.check();
@@ -20,8 +17,8 @@ describe('numeric', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 12},
-        {attribute: 'numeric'}
+      { attribute: 12 },
+      { attribute: 'numeric' },
     );
 
     const matched = await v.check();
@@ -31,8 +28,8 @@ describe('numeric', function() {
 
   it('validation should fail', async () => {
     const v = new Validator(
-        {attribute: 12.5},
-        {attribute: 'numeric'}
+      { attribute: 12.5 },
+      { attribute: 'numeric' },
     );
 
     const matched = await v.check();
@@ -43,8 +40,8 @@ describe('numeric', function() {
 
   it('validation should fail', async () => {
     const v = new Validator(
-        {attribute: 'draft'},
-        {attribute: 'numeric'}
+      { attribute: 'draft' },
+      { attribute: 'numeric' },
     );
 
     const matched = await v.check();

@@ -4,6 +4,6 @@
  * @param {string} value
  * @return {Promise.<string>}
  */
-module.exports = async function trim(value) {/* istanbul ignore next */
-  return value.trim();
+module.exports = function trim(value) { /* istanbul ignore next */
+  return Promise.resolve(value.trim());
 };

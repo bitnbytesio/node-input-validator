@@ -1,4 +1,4 @@
-const {reallyEmpty} = require('../lib/empty');
+const { reallyEmpty } = require('../lib/empty');
 
 module.exports = async function required(field, value) {
   if (reallyEmpty(value)) {
@@ -7,4 +7,3 @@ module.exports = async function required(field, value) {
 
   return true;
 };
-

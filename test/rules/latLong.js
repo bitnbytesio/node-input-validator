@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('latLong', function() {
+describe('latLong', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '30.483997,76.593948'},
-        {attribute: 'latLong'}
+      { attribute: '30.483997,76.593948' },
+      { attribute: 'latLong' },
     );
 
     const matched = await v.check();
@@ -21,8 +18,8 @@ describe('latLong', function() {
 
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
-        {attribute: 'Yes, Node is awesome'},
-        {attribute: 'latLong'}
+      { attribute: 'Yes, Node is awesome' },
+      { attribute: 'latLong' },
     );
 
     const matched = await v.check();

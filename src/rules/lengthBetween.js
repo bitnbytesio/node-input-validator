@@ -2,7 +2,7 @@ const integer = require('./integer');
 
 module.exports = async function lengthBetween(attribute, value, args) {
   if (!Array.isArray(args) && args.length !== 2) {
-    throw 'The number of arguments for length between in the field ' + attribute + ' are invalid.';
+    throw `The number of arguments for length between in the field ${attribute} are invalid.`;
   }
 
   let [min, max] = args;
@@ -32,7 +32,7 @@ module.exports = async function lengthBetween(attribute, value, args) {
   //     return true;
   // }
 
-  if (typeof value == 'string' || Array.isArray(value)) {
+  if (typeof value === 'string' || Array.isArray(value)) {
     if (value.length < min || value.length > max) {
       return false;
     }

@@ -3,10 +3,11 @@ const fs = require('fs');
 
 const Validator = require('../../index');
 
-describe('size', function() {
+describe('size', () => {
   it('should return true', async () => {
     const v = new Validator(
-        {file: fs.readFileSync('./test/stubs/file-small.png')}, {file: 'size:4kb'});
+      { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:4kb' },
+    );
 
 
     const matched = await v.check();
@@ -16,7 +17,8 @@ describe('size', function() {
 
   it('should return true', async () => {
     const v = new Validator(
-        {file: {path: './test/stubs/file-small.png'}}, {file: 'size:4kb'});
+      { file: { path: './test/stubs/file-small.png' } }, { file: 'size:4kb' },
+    );
 
 
     const matched = await v.check();
@@ -26,7 +28,8 @@ describe('size', function() {
 
   it('should return false', async () => {
     const v = new Validator(
-        {file: {buffer: fs.readFileSync('./test/stubs/file-small.png')}}, {file: 'size:1kb'});
+      { file: { buffer: fs.readFileSync('./test/stubs/file-small.png') } }, { file: 'size:1kb' },
+    );
 
 
     const matched = await v.check();
@@ -36,7 +39,8 @@ describe('size', function() {
 
   it('should return false', async () => {
     const v = new Validator(
-        {file: './test/stubs/file-small.png'}, {file: 'size:1kb'});
+      { file: './test/stubs/file-small.png' }, { file: 'size:1kb' },
+    );
 
 
     const matched = await v.check();

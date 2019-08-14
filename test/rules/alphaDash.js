@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('alphaDash', function() {
+describe('alphaDash', () => {
   it('validation should pass: with example', async () => {
     const v = new Validator(
-        {username: 'example'},
-        {username: 'alphaDash'}
+      { username: 'example' },
+      { username: 'alphaDash' },
     );
 
     const matched = await v.check();
@@ -20,8 +17,8 @@ describe('alphaDash', function() {
 
   it('validation should pass: with example-test', async () => {
     const v = new Validator(
-        {username: 'example-test'},
-        {username: 'alphaDash'}
+      { username: 'example-test' },
+      { username: 'alphaDash' },
     );
 
     const matched = await v.check();
@@ -32,8 +29,8 @@ describe('alphaDash', function() {
 
   it('validation should pass: with now123', async () => {
     const v = new Validator(
-        {username: 'now123'},
-        {username: 'alphaDash'}
+      { username: 'now123' },
+      { username: 'alphaDash' },
     );
 
     const matched = await v.check();
@@ -43,8 +40,8 @@ describe('alphaDash', function() {
 
   it('validation should pass: with now-123', async () => {
     const v = new Validator(
-        {username: 'now-123'},
-        {username: 'alphaDash'}
+      { username: 'now-123' },
+      { username: 'alphaDash' },
     );
 
     const matched = await v.check();
@@ -56,8 +53,8 @@ describe('alphaDash', function() {
 
   it('validation should fail: with u@name', async () => {
     const v = new Validator(
-        {username: 'u@name'},
-        {username: 'alphaDash'}
+      { username: 'u@name' },
+      { username: 'alphaDash' },
     );
 
     const matched = await v.check();
@@ -69,8 +66,8 @@ describe('alphaDash', function() {
 
   it('validation should fail: with 123', async () => {
     const v = new Validator(
-        {username: '123'},
-        {username: 'alphaDash'}
+      { username: '123' },
+      { username: 'alphaDash' },
     );
 
     const matched = await v.check();
@@ -82,8 +79,8 @@ describe('alphaDash', function() {
 
   it('validation should fail: with u_name', async () => {
     const v = new Validator(
-        {username: 'u_name'},
-        {username: 'alphaDash'}
+      { username: 'u_name' },
+      { username: 'alphaDash' },
     );
 
     const matched = await v.check();

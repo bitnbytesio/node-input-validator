@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('max', function() {
+describe('max', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '20'},
-        {attribute: 'max:20'}
+      { attribute: '20' },
+      { attribute: 'max:20' },
     );
 
     const matched = await v.check();
@@ -21,8 +18,8 @@ describe('max', function() {
 
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
-        {attribute: '19'},
-        {attribute: 'max:18'}
+      { attribute: '19' },
+      { attribute: 'max:18' },
     );
 
     const matched = await v.check();

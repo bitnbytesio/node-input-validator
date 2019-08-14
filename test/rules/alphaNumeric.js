@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('alphaNumeric', function() {
+describe('alphaNumeric', () => {
   it('validation should pass: with example', async () => {
     const v = new Validator(
-        {username: 'example'},
-        {username: 'alphaNumeric'}
+      { username: 'example' },
+      { username: 'alphaNumeric' },
     );
 
     const matched = await v.check();
@@ -21,8 +18,8 @@ describe('alphaNumeric', function() {
 
   it('validation should pass: with now123', async () => {
     const v = new Validator(
-        {username: 'now123'},
-        {username: 'alphaNumeric'}
+      { username: 'now123' },
+      { username: 'alphaNumeric' },
     );
 
     const matched = await v.check();
@@ -34,8 +31,8 @@ describe('alphaNumeric', function() {
 
   it('validation should fail: with u@name', async () => {
     const v = new Validator(
-        {username: 'u@name'},
-        {username: 'alphaNumeric'}
+      { username: 'u@name' },
+      { username: 'alphaNumeric' },
     );
 
     const matched = await v.check();
@@ -47,8 +44,8 @@ describe('alphaNumeric', function() {
 
   it('validation should fail: with 123', async () => {
     const v = new Validator(
-        {username: '123'},
-        {username: 'alphaNumeric'}
+      { username: '123' },
+      { username: 'alphaNumeric' },
     );
 
     const matched = await v.check();
@@ -60,8 +57,8 @@ describe('alphaNumeric', function() {
 
   it('validation should fail: with u_name', async () => {
     const v = new Validator(
-        {username: 'u_name'},
-        {username: 'alphaNumeric'}
+      { username: 'u_name' },
+      { username: 'alphaNumeric' },
     );
 
     const matched = await v.check();

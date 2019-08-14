@@ -1,5 +1,5 @@
 const moment = require('moment');
-const {dateFormats} = require('../lib/date');
+const { dateFormats } = require('../lib/date');
 
 module.exports = async function dateDaysBeforeToday(field, value, args) {
   if (!Array.isArray(args)) {

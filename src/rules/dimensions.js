@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // const sizeOf = require('image-size');
 
 module.exports = async function dimensions(field, file, args) {

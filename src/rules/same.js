@@ -4,6 +4,7 @@ module.exports = async function same(field, value, otherField) {
 
   let otherValue;
 
+  // eslint-disable-next-line array-callback-return
   otherField.map((item) => {
     if (typeof otherValue === 'undefined') {
       otherValue = this.inputs && this.inputs[item];
@@ -16,7 +17,7 @@ module.exports = async function same(field, value, otherField) {
     return false;
   }
 
-  if (otherValue != value) {
+  if (otherValue !== value) {
     return false;
   }
 

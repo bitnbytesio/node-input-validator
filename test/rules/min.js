@@ -3,14 +3,11 @@ const assert = require('assert');
 const Validator = require('../../index');
 
 
-const r = {};
-
-
-describe('min', function() {
+describe('min', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: '20'},
-        {attribute: 'min:20'}
+      { attribute: '20' },
+      { attribute: 'min:20' },
     );
 
     const matched = await v.check();
@@ -20,8 +17,8 @@ describe('min', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 20},
-        {attribute: 'min:20'}
+      { attribute: 20 },
+      { attribute: 'min:20' },
     );
 
     const matched = await v.check();
@@ -31,8 +28,8 @@ describe('min', function() {
 
   it('validation should pass', async () => {
     const v = new Validator(
-        {attribute: 20.55},
-        {attribute: 'min:20.50'}
+      { attribute: 20.55 },
+      { attribute: 'min:20.50' },
     );
 
     const matched = await v.check();
@@ -43,8 +40,8 @@ describe('min', function() {
 
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
-        {attribute: '15'},
-        {attribute: 'min:18'}
+      { attribute: '15' },
+      { attribute: 'min:18' },
     );
 
     const matched = await v.check();

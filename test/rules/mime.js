@@ -5,10 +5,11 @@ const Validator = require('../../index');
 
 const mime = require('../../src/rules/mime');
 
-describe('mime', function() {
+describe('mime', () => {
   it('should return true', async () => {
     const v = new Validator(
-        {file: fs.readFileSync('./test/stubs/file-small.png')}, {file: 'size:4kb|mime:png,jpg'});
+      { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:4kb|mime:png,jpg' },
+    );
 
 
     const matched = await v.check();
@@ -19,7 +20,8 @@ describe('mime', function() {
 
   it('should return true', async () => {
     const v = new Validator(
-        {file: './test/stubs/file-small.png'}, {file: 'size:4kb|mime:png,jpg'});
+      { file: './test/stubs/file-small.png' }, { file: 'size:4kb|mime:png,jpg' },
+    );
 
 
     const matched = await v.check();
@@ -29,7 +31,8 @@ describe('mime', function() {
 
   it('should return false', async () => {
     const v = new Validator(
-        {file: {buffer: fs.readFileSync('./test/stubs/file-small.png')}}, {file: 'mime:bmp'});
+      { file: { buffer: fs.readFileSync('./test/stubs/file-small.png') } }, { file: 'mime:bmp' },
+    );
 
 
     const matched = await v.check();
@@ -39,32 +42,31 @@ describe('mime', function() {
 
   it('should return false', async () => {
     const v = new Validator(
-        {file: {path: './test/stubs/file-small.png'}}, {file: 'mime:gif,bmp'});
+      { file: { path: './test/stubs/file-small.png' } }, { file: 'mime:gif,bmp' },
+    );
 
 
     const matched = await v.check();
 
     assert.equal(matched, false);
-
-    console.log(v.errors.file.message);
 
     assert.equal(v.errors.file.message, v.parseExistingMessageOnly('mime', 'file', '', ['gif', 'bmp']));
   });
 });
 
-describe('mime direct checks', function() {
+describe('mime direct checks', () => {
   it('should return true', async () => {
-    await mime('file', {mime: 'png'}, ['png']);
+    await mime('file', { mime: 'png' }, ['png']);
   });
 
 
   it('should return true', async () => {
-    await mime('file', {type: 'png'}, ['png']);
+    await mime('file', { type: 'png' }, ['png']);
   });
 
 
   it('should return true', async () => {
-    await mime('file', {mimetype: 'png'}, ['png']);
+    await mime('file', { mimetype: 'png' }, ['png']);
   });
 
   it('should return true', async () => {

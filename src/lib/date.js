@@ -16,4 +16,4 @@ const dateFormats = [
   'YYYY-MM-DD HH:mm Z',
 ];
 
-module.exports = {dateFormats};
+module.exports = { dateFormats };
