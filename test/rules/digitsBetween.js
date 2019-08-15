@@ -8,7 +8,7 @@ describe('digitsBetween', () => {
     try {
       const v = new Validator(
         { attribute: '1250' },
-        { attribute: 'digitsBetween:4,6' },
+        { attribute: 'digitsBetween:4,6' }
       );
 
       await v.check();

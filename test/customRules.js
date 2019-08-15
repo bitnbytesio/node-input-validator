@@ -56,7 +56,7 @@ describe('Custom Rules', () => {
   describe('Using custom rule even', () => {
     it('sumOfFields:should return true', async () => {
       const v = new Validator(
-        { num1: '50', num2: '50' }, { num1: 'sumOfFields:num2,100|required' },
+        { num1: '50', num2: '50' }, { num1: 'sumOfFields:num2,100|required' }
       );
 
       const matched = await v.check();
@@ -66,7 +66,7 @@ describe('Custom Rules', () => {
 
     it('sumOfFields:should return false value is greater', async () => {
       const v = new Validator(
-        { num1: '50', num2: '51' }, { num1: 'sumOfFields:num2,100|required' },
+        { num1: '50', num2: '51' }, { num1: 'sumOfFields:num2,100|required' }
       );
 
       const matched = await v.check();
@@ -76,7 +76,7 @@ describe('Custom Rules', () => {
 
     it('sumOfFields:hould return false value is less', async () => {
       const v = new Validator(
-        { num1: '50', num2: '49' }, { num1: 'sumOfFields:num2,100|required' },
+        { num1: '50', num2: '49' }, { num1: 'sumOfFields:num2,100|required' }
       );
 
       const matched = await v.check();
@@ -87,7 +87,7 @@ describe('Custom Rules', () => {
 
     it('should return true', async () => {
       const v = new Validator(
-        { number: '4' }, { number: 'even|required' },
+        { number: '4' }, { number: 'even|required' }
       );
 
       const matched = await v.check();
@@ -97,7 +97,7 @@ describe('Custom Rules', () => {
 
     it('should return false', async () => {
       const v = new Validator(
-        { number: '9' }, { number: 'even|required' },
+        { number: '9' }, { number: 'even|required' }
       );
 
       const matched = await v.check();
@@ -112,7 +112,7 @@ describe('Custom Rules', () => {
       // Validator.setLang('pb');
 
       const v = new Validator(
-        { number: '9' }, { number: 'even|required' },
+        { number: '9' }, { number: 'even|required' }
       );
 
       v.setLang('pb');
@@ -133,7 +133,7 @@ describe('Custom Rules', () => {
       const v = new Validator(
         { number: '9' },
         { number: 'even|required' },
-        { 'number.even': 'Invalid number :value.' },
+        { 'number.even': 'Invalid number :value.' }
       );
 
       const matched = await v.check();
@@ -148,7 +148,7 @@ describe('Custom Rules', () => {
       const v = new Validator(
         { number: '' },
         { number: 'even|required' },
-        { 'number.required': 'Number is missing.' },
+        { 'number.required': 'Number is missing.' }
       );
 
       const matched = await v.check();
@@ -163,7 +163,7 @@ describe('Custom Rules', () => {
   describe('Using custom rule status', () => {
     it('should return true', async () => {
       const v = new Validator(
-        { status: 'draft' }, { status: 'status:draft,published|required' },
+        { status: 'draft' }, { status: 'status:draft,published|required' }
       );
 
       const matched = await v.check();
@@ -173,7 +173,7 @@ describe('Custom Rules', () => {
 
     it('should return false', async () => {
       const v = new Validator(
-        { status: 'completed' }, { status: 'status:draft,published|required' },
+        { status: 'completed' }, { status: 'status:draft,published|required' }
       );
 
       const matched = await v.fails();
@@ -189,7 +189,7 @@ describe('Nice Names', () => {
       const v = new Validator(
         { status: 'draft' },
         { status: 'status:pending,published|required' },
-        { status: 'The :attribute value is invalid.' },
+        { status: 'The :attribute value is invalid.' }
       );
 
       v.setAttributeNames({
