@@ -6,7 +6,7 @@ describe('notIn', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'public' },
-      { attribute: 'notIn:private,draft' },
+      { attribute: 'notIn:private,draft' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('notIn', () => {
   it('validation should fail: misnotIng attribute', async () => {
     const v = new Validator(
       { attribute: 'draft' },
-      { attribute: 'notIn:public,draft' },
+      { attribute: 'notIn:public,draft' }
     );
 
     const matched = await v.check();

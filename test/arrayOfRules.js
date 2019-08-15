@@ -16,7 +16,7 @@ describe('Multiple rules test', () => {
         { name: 'artisan' },
         {
           name: ['required', ['minLength', '5'], ['maxLength', '10'], 'alpha'],
-        },
+        }
       );
 
       const matched = await v.check();
@@ -31,7 +31,7 @@ describe('Multiple rules test', () => {
         { name: 'art' },
         {
           name: ['required', ['minLength', '5'], ['maxLength', '10'], 'alpha'],
-        },
+        }
       );
 
       const matched = await v.check();
@@ -44,7 +44,7 @@ describe('Multiple rules test', () => {
         { uid: 'abcdefghi' },
         {
           uid: ['required', ['lengthBetween', '5', '8'], 'alpha'],
-        },
+        }
       );
       const matched = await v.check();
 
@@ -56,7 +56,7 @@ describe('Multiple rules test', () => {
         { uid: 'xyz' },
         {
           uid: ['required', ['regex', 'abc|xyz']],
-        },
+        }
       );
       const matched = await v.check();
 

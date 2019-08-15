@@ -21,7 +21,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', sex: 'male', email: '', ip: '',
       },
-      { email: 'email', ip: 'requiredWith:email|ip' },
+      { email: 'email', ip: 'requiredWith:email|ip' }
     );
 
     const matched = await v.check();
@@ -34,7 +34,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', sex: 'male', address: { street: 'fantastic' }, ip: '',
       },
-      { email: 'email', sex: 'requiredWith:address.street' },
+      { email: 'email', sex: 'requiredWith:address.street' }
     );
 
     const matched = await v.check();
@@ -48,7 +48,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', sex: 'male', email: '', ip: '',
       },
-      { email: 'requiredWith:name,sex' },
+      { email: 'requiredWith:name,sex' }
     );
 
     const matched = await v.check();
@@ -61,7 +61,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', address: { street: 'fantastic' }, email: '', ip: '',
       },
-      { email: 'requiredWith:name,address.street' },
+      { email: 'requiredWith:name,address.street' }
     );
 
     const matched = await v.check();
@@ -75,7 +75,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', sex: 'male', email: 'artisangang@gmail.com', ip: '',
       },
-      { email: 'requiredWith:name,sex' },
+      { email: 'requiredWith:name,sex' }
     );
 
     const matched = await v.check();
@@ -89,7 +89,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', sex: 'male', email: 'artisangang@gmail.com', ip: '',
       },
-      { email: 'email', ip: 'requiredWith:email|ip' },
+      { email: 'email', ip: 'requiredWith:email|ip' }
     );
 
     const matched = await v.check();

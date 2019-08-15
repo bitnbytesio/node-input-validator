@@ -7,7 +7,7 @@ describe('contains', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'This package is awesome.' },
-      { attribute: 'contains:package' },
+      { attribute: 'contains:package' }
     );
 
     const matched = await v.check();
@@ -19,7 +19,7 @@ describe('contains', () => {
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
       { attribute: 'Yes, Node is awesome' },
-      { attribute: 'contains:yes' },
+      { attribute: 'contains:yes' }
     );
 
     const matched = await v.check();

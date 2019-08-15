@@ -7,7 +7,7 @@ describe('domain', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'example.com' },
-      { attribute: 'domain' },
+      { attribute: 'domain' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('domain', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'www.example.com' },
-      { attribute: 'domain' },
+      { attribute: 'domain' }
     );
 
     const matched = await v.check();
@@ -29,7 +29,7 @@ describe('domain', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'http://www.example.com' },
-      { attribute: 'domain' },
+      { attribute: 'domain' }
     );
 
     const matched = await v.check();
@@ -41,7 +41,7 @@ describe('domain', () => {
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
       { attribute: 'localhost' },
-      { attribute: 'domain' },
+      { attribute: 'domain' }
     );
 
     const matched = await v.check();

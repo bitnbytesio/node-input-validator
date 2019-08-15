@@ -7,7 +7,7 @@ describe('decimal', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '12.50' },
-      { attribute: 'decimal' },
+      { attribute: 'decimal' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('decimal', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 12.55 },
-      { attribute: 'decimal' },
+      { attribute: 'decimal' }
     );
 
     const matched = await v.check();
@@ -29,7 +29,7 @@ describe('decimal', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 12 },
-      { attribute: 'decimal' },
+      { attribute: 'decimal' }
     );
 
     const matched = await v.check();
@@ -40,7 +40,7 @@ describe('decimal', () => {
   it('validation should pass with 0 as integer', async () => {
     const v = new Validator(
       { attribute: 0 },
-      { attribute: 'required|decimal' },
+      { attribute: 'required|decimal' }
     );
 
     const matched = await v.check();
@@ -51,7 +51,7 @@ describe('decimal', () => {
   it('validation should pass with 0 as string', async () => {
     const v = new Validator(
       { attribute: '0' },
-      { attribute: 'required|decimal' },
+      { attribute: 'required|decimal' }
     );
 
     const matched = await v.check();
@@ -63,7 +63,7 @@ describe('decimal', () => {
   it('validation should fail: invalid val', async () => {
     const v = new Validator(
       { attribute: 'a12' },
-      { attribute: 'decimal' },
+      { attribute: 'decimal' }
     );
 
     const matched = await v.check();

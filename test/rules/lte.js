@@ -10,7 +10,7 @@ describe('lte', () => {
       {
         min: 'required|integer|lte:max',
         max: 'required|integer',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -24,7 +24,7 @@ describe('lte', () => {
       {
         min: 'required|integer|lte:max',
         max: 'required|integer',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -38,7 +38,7 @@ describe('lte', () => {
       {
         min: 'required|integer|lte:max',
         max: 'required|integer',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -52,7 +52,7 @@ describe('lte', () => {
       {
         min: 'required|integer|lte:max',
         max: 'required',
-      },
+      }
     );
 
     const matched = await v.check();

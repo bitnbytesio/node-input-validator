@@ -7,7 +7,7 @@ describe('arrayUniqueObjects', () => {
   it('validation should fail with non array', async () => {
     const v = new Validator(
       { features: 'test' },
-      { features: 'arrayUniqueObjects:id' },
+      { features: 'arrayUniqueObjects:id' }
     );
 
     const matched = await v.check();
@@ -28,7 +28,7 @@ describe('arrayUniqueObjects', () => {
           name: 'ok2',
         }],
       },
-      { features: 'array|arrayUniqueObjects:id' },
+      { features: 'array|arrayUniqueObjects:id' }
     );
 
     const matched = await v.check();
@@ -48,7 +48,7 @@ describe('arrayUniqueObjects', () => {
           name: 'ok2',
         }],
       },
-      { features: 'array|arrayUniqueObjects:id' },
+      { features: 'array|arrayUniqueObjects:id' }
     );
     const matched = await v.check();
 
@@ -67,7 +67,7 @@ describe('arrayUniqueObjects', () => {
           name: 'ok2',
         }],
       },
-      { features: 'array|arrayUniqueObjects:id' },
+      { features: 'array|arrayUniqueObjects:id' }
     );
     const matched = await v.check();
 
@@ -90,7 +90,7 @@ describe('arrayUniqueObjects', () => {
           name: 'ok2',
         }],
       },
-      { features: 'array|arrayUniqueObjects:id,name' },
+      { features: 'array|arrayUniqueObjects:id,name' }
     );
     const matched = await v.check();
 

@@ -7,7 +7,7 @@ describe('array', () => {
   it('validation should pass: []', async () => {
     const v = new Validator(
       { features: [] },
-      { features: 'array' },
+      { features: 'array' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('array', () => {
   it('validation should pass: with [1,2,3]', async () => {
     const v = new Validator(
       { features: [1, 2, 3] },
-      { features: 'array' },
+      { features: 'array' }
     );
 
     const matched = await v.check();
@@ -30,7 +30,7 @@ describe('array', () => {
   it('validation should fail: invalid value', async () => {
     const v = new Validator(
       { features: 'no' },
-      { features: 'array' },
+      { features: 'array' }
     );
 
     const matched = await v.check();

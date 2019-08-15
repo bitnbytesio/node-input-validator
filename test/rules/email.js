@@ -7,7 +7,7 @@ describe('email', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'user@example.com' },
-      { attribute: 'email' },
+      { attribute: 'email' }
     );
 
     const matched = await v.check();
@@ -19,7 +19,7 @@ describe('email', () => {
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
       { attribute: 'form@example' },
-      { attribute: 'email' },
+      { attribute: 'email' }
     );
 
     const matched = await v.check();

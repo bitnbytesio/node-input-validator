@@ -7,7 +7,7 @@ describe('digits', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '1250' },
-      { attribute: 'digits:4' },
+      { attribute: 'digits:4' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('digits', () => {
   it('validation should fail: invalid val', async () => {
     const v = new Validator(
       { attribute: 'abcd' },
-      { attribute: 'digits:4' },
+      { attribute: 'digits:4' }
     );
 
     const matched = await v.check();
@@ -32,7 +32,7 @@ describe('digits', () => {
   it('validation should fail: invalid length', async () => {
     const v = new Validator(
       { attribute: '123456' },
-      { attribute: 'digits:8' },
+      { attribute: 'digits:8' }
     );
 
     const matched = await v.check();
@@ -46,7 +46,7 @@ describe('digits', () => {
   it('validation should fail: not digits', async () => {
     const v = new Validator(
       { attribute: '1234-567' },
-      { attribute: 'digits:8' },
+      { attribute: 'digits:8' }
     );
 
     const matched = await v.check();
@@ -61,7 +61,7 @@ describe('digits', () => {
   it('validation should fail: due to .', async () => {
     const v = new Validator(
       { attribute: '120.50' },
-      { attribute: 'digits:5' },
+      { attribute: 'digits:5' }
     );
 
     const matched = await v.check();

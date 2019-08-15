@@ -7,7 +7,7 @@ describe('minLength', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'uname' },
-      { attribute: 'minLength:5' },
+      { attribute: 'minLength:5' }
     );
 
     const matched = await v.check();
@@ -19,7 +19,7 @@ describe('minLength', () => {
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
       { attribute: 'uname' },
-      { attribute: 'minLength:6' },
+      { attribute: 'minLength:6' }
     );
 
     const matched = await v.check();

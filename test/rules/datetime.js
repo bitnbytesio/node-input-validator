@@ -7,7 +7,7 @@ describe('datetime', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '2019-07-01 10:10:00' },
-      { attribute: 'datetime' },
+      { attribute: 'datetime' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('datetime', () => {
   it('validation should fail: invalid format', async () => {
     const v = new Validator(
       { attribute: '01/26/2018' },
-      { attribute: 'datetime' },
+      { attribute: 'datetime' }
     );
 
     const matched = await v.check();
@@ -29,7 +29,7 @@ describe('datetime', () => {
   it('validation should fail: invalid value', async () => {
     const v = new Validator(
       { attribute: '12 12 18' },
-      { attribute: 'datetime' },
+      { attribute: 'datetime' }
     );
 
     const matched = await v.check();

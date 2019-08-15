@@ -21,7 +21,7 @@ describe('requiredIf', () => {
       },
       {
         age: 'requiredIf:address.street,fantastic',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -39,7 +39,7 @@ describe('requiredIf', () => {
       {
         age:
           'requiredIf:address.street,fantastic',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -141,7 +141,7 @@ describe('requiredIf', () => {
       },
       {
         email: 'requiredIf:age,16,parent,yes,type,subscribed',
-      },
+      }
     );
 
     let matched = await v.check();
@@ -158,7 +158,7 @@ describe('requiredIf', () => {
       },
       {
         email: 'requiredIf:age,16,parent,yes,type,subscribed',
-      },
+      }
     );
 
     matched = await v.check();

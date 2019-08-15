@@ -6,7 +6,7 @@ describe('notContains', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'This library is awesome.' },
-      { attribute: 'notContains:package' },
+      { attribute: 'notContains:package' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('notContains', () => {
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
       { attribute: 'Yes, Node is awesome' },
-      { attribute: 'notContains:Yes' },
+      { attribute: 'notContains:Yes' }
     );
 
     const matched = await v.check();

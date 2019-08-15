@@ -6,7 +6,7 @@ describe('maxLength', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'uname' },
-      { attribute: 'maxLength:10' },
+      { attribute: 'maxLength:10' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('maxLength', () => {
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
       { attribute: 'uname' },
-      { attribute: 'maxLength:4' },
+      { attribute: 'maxLength:4' }
     );
 
     const matched = await v.check();

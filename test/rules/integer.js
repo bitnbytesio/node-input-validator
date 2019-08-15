@@ -7,7 +7,7 @@ describe('integer', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '12' },
-      { attribute: 'integer' },
+      { attribute: 'integer' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('integer', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 12 },
-      { attribute: 'integer' },
+      { attribute: 'integer' }
     );
 
     const matched = await v.check();
@@ -29,7 +29,7 @@ describe('integer', () => {
   it('validation should fail', async () => {
     const v = new Validator(
       { attribute: 12.5 },
-      { attribute: 'integer' },
+      { attribute: 'integer' }
     );
 
     const matched = await v.check();
@@ -41,7 +41,7 @@ describe('integer', () => {
   it('validation should fail', async () => {
     const v = new Validator(
       { attribute: 'draft' },
-      { attribute: 'integer' },
+      { attribute: 'integer' }
     );
 
     const matched = await v.check();

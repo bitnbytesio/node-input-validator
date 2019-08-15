@@ -7,7 +7,7 @@ describe('nullable', () => {
   it('should fail', async () => {
     const v = new Validator(
       { attribute: 'email' },
-      { attribute: 'nullable|email' },
+      { attribute: 'nullable|email' }
     );
 
     const matched = await v.check();
@@ -20,7 +20,7 @@ describe('nullable', () => {
   it('attribute absent, should fail', async () => {
     const v = new Validator(
       {},
-      { attribute: 'nullable|email' },
+      { attribute: 'nullable|email' }
     );
 
     const matched = await v.check();
@@ -32,7 +32,7 @@ describe('nullable', () => {
   it('should pass', async () => {
     const v = new Validator(
       { attribute: null },
-      { attribute: 'nullable|email' },
+      { attribute: 'nullable|email' }
     );
 
     const matched = await v.check();
@@ -43,7 +43,7 @@ describe('nullable', () => {
   it('should pass', async () => {
     const v = new Validator(
       { attribute: null },
-      { attribute: 'nullable|alpha|required' },
+      { attribute: 'nullable|alpha|required' }
     );
 
     const matched = await v.check();

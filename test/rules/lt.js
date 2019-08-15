@@ -10,7 +10,7 @@ describe('lt', () => {
       {
         min: 'required|integer|lt:max',
         max: 'required|integer',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -24,7 +24,7 @@ describe('lt', () => {
       {
         min: 'required|integer|lt:max',
         max: 'required|integer',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -38,7 +38,7 @@ describe('lt', () => {
       {
         min: 'required|integer|lt:max',
         max: 'required',
-      },
+      }
     );
 
     const matched = await v.check();

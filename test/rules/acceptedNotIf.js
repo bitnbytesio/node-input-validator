@@ -7,7 +7,7 @@ describe('acceptedNotIf', () => {
   it('validation should pass: with yes', async () => {
     const v = new Validator(
       { attribute: 'no', age: 16 },
-      { attribute: 'acceptedNotIf:age,16' },
+      { attribute: 'acceptedNotIf:age,16' }
     );
 
     const matched = await v.check();
@@ -19,7 +19,7 @@ describe('acceptedNotIf', () => {
   it('validation should fail', async () => {
     const v = new Validator(
       { attribute: 'yes', age: 16 },
-      { attribute: 'acceptedNotIf:age,16' },
+      { attribute: 'acceptedNotIf:age,16' }
     );
 
     const matched = await v.check();

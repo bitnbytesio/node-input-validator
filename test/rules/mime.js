@@ -8,7 +8,7 @@ const mime = require('../../src/rules/mime');
 describe('mime', () => {
   it('should return true', async () => {
     const v = new Validator(
-      { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:4kb|mime:png,jpg' },
+      { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:4kb|mime:png,jpg' }
     );
 
 
@@ -20,7 +20,7 @@ describe('mime', () => {
 
   it('should return true', async () => {
     const v = new Validator(
-      { file: './test/stubs/file-small.png' }, { file: 'size:4kb|mime:png,jpg' },
+      { file: './test/stubs/file-small.png' }, { file: 'size:4kb|mime:png,jpg' }
     );
 
 
@@ -31,7 +31,7 @@ describe('mime', () => {
 
   it('should return false', async () => {
     const v = new Validator(
-      { file: { buffer: fs.readFileSync('./test/stubs/file-small.png') } }, { file: 'mime:bmp' },
+      { file: { buffer: fs.readFileSync('./test/stubs/file-small.png') } }, { file: 'mime:bmp' }
     );
 
 
@@ -42,7 +42,7 @@ describe('mime', () => {
 
   it('should return false', async () => {
     const v = new Validator(
-      { file: { path: './test/stubs/file-small.png' } }, { file: 'mime:gif,bmp' },
+      { file: { path: './test/stubs/file-small.png' } }, { file: 'mime:gif,bmp' }
     );
 
 

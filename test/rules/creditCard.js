@@ -7,7 +7,7 @@ describe('creditCard', () => {
   it('validation should pass: visa', async () => {
     const v = new Validator(
       { cc: '4111111111111111' },
-      { cc: 'creditCard' },
+      { cc: 'creditCard' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('creditCard', () => {
   it('validation should pass: visa', async () => {
     const v = new Validator(
       { cc: '4111 1111 1111 1111' },
-      { cc: 'creditCard' },
+      { cc: 'creditCard' }
     );
 
     const matched = await v.check();
@@ -29,7 +29,7 @@ describe('creditCard', () => {
   it('validation should pass: master', async () => {
     const v = new Validator(
       { cc: '5500 0000 0000 0004' },
-      { cc: 'creditCard' },
+      { cc: 'creditCard' }
     );
 
     const matched = await v.check();
@@ -40,7 +40,7 @@ describe('creditCard', () => {
   it('validation should pass: ae', async () => {
     const v = new Validator(
       { cc: '3400 0000 0000 009' },
-      { cc: 'creditCard' },
+      { cc: 'creditCard' }
     );
 
     const matched = await v.check();
@@ -51,7 +51,7 @@ describe('creditCard', () => {
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
       { cc: '412365' },
-      { cc: 'creditCard' },
+      { cc: 'creditCard' }
     );
 
     const matched = await v.check();

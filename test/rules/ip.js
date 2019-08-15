@@ -7,7 +7,7 @@ describe('ip', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '192.168.1.14' },
-      { attribute: 'ip' },
+      { attribute: 'ip' }
     );
 
     const matched = await v.check();
@@ -19,7 +19,7 @@ describe('ip', () => {
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
       { attribute: 'Yes, Node is awesome' },
-      { attribute: 'ip' },
+      { attribute: 'ip' }
     );
 
     const matched = await v.check();

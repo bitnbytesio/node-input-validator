@@ -18,7 +18,7 @@ describe('requiredWithout', () => {
   it('should pass', async () => {
     const v = new Validator(
       { name: 'Harcharan Singh', sex: '', age: '26' },
-      { sex: 'requiredWithout:age' },
+      { sex: 'requiredWithout:age' }
     );
 
     const matched = await v.check();
@@ -28,7 +28,7 @@ describe('requiredWithout', () => {
   it('should pass', async () => {
     const v = new Validator(
       { name: 'Harcharan Singh', sex: 'male', age: '26' },
-      { sex: 'requiredWithout:age' },
+      { sex: 'requiredWithout:age' }
     );
 
     const matched = await v.check();
@@ -38,7 +38,7 @@ describe('requiredWithout', () => {
   it('should fails', async () => {
     const v = new Validator(
       { name: 'Harcharan Singh' },
-      { sex: 'requiredWithout:age' },
+      { sex: 'requiredWithout:age' }
     );
 
     const matched = await v.check();

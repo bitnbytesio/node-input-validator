@@ -7,7 +7,7 @@ describe('macAddress', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '00:14:22:01:23:45' },
-      { attribute: 'macAddress' },
+      { attribute: 'macAddress' }
     );
 
     const matched = await v.check();
@@ -19,7 +19,7 @@ describe('macAddress', () => {
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
       { attribute: 'Yes, Node is awesome' },
-      { attribute: 'macAddress' },
+      { attribute: 'macAddress' }
     );
 
     const matched = await v.check();

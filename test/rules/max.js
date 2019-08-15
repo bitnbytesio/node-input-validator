@@ -7,7 +7,7 @@ describe('max', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '20' },
-      { attribute: 'max:20' },
+      { attribute: 'max:20' }
     );
 
     const matched = await v.check();
@@ -19,7 +19,7 @@ describe('max', () => {
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
       { attribute: '19' },
-      { attribute: 'max:18' },
+      { attribute: 'max:18' }
     );
 
     const matched = await v.check();

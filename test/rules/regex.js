@@ -6,7 +6,7 @@ const Validator = require('../../index');
 describe('regex', () => {
   it('validation should pass', async () => {
     const v = new Validator(
-      { number: 'abc' }, { number: 'regex:[abc]' },
+      { number: 'abc' }, { number: 'regex:[abc]' }
     );
 
     const matched = await v.check();
@@ -17,7 +17,7 @@ describe('regex', () => {
 
   it('validation should fail', async () => {
     const v = new Validator(
-      { attribute: 'xyz' }, { attribute: 'regex:[abc]' },
+      { attribute: 'xyz' }, { attribute: 'regex:[abc]' }
     );
 
     const matched = await v.check();

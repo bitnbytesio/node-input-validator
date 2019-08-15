@@ -7,7 +7,7 @@ describe('ascii', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { username: 'sfsf46546*/-=-!@#$%^&*()_+!?><:"{}[];' },
-      { username: 'ascii' },
+      { username: 'ascii' }
     );
 
     const matched = await v.check();
@@ -19,7 +19,7 @@ describe('ascii', () => {
   it('validation should fail', async () => {
     const v = new Validator(
       { username: 'uname€' },
-      { username: 'ascii' },
+      { username: 'ascii' }
     );
 
     const matched = await v.check();

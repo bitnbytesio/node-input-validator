@@ -20,7 +20,7 @@ describe('Objects', () => {
       },
       {
         product: 'The given product is invalid :value.',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -38,7 +38,7 @@ describe('Objects', () => {
       {
         product: 'required|object',
 
-      },
+      }
     );
 
     const matched = await v.check();
@@ -56,7 +56,7 @@ describe('Objects', () => {
       {
         product: 'required|object',
 
-      },
+      }
     );
 
     const matched = await v.check();

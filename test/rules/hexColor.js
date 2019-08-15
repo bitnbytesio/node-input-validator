@@ -7,7 +7,7 @@ describe('hexColor', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '#FFFFFF' },
-      { attribute: 'hexColor' },
+      { attribute: 'hexColor' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('hexColor', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '#000' },
-      { attribute: 'hexColor' },
+      { attribute: 'hexColor' }
     );
 
     const matched = await v.check();
@@ -29,7 +29,7 @@ describe('hexColor', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'f00' },
-      { attribute: 'hexColor' },
+      { attribute: 'hexColor' }
     );
 
     const matched = await v.check();
@@ -41,7 +41,7 @@ describe('hexColor', () => {
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
       { attribute: 'Yes, Node is awesome' },
-      { attribute: 'hexColor' },
+      { attribute: 'hexColor' }
     );
 
     const matched = await v.check();

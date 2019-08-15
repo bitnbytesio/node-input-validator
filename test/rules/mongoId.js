@@ -6,7 +6,7 @@ describe('mongoId', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '5c33010638eb95186574b64a' },
-      { attribute: 'mongoId' },
+      { attribute: 'mongoId' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('mongoId', () => {
   it('validation should fail: invalida value', async () => {
     const v = new Validator(
       { attribute: '1945690' },
-      { attribute: 'mongoId' },
+      { attribute: 'mongoId' }
     );
 
     const matched = await v.check();

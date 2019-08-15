@@ -7,7 +7,7 @@ describe('in', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'public' },
-      { attribute: 'in:private,public,draft' },
+      { attribute: 'in:private,public,draft' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('in', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'public' },
-      { attribute: 'in:public' },
+      { attribute: 'in:public' }
     );
 
     const matched = await v.check();
@@ -30,7 +30,7 @@ describe('in', () => {
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
       { attribute: 'draft' },
-      { attribute: 'in:public,private' },
+      { attribute: 'in:public,private' }
     );
 
     const matched = await v.check();

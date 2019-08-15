@@ -7,7 +7,7 @@ describe('base64', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { username: 'dGhpcyBpcyB0ZXN0aW5nLi4u' },
-      { username: 'base64' },
+      { username: 'base64' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('base64', () => {
   it('validation should fail', async () => {
     const v = new Validator(
       { username: 'gYhKkdInjUnjUUmkH' },
-      { username: 'base64' },
+      { username: 'base64' }
     );
 
     const matched = await v.check();

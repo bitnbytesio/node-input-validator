@@ -7,7 +7,7 @@ describe('accepted', () => {
   it('validation should pass: with yes', async () => {
     const v = new Validator(
       { attribute: 'yes' },
-      { attribute: 'accepted' },
+      { attribute: 'accepted' }
     );
 
     const matched = await v.check();
@@ -18,7 +18,7 @@ describe('accepted', () => {
   it('validation should pass: with custom', async () => {
     const v = new Validator(
       { attribute: 'ok' },
-      { attribute: 'accepted:ok' },
+      { attribute: 'accepted:ok' }
     );
 
     const matched = await v.check();
@@ -29,7 +29,7 @@ describe('accepted', () => {
   it('validation should fail: invalid value', async () => {
     const v = new Validator(
       { attribute: 'no' },
-      { attribute: 'accepted' },
+      { attribute: 'accepted' }
     );
 
     const matched = await v.check();
@@ -45,7 +45,7 @@ describe('accepted', () => {
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
       {},
-      { attribute: 'accepted' },
+      { attribute: 'accepted' }
     );
 
     const matched = await v.check();

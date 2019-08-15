@@ -7,7 +7,7 @@ describe('equals', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: 'yes' },
-      { attribute: 'equals:yes' },
+      { attribute: 'equals:yes' }
     );
 
     const matched = await v.check();
@@ -19,7 +19,7 @@ describe('equals', () => {
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
       { attribute: 'Yes, Node is awesome' },
-      { attribute: 'equals:no' },
+      { attribute: 'equals:no' }
     );
 
     const matched = await v.check();

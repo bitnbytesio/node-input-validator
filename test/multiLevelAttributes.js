@@ -13,7 +13,7 @@ describe('Array Fields', () => {
       },
       {
         'plan.*.price': 'required|integer',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -30,7 +30,7 @@ describe('Array Fields', () => {
       {
         'range.min': 'required|integer',
         'range.max': 'required|integer|gt:range.min',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -46,7 +46,7 @@ describe('Array Fields', () => {
       },
       {
         'plan.*': 'required|integer',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -62,7 +62,7 @@ describe('Array Fields', () => {
       },
       {
         'plan.*': 'required|integer',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -85,7 +85,7 @@ describe('Array Fields', () => {
       {
         'plan.*.price': 'required|integer',
         'plan.*.title': 'required',
-      },
+      }
     );
 
     const matched = await v.check();

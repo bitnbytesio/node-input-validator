@@ -7,7 +7,7 @@ describe('#sametimes', () => {
   it('should fail', async () => {
     const v = new Validator(
       { password: '', confirm_password: 'password' },
-      { password: 'sometimes', confirm_password: 'sometimes|alpha' },
+      { password: 'sometimes', confirm_password: 'sometimes|alpha' }
     );
 
     const matched = await v.check();
@@ -20,7 +20,7 @@ describe('#sametimes', () => {
   it('should pass', async () => {
     const v = new Validator(
       { password: '000000', confirm_password: '000000' },
-      { password: 'sometimes', confirm_password: 'sometimes|same:password' },
+      { password: 'sometimes', confirm_password: 'sometimes|same:password' }
     );
 
     const matched = await v.check();
@@ -31,7 +31,7 @@ describe('#sametimes', () => {
   it('should pass', async () => {
     const v = new Validator(
       {},
-      { password: 'sometimes', confirm_password: 'sometimes|same:password' },
+      { password: 'sometimes', confirm_password: 'sometimes|same:password' }
     );
 
     const matched = await v.check();

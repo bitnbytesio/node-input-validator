@@ -10,7 +10,7 @@ describe('gt', () => {
       {
         min: 'required|integer',
         max: 'required|integer|gt:min',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -24,7 +24,7 @@ describe('gt', () => {
       {
         min: 'required|integer',
         max: 'required|integer|gt:min',
-      },
+      }
     );
 
     const matched = await v.check();
@@ -38,7 +38,7 @@ describe('gt', () => {
       {
         min: 'required',
         max: 'required|integer|gt:min',
-      },
+      }
     );
 
     const matched = await v.check();

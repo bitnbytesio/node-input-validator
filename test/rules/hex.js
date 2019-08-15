@@ -7,7 +7,7 @@ describe('hex', () => {
   it('validation should pass', async () => {
     const v = new Validator(
       { attribute: '6e6f646520696e7075742076616c696461746f72' },
-      { attribute: 'hex' },
+      { attribute: 'hex' }
     );
 
     const matched = await v.check();
@@ -19,7 +19,7 @@ describe('hex', () => {
   it('validation should fail: mising attribute', async () => {
     const v = new Validator(
       { attribute: 'Yes, Node is awesome' },
-      { attribute: 'hex' },
+      { attribute: 'hex' }
     );
 
     const matched = await v.check();
