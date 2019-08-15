@@ -31,6 +31,7 @@
             120
         ],
         "array-callback-return": "off",
-        "default-case": "off"
+        "default-case": "off",
+        "comma-dangle": "off"
     }
 }

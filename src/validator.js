@@ -98,7 +98,7 @@ module.exports.applyRules = async function apply(field, validator) {
         field.rules[r].rule,
         field.field,
         field.value,
-        field.rules[r].args,
+        field.rules[r].args
       );
       validator.addError(field.field, field.rules[r].rule, field.message);
       proceed = false;
