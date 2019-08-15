@@ -27,7 +27,7 @@ describe('#same', () => {
 
     assert.equal(
       v.errors.confirm_password.message,
-      v.parseExistingMessageOnly('same', 'confirm_password', '', 'password'),
+      v.parseExistingMessageOnly('same', 'confirm_password', '', 'password')
     );
   });
 });

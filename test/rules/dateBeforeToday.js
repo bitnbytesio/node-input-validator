@@ -30,7 +30,7 @@ describe('#dateBeforeToday', () => {
 
     assert.equal(
       v.errors.dob.message,
-      v.parseExistingMessageOnly('dateBeforeToday', 'dob', moment().format('YYYY-MM-DD'), ['2', 'days']),
+      v.parseExistingMessageOnly('dateBeforeToday', 'dob', moment().format('YYYY-MM-DD'), ['2', 'days'])
     );
   });
 });

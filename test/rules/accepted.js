@@ -38,7 +38,7 @@ describe('accepted', () => {
 
     assert.equal(
       v.errors.attribute.message,
-      v.parseExistingMessageOnly('accepted', 'attribute'),
+      v.parseExistingMessageOnly('accepted', 'attribute')
     );
   });
 
@@ -54,7 +54,7 @@ describe('accepted', () => {
 
     assert.equal(
       v.errors.attribute.message,
-      v.parseExistingMessageOnly('accepted', 'attribute'),
+      v.parseExistingMessageOnly('accepted', 'attribute')
     );
   });
 });

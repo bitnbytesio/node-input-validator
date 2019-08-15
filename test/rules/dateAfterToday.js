@@ -40,7 +40,7 @@ describe('#dateAfterToday', () => {
 
     assert.equal(
       v.errors.dob.message,
-      v.parseExistingMessageOnly('dateAfterToday', 'dob', '2019-02-28', ['2', 'days']),
+      v.parseExistingMessageOnly('dateAfterToday', 'dob', '2019-02-28', ['2', 'days'])
     );
   });
 });

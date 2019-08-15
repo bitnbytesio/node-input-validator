@@ -28,7 +28,7 @@ describe('acceptedNotIf', () => {
 
     assert.equal(
       v.errors.attribute.message,
-      v.parseExistingMessageOnly('acceptedNotIf', 'attribute', 'yes', ['age', '16']),
+      v.parseExistingMessageOnly('acceptedNotIf', 'attribute', 'yes', ['age', '16'])
     );
   });
 });
