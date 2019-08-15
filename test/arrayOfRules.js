@@ -8,9 +8,9 @@ describe('Multiple rules test', () => {
     it('should return true', async () => {
       // { name: 'required|minLength:5|maxLength:8|alpha' }
       // @ts-ignore
-      Validator.make(
-        { name: 'artisan' },
-      );
+      // Validator.make(
+      //   { name: 'artisan' },
+      // );
 
       const v = Validator.make(
         { name: 'artisan' },
