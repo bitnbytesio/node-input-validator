@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * node-input-validator
  * https://github.com/artisangang/node-input-validator
@@ -34,7 +32,7 @@ module.exports.extend = (rule, func) => {
  * @param {string} lang
  */
 module.exports.messages = (newMessages, lang = 'en') => {
-  if (typeof messages[lang] == 'undefined') {
+  if (typeof messages[lang] === 'undefined') {
     messages[lang] = {};
   }
 
@@ -47,7 +45,7 @@ module.exports.messages = (newMessages, lang = 'en') => {
  * @param {string} lang
  */
 module.exports.customMessages = (customMessages, lang = 'en') => {
-  if (typeof messages[lang] == 'undefined') {
+  if (typeof messages[lang] === 'undefined') {
     messages[lang] = {};
   }
 
@@ -55,17 +53,22 @@ module.exports.customMessages = (customMessages, lang = 'en') => {
 };
 
 /* istanbul ignore next */
-module.exports.koa = () => {
+module.exports.koa = function koa() {
   return async (ctx, next) => {
     ctx.validationErrors = function validationErrors(errors) {
-      return {body: {errors: errors, message: 'The given data is invalid.'}};
+      return { body: { errors, message: 'The given data is invalid.' } };
     };
 
     ctx.validate = async function validate(rules, inputs, customMessages) {
+      if (!inputs) {
+        // eslint-disable-next-line prefer-object-spread
+        inputs = Object.assign({}, this.request.body, this.request.files);
+      }
+
       const v = new Validator(
-          inputs || Object.assign({}, this.request.body, this.request.files),
-          rules,
-          customMessages
+        inputs,
+        rules,
+        customMessages
       );
 
       if (await v.fails()) {
@@ -77,9 +80,10 @@ module.exports.koa = () => {
 
     ctx.validator = async function validator(rules, inputs, customMessages) {
       const v = new Validator(
-          inputs || Object.assign({}, this.request.body, this.request.files),
-          rules,
-          customMessages
+        // eslint-disable-next-line prefer-object-spread
+        inputs || Object.assign({}, this.request.body, this.request.files),
+        rules,
+        customMessages
       );
 
       return v;
@@ -89,7 +93,7 @@ module.exports.koa = () => {
     try {
       await next();
     } catch (err) {
-      if (err.status && err.status == 422) {
+      if (err.status && err.status === 422) {
         ctx.type = 'json';
         ctx.status = 422;
         ctx.body = err.body;
