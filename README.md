@@ -549,6 +549,22 @@ let v = new Validator({phone:''}, {age:'required|digitsBetween:10,13'});
 **domain**  
 The field under validation must a qualified domain.
 
+**dimensions:seed**  
+<sub>Added in: v3.7</sub>  
+The image under validation must meet the dimension constraints as specified by in seed.
+
+```js
+const v = new Validator(req.body, { file: 'dimensions:minWidth=50,minHeight=50' });
+
+const matched = await v.check();
+
+assert.equal(matched, false);
+```
+
+Note: image mimes validation is required before.
+
+Available constraints are: minWidth, maxWidth, minHeight, maxHeight, width, height.
+
 **email**  
 The field under validation must be formatted as an e-mail address.
 

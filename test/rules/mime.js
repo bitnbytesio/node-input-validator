@@ -69,7 +69,7 @@ describe('mime direct checks', () => {
     await mime('file', { mimetype: 'png' }, ['png']);
   });
 
-  it('should return true', async () => {
+  it('should throw exception', async () => {
     try {
       await mime('file', {}, ['png']);
     } catch (e) {

@@ -24,6 +24,7 @@ exports.dateBefore = require('./dateBefore');
 exports.decimal = require('./decimal');
 exports.digits = require('./digits');
 exports.digitsBetween = require('./digitsBetween');
+exports.dimensions = require('./dimensions');
 exports.domain = require('./domain');
 exports.email = require('./email');
 exports.equals = require('./equals');

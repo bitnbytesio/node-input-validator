@@ -36,6 +36,7 @@ module.exports = {
   different: 'The :attribute and :arg0 must be different.',
   digits: 'The :attribute must be of :arg0 digits.',
   digitsBetween: 'The :attribute must be between :arg0 and :arg1.',
+  dimensions: 'The :attribute must meet dimension constraints as :args.',
   domain: 'The :attribute must be a valid domain.',
   email: 'The :attribute must be a valid email address.',
   equals: 'The :attribute must be a equals :arg0.',

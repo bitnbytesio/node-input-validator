@@ -8,10 +8,11 @@ describe('digitsBetween', () => {
     try {
       const v = new Validator(
         { attribute: '1250' },
-        { attribute: 'digitsBetween:4,6' }
+        { attribute: 'digitsBetween:a,b' }
       );
 
       await v.check();
+      throw new Error('It has to fail.');
     } catch (e) {
       assert.equal(e, 'Seeds must be integer for attribute under digits between rule.');
     }
