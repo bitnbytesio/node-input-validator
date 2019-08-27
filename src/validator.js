@@ -30,7 +30,7 @@ module.exports.applyRules = async function apply(field, validator) {
 
     const fieldName = field.field;
 
-    const len = validator.inputs[fieldArr[0]].length;
+    const len = (validator.inputs[fieldArr[0]] || []).length;
 
     for (let i = 0; i < len; i++) {
       // const item = validator.inputs[fieldArr[0]][i];

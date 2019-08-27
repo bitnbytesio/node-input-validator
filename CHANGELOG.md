@@ -37,6 +37,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - dimensions rule
 
+### Fixed
+
+- breakage in case of missing required nested field
+
 ## [3.6.4]
 
 ### Fixed
