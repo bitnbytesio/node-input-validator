@@ -4,15 +4,15 @@
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 [![Known Vulnerabilities](https://snyk.io/test/npm/node-input-validator/badge.svg)](https://snyk.io/test/npm/node-input-validator)
-[![Coverage Status](https://coveralls.io/repos/github/artisangang/node-input-validator/badge.svg)](https://coveralls.io/github/artisangang/node-input-validator)
+[![Coverage Status](https://coveralls.io/repos/github/bitnbytesio/node-input-validator/badge.svg)](https://coveralls.io/github/bitnbytesio/node-input-validator)
 [![David deps][david-image]][david-url]
 [![node version][node-image]][node-url]
 
-[travis-image]: https://api.travis-ci.org/artisangang/node-input-validator.svg?branch=master
-[travis-url]: https://travis-ci.org/artisangang/node-input-validator
+[travis-image]: https://api.travis-ci.org/bitnbytesio/node-input-validator.svg?branch=master
+[travis-url]: https://travis-ci.org/bitnbytesio/node-input-validator
 
-[david-image]: https://david-dm.org/artisangang/node-input-validator.svg?style=flat-square
-[david-url]: https://david-dm.org/artisangang/node-input-validator
+[david-image]: https://david-dm.org/bitnbytesio/node-input-validator.svg?style=flat-square
+[david-url]: https://david-dm.org/bitnbytesio/node-input-validator
 
 [npm-image]: https://img.shields.io/npm/v/node-input-validator.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/node-input-validator
