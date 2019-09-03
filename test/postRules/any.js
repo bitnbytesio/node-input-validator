@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 describe('Post', () => {
   describe('any', () => {

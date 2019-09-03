@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('datetime', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator(
-      { attribute: '2019-07-01 10:10:00' },
-      { attribute: 'datetime' }
+      { attr: '2019-07-01 10:10:00' },
+      { attr: 'datetime' },
     );
 
     const matched = await v.check();
@@ -15,10 +15,10 @@ describe('datetime', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should fail: invalid format', async () => {
+  it('should fail with invalid format', async () => {
     const v = new Validator(
-      { attribute: '01/26/2018' },
-      { attribute: 'datetime' }
+      { attr: '01/26/2018' },
+      { attr: 'datetime' },
     );
 
     const matched = await v.check();
@@ -26,16 +26,24 @@ describe('datetime', () => {
     assert.equal(matched, false);
   });
 
-  it('validation should fail: invalid value', async () => {
+  it('message should exist', async () => {
     const v = new Validator(
-      { attribute: '12 12 18' },
-      { attribute: 'datetime' }
+      { attr: '12 12 18' },
+      { attr: 'datetime' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('datetime', 'attribute'));
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'datetime',
+        value: '12 12 18',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

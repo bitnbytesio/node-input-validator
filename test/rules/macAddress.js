@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('macAddress', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator(
-      { attribute: '00:14:22:01:23:45' },
-      { attribute: 'macAddress' }
+      { attr: '00:14:22:01:23:45' },
+      { attr: 'macAddress' },
     );
 
     const matched = await v.check();
@@ -16,16 +16,34 @@ describe('macAddress', () => {
   });
 
 
-  it('validation should fail: invalida value', async () => {
+  it('should fail: with string', async () => {
     const v = new Validator(
-      { attribute: 'Yes, Node is awesome' },
-      { attribute: 'macAddress' }
+      { attr: 'Yes, Node is awesome' },
+      { attr: 'macAddress' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('macAddress', 'attribute', ''));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: 'string' },
+      { attr: 'macAddress' },
+    );
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'macAddress',
+        value: 'string',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

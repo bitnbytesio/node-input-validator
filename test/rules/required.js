@@ -1,42 +1,71 @@
 const assert = require('assert');
 
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
-describe('requiredRules', () => {
-  describe('#required', () => {
-    it('should return true', async () => {
-      const v = new Validator({ name: 'Harcharan Singh' }, { name: 'required' });
+describe('#required', () => {
+  it('should pass', async () => {
+    const v = new Validator({ name: 'Harcharan Singh' }, { name: 'required' });
 
-      const matched = await v.check();
+    const matched = await v.check();
 
-      assert.equal(matched, true);
-    });
+    assert.equal(matched, true);
+  });
 
-    it('should return false', async () => {
-      const v = new Validator({ name: '' }, { name: 'required' });
+  it('should fail with empty string', async () => {
+    const v = new Validator({ name: '' }, { name: 'required' });
 
-      const matched = await v.check();
+    const matched = await v.check();
 
-      assert.equal(matched, false);
-    });
+    assert.equal(matched, false);
+  });
 
-    it('should return false', async () => {
-      const v = new Validator({ name: '' }, { name: 'required|min:1' });
+  it('should pass with 0 as integer', async () => {
+    const v = new Validator({ name: 0 }, { name: 'required' });
 
-      const matched = await v.check();
+    const matched = await v.check();
 
-      assert.equal(matched, false);
-    });
+    assert.equal(matched, true);
+  });
 
-    it('should return false', async () => {
-      const v = new Validator({ email: '' }, { name: 'required|email' });
+  it('should pass with 0 as string', async () => {
+    const v = new Validator({ name: '0' }, { name: 'required' });
 
-      const matched = await v.check();
+    const matched = await v.check();
 
-      assert.equal(matched, false);
+    assert.equal(matched, true);
+  });
 
-      assert.equal(v.errors.name.message, v.parseExistingMessageOnly('required', 'name', '', 4));
-    });
+  it('should pass with false as boolean', async () => {
+    const v = new Validator({ name: false }, { name: 'required' });
+
+    const matched = await v.check();
+
+    assert.equal(matched, true);
+  });
+
+  it('should pass with false as string', async () => {
+    const v = new Validator({ name: 'false' }, { name: 'required' });
+
+    const matched = await v.check();
+
+    assert.equal(matched, true);
+  });
+
+  it('message should exist', async () => {
+    const v = new Validator({ name: '' }, { name: 'required' });
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.name.message,
+      v.getExistinParsedMessage({
+        rule: 'required',
+        value: '',
+        attr: 'name',
+        args: [],
+      }),
+    );
   });
 });

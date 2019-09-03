@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('in', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator(
-      { attribute: 'public' },
-      { attribute: 'in:private,public,draft' }
+      { attr: 'public' },
+      { attr: 'in:private,public,draft' },
     );
 
     const matched = await v.check();
@@ -15,10 +15,10 @@ describe('in', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should pass', async () => {
+  it('should pass with single', async () => {
     const v = new Validator(
-      { attribute: 'public' },
-      { attribute: 'in:public' }
+      { attr: 'public' },
+      { attr: 'in:public' },
     );
 
     const matched = await v.check();
@@ -27,16 +27,32 @@ describe('in', () => {
   });
 
 
-  it('validation should fail: mising attribute', async () => {
+  it('should fail with missing one', async () => {
     const v = new Validator(
-      { attribute: 'draft' },
-      { attribute: 'in:public,private' }
+      { attr: 'draft' },
+      { attr: 'in:public,private' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('in', 'attribute', ''));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: 'draft' },
+      { attr: 'in:public,private' },
+    );
+    const matched = await v.check();
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'in',
+        value: 'draft',
+        attr: 'attr',
+        args: ['public', 'private'],
+      }),
+    );
   });
 });

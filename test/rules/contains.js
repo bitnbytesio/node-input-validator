@@ -1,13 +1,12 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
-
+const { Validator } = require('../../lib/index');
 
 describe('contains', () => {
-  it('validation should pass', async () => {
+  it('should pass with match', async () => {
     const v = new Validator(
-      { attribute: 'This package is awesome.' },
-      { attribute: 'contains:package' }
+      { attr: 'This package is awesome.' },
+      { attr: 'contains:package' },
     );
 
     const matched = await v.check();
@@ -16,16 +15,34 @@ describe('contains', () => {
   });
 
 
-  it('validation should fail: mising attribute', async () => {
+  it('should fail with no-match', async () => {
     const v = new Validator(
-      { attribute: 'Yes, Node is awesome' },
-      { attribute: 'contains:yes' }
+      { attr: 'Yes, Node is awesome' },
+      { attr: 'contains:yes' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('contains', 'attribute', '', 'yes'));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: {} },
+      { attr: 'contains:yes' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'contains',
+        value: {},
+        attr: 'attr',
+        args: ['yes'],
+      }),
+    );
   });
 });

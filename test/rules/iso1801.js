@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('iso8601', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator(
-      { attribute: '2019-01-07T10:43:59Z' },
-      { attribute: 'iso8601' }
+      { attr: '2019-01-07T10:43:59Z' },
+      { attr: 'iso8601' },
     );
 
     const matched = await v.check();
@@ -16,16 +16,35 @@ describe('iso8601', () => {
   });
 
 
-  it('validation should fail: invalida value', async () => {
+  it('should fail', async () => {
     const v = new Validator(
-      { attribute: 'Yes, Node is awesome' },
-      { attribute: 'iso8601' }
+      { attr: 'Yes, Node is awesome' },
+      { attr: 'iso8601' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: 'string' },
+      { attr: 'iso8601' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('iso8601', 'attribute', ''));
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'iso8601',
+        value: 'string',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

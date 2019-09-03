@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('alpha', () => {
-  it('validation should pass: with example', async () => {
+  it('should pass with example', async () => {
     const v = new Validator(
       { username: 'example' },
-      { username: 'alpha' }
+      { username: 'alpha' },
     );
 
     const matched = await v.check();
@@ -16,42 +16,56 @@ describe('alpha', () => {
   });
 
 
-  it('validation should fail: with now123', async () => {
+  it('should fail with alpha-numeric value', async () => {
     const v = new Validator(
       { username: 'now123' },
-      { username: 'alpha' }
+      { username: 'alpha' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
-
-    assert.equal(v.errors.username.message, v.parseExistingMessageOnly('alpha', 'username'));
   });
 
-  it('validation should fail: with u@name', async () => {
+  it('should fail with special char', async () => {
     const v = new Validator(
       { username: 'u@name' },
-      { username: 'alpha' }
+      { username: 'alpha' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
-
-    // console.log(v.errors);
   });
 
-  it('validation should fail: with 123', async () => {
+  it('should fail with numbers', async () => {
     const v = new Validator(
       { username: '123' },
-      { username: 'alpha' }
+      { username: 'alpha' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
+  it('message should exist', async () => {
+    const v = new Validator(
+      { username: '123' },
+      { username: 'alpha' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
 
-    // console.log(v.errors);
+    assert.equal(
+      v.errors.username.message,
+      v.getExistinParsedMessage({
+        rule: 'alpha',
+        value: '123',
+        attr: 'username',
+      }),
+    );
   });
 });

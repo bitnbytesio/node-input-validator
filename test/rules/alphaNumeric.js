@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('alphaNumeric', () => {
-  it('validation should pass: with example', async () => {
+  it('should pass with example', async () => {
     const v = new Validator(
       { username: 'example' },
-      { username: 'alphaNumeric' }
+      { username: 'alphaNumeric' },
     );
 
     const matched = await v.check();
@@ -16,55 +16,66 @@ describe('alphaNumeric', () => {
   });
 
 
-  it('validation should pass: with now123', async () => {
+  it('should pass with alpha-numeric', async () => {
     const v = new Validator(
       { username: 'now123' },
-      { username: 'alphaNumeric' }
+      { username: 'alphaNumeric' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, true);
-
-    // console.log(v.errors);
   });
 
-  it('validation should fail: with u@name', async () => {
+  it('should fail with special char', async () => {
     const v = new Validator(
       { username: 'u@name' },
-      { username: 'alphaNumeric' }
+      { username: 'alphaNumeric' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
-
-    assert.equal(v.errors.username.message, v.parseExistingMessageOnly('alphaNumeric', 'username'));
   });
 
-  it('validation should fail: with 123', async () => {
+  it('should pass with numbers', async () => {
     const v = new Validator(
       { username: '123' },
-      { username: 'alphaNumeric' }
+      { username: 'alphaNumeric' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, true);
-
-    // console.log(v.errors);
   });
 
-  it('validation should fail: with u_name', async () => {
+  it('should fail with underscore', async () => {
     const v = new Validator(
       { username: 'u_name' },
-      { username: 'alphaNumeric' }
+      { username: 'alphaNumeric' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    // console.log(v.errors);
+  it('message should exist', async () => {
+    const v = new Validator(
+      { username: 'u-name' },
+      { username: 'alphaNumeric' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.username.message,
+      v.getExistinParsedMessage({
+        rule: 'alphaNumeric',
+        value: 'u-name',
+        attr: 'username',
+      }),
+    );
   });
 });

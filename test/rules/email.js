@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('email', () => {
-  it('validation should pass', async () => {
+  it('should pass with valid email', async () => {
     const v = new Validator(
-      { attribute: 'user@example.com' },
-      { attribute: 'email' }
+      { attr: 'user@example.com' },
+      { attr: 'email' },
     );
 
     const matched = await v.check();
@@ -16,16 +16,34 @@ describe('email', () => {
   });
 
 
-  it('validation should fail: mising attribute', async () => {
+  it('should fail', async () => {
     const v = new Validator(
-      { attribute: 'form@example' },
-      { attribute: 'email' }
+      { attr: 'form@example' },
+      { attr: 'email' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('email', 'attribute', ''));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: 'form@example' },
+      { attr: 'email' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'email',
+        value: 'form@example',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

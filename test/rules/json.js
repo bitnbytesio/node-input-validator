@@ -1,13 +1,11 @@
 const assert = require('assert');
-
-const Validator = require('../../index');
-
+const { Validator } = require('../../lib/index');
 
 describe('json', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator(
-      { attribute: '[1, 2, 3]' },
-      { attribute: 'json' }
+      { attr: '[1, 2, 3]' },
+      { attr: 'json' },
     );
 
     const matched = await v.check();
@@ -16,16 +14,35 @@ describe('json', () => {
   });
 
 
-  it('validation should fail: invalida value', async () => {
+  it('should fail with string', async () => {
     const v = new Validator(
-      { attribute: 'Yes, Node is awesome' },
-      { attribute: 'json' }
+      { attr: 'string' },
+      { attr: 'json' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: 'string' },
+      { attr: 'json' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('json', 'attribute', ''));
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'json',
+        value: 'string',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

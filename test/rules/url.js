@@ -1,10 +1,11 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+
+const { Validator } = require('../../lib/index');
 
 
-describe('#same', () => {
-  it('#url', async () => {
+describe('url', () => {
+  it('should pass', async () => {
     const v = new Validator({ url: 'http://www.github.com' }, { url: 'required|url' });
 
     const matched = await v.check();
@@ -17,10 +18,23 @@ describe('#same', () => {
 
     const matched = await v.check();
 
-    // throw {matched, e: v.errors, i: v.inputs, v: v.validations, m: require('validator').isURL('artisangng')};
+    assert.equal(matched, false);
+  });
+
+  it('message should exist', async () => {
+    const v = new Validator({ url: '123456' }, { url: 'required|url' });
+
+    const matched = await v.check();
 
     assert.equal(matched, false);
-
-    assert.equal(v.errors.url.message, v.parseExistingMessageOnly('url', 'url'));
+    assert.equal(
+      v.errors.url.message,
+      v.getExistinParsedMessage({
+        rule: 'url',
+        value: '',
+        attr: 'url',
+        args: [],
+      }),
+    );
   });
 });

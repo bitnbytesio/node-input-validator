@@ -1,13 +1,12 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
-
+const { Validator } = require('../../lib/index');
 
 describe('accepted', () => {
-  it('validation should pass: with yes', async () => {
+  it('should pass with yes', async () => {
     const v = new Validator(
-      { attribute: 'yes' },
-      { attribute: 'accepted' }
+      { attr: 'yes' },
+      { attr: 'accepted' },
     );
 
     const matched = await v.check();
@@ -15,10 +14,10 @@ describe('accepted', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should pass: with custom', async () => {
+  it('should pass with ok using custom options', async () => {
     const v = new Validator(
-      { attribute: 'ok' },
-      { attribute: 'accepted:ok' }
+      { attr: 'ok' },
+      { attr: 'accepted:ok' },
     );
 
     const matched = await v.check();
@@ -26,26 +25,21 @@ describe('accepted', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should fail: invalid value', async () => {
+  it('should fail using no', async () => {
     const v = new Validator(
-      { attribute: 'no' },
-      { attribute: 'accepted' }
+      { attr: 'no' },
+      { attr: 'accepted' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
-
-    assert.equal(
-      v.errors.attribute.message,
-      v.parseExistingMessageOnly('accepted', 'attribute')
-    );
   });
 
-  it('validation should fail: mising attribute', async () => {
+  it('message should exist', async () => {
     const v = new Validator(
       {},
-      { attribute: 'accepted' }
+      { attr: 'accepted' },
     );
 
     const matched = await v.check();
@@ -53,8 +47,12 @@ describe('accepted', () => {
     assert.equal(matched, false);
 
     assert.equal(
-      v.errors.attribute.message,
-      v.parseExistingMessageOnly('accepted', 'attribute')
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'accepted',
+        value: undefined,
+        attr: 'attr',
+      }),
     );
   });
 });

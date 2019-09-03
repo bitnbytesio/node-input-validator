@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 describe('all', () => {
   it('should return true when all fields exists', async () => {

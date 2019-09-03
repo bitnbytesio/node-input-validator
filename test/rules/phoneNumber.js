@@ -1,10 +1,10 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('phoneNumber', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator({ id: '+918699987073' }, { id: 'phoneNumber' });
 
     const matched = await v.check();
@@ -13,24 +13,40 @@ describe('phoneNumber', () => {
   });
 
 
-  it('validation should pass', async () => {
+  it('should pass with hypens', async () => {
     const v = new Validator({ id: '+1-541-754-3010' }, { id: 'phoneNumber' });
     const matched = await v.check();
 
     assert.equal(matched, true);
-
-    // console.log(v.errors);
   });
 
 
-  it('validation should fail: with invalid value', async () => {
+  it('should fail with string', async () => {
     const v = new Validator({ attribute: 'artisangang' }, { attribute: 'phoneNumber' });
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('phoneNumber', 'attribute', '', 4));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: 'draft' },
+      { attr: 'phoneNumber' },
+    );
+
+
+    const matched = await v.check();
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'phoneNumber',
+        value: 'draft',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

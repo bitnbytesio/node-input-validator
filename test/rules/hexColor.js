@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('hexColor', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator(
-      { attribute: '#FFFFFF' },
-      { attribute: 'hexColor' }
+      { attr: '#FFFFFF' },
+      { attr: 'hexColor' },
     );
 
     const matched = await v.check();
@@ -15,10 +15,10 @@ describe('hexColor', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should pass', async () => {
+  it('should pass short code', async () => {
     const v = new Validator(
-      { attribute: '#000' },
-      { attribute: 'hexColor' }
+      { attr: '#000' },
+      { attr: 'hexColor' },
     );
 
     const matched = await v.check();
@@ -26,10 +26,10 @@ describe('hexColor', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should pass', async () => {
+  it('should pass without hash', async () => {
     const v = new Validator(
-      { attribute: 'f00' },
-      { attribute: 'hexColor' }
+      { attr: 'f00' },
+      { attr: 'hexColor' },
     );
 
     const matched = await v.check();
@@ -38,16 +38,34 @@ describe('hexColor', () => {
   });
 
 
-  it('validation should fail: mising attribute', async () => {
+  it('should fail with plain text', async () => {
     const v = new Validator(
-      { attribute: 'Yes, Node is awesome' },
-      { attribute: 'hexColor' }
+      { attr: 'Yes, Node is awesome' },
+      { attr: 'hexColor' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('hexColor', 'attribute', ''));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: 'Yes, Node is awesome' },
+      { attr: 'hexColor' },
+    );
+
+
+    const matched = await v.check();
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'hexColor',
+        value: 'Yes, Node is awesome',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

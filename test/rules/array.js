@@ -1,13 +1,12 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
-
+const { Validator } = require('../../lib/index');
 
 describe('array', () => {
-  it('validation should pass: []', async () => {
+  it('should pass with empty array', async () => {
     const v = new Validator(
       { features: [] },
-      { features: 'array' }
+      { features: 'array' },
     );
 
     const matched = await v.check();
@@ -15,10 +14,10 @@ describe('array', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should pass: with [1,2,3]', async () => {
+  it('should pass with filled array', async () => {
     const v = new Validator(
       { features: [1, 2, 3] },
-      { features: 'array' }
+      { features: 'array' },
     );
 
     const matched = await v.check();
@@ -27,16 +26,33 @@ describe('array', () => {
   });
 
 
-  it('validation should fail: invalid value', async () => {
+  it('should fail with string', async () => {
     const v = new Validator(
       { features: 'no' },
-      { features: 'array' }
+      { features: 'array' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.features.message, v.parseExistingMessageOnly('array', 'features'));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { features: {} },
+      { features: 'array' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.features.message,
+      v.getExistinParsedMessage({
+        rule: 'array',
+        value: {},
+        attr: 'features',
+      }),
+    );
   });
 });

@@ -1,6 +1,7 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+
+const { Validator } = require('../../lib/index');
 
 describe('#requiredWith', () => {
   it('should return false for missing seed length', async () => {
@@ -8,8 +9,9 @@ describe('#requiredWith', () => {
       const v = new Validator({ age: 16 }, { remember: 'requiredWith' });
 
       await v.check();
+      throw new Error('Exception was excepted.');
     } catch (e) {
-      assert.equal(e, 'Invalid arguments supplied for field remember in required with rule.');
+      assert.equal(e, 'Error: Invalid arguments supplied for field remember in required with rule.');
     }
 
     // assert.equal(v.errors.remember.message, v.parseExistingMessageOnly('requiredIf', 'remember', '', ['age', '16']));
@@ -21,7 +23,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', sex: 'male', email: '', ip: '',
       },
-      { email: 'email', ip: 'requiredWith:email|ip' }
+      { email: 'email', ip: 'requiredWith:email|ip' },
     );
 
     const matched = await v.check();
@@ -34,7 +36,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', sex: 'male', address: { street: 'fantastic' }, ip: '',
       },
-      { email: 'email', sex: 'requiredWith:address.street' }
+      { email: 'email', sex: 'requiredWith:address.street' },
     );
 
     const matched = await v.check();
@@ -48,7 +50,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', sex: 'male', email: '', ip: '',
       },
-      { email: 'requiredWith:name,sex' }
+      { email: 'requiredWith:name,sex' },
     );
 
     const matched = await v.check();
@@ -61,7 +63,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', address: { street: 'fantastic' }, email: '', ip: '',
       },
-      { email: 'requiredWith:name,address.street' }
+      { email: 'requiredWith:name,address.street' },
     );
 
     const matched = await v.check();
@@ -75,7 +77,7 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', sex: 'male', email: 'artisangang@gmail.com', ip: '',
       },
-      { email: 'requiredWith:name,sex' }
+      { email: 'requiredWith:name,sex' },
     );
 
     const matched = await v.check();
@@ -89,14 +91,33 @@ describe('#requiredWith', () => {
       {
         name: 'Harcharan Singh', sex: 'male', email: 'artisangang@gmail.com', ip: '',
       },
-      { email: 'email', ip: 'requiredWith:email|ip' }
+      { email: 'email', ip: 'requiredWith:email|ip' },
     );
 
     const matched = await v.check();
     assert.equal(matched, false);
-    // should(v.errors).be.an.instanceOf(Object);
-    // should(v.errors).have.property('ip');
+  });
 
-    assert.equal(v.errors.ip.message, v.parseExistingMessageOnly('requiredWith', 'ip', '', 4));
+  it('message should exist', async () => {
+    const v = new Validator(
+      {
+        name: 'Harcharan Singh', sex: 'male', email: 'artisangang@gmail.com', ip: '',
+      },
+      { email: 'email', ip: 'requiredWith:email|ip' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+
+    assert.equal(
+      v.errors.ip.message,
+      v.getExistinParsedMessage({
+        rule: 'requiredWith',
+        value: '',
+        attr: 'ip',
+        args: ['email'],
+      }),
+    );
   });
 });

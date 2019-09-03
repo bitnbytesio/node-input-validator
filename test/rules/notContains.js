@@ -1,12 +1,12 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 describe('notContains', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator(
-      { attribute: 'This library is awesome.' },
-      { attribute: 'notContains:package' }
+      { attr: 'This library is awesome.' },
+      { attr: 'notContains:package' },
     );
 
     const matched = await v.check();
@@ -15,16 +15,34 @@ describe('notContains', () => {
   });
 
 
-  it('validation should fail: mising attribute', async () => {
+  it('should fail', async () => {
     const v = new Validator(
-      { attribute: 'Yes, Node is awesome' },
-      { attribute: 'notContains:Yes' }
+      { attr: 'Yes, Node is awesome' },
+      { attr: 'notContains:Yes' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('notContains', 'attribute', '', 'Yes'));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: 'yes' },
+      { attr: 'notContains:yes' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'notContains',
+        value: 'ok',
+        attr: 'attr',
+        args: ['yes'],
+      }),
+    );
   });
 });

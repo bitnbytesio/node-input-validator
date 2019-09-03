@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('arrayUniqueObjects', () => {
-  it('validation should fail with non array', async () => {
+  it('should fail with string', async () => {
     const v = new Validator(
       { features: 'test' },
-      { features: 'arrayUniqueObjects:id' }
+      { features: 'arrayUniqueObjects:id' },
     );
 
     const matched = await v.check();
@@ -16,7 +16,7 @@ describe('arrayUniqueObjects', () => {
   });
 
 
-  it('validation should pass: with single attribute', async () => {
+  it('should pass with array of objects', async () => {
     const v = new Validator(
       {
         features: [{
@@ -28,7 +28,7 @@ describe('arrayUniqueObjects', () => {
           name: 'ok2',
         }],
       },
-      { features: 'array|arrayUniqueObjects:id' }
+      { features: 'array|arrayUniqueObjects:id' },
     );
 
     const matched = await v.check();
@@ -36,7 +36,7 @@ describe('arrayUniqueObjects', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should fail for duplicates', async () => {
+  it('should fail for duplicate ids in array of objects', async () => {
     const v = new Validator(
       {
         features: [{
@@ -48,33 +48,14 @@ describe('arrayUniqueObjects', () => {
           name: 'ok2',
         }],
       },
-      { features: 'array|arrayUniqueObjects:id' }
+      { features: 'array|arrayUniqueObjects:id' },
     );
     const matched = await v.check();
 
     assert.equal(matched, false);
   });
 
-  it('validation should fail for duplicates', async () => {
-    const v = new Validator(
-      {
-        features: [{
-          id: 1,
-          name: 'ok',
-        },
-        {
-          id: 1,
-          name: 'ok2',
-        }],
-      },
-      { features: 'array|arrayUniqueObjects:id' }
-    );
-    const matched = await v.check();
-
-    assert.equal(matched, false);
-  });
-
-  it('validation should pass for multiple individual duplicates and group uniques', async () => {
+  it('should pass for multiple individual duplicates and unique when grouped', async () => {
     const v = new Validator(
       {
         features: [{
@@ -90,10 +71,30 @@ describe('arrayUniqueObjects', () => {
           name: 'ok2',
         }],
       },
-      { features: 'array|arrayUniqueObjects:id,name' }
+      { features: 'array|arrayUniqueObjects:id,name' },
     );
     const matched = await v.check();
 
     assert.equal(matched, true);
+  });
+
+  it('message should exist', async () => {
+    const v = new Validator(
+      { features: {} },
+      { features: 'arrayUniqueObjects:id' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.features.message,
+      v.getExistinParsedMessage({
+        rule: 'arrayUniqueObjects',
+        value: {},
+        attr: 'features',
+        args: ['id'],
+      }),
+    );
   });
 });

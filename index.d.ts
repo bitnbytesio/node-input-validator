@@ -1,90 +1,59 @@
-declare class Validator {
+export function setLang(lang: string);
 
-    errors: any;
+export function extend(name: string, callback: any);
 
-    validations: any;
+export function extendMessages(newMessages: object, lang?: string);
 
-    filters: any;
+export function addCustomMessages(customMessages: object, lang?: string);
 
-    lang: string;
+export function niceNames(attributes: object, lang?: string);
 
-    postValidations: any;
+export function koa();
 
-    inputs: any;
+export declare class Validator {
 
-    filterInputs: any;
+  inputs: any;
+  errors: any;
+  postValidation: any;
+  filters: any;
+  lang: string;
+  customMessages: any;
+  attributeNames: any;
+  wasFailed: any;
+  doBail: any;
+  validationRules: any;
 
-    rules: any;
+  constructor(inputs: object, rules: object, customMessages?: object);
 
-    customMessages: any;
+  bail(sure?: boolean);
 
+  niceNames(attributeNames: object);
 
-    constructor(inputs: any, rules: any, customMessages?: any);
+  parseRules(validationRules: object): void;
 
-    setAttributeNames(niceNames: any);
+  check(): Promise<boolean>
 
-    static make(inputs: any, rules: any, messages?: any): Validator;
+  fails(): Promise<boolean>;
 
-    static create(rules: any, messages?: any): Validator;
+  passes(): Promise<boolean>;
 
-    apply(inputs: any): Promise<any>;
+  parseValue(attribute: string): any;
 
-    check(): Promise<boolean>;
+  applyOnDeep(attributes: any);
 
-    fails(): Promise<boolean>;
+  parseNestedAttr(attribute: any);
 
-    passes(): Promise<boolean>;
+  apply(attr: string);
 
-    setLang(lang: string);
+  postApply(rule: any);
 
-    isEmpty(value: any): boolean;
+  addPostRule(rule: any): void;
 
-    addError(key: string, rule: string, messages?: string);
+  addPostRules(rulesObject: any): void;
 
-    addPostRule(rule: any): void;
+  getParsedMessage(options: any): string;
 
-    addPostRules(rules: Array<any>): void;
+  getExistinParsedMessage(options: any): string;
 
-    check(): Promise<boolean>;
-
-    parseKey(key: any, data: any): any;
-
-    inputVal(attribute: any, multiple?: boolean): any;
-
-    parseRules(rules: any);
-
-    makeValidationsFromArray(rules: any): any;
-
-    populateRule(attribute: any);
-
-    parseMessage(rule: any, field: any, value?: any, args?: any): any;
-
-    parseExistingMessageOnly(rule: any, field: any, value?: any, args?: any);
+  addError(key: string, rule: string, message: string);
 }
-
-
-declare namespace Validator {
-
-    function setLang(lang: string);
-
-    function extend(
-        rule: string,
-        func: any
-    );
-
-    function messages(
-        newMessages: any,
-        lang?: string
-    );
-
-    function customMessages(
-        customMessages: any,
-        lang?: string
-    );
-
-    function koa();
-
-    export { setLang, extend, messages, customMessages, koa };
-}
-
-export = Validator;

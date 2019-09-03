@@ -1,12 +1,12 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 describe('hash', () => {
-  it('validation should pass', async () => {
+  it('should pass with md5', async () => {
     const v = new Validator(
-      { attribute: '46f8fb7d635cb71beafe8fe580c56164' },
-      { attribute: 'hash:md5' }
+      { attr: '46f8fb7d635cb71beafe8fe580c56164' },
+      { attr: 'hash:md5' },
     );
 
     const matched = await v.check();
@@ -15,16 +15,34 @@ describe('hash', () => {
   });
 
 
-  it('validation should fail: mising attribute', async () => {
+  it('should fail with plain text', async () => {
     const v = new Validator(
-      { attribute: 'Yes, Node is awesome' },
-      { attribute: 'hash:md5' }
+      { attr: 'Yes, Node is awesome' },
+      { attr: 'hash:md5' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('hash', 'attribute', '', 'md5'));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: '123456456789' },
+      { attr: 'hash:md5' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'hash',
+        value: '123456456789',
+        attr: 'attr',
+        args: ['md5'],
+      }),
+    );
   });
 });

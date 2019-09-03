@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('domain', () => {
-  it('validation should pass', async () => {
+  it('should pass with example.com', async () => {
     const v = new Validator(
-      { attribute: 'example.com' },
-      { attribute: 'domain' }
+      { attr: 'example.com' },
+      { attr: 'domain' },
     );
 
     const matched = await v.check();
@@ -15,10 +15,10 @@ describe('domain', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should pass', async () => {
+  it('should pass with www', async () => {
     const v = new Validator(
-      { attribute: 'www.example.com' },
-      { attribute: 'domain' }
+      { attr: 'www.example.com' },
+      { attr: 'domain' },
     );
 
     const matched = await v.check();
@@ -26,10 +26,10 @@ describe('domain', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should pass', async () => {
+  it('should fail with http', async () => {
     const v = new Validator(
-      { attribute: 'http://www.example.com' },
-      { attribute: 'domain' }
+      { attr: 'http://www.example.com' },
+      { attr: 'domain' },
     );
 
     const matched = await v.check();
@@ -38,16 +38,34 @@ describe('domain', () => {
   });
 
 
-  it('validation should fail: mising attribute', async () => {
+  it('should fail with string', async () => {
     const v = new Validator(
-      { attribute: 'localhost' },
-      { attribute: 'domain' }
+      { attr: 'localhost' },
+      { attr: 'domain' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('domain', 'attribute', ''));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: '123' },
+      { attr: 'domain' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'domain',
+        value: '123',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

@@ -1,14 +1,14 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 describe('function', () => {
   it('should use custom function', async () => {
     let v = new Validator({ username: 'arnold', password: 'arnold123' }, {});
 
-    v.addPostRule(async function passwordRule(input) {
-      if (input.password.indexOf(input.username) >= 0) {
-        this.addError('password', 'custom', 'Password cannot contain username');
+    v.addPostRule(async (provider) => {
+      if (provider.inputs.password.indexOf(provider.inputs.username) >= 0) {
+        provider.error('password', 'custom', 'Password cannot contain username');
       }
     });
 
@@ -18,9 +18,9 @@ describe('function', () => {
 
     v = new Validator({ username: 'arnold', password: '123456' }, {});
 
-    v.addPostRule(async function anotherPasswordRule(input) {
-      if (input.password.indexOf(input.username) >= 0) {
-        this.addError('password', 'custom', 'Password cannot contain username');
+    v.addPostRule(async (provider) => {
+      if (provider.inputs.password.indexOf(provider.inputs.username) >= 0) {
+        provider.error('password', 'custom', 'Password cannot contain username');
       }
     });
 

@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('digits', () => {
-  it('validation should pass', async () => {
+  it('should pass with digits', async () => {
     const v = new Validator(
-      { attribute: '1250' },
-      { attribute: 'digits:4' }
+      { attr: '1250' },
+      { attr: 'digits:4' },
     );
 
     const matched = await v.check();
@@ -15,60 +15,85 @@ describe('digits', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should fail: invalid val', async () => {
+  it('should fail with alpha chars', async () => {
     const v = new Validator(
-      { attribute: 'abcd' },
-      { attribute: 'digits:4' }
+      { attr: 'abcd' },
+      { attr: 'digits:4' },
     );
 
     const matched = await v.check();
 
 
     assert.equal(matched, false);
-
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digits', 'attribute', '', '4'));
   });
 
-  it('validation should fail: invalid length', async () => {
+  it('should fail short length', async () => {
     const v = new Validator(
-      { attribute: '123456' },
-      { attribute: 'digits:8' }
+      { attr: '123456' },
+      { attr: 'digits:8' },
     );
 
     const matched = await v.check();
 
 
     assert.equal(matched, false);
-
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digits', 'attribute', '', '8'));
   });
 
-  it('validation should fail: not digits', async () => {
+  it('should fail with - in numbers', async () => {
     const v = new Validator(
-      { attribute: '1234-567' },
-      { attribute: 'digits:8' }
+      { attr: '1234-567' },
+      { attr: 'digits:8' },
     );
 
     const matched = await v.check();
 
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digits', 'attribute', '', '8'));
+  it('should fail with . in numbers', async () => {
+    const v = new Validator(
+      { attr: '120.56' },
+      { attr: 'digits:6' },
+    );
+
+    const matched = await v.check();
+
+
+    assert.equal(matched, false);
+  });
+
+  it('should throw invalid seed exception', async () => {
+    try {
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|digits:test' });
+
+      await v.check();
+
+      throw new Error('Invalid seed exception.');
+    } catch (e) {
+      assert.equal(e, 'Error: Please provide a numeric value for attribute under digits rule.');
+    }
   });
 
 
-  it('validation should fail: due to .', async () => {
+  it('message should exist', async () => {
     const v = new Validator(
-      { attribute: '120.50' },
-      { attribute: 'digits:5' }
+      { attr: '123456' },
+      { attr: 'digits:5' },
     );
 
     const matched = await v.check();
 
 
     assert.equal(matched, false);
-
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('digits', 'attribute', '', '5'));
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'digits',
+        value: '123456',
+        attr: 'attr',
+        args: [5],
+      }),
+    );
   });
 });

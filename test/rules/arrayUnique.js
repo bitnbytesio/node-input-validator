@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('arrayUnique', () => {
-  it('validation should fail with non array', async () => {
+  it('should fail with string', async () => {
     const v = new Validator(
       { features: 'test' },
-      { features: 'arrayUnique' }
+      { features: 'arrayUnique' },
     );
 
     const matched = await v.check();
@@ -16,10 +16,10 @@ describe('arrayUnique', () => {
   });
 
 
-  it('validation should pass: []', async () => {
+  it('should pass with empty array', async () => {
     const v = new Validator(
       { features: [] },
-      { features: 'arrayUnique' }
+      { features: 'arrayUnique' },
     );
 
     const matched = await v.check();
@@ -27,10 +27,10 @@ describe('arrayUnique', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should pass: with [1,2,3]', async () => {
+  it('should pass with filled array', async () => {
     const v = new Validator(
       { features: [1, 2, 3] },
-      { features: 'arrayUnique' }
+      { features: 'arrayUnique' },
     );
 
     const matched = await v.check();
@@ -38,10 +38,10 @@ describe('arrayUnique', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should fail for duplicates', async () => {
+  it('should fail for duplicates values in array', async () => {
     const v = new Validator(
       { features: [1, 2, 3, 1] },
-      { features: 'arrayUnique' }
+      { features: 'arrayUnique' },
     );
 
     const matched = await v.check();
@@ -49,17 +49,22 @@ describe('arrayUnique', () => {
     assert.equal(matched, false);
   });
 
-
-  it('validation should fail: invalid value', async () => {
+  it('message should exist', async () => {
     const v = new Validator(
-      { features: 'no' },
-      { features: 'arrayUnique' }
+      { features: {} },
+      { features: 'arrayUnique' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
-
-    assert.equal(v.errors.features.message, v.parseExistingMessageOnly('arrayUnique', 'features'));
+    assert.equal(
+      v.errors.features.message,
+      v.getExistinParsedMessage({
+        rule: 'arrayUnique',
+        value: {},
+        attr: 'features',
+      }),
+    );
   });
 });

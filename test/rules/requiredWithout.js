@@ -1,6 +1,7 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+
+const { Validator } = require('../../lib/index');
 
 
 describe('requiredWithout', () => {
@@ -8,17 +9,16 @@ describe('requiredWithout', () => {
     try {
       const v = new Validator({ age: 16 }, { remember: 'requiredWithout' });
       await v.check();
+      throw new Error('Exception was expected.');
     } catch (e) {
-      assert.equal(e, 'Invalid arguments supplied for field remember in requiredWithout rule.');
+      assert.equal(e, 'Error: Invalid arguments supplied for field remember in requiredWithout rule.');
     }
-
-    // assert.equal(v.errors.remember.message, v.parseExistingMessageOnly('requiredIf', 'remember', '', ['age', '16']));
   });
 
   it('should pass', async () => {
     const v = new Validator(
       { name: 'Harcharan Singh', sex: '', age: '26' },
-      { sex: 'requiredWithout:age' }
+      { sex: 'requiredWithout:age' },
     );
 
     const matched = await v.check();
@@ -28,7 +28,7 @@ describe('requiredWithout', () => {
   it('should pass', async () => {
     const v = new Validator(
       { name: 'Harcharan Singh', sex: 'male', age: '26' },
-      { sex: 'requiredWithout:age' }
+      { sex: 'requiredWithout:age' },
     );
 
     const matched = await v.check();
@@ -38,15 +38,32 @@ describe('requiredWithout', () => {
   it('should fails', async () => {
     const v = new Validator(
       { name: 'Harcharan Singh' },
-      { sex: 'requiredWithout:age' }
+      { sex: 'requiredWithout:age' },
     );
 
     const matched = await v.check();
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.sex.message, v.parseExistingMessageOnly('requiredWithout', 'sex', '', 4));
 
-    // should(v.errors).be.an.instanceOf(Object);
-    // should(v.errors).have.property('sex');
+  it('message should exist', async () => {
+    const v = new Validator(
+      { name: 'Harcharan Singh' },
+      { sex: 'requiredWithout:age' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+
+    assert.equal(
+      v.errors.sex.message,
+      v.getExistinParsedMessage({
+        rule: 'requiredWithout',
+        value: '',
+        attr: 'sex',
+        args: ['age'],
+      }),
+    );
   });
 });

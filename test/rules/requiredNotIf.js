@@ -1,22 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
 
-describe('#requiredNotIf', () => {
-  it('validation should pass', async () => {
+const { Validator } = require('../../lib/index');
+
+describe('requiredNotIf', () => {
+  it('should pass', async () => {
     const v = new Validator(
       { name: 'Harcharan Singh', age: '16' },
-      { sex: 'requiredNotIf:age,16' }
-    );
-
-    const matched = await v.check();
-
-    assert.equal(matched, true);
-  });
-  it('validation should pass', async () => {
-    const v = new Validator(
-      { name: 'Harcharan Singh', address: { street: 'fantastic' } },
-      { age: 'requiredNotIf:address.street,fantastic' }
+      { sex: 'requiredNotIf:age,16' },
     );
 
     const matched = await v.check();
@@ -24,20 +15,11 @@ describe('#requiredNotIf', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should fail', async () => {
+
+  it('should fail', async () => {
     const v = new Validator(
       { name: 'Harcharan Singh', age: 15, sex: 'male' },
-      { sex: 'requiredNotIf:age,16' }
-    );
-
-    const matched = await v.check();
-
-    assert.equal(matched, false);
-  });
-  it('validation should fail', async () => {
-    const v = new Validator(
-      { name: 'Harcharan Singh', address: { street: 'fantastic' }, age: 15 },
-      { age: 'requiredNotIf:address.street,fantastic' }
+      { sex: 'requiredNotIf:age,16' },
     );
 
     const matched = await v.check();
@@ -45,10 +27,8 @@ describe('#requiredNotIf', () => {
     assert.equal(matched, false);
   });
 
-  // should(v.errors).be.an.instanceOf(Object);
-  // should(v.errors).have.property('sex');
 
-  it('validation should pass', async () => {
+  it('should pass with multiple seeds', async () => {
     const v = new Validator(
       {
         name: 'Harcharan Singh',
@@ -59,7 +39,7 @@ describe('#requiredNotIf', () => {
       },
       {
         email: 'requiredNotIf:age,16,parent,yes,type,subscribed',
-      }
+      },
     );
 
     const matched = await v.check();
@@ -67,7 +47,7 @@ describe('#requiredNotIf', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should fail', async () => {
+  it('should fail with multiple seeds', async () => {
     const v = new Validator(
       {
         name: 'Harcharan Singh',
@@ -78,15 +58,31 @@ describe('#requiredNotIf', () => {
       },
       {
         email: 'requiredNotIf:age,16,parent,yes,type,subscribed',
-      }
+      },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
-    assert.equal(v.errors.email.message, v.parseExistingMessageOnly('requiredNotIf', 'email', '', 4));
+  });
 
-    // should(v.errors).be.an.instanceOf(Object);
-    // should(v.errors).have.property('email');
+  it('message should exist', async () => {
+    const v = new Validator(
+      { name: 'Harcharan Singh', age: 15, sex: 'male' },
+      { sex: 'requiredNotIf:age,16' },
+    );
+
+    const matched = await v.check();
+    assert.equal(matched, false);
+
+    assert.equal(
+      v.errors.sex.message,
+      v.getExistinParsedMessage({
+        rule: 'requiredNotIf',
+        value: '',
+        attr: 'sex',
+        args: ['age', 16],
+      }),
+    );
   });
 });

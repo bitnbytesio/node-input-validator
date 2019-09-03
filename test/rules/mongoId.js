@@ -1,12 +1,11 @@
 const assert = require('assert');
-
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 describe('mongoId', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator(
-      { attribute: '5c33010638eb95186574b64a' },
-      { attribute: 'mongoId' }
+      { attr: '5c33010638eb95186574b64a' },
+      { attr: 'mongoId' },
     );
 
     const matched = await v.check();
@@ -15,16 +14,35 @@ describe('mongoId', () => {
   });
 
 
-  it('validation should fail: invalida value', async () => {
+  it('should fail', async () => {
     const v = new Validator(
-      { attribute: '1945690' },
-      { attribute: 'mongoId' }
+      { attr: '1945690' },
+      { attr: 'mongoId' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('mongoId', 'attribute', '', 4));
+
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: 'string' },
+      { attr: 'mongoId' },
+    );
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'mongoId',
+        value: 'string',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('numeric', () => {
-  it('validation should pass', async () => {
+  it('should pass with numbers in string', async () => {
     const v = new Validator(
-      { attribute: '12' },
-      { attribute: 'numeric' }
+      { attr: '12' },
+      { attr: 'numeric' },
     );
 
     const matched = await v.check();
@@ -15,10 +15,10 @@ describe('numeric', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should pass', async () => {
+  it('should pass with integer', async () => {
     const v = new Validator(
-      { attribute: 12 },
-      { attribute: 'numeric' }
+      { attr: 12 },
+      { attr: 'numeric' },
     );
 
     const matched = await v.check();
@@ -26,10 +26,10 @@ describe('numeric', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should fail', async () => {
+  it('should pass with decimal', async () => {
     const v = new Validator(
-      { attribute: 12.5 },
-      { attribute: 'numeric' }
+      { attr: 12.5 },
+      { attr: 'numeric' },
     );
 
     const matched = await v.check();
@@ -38,16 +38,33 @@ describe('numeric', () => {
   });
 
 
-  it('validation should fail', async () => {
+  it('should fail with non numeric', async () => {
     const v = new Validator(
-      { attribute: 'draft' },
-      { attribute: 'numeric' }
+      { attr: 'draft' },
+      { attr: 'numeric' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('numeric', 'attribute', '', 4));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: 'draft' },
+      { attr: 'numeric' },
+    );
+
+    const matched = await v.check();
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'numeric',
+        value: 'draft',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

@@ -1,24 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('boolean', () => {
-  it('validation should pass: with true', async () => {
+  it('should pass with boolean(true/false)', async () => {
     const v = new Validator(
-      { attribute: true },
-      { attribute: 'boolean' }
-    );
-
-    const matched = await v.check();
-
-    assert.equal(matched, true);
-  });
-
-  it('validation should pass: with false as boolean', async () => {
-    const v = new Validator(
-      { attribute: false },
-      { attribute: 'required|boolean' }
+      { a: true, b: false },
+      { a: 'boolean', b: 'boolean' },
     );
 
     const matched = await v.check();
@@ -27,22 +16,10 @@ describe('boolean', () => {
   });
 
 
-  it('validation should pass with nested: with false as boolean', async () => {
+  it('should pass with String(true,false)', async () => {
     const v = new Validator(
-      {
-        name: 'test',
-        attribute: [
-          {
-            captain: false,
-            email: 'user@yopmail.com',
-          },
-        ],
-      },
-      {
-        name: 'required|string',
-        attribute: 'required|arrayUniqueObjects:email',
-        'attribute.*.captain': 'required|boolean',
-      }
+      { a: 'false', b: 'false' },
+      { a: 'boolean', b: 'boolean' },
     );
 
     const matched = await v.check();
@@ -50,32 +27,10 @@ describe('boolean', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should pass: with 0 as integer', async () => {
+  it('should pass with Int(0,1)', async () => {
     const v = new Validator(
-      { attribute: 0 },
-      { attribute: 'boolean' }
-    );
-
-    const matched = await v.check();
-
-    assert.equal(matched, true);
-  });
-
-  it('validation should pass: with 0', async () => {
-    const v = new Validator(
-      { attribute: 0 },
-      { attribute: 'boolean' }
-    );
-
-    const matched = await v.check();
-
-    assert.equal(matched, true);
-  });
-
-  it('validation should pass: with 0', async () => {
-    const v = new Validator(
-      { attribute: 1 },
-      { attribute: 'boolean' }
+      { a: 0, b: 1 },
+      { a: 'boolean', b: 'boolean' },
     );
 
     const matched = await v.check();
@@ -84,10 +39,10 @@ describe('boolean', () => {
   });
 
 
-  it('validation should pass: with custom', async () => {
+  it('should pass with custom seed', async () => {
     const v = new Validator(
-      { attribute: 'ok' },
-      { attribute: 'boolean:ok' }
+      { a: 'yes', b: 'no' },
+      { a: 'boolean:yes,no', b: 'boolean:yes,no' },
     );
 
     const matched = await v.check();
@@ -95,16 +50,33 @@ describe('boolean', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should fail: invalid value', async () => {
+  it('should fail invalid value', async () => {
     const v = new Validator(
-      { attribute: 'not accepted' },
-      { attribute: 'boolean' }
+      { a: 'not accepted' },
+      { a: 'boolean' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('boolean', 'attribute'));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { featured: {} },
+      { featured: 'boolean' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.featured.message,
+      v.getExistinParsedMessage({
+        rule: 'boolean',
+        value: {},
+        attr: 'featured',
+      }),
+    );
   });
 });

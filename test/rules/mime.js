@@ -1,14 +1,14 @@
 const assert = require('assert');
 const fs = require('fs');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
-const mime = require('../../src/rules/mime');
+const mime = require('../../lib/rules/mime');
 
 describe('mime', () => {
-  it('should return true', async () => {
+  it('should pass', async () => {
     const v = new Validator(
-      { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:4kb|mime:png,jpg' }
+      { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'mime:png,jpg' },
     );
 
 
@@ -18,9 +18,42 @@ describe('mime', () => {
   });
 
 
-  it('should return true', async () => {
+  it('should fail, using buffer', async () => {
     const v = new Validator(
-      { file: './test/stubs/file-small.png' }, { file: 'size:4kb|mime:png,jpg' }
+      { file: { buffer: fs.readFileSync('./test/stubs/file-small.png') } }, { file: 'mime:bmp' },
+    );
+
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
+  it('should fail, using path', async () => {
+    const v = new Validator(
+      { file: { path: './test/stubs/file-small.png' } }, { file: 'mime:gif,bmp' },
+    );
+
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
+  it('should fail, path as string', async () => {
+    const v = new Validator(
+      { file: './test/stubs/file-small.png' }, { file: 'mime:gif,bmp' },
+    );
+
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
+  it('should pass, with manual mime', async () => {
+    const v = new Validator(
+      { file: { mime: 'image/gif' } }, { file: 'mime:gif,bmp' },
     );
 
 
@@ -29,49 +62,31 @@ describe('mime', () => {
     assert.equal(matched, true);
   });
 
-  it('should return false', async () => {
+  it('should pass, with manual type', async () => {
     const v = new Validator(
-      { file: { buffer: fs.readFileSync('./test/stubs/file-small.png') } }, { file: 'mime:bmp' }
+      { file: { type: 'image/gif' } }, { file: 'mime:gif,bmp' },
     );
 
 
     const matched = await v.check();
 
-    assert.equal(matched, false);
+    assert.equal(matched, true);
   });
 
-  it('should return false', async () => {
+  it('should pass, with manual mimetype', async () => {
     const v = new Validator(
-      { file: { path: './test/stubs/file-small.png' } }, { file: 'mime:gif,bmp' }
+      { file: { mimetype: 'image/gif' } }, { file: 'mime:gif,bmp' },
     );
 
 
     const matched = await v.check();
 
-    assert.equal(matched, false);
-
-    assert.equal(v.errors.file.message, v.parseExistingMessageOnly('mime', 'file', '', ['gif', 'bmp']));
-  });
-});
-
-describe('mime direct checks', () => {
-  it('should return true', async () => {
-    await mime('file', { mime: 'png' }, ['png']);
-  });
-
-
-  it('should return true', async () => {
-    await mime('file', { type: 'png' }, ['png']);
-  });
-
-
-  it('should return true', async () => {
-    await mime('file', { mimetype: 'png' }, ['png']);
+    assert.equal(matched, true);
   });
 
   it('should throw exception', async () => {
     try {
-      await mime('file', {}, ['png']);
+      await mime({ value: {}, args: ['png'] });
     } catch (e) {
       assert.equal(e, 'Error: MIME rule only accepts Buffer,file path or type/mime property in file object.');
     }

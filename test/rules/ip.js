@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('ip', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator(
       { attribute: '192.168.1.14' },
-      { attribute: 'ip' }
+      { attribute: 'ip' },
     );
 
     const matched = await v.check();
@@ -16,17 +16,35 @@ describe('ip', () => {
   });
 
 
-  it('validation should fail: invalida value', async () => {
+  it('should fail with string', async () => {
     const v = new Validator(
       { attribute: 'Yes, Node is awesome' },
-      { attribute: 'ip' }
+      { attribute: 'ip' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: '192.168 25.25' },
+      { attr: 'ip' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
 
-    // console.log(v.errors);
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('ip', 'attribute', ''));
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'ip',
+        value: '192.168 25.25',
+        attr: 'attr',
+        args: [],
+      }),
+    );
   });
 });

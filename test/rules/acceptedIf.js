@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('acceptedIf', () => {
-  it('validation should pass: with yes', async () => {
+  it('should pass with yes', async () => {
     const v = new Validator(
-      { attribute: 'yes', age: 16 },
-      { attribute: 'acceptedIf:age,16' }
+      { attr: 'yes', age: 16 },
+      { attr: 'acceptedIf:age,16' },
     );
 
     const matched = await v.check();
@@ -15,10 +15,10 @@ describe('acceptedIf', () => {
     assert.equal(matched, true);
   });
 
-  it('validation pass, if condition fails', async () => {
+  it('should pass with empty value', async () => {
     const v = new Validator(
-      { attribute: '' },
-      { attribute: 'acceptedIf:age,16' }
+      { attr: '' },
+      { attr: 'acceptedIf:age,16' },
     );
 
     const matched = await v.check();
@@ -26,21 +26,11 @@ describe('acceptedIf', () => {
     assert.equal(matched, true);
   });
 
-  it('validation pass, if condition pass', async () => {
+
+  it('should fail with no', async () => {
     const v = new Validator(
-      { attribute: 'yes' },
-      { attribute: 'acceptedIf:age,16' }
-    );
-
-    const matched = await v.check();
-
-    assert.equal(matched, true);
-  });
-
-  it('validation pass, if condition fails for no', async () => {
-    const v = new Validator(
-      { attribute: 'no', age: 16 },
-      { attribute: 'acceptedIf:age,16' }
+      { attr: 'no', age: 16 },
+      { attr: 'acceptedIf:age,16' },
     );
 
     const matched = await v.check();
@@ -48,10 +38,32 @@ describe('acceptedIf', () => {
     assert.equal(matched, false);
   });
 
-  it('validation should fail: invalid value', async () => {
+  it('should throw exception', async () => {
+    try {
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|acceptedIf' });
+
+      await v.check();
+
+      throw new Error('Invalid seed exception.');
+    } catch (e) {
+      assert.equal(e, 'Error: Invalid arguments supplied for field attribute in acceptedIf rule.');
+    }
+
+    try {
+      const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|acceptedIf:1,2,3' });
+
+      await v.check();
+
+      throw new Error('Invalid seed exception.');
+    } catch (e) {
+      assert.equal(e, 'Error: Invalid arguments supplied for field attribute in acceptedIf rule.');
+    }
+  });
+
+  it('message should exists', async () => {
     const v = new Validator(
-      { attribute: 'no', age: 16 },
-      { attribute: 'acceptedIf:age,16' }
+      { attr: 'no', age: 16 },
+      { attr: 'acceptedIf:age,16' },
     );
 
     const matched = await v.check();
@@ -59,8 +71,13 @@ describe('acceptedIf', () => {
     assert.equal(matched, false);
 
     assert.equal(
-      v.errors.attribute.message,
-      v.parseExistingMessageOnly('acceptedIf', 'attribute', 'no', ['age', '16'])
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'acceptedIf',
+        value: 'no',
+        attr: 'attr',
+        args: ['age', '16'],
+      }),
     );
   });
 });

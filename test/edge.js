@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-const Validator = require('../index');
+const { Validator } = require('../lib/index');
 
 describe('Edge Cases', () => {
   describe('undefined', () => {
@@ -51,6 +51,20 @@ describe('Edge Cases', () => {
 
       const matched = await v.check();
       assert.equal(matched, false);
+    });
+  });
+
+  describe('exceptions', () => {
+    it('Checking for invalid rule', async () => {
+      try {
+        const v = new Validator({ name: 'Harcharan Singh' }, { name: 'required|fullName' });
+
+        await v.check();
+
+        throw new Error('Rule was missing.');
+      } catch (e) {
+        assert.equal(e, 'Error: Validation Rule: fullName does not exists.');
+      }
     });
   });
 });

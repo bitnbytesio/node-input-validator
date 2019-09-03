@@ -1,12 +1,12 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('regex', () => {
-  it('validation should pass', async () => {
+  it('should pass', async () => {
     const v = new Validator(
-      { number: 'abc' }, { number: 'regex:[abc]' }
+      { number: 'abc' }, { number: 'regex:[abc]' },
     );
 
     const matched = await v.check();
@@ -15,15 +15,34 @@ describe('regex', () => {
   });
 
 
-  it('validation should fail', async () => {
+  it('should fail', async () => {
     const v = new Validator(
-      { attribute: 'xyz' }, { attribute: 'regex:[abc]' }
+      { attribute: 'xyz' }, { attribute: 'regex:[abc]' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('regex', 'attribute', '', 4));
+
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: '123' },
+      { attr: 'regex:[abc]' },
+    );
+
+
+    const matched = await v.check();
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'regex',
+        value: '123',
+        attr: 'attr',
+        args: ['[abc]'],
+      }),
+    );
   });
 });

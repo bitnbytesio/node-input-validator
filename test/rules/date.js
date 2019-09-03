@@ -1,13 +1,13 @@
 const assert = require('assert');
 
-const Validator = require('../../index');
+const { Validator } = require('../../lib/index');
 
 
 describe('date', () => {
-  it('validation should pass', async () => {
+  it('should pass supported format', async () => {
     const v = new Validator(
       { attribute: '2018-12-26' },
-      { attribute: 'date' }
+      { attribute: 'date' },
     );
 
     const matched = await v.check();
@@ -15,10 +15,10 @@ describe('date', () => {
     assert.equal(matched, true);
   });
 
-  it('validation should fail: invalid format', async () => {
+  it('should fail not supported format', async () => {
     const v = new Validator(
       { attribute: '01/26/2018' },
-      { attribute: 'date' }
+      { attribute: 'date' },
     );
 
     const matched = await v.check();
@@ -26,16 +26,33 @@ describe('date', () => {
     assert.equal(matched, false);
   });
 
-  it('validation should fail: invalid value', async () => {
+  it('should fail with invalid value', async () => {
     const v = new Validator(
       { attribute: '12 12 18' },
-      { attribute: 'date' }
+      { attribute: 'date' },
     );
 
     const matched = await v.check();
 
     assert.equal(matched, false);
+  });
 
-    assert.equal(v.errors.attribute.message, v.parseExistingMessageOnly('date', 'attribute'));
+  it('message should exist', async () => {
+    const v = new Validator(
+      { attr: '12122018' },
+      { attr: 'date' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+    assert.equal(
+      v.errors.attr.message,
+      v.getExistinParsedMessage({
+        rule: 'date',
+        value: '12122018',
+        attr: 'attr',
+      }),
+    );
   });
 });
