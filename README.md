@@ -11,8 +11,8 @@
 [travis-image]: https://api.travis-ci.org/bitnbytesio/node-input-validator.svg?branch=v3
 [travis-url]: https://travis-ci.org/bitnbytesio/node-input-validator?branch=v3
 
-[david-image]: https://david-dm.org/bitnbytesio/node-input-validator.svg?style=flat-square
-[david-url]: https://david-dm.org/bitnbytesio/node-input-validator
+[david-image]: https://david-dm.org/bitnbytesio/node-input-validator.svg?style=flat-square&branch=v3
+[david-url]: https://david-dm.org/bitnbytesio/node-input-validator?branch=v3
 
 [npm-image]: https://img.shields.io/npm/v/node-input-validator.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/node-input-validator/v/3.7.2
