@@ -295,7 +295,7 @@ Currenlty this package only support english, But you can easliy add messages in 
 
 ```javascript
 const niv = require('node-input-validator');
-niv.messages({
+niv.extendMessages({
   required: ':attribute ਫੀਲਡ ਖਾਲੀ ਨਹੀਂ ਹੋਣਾ ਚਾਹੀਦਾ.',
 }, 'pb');
 ```
