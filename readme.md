@@ -3,12 +3,15 @@
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 [![Known Vulnerabilities](https://snyk.io/test/npm/node-input-validator/badge.svg)](https://snyk.io/test/npm/node-input-validator)
-[![Coverage Status](https://coveralls.io/repos/github/bitnbytesio/node-input-validator/badge.svg?branch=v3)](https://coveralls.io/github/bitnbytesio/node-input-validator?branch=master)
+[![Coverage Status][codecov-img]][codecov-url]
 [![David deps][david-image]][david-url]
 [![node version][node-image]][node-url]
 
 [travis-image]: https://api.travis-ci.org/bitnbytesio/node-input-validator.svg?branch=master
 [travis-url]: https://travis-ci.org/bitnbytesio/node-input-validator?branch=master
+
+[codecov-img]: https://codecov.io/gh/bitnbytesio/node-input-validator/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/bitnbytesio/node-input-validator
 
 [david-image]: https://david-dm.org/bitnbytesio/node-input-validator.svg?style=flat-square&branch=master
 [david-url]: https://david-dm.org/bitnbytesio/node-input-validator?branch=master

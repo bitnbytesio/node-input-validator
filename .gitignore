@@ -10,3 +10,4 @@ npm-debug.log
 .coveralls.yml
 *.log
 *.0x
+.nyc_output

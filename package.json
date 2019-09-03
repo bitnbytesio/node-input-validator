@@ -8,7 +8,7 @@
     "lintf": "./node_modules/.bin/eslint . --fix",
     "test": "mocha --recursive",
     "coverage": "nyc --reporter=lcov npm run test",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t 96538cbd-4d7d-4471-b262-3b27ff6168b2"
   },
   "engines": {
     "node": ">=8.16"
@@ -68,7 +68,6 @@
     "mime-types": "^2.1.24",
     "moment": "^2.24.0",
     "read-chunk": "^3.2.0",
-    "stringify-keys": "^3.0.0",
     "validator": "^11.1.0"
   }
 }

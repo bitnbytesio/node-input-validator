@@ -1,6 +1,9 @@
 language: node_js
 node_js:
-  - "7.6"
+  - "8.16"
+install:
+  - npm install -g codecov
 script: "npm test"
 after_success:
-  - npm run coveralls
+  - npm run coverage
+  - npm run report-coverage
