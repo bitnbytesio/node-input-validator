@@ -4,18 +4,18 @@
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 [![Known Vulnerabilities](https://snyk.io/test/npm/node-input-validator/badge.svg)](https://snyk.io/test/npm/node-input-validator)
-[![Coverage Status](https://coveralls.io/repos/github/bitnbytesio/node-input-validator/badge.svg)](https://coveralls.io/github/bitnbytesio/node-input-validator)
+[![Coverage Status](https://coveralls.io/repos/github/bitnbytesio/node-input-validator/badge.svg?branch=v3)](https://coveralls.io/github/bitnbytesio/node-input-validator?branch=v3)
 [![David deps][david-image]][david-url]
 [![node version][node-image]][node-url]
 
-[travis-image]: https://api.travis-ci.org/bitnbytesio/node-input-validator.svg?branch=master
-[travis-url]: https://travis-ci.org/bitnbytesio/node-input-validator
+[travis-image]: https://api.travis-ci.org/bitnbytesio/node-input-validator.svg?branch=v3
+[travis-url]: https://travis-ci.org/bitnbytesio/node-input-validator?branch=v3
 
 [david-image]: https://david-dm.org/bitnbytesio/node-input-validator.svg?style=flat-square
 [david-url]: https://david-dm.org/bitnbytesio/node-input-validator
 
 [npm-image]: https://img.shields.io/npm/v/node-input-validator.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/node-input-validator
+[npm-url]: https://www.npmjs.com/package/node-input-validator/v/3.7.2
 [node-image]: https://img.shields.io/badge/node.js-%3E=_7.6-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 
