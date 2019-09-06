@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "4.0.0-rc5",
+  "version": "4.0.0",
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "lintf": "./node_modules/.bin/eslint . --fix",
     "test": "mocha --recursive",
     "coverage": "nyc --reporter=lcov npm run test",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t 96538cbd-4d7d-4471-b262-3b27ff6168b2"
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "engines": {
     "node": ">=8.16"
