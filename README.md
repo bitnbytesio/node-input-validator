@@ -17,7 +17,7 @@
 [david-url]: https://david-dm.org/bitnbytesio/node-input-validator?branch=master
 
 [npm-image]: https://img.shields.io/npm/v/node-input-validator.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/node-input-validator/v/4.0.0-rc1
+[npm-url]: https://www.npmjs.com/package/node-input-validator
 [node-image]: https://img.shields.io/badge/node.js-%3E=_8.16-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 
