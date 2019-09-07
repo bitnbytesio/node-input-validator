@@ -136,6 +136,44 @@ describe('requiredIf', () => {
     assert.equal(matched, false);
   });
 
+  it('should pass with nested seed', async () => {
+    const v = new Validator(
+      {
+        name: 'Harcharan Singh',
+        sex: '',
+        private: {
+          age: 15,
+        },
+      },
+      {
+        sex: 'requiredIf:private.age,16'
+      },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, true);
+  });
+
+  it('should fail with nested seed', async () => {
+    const v = new Validator(
+      {
+        name: 'Harcharan Singh',
+        sex: '',
+        private: {
+          age: 16,
+        },
+      },
+      {
+        sex: 'requiredIf:private.age,16'
+      },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
   it('message should exist', async () => {
     const v = new Validator({ name: 'Harcharan Singh', age: 16 }, { sex: 'requiredIf:age,16' });
 
