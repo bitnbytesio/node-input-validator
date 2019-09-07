@@ -37,6 +37,11 @@ class Validator {
     // inputs collection
     this.inputs = inputs;
 
+    // // for top level array support
+    // if (Array.isArray(inputs)) {
+    //   this.inputs = { ...inputs };
+    // }
+
     // filter inputs collection
     this.filterInputs = {};
 
@@ -350,7 +355,7 @@ class Validator {
 
         this.validations[field] = {
           field,
-          multiple: (multipleFields > 0),
+          multiple: (multipleFields >= 0),
           path: field.split('.'),
           required: false,
           nullable: false,

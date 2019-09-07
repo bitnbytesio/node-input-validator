@@ -35,6 +35,15 @@ describe('Edge Cases', () => {
       const matched = await v.check();
       assert.equal(matched, false);
     });
+
+    it('should pass with array as root level', async () => {
+      const v = new Validator([
+        { field: 'admin@example.com' }],
+        { '*.field': 'required|email' });
+
+      const matched = await v.check();
+      assert.equal(matched, true);
+    });
   });
 
   describe('empty string', () => {
@@ -51,6 +60,45 @@ describe('Edge Cases', () => {
 
       const matched = await v.check();
       assert.equal(matched, false);
+    });
+  });
+
+  describe('top level array', () => {
+    it('should pass with array as root level', async () => {
+      const v = new Validator([
+        { field: 'admin@example.com' }],
+        { '*.field': 'required|email' });
+
+      const matched = await v.check();
+      assert.equal(matched, true);
+    });
+
+    it('should fail with array as root level', async () => {
+      const v = new Validator([
+        { field: 'string' }],
+        { '*.field': 'required|email' });
+
+      const matched = await v.check();
+      assert.equal(matched, false);
+      v.errors.should.have.key('0.field');
+    });
+
+    it('should pass with array as root level contains nested object', async () => {
+      const v = new Validator([
+        { field: { email: 'admin@example.com' } }],
+        { '*.field.email': 'required|email' });
+
+      const matched = await v.check();
+      assert.equal(matched, true);
+    });
+
+    it('should fail with array as root level contains nested object', async () => {
+      const v = new Validator([
+        { field: { email: 'string' } }],
+        { '*.field.email': 'required|email' });
+      const matched = await v.check();
+      assert.equal(matched, false);
+      v.errors.should.have.key('0.field.email');
     });
   });
 });

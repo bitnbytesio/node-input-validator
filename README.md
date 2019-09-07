@@ -15,7 +15,7 @@
 [david-url]: https://david-dm.org/bitnbytesio/node-input-validator?branch=v3
 
 [npm-image]: https://img.shields.io/npm/v/node-input-validator.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/node-input-validator/v/3.7.2
+[npm-url]: https://www.npmjs.com/package/node-input-validator/v/3.8.0
 [node-image]: https://img.shields.io/badge/node.js-%3E=_7.6-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 
@@ -23,7 +23,10 @@ Validation library for node.js
 
 Node Input Validator is a validation library for node.js. You can also extend library to add custom rules.
 
-**Note**: For use case of any rule, please check test cases, If you have any doubt or confusion with document rule use and behaviour.
+**Note**
+- This version only validates nested array inputs with single level (supported: 'a.*.email', not supported: 'a.*.emails.*.email'). Check latest verion for multi-level support.
+- root level array supported from version 3.8
+- For use case of any rule, please check test cases
 
 ## Installation
 
