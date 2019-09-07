@@ -47,14 +47,14 @@ npm i node-input-validator
 
 - [Example](#simple-example)  
 - [With express](#with-in-express-application)  
-- [With async/await](#with-async/await)  
+- [With async/await](#with-async-await)  
 - [Koa middleware](#for-koa2)  
 - [Object validation examples](#objects-validation)  
 - [Array validation examples](#array-validation)  
-- [Add/Modify messages](#add/modify-messages)  
+- [Add/Modify messages](#add-or-modify-messages)  
 - [Change default language examples](#set-default-language)  
 - [Toggle multiple errors](#toggle-multiple-errors-support)  
-- [Change attribute names in messages examples](#set-attribute-nice/custom-name)  
+- [Change attribute names in messages examples](#set-attribute-nicecustom-name)  
 - [Add custom rules](#add-your-own-custom-validation-rules)  
 - [Rules](#rules)  
 
@@ -93,7 +93,7 @@ app.post('login', function (req, res) {
 });
 ```
 
-### With async/await
+### With async-await
 
 ```javascript
 const { Validator } = require('node-input-validator');
@@ -258,7 +258,7 @@ let v = new Validator(
 let matched = await v.check();
 ```
 
-### Add/Modify messages
+### Add or Modify messages
 
 Placeholder in messages, :attribute will be replaced with field/attribute name, :value with field value and :arg0, :arg1 ...n with arguments passed to rule.
 
