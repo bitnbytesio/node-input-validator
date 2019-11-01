@@ -1,14 +1,14 @@
-export function setLang(lang: string);
+export function setLang(lang: string): void;
 
-export function extend(name: string, callback: any);
+export function extend(name: string, callback: any): void;
 
-export function extendMessages(newMessages: object, lang?: string);
+export function extendMessages(newMessages: object, lang?: string): void;
 
-export function addCustomMessages(customMessages: object, lang?: string);
+export function addCustomMessages(customMessages: object, lang?: string): void;
 
-export function niceNames(attributes: object, lang?: string);
+export function niceNames(attributes: object, lang?: string): void;
 
-export function koa();
+export function koa(): Function;
 
 export declare class Validator {
 
@@ -25,9 +25,9 @@ export declare class Validator {
 
   constructor(inputs: object, rules: object, customMessages?: object);
 
-  bail(sure?: boolean);
+  bail(sure?: boolean): void;
 
-  niceNames(attributeNames: object);
+  niceNames(attributeNames: object): void;
 
   parseRules(validationRules: object): void;
 
@@ -39,13 +39,13 @@ export declare class Validator {
 
   parseValue(attribute: string): any;
 
-  applyOnDeep(attributes: any);
+  applyOnDeep(attributes: any): Promise<void>;
 
-  parseNestedAttr(attribute: any);
+  parseNestedAttr(attribute: any): void;
 
-  apply(attr: string);
+  apply(attr: string): boolean | undefined;
 
-  postApply(rule: any);
+  postApply(rule: any): Promise<void>;
 
   addPostRule(rule: any): void;
 
@@ -55,5 +55,5 @@ export declare class Validator {
 
   getExistinParsedMessage(options: any): string;
 
-  addError(key: string, rule: string, message: string);
+  addError(key: string, rule: string, message: string): void;
 }
