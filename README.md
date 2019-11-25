@@ -358,6 +358,15 @@ niv.niceNames({
   dob: 'Date of Birth'
 });
 ```
+If your are editing other languages, set lang parameter:
+
+```javascript
+const niv = require('node-input-validator');
+niv.niceNames({
+  phone: 'phone number',
+  dob: 'Date of Birth'
+},'fa');
+```
 
 In error messages you will get "phone number" instead of phone. For Example: In case required rule failed, Error message will be: The phone number field is mandatory.
 
