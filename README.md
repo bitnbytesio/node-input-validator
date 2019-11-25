@@ -358,7 +358,8 @@ niv.niceNames({
   dob: 'Date of Birth'
 });
 ```
-If your are editing other languages, set lang parameter:
+
+If your are editing other languages, set lang parameter.
 
 ```javascript
 const niv = require('node-input-validator');
