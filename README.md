@@ -42,6 +42,7 @@ npm i node-input-validator
 - post validation rules
 - modify or add new messages in your own language
 - change attribute names globally or locally
+- current supported languages: English, Persian(farsi)
 
 ## Usage
 
@@ -291,7 +292,7 @@ niv.customMessages({
 
 #### for message in another language
 
-Currenlty this package only support english, But you can easliy add messages in another language.
+You can easliy add messages in another language.
 
 ```javascript
 const niv = require('node-input-validator');
