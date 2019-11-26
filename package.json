@@ -53,9 +53,9 @@
   "devDependencies": {
     "@types/mocha": "^5.2.7",
     "@types/moment": "^2.13.0",
-    "@types/node": "^12.12.7",
+    "@types/node": "^12.12.14",
     "@types/validator": "^10.11.3",
-    "eslint": "^6.6.0",
+    "eslint": "^6.7.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "mocha": "^6.2.2",
@@ -64,10 +64,10 @@
   },
   "dependencies": {
     "file-type": "^12.4.0",
-    "image-size": "^0.7.5",
-    "mime-types": "^2.1.24",
+    "image-size": "^0.8.3",
+    "mime-types": "^2.1.25",
     "moment": "^2.24.0",
     "read-chunk": "^3.2.0",
-    "validator": "^11.1.0"
+    "validator": "^12.1.0"
   }
 }
