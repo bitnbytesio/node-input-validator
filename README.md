@@ -815,7 +815,7 @@ The given field must match the field under validation.
 **size:max**  
 **size:max,min**  
 The file field under validation must have a file size matching the given maximum value or should be between size range.
-Supported unit sufix: b,kb/k,mb/m,gb/g.
+Supported unit sufix: b(Bytes),kb/k(KilloBytes),mb/m(MegaBytes),gb/g(GigaBytes).
 
 ```javascript
 // in below case, image file size should be under 4kb limit
