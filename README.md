@@ -71,7 +71,7 @@ const v = new Validator(
 
 v.check().then(function (matched) {
   console.log(matched);
-  console.log(validator.errors);
+  console.log(v.errors);
 });
 ```
 
@@ -88,7 +88,7 @@ app.post('login', function (req, res) {
 
   v.check().then((matched) => {
     if (!matched) {
-      res.status(422).send(validator.errors);
+      res.status(422).send(v.errors);
     }
   });
 });
