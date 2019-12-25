@@ -10,6 +10,8 @@ export function niceNames(attributes: object, lang?: string): void;
 
 export function koa(): Function;
 
+export function assert(rules: object): any;
+
 export declare class Validator {
 
   inputs: any;
