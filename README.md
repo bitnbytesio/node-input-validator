@@ -19,15 +19,16 @@
 [node-image]: https://img.shields.io/badge/node.js-%3E=_7.6-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 
-Validation library for node.js
+Validation library for Node.js
 
-Node Input Validator is a validation library for node.js. You can also extend library to add custom rules.
+Node Input Validator is a validation library for Node.js. You can also extend library to add custom rules.
 
 ## Installation
 
 ```shell
-npm install --save node-input-validator
+npm install --save uberforcede/node-input-validator
 ```
+Note: We highly recommend to add "#v{replace_with_release_number}" in the end of the github repo to set the version.
 
 ## Usage
 
@@ -408,12 +409,12 @@ let v = new Validator({email:'', username:''}, {email:'requiredWithout:phone,pan
 **accepted**  
 The field under validation must be yes, on, 1, or true.
 
-**after:YYYY-MM-DD**  
-The field under validation must be date after provided seed.
+**acceptedIf:field,value** 
+The field under validation must be yes, on, 1, or true, if provided seed value equals to provided value seed.
 
-```javascript
-let v = new Validator({joining:''}, {joining:'required|after:2018-02-10'});
-```
+
+**acceptedNotIf:field,value**  
+The field under validation must not be yes, on, 1, or true, if provided seed value equals to provided value seed.
 
 **alpha**  
 The field under validation must be entirely alphabetic characters.
@@ -452,6 +453,13 @@ The field under validation must be valid credit card string.
 
 **date**  
 The field under validation must be a valid date (YYYY-MM-DD).
+
+**after:YYYY-MM-DD**  
+The field under validation must be date after provided seed.
+
+```javascript
+let v = new Validator({joining:''}, {joining:'required|after:2018-02-10'});
+```
 
 **dateFormat:format**  
 The field under validation must match the given date format.
@@ -504,6 +512,10 @@ The field under validation must be valid hex.
 
 **hexColor**  
 The field under validation must be valid hex color code.
+
+**ifThisDateIs:operation,field**  
+The date field under validation must be {operation} than the related date field.
+Note: Check operation section below.
 
 **in:a,b...n**  
 The field under validation must exist in the given list of values.
@@ -590,11 +602,12 @@ The field under validation must not exist in the given list of values.
 let v = new Validator({status:''}, {status:'required|notIn:inactive,blocked'});
 ```
 
-**nullable**  
-The field under validation is required only is not left empty.
-
 **numeric**  
 The field under validation must be numeric.
+
+**percentageIfThisNumberIs:operation,percentage,field**  
+The numeric field under validation must be {operation} than given percentageo of the related numeric field.
+Note: Check operation section below.
 
 **phoneNumber**  
 The field under validation must be a valid phone number.
@@ -609,25 +622,6 @@ The given field must match the field under validation.
 let v = new Validator({password:''}, {password:'required|same:confirm_password'});
 ```
 
-**size:max**
-**size:max,min**  
-The file field under validation must have a file size matching the given maximum value or should be between size range.
-Supported unit sufix: b,kb/k,mb/m,gb/g.
-
-```javascript
-// in below case, image file size should be under 4kb limit
-let v = new Validator({image:''}, {image:'required|size:4kb'});
-```
-
-```javascript
-// in below case, image file size should be between 1kb - 4kb
-let v = new Validator({image:''}, {image:'required|size:4kb,1kb'});
-```
-
-```javascript
-let v = new Validator({video:''}, {video:'required|size:10mb'});
-```
-
 **sometimes**  
 The field under validation is required if present.
 
@@ -636,6 +630,10 @@ The field under validation must be string.
 
 **url**  
 The field under validation must be a valid URL.
+
+**yoBiggerThan:years**
+The date field under validation must be older (in years) than the given years.
+Note: Check operation section below.
 
 **Post Rules**
 There is set of rules which can be used to validate constraints of whole input, rather than validity of singular fields.
@@ -674,6 +672,14 @@ Any of the fields must be present in input.
 
 **all**
 All of the fields must be present in input.
+
+**{operation}**
+The operation parameters allows to the next comparison operators:
+ - '<': Lower than.  
+ - '>': Bigger than.
+ - '<=': Lower or equal than.
+ - '>=': Bigger or equal than.   
+ - '=', '==', '===': Equal.
 
 ### Typescript Support
 

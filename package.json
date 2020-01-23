@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "3.2.0",
+  "version": "3.0.0",
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "index.js",
   "scripts": {
@@ -28,15 +28,15 @@
     "image",
     "mimes"
   ],
-  "repository": "SergiBanos/node-input-validator",
+  "repository": "uberforcede/input-validator",
   "author": {
-    "name": "Sergi Baños",
-    "email": "artisangang@gmail.com"
+    "name": "Koble dev team",
+    "email": "koble@wefoxgroup.com"
   },
-
   "license": "ISC",
   "dependencies": {
     "file-type": "^10.7.0",
+    "lodash": "^4.17.10",
     "mime-types": "^2.1.21",
     "moment": "^2.23.0",
     "read-chunk": "^3.0.0",

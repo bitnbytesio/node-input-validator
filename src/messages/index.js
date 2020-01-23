@@ -2,7 +2,7 @@
 
 /**
  * node-input-validator
- * https://github.com/artisangang/node-input-validator
+ * https://github.com/uberforcede/node-input-validator
  */
 
 const messages = require('./en/messages');
