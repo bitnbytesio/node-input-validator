@@ -362,6 +362,15 @@ This method (ctx.validator(rules,inputs={}, messages={})) also support same opti
 
 You can check test cases for rules usage/examples.
 
+Rules definitions (with allowed parameters) can be fetched doing
+
+```javascript
+
+// Get possible rules 
+const rules = Validator.rules;
+
+```
+
 **required**  
 The field under validation cannot be left blank.
 

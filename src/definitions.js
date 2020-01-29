@@ -42,7 +42,7 @@ const rules = [
                 "name": "max"
             }
         ],
-        "description": "The field under validation only contains letters and numbers.",
+        "description": "The field under validation must be between min and max seed.",
         "types": [types.INTEGER]
     },
     {
@@ -201,7 +201,11 @@ const rules = [
                 "type": "enum",
                 "name": "comparison",
                 "options": [
-                    "<"
+                    '<',
+                    '>',
+                    '<=',
+                    '>=',
+                    '='
                 ]
             },
             {
@@ -279,7 +283,13 @@ const rules = [
             {
                 "type": "enum",
                 "name": "comparison",
-                "options": []
+                "options": [
+                    '<',
+                    '>',
+                    '<=',
+                    '>=',
+                    '='
+                ]
             },
             {
                 "type": "integer",
@@ -335,12 +345,12 @@ const rules = [
         "name": "requiredNoIf",
         "arguments": [
             {
-                "type": "input",
+                "type": "reference",
                 "name": "input"
             },
             {
-                "type": "input value",
-                "name": "input value"
+                "type": "string",
+                "name": "reference value"
             }
         ],
         "description": "The field under validation may left blank, if provided seed value equals to provided value seed.",
@@ -350,7 +360,7 @@ const rules = [
         "name": "requiredWith",
         "arguments": [
             {
-                "type": "input",
+                "type": "reference",
                 "name": "input"
             }
         ],
@@ -361,7 +371,7 @@ const rules = [
         "name": "requiredWithout",
         "arguments": [
             {
-                "type": "input",
+                "type": "reference",
                 "name": "input"
             }
         ],
