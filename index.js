@@ -7,9 +7,13 @@
 
 const Validator = require('./src/index');
 const messages = require('./src/messages');
+const rulesDefinition = require('./src/rulesDefinition');
 
 // main validator class
 module.exports = Validator;
+
+// list of rules
+module.exports.rules = rulesDefinition;
 
 /**
  * set default language
