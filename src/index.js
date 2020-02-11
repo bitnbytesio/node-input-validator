@@ -366,12 +366,14 @@ class Validator {
 
             }
 
-            rsplit = rules[field].split(/\|\s*(?![^()]*\))/);
+            if (Array.isArray(rules[field])) {
+                rsplit = rules[field];
+            } else {
+                rsplit = rules[field].split(/\|\s*(?![^()]*\))/);
+            }
 
-            let rs;
-
-            for (rs in rsplit) {
-                argsplit = rsplit[rs].split(':');
+            for (const ruleArg of rsplit) {
+                argsplit = ruleArg.split(':');
                 if (typeof argsplit[1] !== 'undefined') {
                     args = argsplit[1].split(',');
                     this.rule = { rule: argsplit[0], args: (args.length > 1) ? args : args[0] };
@@ -384,7 +386,6 @@ class Validator {
                 }
 
                 this.populateRule(field);
-
             }
 
         }
