@@ -8,12 +8,16 @@
 const Validator = require('./src/index');
 const messages = require('./src/messages');
 const rulesDefinition = require('./src/rulesDefinition');
+const transform = require('./src/transform');
 
 // main validator class
 module.exports = Validator;
 
 // list of rules
 module.exports.rules = rulesDefinition;
+
+// transform
+module.exports.transform = transform;
 
 /**
  * set default language

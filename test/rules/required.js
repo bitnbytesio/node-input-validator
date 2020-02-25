@@ -17,7 +17,7 @@ describe('requiredRules', function () {
 
         });
 
-        it('should return false', async () => {
+        it('should return false just 1 options', async () => {
 
             let v = new Validator({ name: '' }, { name: 'required' });
 
@@ -27,7 +27,7 @@ describe('requiredRules', function () {
 
         });
 
-        it('should return false', async () => {
+        it('should return false options with params', async () => {
 
             let v = new Validator({ name: '' }, { name: 'required|min:1' });
 
@@ -37,7 +37,7 @@ describe('requiredRules', function () {
 
         });
 
-        it('should return false', async () => {
+        it('should return false options with email', async () => {
 
             let v = new Validator({ email: '' }, { name: 'required|email' });
 
