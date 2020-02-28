@@ -6,7 +6,7 @@ describe('transform-in-rules', function () {
     describe('#in', function () {
         it('should return true when have arguments', async () => {
             const v = ['in:1,2,q,4,5'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -24,7 +24,7 @@ describe('transform-in-rules', function () {
 
         it('should return true when have 2 rules', async () => {
             const v = ['in:1,2,q,4,5','between:1,2'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -56,7 +56,7 @@ describe('transform-in-rules', function () {
 
         it('should return true when have 2 rules and is required', async () => {
             const v = ['required','in:1,2,q,4,5','between:1,2'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -100,7 +100,7 @@ describe('transform-in-rules', function () {
                 }],
                 required: false
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -132,7 +132,7 @@ describe('transform-in-rules', function () {
             ],
                 required: false
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -164,7 +164,7 @@ describe('transform-in-rules', function () {
             ],
                 required: true
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 

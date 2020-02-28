@@ -32,7 +32,7 @@ Note: We highly recommend to add "#v{replace_with_release_number}" in the end of
 
 ## Usage
 
-Simple Example  
+Simple Example
 
 ```javascript
 
@@ -288,7 +288,7 @@ Then in controller
 
 // if validation fails, this will auto abort request with status code 422 and errors in body
 await ctx.validate({
-    name:'required|maxLength:50', 
+    name:'required|maxLength:50',
     username:'required|maxLength:15',
     email:'required|email',
     password:'required'
@@ -305,7 +305,7 @@ With custom inputs
 
 // if validation fails, this will auto abort request with status code 422 and errors in body
 await ctx.validate({
-    name:'required|maxLength:50', 
+    name:'required|maxLength:50',
     username:'required|maxLength:15',
     email:'required|email',
     password:'required'
@@ -322,7 +322,7 @@ With custom inputs and custom messages
 
 // if validation fails, this will auto abort request with status code 422 and errors in body
 await ctx.validate({
-    name:'required|maxLength:50', 
+    name:'required|maxLength:50',
     username:'required|maxLength:15',
     email:'required|email',
     password:'required'
@@ -339,7 +339,7 @@ In case you wants control over validator, Then use
 
 // if validation fails, this will auto abort request with status code 422 and errors in body
 const v = await ctx.validator({
-    name:'required|maxLength:50', 
+    name:'required|maxLength:50',
     username:'required|maxLength:15',
     email:'required|email',
     password:'required'
@@ -358,6 +358,85 @@ if (v.fails()) {
 
 This method (ctx.validator(rules,inputs={}, messages={})) also support same options as like ctx.validate
 
+## Transform
+
+You can transform a rule  to an object in order to manipulate better the information and then transform it to a rule of array strings that it's was the library stores.
+
+### Transform to Object
+The object will have the params as an array object and also a property that indicates if it's required.
+
+```javascript
+
+// Get possible rules
+const transform = Validator.transform;
+
+const v = ['between:1,2'];
+const obj = transform.toObject(v);
+
+```
+
+And object will have this structure
+
+```json
+
+{
+    params: [{
+        'arguments': [{
+            name: 'min',
+            type: 'integer',
+            value: 1
+        },{
+            name: 'max',
+            type: 'integer',
+            value: 2
+        }
+    ],
+        'name': 'between',
+        'types': ['integer'],
+    }],
+    required: false
+};
+
+```
+
+### Transform to Array of strings
+
+```javascript
+
+// Get possible rules
+const transform = Validator.transform;
+
+const v = {
+    params: [{
+        'arguments': [{
+            name: 'min',
+            type: 'integer',
+            value: 1
+        },{
+            name: 'max',
+            type: 'integer',
+            value: 2
+        }
+    ],
+        'name': 'between',
+        'types': ['integer'],
+    }],
+    required: false
+};
+const obj = transform.normalize(v);
+
+
+```
+
+And object will have this as a result
+
+```
+
+['between:1,2'];
+
+
+```
+
 ## Rules
 
 You can check test cases for rules usage/examples.
@@ -366,12 +445,12 @@ Rules definitions (with allowed parameters) can be fetched doing
 
 ```javascript
 
-// Get possible rules 
+// Get possible rules
 const rules = Validator.rules;
 
 ```
 
-**required**  
+**required**
 The field under validation cannot be left blank.
 
 ```javascript
@@ -381,7 +460,7 @@ let v = new Validator({name:''}, {name:'required'});
 
 ```
 
-**requiredIf:field,value**  
+**requiredIf:field,value**
 The field under validation cannot be left blank, if provided seed value equals to provided value seed.
 
 ```javascript
@@ -389,7 +468,7 @@ The field under validation cannot be left blank, if provided seed value equals t
 let v = new Validator({email:'', age:'16'}, {email:'requiredIf:age,16'});
 ```
 
-**requiredNotIf:field,value**  
+**requiredNotIf:field,value**
 The field under validation may left blank, if provided seed value equals to provided value seed.
 
 ```javascript
@@ -397,8 +476,8 @@ The field under validation may left blank, if provided seed value equals to prov
 let v = new Validator({transport:'', age:'15'}, {transport:'requiredNotIf:age,16'});
 ```
 
-**requiredWith:field**  
-**requiredWith:field,field,field**  
+**requiredWith:field**
+**requiredWith:field,field,field**
  The field under validation may required in case provided seed present.
 
 ```javascript
@@ -406,8 +485,8 @@ let v = new Validator({transport:'', age:'15'}, {transport:'requiredNotIf:age,16
 let v = new Validator({email:'', age:'17'}, {email:'requiredWith:age'});
 ```
 
-**requiredWithout:field**  
-**requiredWithout:field,field,field**  
+**requiredWithout:field**
+**requiredWithout:field,field,field**
 The field under validation may left blank in case provided seed present.
 
 ```javascript
@@ -415,97 +494,97 @@ The field under validation may left blank in case provided seed present.
 let v = new Validator({email:'', username:''}, {email:'requiredWithout:phone,pan', username:'requiredWithout:email'});
 ```
 
-**accepted**  
+**accepted**
 The field under validation must be yes, on, 1, or true.
 
-**acceptedIf:field,value** 
+**acceptedIf:field,value**
 The field under validation must be yes, on, 1, or true, if provided seed value equals to provided value seed.
 
 
-**acceptedNotIf:field,value**  
+**acceptedNotIf:field,value**
 The field under validation must not be yes, on, 1, or true, if provided seed value equals to provided value seed.
 
-**alpha**  
+**alpha**
 The field under validation must be entirely alphabetic characters.
 
-**alphaDash**  
+**alphaDash**
 The field under validation may have alpha-numeric characters, as well as dashes and underscores.
 
-**alphaNumeric**  
+**alphaNumeric**
 The field under validation only contains letters and numbers.
 
-**array**  
+**array**
 The field under validation must be an array.
 
-**ascii**  
+**ascii**
 The field under validation only contains ascii characters.
 
-**base64**  
+**base64**
 The field under validation must be valid base64 encoded string.
 
-**between:min,max**  
+**between:min,max**
 The field under validation must be betwwen min and max seed. This will work with number valus as well as with arrays using array count.
 
-**boolean**  
+**boolean**
 **boolean:custom**
 The field under validation must be boolean (true, false, 'true', 'false', 0, 1, '0', '1') or in custom seed.
 
-**contains:value**  
+**contains:value**
 The field under validation must contains provided seeds.
 
 ```javascript
 let v = new Validator({bio:'My profile is: example.com'}, {bio:'required|contains:profile'});
 ```
 
-**creditCard**  
+**creditCard**
 The field under validation must be valid credit card string.
 
-**date**  
+**date**
 The field under validation must be a valid date (YYYY-MM-DD).
 
-**after:YYYY-MM-DD**  
+**after:YYYY-MM-DD**
 The field under validation must be date after provided seed.
 
 ```javascript
 let v = new Validator({joining:''}, {joining:'required|after:2018-02-10'});
 ```
 
-**dateFormat:format**  
+**dateFormat:format**
 The field under validation must match the given date format.
 
 ```javascript
 let v = new Validator({dob:''}, {dob:'required|dateFormat:YYYY-MM-DD'});
-```  
+```
 
 Check https://momentjs.com/docs/ for supported formats
 
-**decimal**  
+**decimal**
 The field under validation must be a decimal value.
 
-**digits:length**  
+**digits:length**
 The field under validation must be numeric and must have an exact length.
 
-**digitsBetween:min,max**  
+**digitsBetween:min,max**
 The field under validation must have a length between provided min and max values.
 
 ```javascript
 let v = new Validator({phone:''}, {age:'required|digitsBetween:10,13'});
 ```
 
-**domain**  
+**domain**
 The field under validation must a qualified domain.
 
-**email**  
+**email**
 The field under validation must be formatted as an e-mail address.
 
-**equals**  
+**equals**
 The field under validation must be equal to given value.
 
-**hash:algo**  
+**hash:algo**
 The field under validation must be a valid hash as per provided seed.
 
 ```javascript
- let v = new Validator({ 
+ let v = new Validator({
         id: 'fd1baf48377a9f644f9af89abbee29f6'
      },
      {
@@ -516,30 +595,30 @@ The field under validation must be a valid hash as per provided seed.
 
 Supported algorithms: md4, md5, sha1, sha256, sha384, sha512, ripemd128, ripemd160, tiger128, tiger160, tiger192, crc32, crc32b.
 
-**hex**  
+**hex**
 The field under validation must be valid hex.
 
-**hexColor**  
+**hexColor**
 The field under validation must be valid hex color code.
 
-**ifThisDateIs:operation,field**  
+**ifThisDateIs:operation,field**
 The date field under validation must be {operation} than the related date field.
 Note: Check operation section below.
 
-**in:a,b...n**  
+**in:a,b...n**
 The field under validation must exist in the given list of values.
 
 ```javascript
 let v = new Validator({status:''}, {status:'required|in:active,inactive,blocked'});
 ```
 
-**integer**  
+**integer**
 The field under validation must be an integer.
 
-**ip**  
+**ip**
 The field under validation must be an IP address.
 
-**iso8601**  
+**iso8601**
 The field under validation must be valid Iso8601 date.
 
 **json**
@@ -548,14 +627,14 @@ The field under validation must be a valid JSON string.
 **latLong**
 The field under validation must be a valid latitude-longitude coordinate.
 
-**lengthBetween:min,max**  
+**lengthBetween:min,max**
 The field under validation value length must be between provided values.
 
 ```javascript
 let v = new Validator({age:''}, {age:'required|between:17,30'});
 ```
 
-**macAddress**  
+**macAddress**
 The field under validation should be a valid Mac Address.
 
 ```javascript
@@ -563,7 +642,7 @@ let v = new Validator({ id: '00:14:22:01:23:45' }, { id: 'required|macAddress' }
 ;
 ```
 
-**max**  
+**max**
 The field under validation must be less than given value.
 
 ```javascript
@@ -577,7 +656,7 @@ The length of field under validation should be less than given value.
 let v = new Validator({username:''}, {username:'required|max:10'});
 ```
 
-**mime**  
+**mime**
 The file under validation must have a MIME type corresponding to one of the listed extensions.
 
 **min**
@@ -587,57 +666,57 @@ The field under validation must be greater than given value.
 let v = new Validator({age:''}, {age:'required|min:21'});
 ```
 
-**minLength**  
+**minLength**
 The length of field under validation should be greater than given value.
 
 ```javascript
 let v = new Validator({username:''}, {username:'required|max:10|min:5'});
 ```
 
-**mongoId**  
+**mongoId**
 The field under validation should be a valid MongoDB ID.
 
 ```javascript
 let v = new Validator({id:''}, {id:'required|mongoId'});
 ```
 
-**notContains:value**  
+**notContains:value**
 The field under validation may not contains provided seeds.
 
-**notIn**  
+**notIn**
 The field under validation must not exist in the given list of values.
 
 ```javascript
 let v = new Validator({status:''}, {status:'required|notIn:inactive,blocked'});
 ```
 
-**numeric**  
+**numeric**
 The field under validation must be numeric.
 
-**percentageIfThisNumberIs:operation,percentage,field**  
+**percentageIfThisNumberIs:operation,percentage,field**
 The numeric field under validation must be {operation} than given percentageo of the related numeric field.
 Note: Check operation section below.
 
-**phoneNumber**  
+**phoneNumber**
 The field under validation must be a valid phone number.
 
-**regex**  
+**regex**
 The field under validation must match the given regular expression.
 
-**same**  
+**same**
 The given field must match the field under validation.
 
 ```javascript
 let v = new Validator({password:''}, {password:'required|same:confirm_password'});
 ```
 
-**sometimes**  
+**sometimes**
 The field under validation is required if present.
 
-**string**  
+**string**
 The field under validation must be string.
 
-**url**  
+**url**
 The field under validation must be a valid URL.
 
 **yoBiggerThan:years**
@@ -669,7 +748,7 @@ let v = new Validator({username: 'arnold', password: 'arnold123'}, {});
 v.addPostRule(async function(input) {
 
     if (input.password.indexOf(input.username) >= 0) {
-        this.validator.addError('password', 'custom', 'Password cannot contain username'); 
+        this.validator.addError('password', 'custom', 'Password cannot contain username');
     }
 
 });
@@ -684,12 +763,12 @@ All of the fields must be present in input.
 
 **{operation}**
 The operation parameters allows to the next comparison operators:
- - '<': Lower than.  
+ - '<': Lower than.
  - '>': Bigger than.
  - '<=': Lower or equal than.
- - '>=': Bigger or equal than.   
+ - '>=': Bigger or equal than.
  - '=', '==', '===': Equal.
 
 ### Typescript Support
 
-Typings expermental  
+Typings expermental

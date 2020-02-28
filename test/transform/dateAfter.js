@@ -8,7 +8,7 @@ describe('transform-dateAfter-rules', function () {
 
         it('should return true when have options', async () => {
             const v = ['dateAfter:2000-15-31'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const match = {
                 params: [{
                     'arguments': [{
@@ -27,7 +27,7 @@ describe('transform-dateAfter-rules', function () {
 
         it('should return true when have options and is required', async () => {
             const v = ['required','dateAfter:2000-15-31'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const match = {
                 params: [{
                     'arguments': [{
@@ -59,7 +59,7 @@ describe('transform-dateAfter-rules', function () {
                 }],
                 required: false
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -78,7 +78,7 @@ describe('transform-dateAfter-rules', function () {
                 }],
                 required: true
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
     });

@@ -7,7 +7,7 @@ describe('transform-ifThisDateIs-rules', function () {
 
         it('should return true when ifThisDateIs =', async () => {
             const v = ['ifThisDateIs:=,olderDate'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -37,7 +37,7 @@ describe('transform-ifThisDateIs-rules', function () {
 
         it('should return true when ifThisDateIs >', async () => {
             const v = ['ifThisDateIs:>,olderDate'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -67,7 +67,7 @@ describe('transform-ifThisDateIs-rules', function () {
 
         it('should return true when ifThisDateIs <', async () => {
             const v = ['ifThisDateIs:<,olderDate'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -97,7 +97,7 @@ describe('transform-ifThisDateIs-rules', function () {
 
         it('should return true when ifThisDateIs <=', async () => {
             const v = ['ifThisDateIs:<=,olderDate'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                 'arguments': [{
@@ -127,7 +127,7 @@ describe('transform-ifThisDateIs-rules', function () {
 
         it('should return true when ifThisDateIs >=', async () => {
             const v = ['ifThisDateIs:>=,olderDate'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -181,7 +181,7 @@ describe('transform-ifThisDateIs-rules', function () {
                 }],
                 required: false,
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -211,7 +211,7 @@ describe('transform-ifThisDateIs-rules', function () {
                 }],
                 required: false,
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -241,7 +241,7 @@ describe('transform-ifThisDateIs-rules', function () {
                 }],
                 required: false,
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -271,7 +271,7 @@ describe('transform-ifThisDateIs-rules', function () {
                 }],
                 required: false,
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -301,7 +301,7 @@ describe('transform-ifThisDateIs-rules', function () {
                 }],
                 required: false
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 

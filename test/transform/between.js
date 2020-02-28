@@ -7,7 +7,7 @@ describe('transform-between-rules', function () {
 
         it('should return true when have arguments', async () => {
             const v = ['between:1,2'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -30,7 +30,7 @@ describe('transform-between-rules', function () {
 
         it('should return true when the string have arguments and required', async () => {
             const v = ['required','between:1,2'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -70,7 +70,7 @@ describe('transform-between-rules', function () {
                 }],
                 required: false
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -93,7 +93,7 @@ describe('transform-between-rules', function () {
                 }],
                 required: true
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 

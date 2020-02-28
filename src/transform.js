@@ -1,43 +1,8 @@
 const definitions = require('./definitions');
 
-const objResult = ({ name, options = undefined, argumentsObj = [] }) => {
-
-}
-
 const isRequired = (rule) => {
     // like required|minLength:5
     return rule.includes('required') && !rule.includes('requiredIf');
-}
-
-const getRequiredRules = (rule) => {
-    // cause the rule can contain options like required|minLength:5, required|email or just required
-    // in this case we will have name|option:value, name|options, or just name
-    const ruleSplitedWithOptions = rule.split('|');
-    const name = ruleSplitedWithOptions[0];
-    // has no params and no options just required
-    if (ruleSplitedWithOptions.length === 1) return objResult({ name });
-    // if has options descompose in params
-    ruleSplitedWithOptions.shift();
-    const options = ruleSplitedWithOptions.map(option => {
-        // no params, no valuem  like required
-        const optionSplited = option.split(':');
-        // has 1 param without value like required|email
-        if (optionSplited.length === 1) {
-            return{
-                name: optionSplited[0],
-                value: undefined
-            };
-        }
-        // has 1 params and value like required|maxLength:5 or
-        // check that the value not have more values
-        // required|in:1,2,3
-        const valueSplited = optionSplited[1].split(',');
-        return{
-            name: optionSplited[0],
-            value: valueSplited.length > 1 ? valueSplited : valueSplited.toString()
-        };
-    })
-    return objResult({ name, options });
 }
 
 const getArgumentsDef = (name) => {
@@ -97,7 +62,7 @@ const getElements = (rule) => {
     }
 }
 
-module.exports.transformToObject = (rule) => {
+module.exports.toObject = (rule) => {
     const hasRequired = isRequired(rule);
     // delete required if it contains because is a field in the root of the object
     if (hasRequired) {
@@ -110,7 +75,7 @@ module.exports.transformToObject = (rule) => {
     }
 }
 
-module.exports.transformToString = (ruleObj) => {
+module.exports.normalize = (ruleObj) => {
     const ruleFormated = ruleObj.params.map(prevParam => {
         const params = prevParam.arguments.reduce((prevArgs, ruleArgs) => {
             return `${prevArgs}${ruleArgs.value},`;

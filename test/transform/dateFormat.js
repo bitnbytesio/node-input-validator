@@ -8,7 +8,7 @@ describe('transform-dateFormat-rules', function () {
 
         it('should return true when have options', async () => {
             const v = ['dateFormat:ddmmyyyy'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const match = {
                 params: [{
                     'arguments': [{
@@ -27,7 +27,7 @@ describe('transform-dateFormat-rules', function () {
 
         it('should return true when have options and is required', async () => {
             const v = ['required','dateFormat:ddmmyyyy'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const match = {
                 params: [{
                     'arguments': [{
@@ -59,7 +59,7 @@ describe('transform-dateFormat-rules', function () {
                 }],
                 required: false
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -78,7 +78,7 @@ describe('transform-dateFormat-rules', function () {
                 }],
                 required: true
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 

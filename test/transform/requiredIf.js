@@ -7,7 +7,7 @@ describe('transform-requiredIf-rules', function () {
 
         it('should return true when has one require if field', async () => {
             const v = ['requiredIf:human.age,16'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -30,7 +30,7 @@ describe('transform-requiredIf-rules', function () {
 
         it('should return true when has mutiple fields', async () => {
             const v = ['requiredIf:age,16,parent,yes,type,subscribed'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -85,7 +85,7 @@ describe('transform-requiredIf-rules', function () {
                 }],
                 required: false
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -123,7 +123,7 @@ describe('transform-requiredIf-rules', function () {
                 }],
                 required: false,
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 

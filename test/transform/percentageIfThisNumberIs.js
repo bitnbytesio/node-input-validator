@@ -7,7 +7,7 @@ describe('transform-percentageIfThisNumberIs-rules', function () {
 
         it('should return true when percentageIfThisNumberIs =', async () => {
             const v = ['percentageIfThisNumberIs:=,3,age'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -73,7 +73,7 @@ describe('transform-percentageIfThisNumberIs-rules', function () {
                 }],
                 required: false,
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 

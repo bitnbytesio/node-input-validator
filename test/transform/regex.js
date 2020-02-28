@@ -8,7 +8,7 @@ describe('transform-regex-rules', function () {
 
         it('should return true when have :', async () => {
             const v = ['regex:jsjsj:ssss'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -27,7 +27,7 @@ describe('transform-regex-rules', function () {
 
         it('should return true when have |', async () => {
             const v = ['regex:jsjsj|ssss'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -46,7 +46,7 @@ describe('transform-regex-rules', function () {
 
         it('should return true when have ,', async () => {
             const v = ['regex:jsjsj,ssss'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -78,7 +78,7 @@ describe('transform-regex-rules', function () {
                 }],
                 required: false,
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -97,7 +97,7 @@ describe('transform-regex-rules', function () {
                 }],
                 required: false
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
@@ -116,7 +116,7 @@ describe('transform-regex-rules', function () {
                 }],
                 required: false,
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 

@@ -7,7 +7,7 @@ describe('transform-min-rules', function () {
 
         it('should return true when min arguments', async () => {
             const v = ['min:1'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     'arguments': [{
@@ -37,7 +37,7 @@ describe('transform-min-rules', function () {
                 }],
                 required: false
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 

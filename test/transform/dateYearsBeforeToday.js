@@ -8,7 +8,7 @@ describe('transform-dateYearsBeforeToday-rules', function () {
 
         it('should return true when have options', async () => {
             const v = ['dateYearsBeforeToday:3'];
-            const obj = t.transformToObject(v);
+            const obj = t.toObject(v);
             const match = {
                 params: [{
                     'arguments': [{
@@ -40,7 +40,7 @@ describe('transform-dateYearsBeforeToday-rules', function () {
                 }],
                 required: false
             };
-            const result = t.transformToString(objToTransform);
+            const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
         });
 
