@@ -78,6 +78,31 @@ describe('transform-between-rules', function () {
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
 
+        it('should return true when the string have arguments with just required', async () => {
+            const stringMatch = ['required'];
+            const objToTransform = {
+                params: [{
+                    'name': 'required',
+                    'types': ['string', 'integer', 'boolean', 'date'],
+                }],
+            };
+            const result = t.normalize(objToTransform);
+            assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
+        });
+
+        it('should return true when the string have arguments with just required in the last place', async () => {
+            const stringMatch = ['integer', 'between:10000,200000', 'required'];
+            const objToTransform = {
+                params: [
+                    {"name":"integer","types":["integer"]
+                },{"arguments":[{"name":"min","type":"integer","value":10000},
+                {"name":"max","type":"integer","value":200000}],"name":"between","types":["integer"]},
+                {"name":"required","arguments":undefined}],
+            };
+            const result = t.normalize(objToTransform);
+            assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
+        });
+
         it('should return true when the string have arguments', async () => {
             const stringMatch = ['between:1,2'];
             const objToTransform = {
