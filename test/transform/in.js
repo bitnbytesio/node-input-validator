@@ -17,7 +17,6 @@ describe('transform-in-rules', function () {
                     'name': 'in',
                     'types': ['string', 'integer', 'boolean', 'date'],
                 }],
-                required: false
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -49,7 +48,6 @@ describe('transform-in-rules', function () {
                     'types': ['integer'],
                 }
             ],
-                required: false
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -59,6 +57,9 @@ describe('transform-in-rules', function () {
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
+                    'name': 'required',
+                    'types': ['string', 'integer', 'boolean', 'date'],
+                },{
                     'arguments': [{
                         name: 'list of values',
                         type: 'array',
@@ -81,7 +82,6 @@ describe('transform-in-rules', function () {
                     'types': ['integer'],
                 }
             ],
-                required: true
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -98,7 +98,6 @@ describe('transform-in-rules', function () {
                     'name': 'in',
                     'types': ['string', 'integer', 'boolean', 'date'],
                 }],
-                required: false
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
@@ -130,7 +129,6 @@ describe('transform-in-rules', function () {
                     'types': ['integer'],
                 }
             ],
-                required: false
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
@@ -140,6 +138,9 @@ describe('transform-in-rules', function () {
             const stringMatch = ['required','in:1,2,q,4,5','between:1,2'];
             const objToTransform = {
                 params: [{
+                    'name': 'required',
+                    'types': ['string', 'integer', 'boolean', 'date'],
+                },{
                     'arguments': [{
                         name: 'list of values',
                         type: 'array',
@@ -162,7 +163,6 @@ describe('transform-in-rules', function () {
                     'types': ['integer'],
                 }
             ],
-                required: true
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));

@@ -1,10 +1,5 @@
 const definitions = require('./definitions');
 
-const isRequired = (rule) => {
-    // like required|minLength:5
-    return rule.includes('required') && !rule.includes('requiredIf');
-}
-
 const getArgumentsDef = (name) => {
     const definitionObj = definitions.rules.find(d => d.name === name);
     return definitionObj.arguments;
@@ -26,16 +21,17 @@ const getElements = (rule) => {
     const indexSeparator = rule.indexOf(':');
     // email and other rules that hasn't params
     if (indexSeparator === -1) {
+        const definitionObj = definitions.rules.find(d => d.name === rule);
         return {
             arguments: undefined,
             name: rule,
-            types: undefined,
+            types: definitionObj ? definitionObj.types : undefined,
         }
     }
     const nameRule = rule.substring(0, indexSeparator);
     // get the arguments from the definition
     const argString = rule.substring(indexSeparator+1, rule.length);
-    const argumentsDef =  getArgumentsDef(nameRule);
+    const argumentsDef = getArgumentsDef(nameRule);
     const argumentsRule =
         ((argumentsDef.length === 1) && ['string', 'array'].includes(argumentsDef[0].type)) ?
             [argString] :
@@ -63,20 +59,17 @@ const getElements = (rule) => {
 }
 
 module.exports.toObject = (rule) => {
-    const hasRequired = isRequired(rule);
-    // delete required if it contains because is a field in the root of the object
-    if (hasRequired) {
-        rule.shift();
-    }
     const params = rule.map(subrule => getElements(subrule));
     return {
         params,
-        required: hasRequired
     }
 }
 
 module.exports.normalize = (ruleObj) => {
-    const ruleFormated = ruleObj.params.map(prevParam => {
+    return ruleObj.params.map(prevParam => {
+        if (!prevParam.arguments) {
+            return prevParam.name;
+        }
         const params = prevParam.arguments.reduce((prevArgs, ruleArgs) => {
             return `${prevArgs}${ruleArgs.value},`;
         }, '');
@@ -84,7 +77,6 @@ module.exports.normalize = (ruleObj) => {
         const paramsFormated =  (params !== '') ? params.substring(0, params.length - 1) : params;
         return `${prevParam.name}:${paramsFormated}`;
     });
-    return (ruleObj.required) ? ['required', ...ruleFormated] : ruleFormated;
 }
 
 

@@ -30,7 +30,6 @@ describe('transform-ifThisDateIs-rules', function () {
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
-                required: false,
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -60,7 +59,6 @@ describe('transform-ifThisDateIs-rules', function () {
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
-                required: false,
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -90,7 +88,6 @@ describe('transform-ifThisDateIs-rules', function () {
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
-                required: false,
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -120,7 +117,6 @@ describe('transform-ifThisDateIs-rules', function () {
                 'name': 'ifThisDateIs',
                 'types': ['date'],
             }],
-            required: false,
         };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -150,7 +146,6 @@ describe('transform-ifThisDateIs-rules', function () {
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
-                required: false
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -179,7 +174,6 @@ describe('transform-ifThisDateIs-rules', function () {
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
-                required: false,
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
@@ -209,7 +203,6 @@ describe('transform-ifThisDateIs-rules', function () {
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
-                required: false,
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
@@ -239,7 +232,6 @@ describe('transform-ifThisDateIs-rules', function () {
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
-                required: false,
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
@@ -269,7 +261,6 @@ describe('transform-ifThisDateIs-rules', function () {
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
-                required: false,
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
@@ -299,7 +290,6 @@ describe('transform-ifThisDateIs-rules', function () {
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
-                required: false
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));

@@ -20,7 +20,6 @@ describe('transform-dateYearsAfterToday-rules', function () {
                     'options': undefined,
                     'types': ['date'],
                 }],
-                required: false
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(match));
         });
@@ -30,6 +29,9 @@ describe('transform-dateYearsAfterToday-rules', function () {
             const obj = t.toObject(v);
             const match = {
                 params: [{
+                    'name': 'required',
+                    'types': ['string', 'integer', 'boolean', 'date'],
+                },{
                     'arguments': [{
                         'name': 'number of years',
                         type: 'integer',
@@ -39,7 +41,6 @@ describe('transform-dateYearsAfterToday-rules', function () {
                     'options': undefined,
                     'types': ['date'],
                 }],
-                required: true
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(match));
         });
@@ -57,7 +58,6 @@ describe('transform-dateYearsAfterToday-rules', function () {
                     'options': undefined,
                     'types': ['date'],
                 }],
-                required: false
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
@@ -67,6 +67,9 @@ describe('transform-dateYearsAfterToday-rules', function () {
             const stringMatch = ['required','dateYearsAfterToday:3'];
             const objToTransform = {
                 params: [{
+                    'name': 'required',
+                    'types': ['string', 'integer', 'boolean', 'date'],
+                },{
                     'arguments': [{
                         'name': 'number of years',
                         type: 'integer',
@@ -76,7 +79,6 @@ describe('transform-dateYearsAfterToday-rules', function () {
                     'options': undefined,
                     'types': ['date'],
                 }],
-                required: true
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));

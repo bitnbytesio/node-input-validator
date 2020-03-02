@@ -46,6 +46,12 @@ const rules = [
         "types": [types.INTEGER]
     },
     {
+        "name": "boolean",
+        "arguments": [],
+        "description": "The field under validation must be boolean.",
+        "types": [types.BOOLEAN]
+    },
+    {
         "name": "contains",
         "arguments": [
             {
@@ -228,6 +234,12 @@ const rules = [
         "types": ALL
     },
     {
+        "name": "integer",
+        "arguments": [],
+        "description": "The field must be an integer.",
+        "types": [types.INTEGER]
+    },
+    {
         "name": "iso8601",
         "arguments": [],
         "description": "The field under validation must be valid Iso8601 date.",
@@ -278,6 +290,12 @@ const rules = [
         "types": ALL
     },
     {
+        "name": "numeric",
+        "arguments": [],
+        "description": "The field must be numeric.",
+        "types": [types.INTEGER]
+    },
+    {
         "name": "percentageIfThisNumberIs",
         "arguments": [
             {
@@ -302,6 +320,12 @@ const rules = [
         ],
         "description": " ",
         "types": [types.INTEGER]
+    },
+    {
+        "name": "object",
+        "arguments": [],
+        "description": "The field must be an object.",
+        "types": [types.STRING]
     },
     {
         "name": "phoneNumber",
@@ -377,6 +401,12 @@ const rules = [
         ],
         "description": "The field under validation may left blank in case provided seed present.",
         "types": ALL
+    },
+    {
+        "name": "string",
+        "arguments": [],
+        "description": "The field must be a string.",
+        "types": [types.STRING]
     },
     {
         "name": "url",

@@ -36,7 +36,6 @@ describe('transform-percentageIfThisNumberIs-rules', function () {
                     'name': 'percentageIfThisNumberIs',
                     'types': ['integer'],
                 }],
-                required: false,
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -71,7 +70,6 @@ describe('transform-percentageIfThisNumberIs-rules', function () {
                     'name': 'percentageIfThisNumberIs',
                     'types': ['integer'],
                 }],
-                required: false,
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));

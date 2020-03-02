@@ -23,7 +23,6 @@ describe('transform-requiredIf-rules', function () {
                     'name': 'requiredIf',
                     'types': ['string', 'integer', 'boolean', 'date'],
                 }],
-                required: false
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -61,7 +60,6 @@ describe('transform-requiredIf-rules', function () {
                     'name': 'requiredIf',
                     'types': ['string', 'integer', 'boolean', 'date'],
                 }],
-                required: false,
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -83,7 +81,6 @@ describe('transform-requiredIf-rules', function () {
                     'name': 'requiredIf',
                     'types': ['string', 'integer', 'boolean', 'date'],
                 }],
-                required: false
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
@@ -121,7 +118,6 @@ describe('transform-requiredIf-rules', function () {
                     'name': 'requiredIf',
                     'types': ['string', 'integer', 'boolean', 'date'],
                 }],
-                required: false,
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));

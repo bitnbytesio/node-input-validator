@@ -20,7 +20,6 @@ describe('transform-dateYearsBeforeToday-rules', function () {
                     'options': undefined,
                     'types': ['date'],
                 }],
-                required: false
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(match));
         });
@@ -38,7 +37,6 @@ describe('transform-dateYearsBeforeToday-rules', function () {
                     'options': undefined,
                     'types': ['date'],
                 }],
-                required: false
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));

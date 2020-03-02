@@ -20,7 +20,6 @@ describe('transform-dateAfter-rules', function () {
                     'options': undefined,
                     'types': ['date'],
                 }],
-                required: false
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(match));
         });
@@ -30,6 +29,9 @@ describe('transform-dateAfter-rules', function () {
             const obj = t.toObject(v);
             const match = {
                 params: [{
+                    'name': 'required',
+                    'types': ['string', 'integer', 'boolean', 'date'],
+                },{
                     'arguments': [{
                         name: 'date',
                         type: 'date',
@@ -39,7 +41,6 @@ describe('transform-dateAfter-rules', function () {
                     'options': undefined,
                     'types': ['date'],
                 }],
-                required: true
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(match));
         });
@@ -67,6 +68,9 @@ describe('transform-dateAfter-rules', function () {
             const stringMatch = ['required','dateAfter:2000-15-31'];
             const objToTransform = {
                 params: [{
+                    'name': 'required',
+                    'types': ['string', 'integer', 'boolean', 'date'],
+                },{
                     'arguments': [{
                         name: 'date',
                         type: 'date',
@@ -76,7 +80,6 @@ describe('transform-dateAfter-rules', function () {
                     'options': undefined,
                     'types': ['date'],
                 }],
-                required: true
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));

@@ -20,7 +20,6 @@ describe('transform-regex-rules', function () {
                     'options': undefined,
                     'types': ['string'],
                 }],
-                required: false,
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -39,7 +38,6 @@ describe('transform-regex-rules', function () {
                     'options': undefined,
                     'types': ['string'],
                 }],
-                required: false
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -58,7 +56,6 @@ describe('transform-regex-rules', function () {
                     'options': undefined,
                     'types': ['string'],
                 }],
-                required: false,
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
@@ -76,7 +73,6 @@ describe('transform-regex-rules', function () {
                     'options': undefined,
                     'types': ['string'],
                 }],
-                required: false,
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
@@ -95,7 +91,6 @@ describe('transform-regex-rules', function () {
                     'options': undefined,
                     'types': ['string'],
                 }],
-                required: false
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
@@ -114,7 +109,6 @@ describe('transform-regex-rules', function () {
                     'options': undefined,
                     'types': ['string'],
                 }],
-                required: false,
             };
             const result = t.normalize(objToTransform);
             assert.equal(JSON.stringify(result), JSON.stringify(stringMatch));
