@@ -1,4 +1,4 @@
-const _ = require('lodash');
+import get from 'lodash/get';
 const {dynamicComparisonOperators} = require("../lib/dynamicComparisonOperators");
 
 /**
@@ -14,7 +14,7 @@ module.exports = async function ifThisDateIs(field, value, args) {
     const [operation, property] = args;
     const fieldValueDate = new Date(value);
     const fieldValueInMs = fieldValueDate.getTime();
-    const relatedPropertyValue = _.get(this.inputs, property);
+    const relatedPropertyValue = get(this.inputs, property);
     const relatedPropertyDate = new Date(relatedPropertyValue);
     const relatedPropertyValueInMs = relatedPropertyDate.getTime();
 
