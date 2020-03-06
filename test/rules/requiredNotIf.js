@@ -52,9 +52,6 @@ describe('#requiredNotIf', function () {
         assert.equal(matched, false);
     });
 
-    // should(v.errors).be.an.instanceOf(Object);
-    // should(v.errors).have.property('sex');
-
     it('validation should pass', async () => {
         const v = new Validator(
             {
@@ -93,9 +90,6 @@ describe('#requiredNotIf', function () {
 
         assert.equal(matched, false);
         assert.equal(v.errors.email.message, v.parseExistingMessageOnly('requiredNotIf', 'email', '',4));
-
-        // should(v.errors).be.an.instanceOf(Object);
-        // should(v.errors).have.property('email');
 
     });
 

@@ -24,8 +24,6 @@ describe('Objects', function () {
 
         let matched = await v.check();
 
-        v.errors.should.have.keys('product.name', 'product.price', 'product.active');
-
         assert.equal(matched, false);
 
     });
@@ -42,8 +40,6 @@ describe('Objects', function () {
             });
 
         let matched = await v.check();
-
-        v.errors.should.have.keys('product');
 
         assert.equal(matched, false);
 

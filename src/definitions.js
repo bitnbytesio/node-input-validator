@@ -2,418 +2,419 @@ const types = {
     STRING: 'string',
     INTEGER: 'integer',
     BOOLEAN: 'boolean',
-    DATE: 'date'
+    DATE: 'date',
 };
 const ALL = Object.values(types);
 const rules = [
     {
-        "name": "accepted",
-        "arguments": [],
-        "description": "The field under validation must be yes, on, 1, or true.",
-        "types": ALL
+        name: 'accepted',
+        arguments: [],
+        description: 'The field under validation must be yes, on, 1, or true.',
+        types: ALL,
     },
     {
-        "name": "alpha",
-        "arguments": [],
-        "description": "The field under validation must be entirely alphabetic characters.",
-        "types": [types.STRING]
+        name: 'alpha',
+        arguments: [],
+        description: 'The field under validation must be entirely alphabetic characters.',
+        types: [types.STRING],
     },
     {
-        "name": "alphaDash",
-        "arguments": [],
-        "description": "The field under validation may have alpha-numeric characters, as well as dashes and underscores.",
-        "types": [types.STRING]
+        name: 'alphaDash',
+        arguments: [],
+        description: 'The field under validation may have alpha-numeric characters, as well as dashes and underscores.',
+        types: [types.STRING],
     },
     {
-        "name": "alphaNumeric",
-        "arguments": [],
-        "description": "The field under validation only contains letters and numbers.",
-        "types": [types.STRING]
+        name: 'alphaNumeric',
+        arguments: [],
+        description: 'The field under validation only contains letters and numbers.',
+        types: [types.STRING],
     },
     {
-        "name": "between",
-        "arguments": [
+        name: 'between',
+        arguments: [
             {
-                "type": "integer",
-                "name": "min"
+                type: 'integer',
+                name: 'min',
             },
             {
-                "type": "integer",
-                "name": "max"
-            }
+                type: 'integer',
+                name: 'max',
+            },
         ],
-        "description": "The field under validation must be between min and max seed.",
-        "types": [types.INTEGER]
+        description: 'The field under validation must be between min and max seed.',
+        types: [types.INTEGER],
     },
     {
-        "name": "boolean",
-        "arguments": [],
-        "description": "The field under validation must be boolean.",
-        "types": [types.BOOLEAN]
+        name: 'boolean',
+        arguments: [],
+        description: 'The field under validation must be boolean.',
+        types: [types.BOOLEAN],
     },
     {
-        "name": "contains",
-        "arguments": [
+        name: 'contains',
+        arguments: [
             {
-                "type": "string",
-                "name": "contained string"
-            }
+                type: 'string',
+                name: 'contained string',
+            },
         ],
-        "description": "The field under validation must contains provided seeds.",
-        "types": [types.STRING]
+        description: 'The field under validation must contains provided seeds.',
+        types: [types.STRING],
     },
     {
-        "name": "creditCard",
-        "arguments": [],
-        "description": "The field under validation must be valid credit card string.",
-        "types": [types.STRING]
+        name: 'creditCard',
+        arguments: [],
+        description: 'The field under validation must be valid credit card string.',
+        types: [types.STRING],
     },
     {
-        "name": "dateFormat",
-        "arguments": [
+        name: 'dateFormat',
+        arguments: [
             {
-                "type": "string",
-                "name": "formating"
-            }
+                type: 'string',
+                name: 'formating',
+            },
         ],
-        "description": "The field under validation must match the given date format.",
-        "types": [types.DATE]
+        description: 'The field under validation must match the given date format.',
+        types: [types.DATE],
     },
     {
-        "name": "dateAfter",
-        "arguments": [
+        name: 'dateAfter',
+        arguments: [
             {
-                "type": "date",
-                "name": "date"
-            }
+                type: 'date',
+                name: 'date',
+            },
         ],
-        "description": "The date under validation must be after the given date",
-        "types": [types.DATE]
+        description: 'The date under validation must be after the given date',
+        types: [types.DATE],
     },
     {
-        "name": "dateDaysAfterToday",
-        "arguments": [
+        name: 'dateDaysAfterToday',
+        arguments: [
             {
-                "type": "integer",
-                "name": "number of days"
-            }
+                type: 'integer',
+                name: 'number of days',
+            },
         ],
-        "description": "The date under validation must be the given days after today",
-        "types": [types.DATE]
+        description: 'The date under validation must be the given days after today',
+        types: [types.DATE],
     },
     {
-        "name": "dateYearsAfterToday",
-        "arguments": [
+        name: 'dateYearsAfterToday',
+        arguments: [
             {
-                "type": "integer",
-                "name": "number of years"
-            }
+                type: 'integer',
+                name: 'number of years',
+            },
         ],
-        "description": "The date under validation must be the given years after today",
-        "types": [types.DATE]
+        description: 'The date under validation must be the given years after today',
+        types: [types.DATE],
     },
     {
-        "name": "dateDaysBeforeToday",
-        "arguments": [
+        name: 'dateDaysBeforeToday',
+        arguments: [
             {
-                "type": "integer",
-                "name": "number of days"
-            }
+                type: 'integer',
+                name: 'number of days',
+            },
         ],
-        "description": "The date under validation must be the given days before today",
-        "types": [types.DATE]
+        description: 'The date under validation must be the given days before today',
+        types: [types.DATE],
     },
     {
-        "name": "dateYearsBeforeToday",
-        "arguments": [
+        name: 'dateYearsBeforeToday',
+        arguments: [
             {
-                "type": "integer",
-                "name": "number of years"
-            }
+                type: 'integer',
+                name: 'number of years',
+            },
         ],
-        "description": "The date under validation must be the given years before today",
-        "types": [types.DATE]
+        description: 'The date under validation must be the given years before today',
+        types: [types.DATE],
     },
     {
-        "name": "dateBefore",
-        "arguments": [
+        name: 'dateBefore',
+        arguments: [
             {
-                "type": "date",
-                "name": "date"
-            }
+                type: 'date',
+                name: 'date',
+            },
         ],
-        "description": "The date under validation must be before the given date",
-        "types": [types.DATE]
+        description: 'The date under validation must be before the given date',
+        types: [types.DATE],
     },
     {
-        "name": "decimal",
-        "arguments": [],
-        "description": "The field under validation must be a decimal value.",
-        "types": [types.INTEGER]
+        name: 'decimal',
+        arguments: [],
+        description: 'The field under validation must be a decimal value.',
+        types: [types.INTEGER],
     },
     {
-        "name": "digits",
-        "arguments": [
+        name: 'digits',
+        arguments: [
             {
-                "type": "integer",
-                "name": "length"
-            }
+                type: 'integer',
+                name: 'length',
+            },
         ],
-        "description": "The field under validation must be numeric and must have an exact length.",
-        "types": [types.INTEGER]
+        description: 'The field under validation must be numeric and must have an exact length.',
+        types: [types.INTEGER],
     },
     {
-        "name": "digitsBetween",
-        "arguments": [
+        name: 'digitsBetween',
+        arguments: [
             {
-                "type": "integer",
-                "name": "min length"
+                type: 'integer',
+                name: 'min length',
             },
             {
-                "type": "integer",
-                "name": "max length"
-            }
+                type: 'integer',
+                name: 'max length',
+            },
         ],
-        "description": "The field under validation must have a length between provided min and max values.",
-        "types": [types.INTEGER]
+        description: 'The field under validation must have a length between provided min and max values.',
+        types: [types.INTEGER],
     },
     {
-        "name": "domain",
-        "arguments": [],
-        "description": "The field under validation must a qualified domain.",
-        "types": [types.STRING]
+        name: 'domain',
+        arguments: [],
+        description: 'The field under validation must a qualified domain.',
+        types: [types.STRING],
     },
     {
-        "name": "email",
-        "arguments": [],
-        "description": "The field under validation must be formatted as an e-mail address.",
-        "types": [types.STRING]
+        name: 'email',
+        arguments: [],
+        description: 'The field under validation must be formatted as an e-mail address.',
+        types: [types.STRING],
     },
     {
-        "name": "equals",
-        "arguments": [
+        name: 'equals',
+        arguments: [
             {
-                "type": "integer",
-                "name": "number of digits"
-            }
+                type: 'integer',
+                name: 'number of digits',
+            },
         ],
-        "description": "The field under validation must be equal to given value.",
-        "types": ALL
+        description: 'The field under validation must be equal to given value.',
+        types: ALL,
     },
     {
-        "name": "ifThisDateIs",
-        "arguments": [
+        name: 'ifThisDateIs',
+        arguments: [
             {
-                "type": "enum",
-                "name": "comparison",
-                "options": [
+                type: 'enum',
+                name: 'comparison',
+                options: [
                     '<',
                     '>',
                     '<=',
                     '>=',
-                    '='
-                ]
+                    '=',
+                ],
             },
             {
-                "type": "date",
-                "name": "date"
-            }
+                type: 'date',
+                name: 'date',
+            },
         ],
-        "description": " ",
-        "types": [types.DATE]
+        description: ' ',
+        types: [types.DATE],
     },
     {
-        "name": "in",
-        "arguments": [
+        name: 'in',
+        arguments: [
             {
-                "type": "array",
-                "name": "list of values"
-            }
+                type: 'array',
+                name: 'list of values',
+            },
         ],
-        "description": "The field under validation must exist in the given list of values.",
-        "types": ALL
+        description: 'The field under validation must exist in the given list of values.',
+        types: ALL,
     },
     {
-        "name": "integer",
-        "arguments": [],
-        "description": "The field must be an integer.",
-        "types": [types.INTEGER]
+        name: 'integer',
+        arguments: [],
+        description: 'The field must be an integer.',
+        types: [types.INTEGER],
     },
     {
-        "name": "iso8601",
-        "arguments": [],
-        "description": "The field under validation must be valid Iso8601 date.",
-        "types": [types.DATE]
+        name: 'iso8601',
+        arguments: [],
+        description: 'The field under validation must be valid Iso8601 date.',
+        types: [types.DATE],
     },
     {
-        "name": "max",
-        "arguments": [
+        name: 'max',
+        arguments: [
             {
-                "type": "integer",
-                "name": "max value"
-            }
+                type: 'integer',
+                name: 'max value',
+            },
         ],
-        "description": "The field under validation must be less than given value.",
-        "types": [types.INTEGER]
+        description: 'The field under validation must be less than given value.',
+        types: [types.INTEGER],
     },
     {
-        "name": "min",
-        "arguments": [
+        name: 'min',
+        arguments: [
             {
-                "type": "integer",
-                "name": "min value"
-            }
+                type: 'integer',
+                name: 'min value',
+            },
         ],
-        "description": "The field under validation must be greater than given value.",
-        "types": [types.INTEGER]
+        description: 'The field under validation must be greater than given value.',
+        types: [types.INTEGER],
     },
     {
-        "name": "notContains",
-        "arguments": [
+        name: 'notContains',
+        arguments: [
             {
-                "type": "string",
-                "name": "contained string"
-            }
+                type: 'string',
+                name: 'contained string',
+            },
         ],
-        "description": "The field under validation may not contains provided seeds.",
-        "types": [types.STRING]
+        description: 'The field under validation may not contains provided seeds.',
+        types: [types.STRING],
     },
     {
-        "name": "notIn",
-        "arguments": [
+        name: 'notIn',
+        arguments: [
             {
-                "type": "array",
-                "name": "list of values"
-            }
+                type: 'array',
+                name: 'list of values',
+            },
         ],
-        "description": "The field under validation must not exist in the given list of values.",
-        "types": ALL
+        description: 'The field under validation must not exist in the given list of values.',
+        types: ALL,
     },
     {
-        "name": "numeric",
-        "arguments": [],
-        "description": "The field must be numeric.",
-        "types": [types.INTEGER]
+        name: 'numeric',
+        arguments: [],
+        description: 'The field must be numeric.',
+        types: [types.INTEGER],
     },
     {
-        "name": "percentageIfThisNumberIs",
-        "arguments": [
+        name: 'percentageIfThisNumberIs',
+        arguments: [
             {
-                "type": "enum",
-                "name": "comparison",
-                "options": [
+                type: 'enum',
+                name: 'comparison',
+                options: [
                     '<',
                     '>',
                     '<=',
                     '>=',
-                    '='
-                ]
+                    '=',
+                ],
             },
             {
-                "type": "integer",
-                "name": "percent"
+                type: 'integer',
+                name: 'percent',
             },
             {
-                "type": "reference",
-                "name": "input"
-            }
+                type: 'reference',
+                name: 'input',
+            },
         ],
-        "description": " ",
-        "types": [types.INTEGER]
+        description: ' ',
+        types: [types.INTEGER],
     },
     {
-        "name": "object",
-        "arguments": [],
-        "description": "The field must be an object.",
-        "types": [types.STRING]
+        name: 'object',
+        arguments: [],
+        description: 'The field must be an object.',
+        types: [types.STRING],
     },
     {
-        "name": "phoneNumber",
-        "arguments": [],
-        "description": "The field under validation must be a valid phone number.",
-        "types": [types.STRING]
+        name: 'phoneNumber',
+        arguments: [],
+        description: 'The field under validation must be a valid phone number.',
+        types: [types.STRING],
     },
     {
-        "name": "regex",
-        "arguments": [
+        name: 'regex',
+        arguments: [
             {
-                "type": "string",
-                "name": "rule"
-            }
+                type: 'string',
+                name: 'rule',
+            },
         ],
-        "description": "The field under validation must match the given regular expression.",
-        "types": [types.STRING]
+        description: 'The field under validation must match the given regular expression.',
+        types: [types.STRING],
     },
     {
-        "name": "required",
-        "arguments": [],
-        "description": "The field under validation cannot be left blank.",
-        "types": ALL
+        name: 'required',
+        arguments: [],
+        description: 'The field under validation cannot be left blank.',
+        types: ALL,
     },
     {
-        "name": "requiredIf",
-        "arguments": [
+        name: 'requiredIf',
+        arguments: [
             {
-                "type": "reference",
-                "name": "input"
+                type: 'reference',
+                name: 'input',
             },
             {
-                "type": "string",
-                "name": "reference value"
-            }
+                type: 'string',
+                name: 'reference value',
+            },
         ],
-        "description": "The field under validation cannot be left blank, if provided seed value equals to provided value seed.",
-        "types": ALL
+        description: 'The field under validation cannot be left blank, '
+                     + 'if provided seed value equals to provided value seed.',
+        types: ALL,
     },
     {
-        "name": "requiredNoIf",
-        "arguments": [
+        name: 'requiredNoIf',
+        arguments: [
             {
-                "type": "reference",
-                "name": "input"
+                type: 'reference',
+                name: 'input',
             },
             {
-                "type": "string",
-                "name": "reference value"
-            }
+                type: 'string',
+                name: 'reference value',
+            },
         ],
-        "description": "The field under validation may left blank, if provided seed value equals to provided value seed.",
-        "types": ALL
+        description: 'The field under validation may left blank, if provided seed value equals to provided value seed.',
+        types: ALL,
     },
     {
-        "name": "requiredWith",
-        "arguments": [
+        name: 'requiredWith',
+        arguments: [
             {
-                "type": "reference",
-                "name": "input"
-            }
+                type: 'reference',
+                name: 'input',
+            },
         ],
-        "description": "The field under validation may required in case provided seed present.",
-        "types": ALL
+        description: 'The field under validation may required in case provided seed present.',
+        types: ALL,
     },
     {
-        "name": "requiredWithout",
-        "arguments": [
+        name: 'requiredWithout',
+        arguments: [
             {
-                "type": "reference",
-                "name": "input"
-            }
+                type: 'reference',
+                name: 'input',
+            },
         ],
-        "description": "The field under validation may left blank in case provided seed present.",
-        "types": ALL
+        description: 'The field under validation may left blank in case provided seed present.',
+        types: ALL,
     },
     {
-        "name": "string",
-        "arguments": [],
-        "description": "The field must be a string.",
-        "types": [types.STRING]
+        name: 'string',
+        arguments: [],
+        description: 'The field must be a string.',
+        types: [types.STRING],
     },
     {
-        "name": "url",
-        "arguments": [],
-        "description": "The field under validation must be a valid URL.",
-        "types": [types.STRING]
-    }
+        name: 'url',
+        arguments: [],
+        description: 'The field under validation must be a valid URL.',
+        types: [types.STRING],
+    },
 ];
 
-module.exports = {rules, types};
+module.exports = { rules, types };

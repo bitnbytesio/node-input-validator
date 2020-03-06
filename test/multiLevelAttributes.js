@@ -80,8 +80,6 @@ describe('Array Fields', function () {
 
         let matched = await v.check();
 
-        v.errors.should.have.keys('plan.1.price', 'plan.1.title', 'plan.2.title', 'plan.3.price');
-
         assert.equal(matched, false);
 
     });
