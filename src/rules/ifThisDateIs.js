@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+const get = require('lodash/get');
 const {dynamicComparisonOperators} = require("../lib/dynamicComparisonOperators");
 
 /**

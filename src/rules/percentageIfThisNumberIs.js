@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+const get = require('lodash/get');
 const {percentageRuleComparison} = require("../lib/dynamicComparisonOperators");
 
 module.exports = async function percentageIfThisNumberIs(field, value, args) {
