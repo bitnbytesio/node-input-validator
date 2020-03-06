@@ -1,5 +1,4 @@
 const assert = require('assert');
-const _ = require('lodash');
 const t = require('../../src/transform');
 
 describe('transform-dateYearsBeforeToday-rules', function () {
