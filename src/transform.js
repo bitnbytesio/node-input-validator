@@ -39,7 +39,6 @@ const getElements = (rule) => {
         // calculate index for parameters that repeats like requiredIf:age,16,parent,yes,type,subscribed
         // Assume the params are param, value, param, value....
         const indexDef = isParamValueFunction(nameRule) ? index % 2 : index;
-        console.log('argumentRule', argumentRule);
         const { type, name, options } = argumentsDef[indexDef];
         return {
             name,

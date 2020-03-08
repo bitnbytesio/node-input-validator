@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 const v = require('validator');
 
 module.exports = async function minLength(field, value, minNum) {
@@ -10,4 +11,4 @@ module.exports = async function minLength(field, value, minNum) {
     }
 
     return true;
-}
+};

@@ -1,10 +1,11 @@
-const moment = require('moment'),
-    { dateFormats } = require('../lib/date');
+/* eslint-disable prefer-const */
+// @ts-ignore
+const moment = require('moment');
+const { dateFormats } = require('../lib/date');
 
 module.exports = async function dateAfter(field, value, afterDate) {
-
-
-    let mAfterDate, mDate;
+    let mAfterDate; let
+        mDate;
 
     mAfterDate = moment(afterDate, dateFormats);
     mDate = moment(value, dateFormats);
@@ -15,4 +16,4 @@ module.exports = async function dateAfter(field, value, afterDate) {
     }
 
     return true;
-}
+};

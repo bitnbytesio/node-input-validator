@@ -1,7 +1,6 @@
 const numeric = require('./numeric');
 
 module.exports = async function max(field, value, maxNum) {
-
     if (!numeric(field, maxNum)) {
         return false;
     }
@@ -11,4 +10,4 @@ module.exports = async function max(field, value, maxNum) {
     }
 
     return true;
-}
+};

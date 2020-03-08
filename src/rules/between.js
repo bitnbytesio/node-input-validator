@@ -1,11 +1,9 @@
-const numeric = require('./numeric'),
-    integer = require('./integer');
+const numeric = require('./numeric');
 
 
 module.exports = async function between(attribute, value, args) {
-
     if (!Array.isArray(args) && args.length !== 2) {
-        throw new Error('The number of arguments for between in the field ' + attribute + ' are invalid.');
+        throw new Error(`The number of arguments for between in the field ${attribute} are invalid.`);
     }
 
     let [min, max] = args;
@@ -18,10 +16,8 @@ module.exports = async function between(attribute, value, args) {
     max = parseFloat(max);
 
     if (min >= max) {
-
         throw new Error('Seed min must be less then max in between.');
     }
-
 
 
     if (Array.isArray(value)) {
@@ -32,7 +28,7 @@ module.exports = async function between(attribute, value, args) {
     }
 
     if (numeric(value)) {
-
+        // eslint-disable-next-line no-param-reassign
         value = Number(value);
 
         if (value < min || value > max) {
@@ -43,4 +39,4 @@ module.exports = async function between(attribute, value, args) {
     }
 
     return false;
-}
+};

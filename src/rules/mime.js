@@ -1,37 +1,35 @@
-const mime = require('mime-types'),
-    fileType = require('file-type'),
-    readChunk = require('read-chunk');
+/* eslint-disable no-plusplus */
+/* eslint-disable no-empty */
+const mime = require('mime-types');
+// @ts-ignore
+const fileType = require('file-type');
+// @ts-ignore
+const readChunk = require('read-chunk');
 
+// @ts-ignore
 module.exports = async function validateMime(field, file, args) {
-
     let success = true;
 
     let mtype;
 
     if (file.mime) {
         mtype = file.mime;
-
     } else if (file.type) {
         mtype = file.type;
-
     } else if (file.mimetype) {
         mtype = file.mimetype;
-
     } else if (file instanceof Buffer) {
-
         try {
-            mtype = fileType(file).mime
+            mtype = fileType(file).mime;
         } catch (e) {
 
         }
-
     } else if (file.buffer && file.buffer instanceof Buffer) {
         try {
-            mtype = fileType(file.buffer).mime
+            mtype = fileType(file.buffer).mime;
         } catch (e) {
 
         }
-
     } else if (typeof file === 'string') {
         try {
             const buffer = readChunk.sync(file, 0, 4100);
@@ -52,7 +50,7 @@ module.exports = async function validateMime(field, file, args) {
 
 
     if (Array.isArray(args)) {
-        for (var i = 0; i < args.length; ++i) {
+        for (let i = 0; i < args.length; ++i) {
             if (mime.lookup(args[i]) !== mtype) {
                 success = false;
             } else {
@@ -60,17 +58,13 @@ module.exports = async function validateMime(field, file, args) {
                 break;
             }
         }
-    } else {
-        if (mime.lookup(args) !== mtype) {
-            success = false;
-        }
+    } else if (mime.lookup(args) !== mtype) {
+        success = false;
     }
 
     if (!success) {
-
         return false;
     }
 
     return true;
-
-}
+};

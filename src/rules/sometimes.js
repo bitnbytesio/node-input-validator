@@ -1,7 +1,7 @@
+// @ts-nocheck
 const empty = require('../lib/empty');
 
 module.exports = async function sometimes(field, value) {
-
     if (!(field in this.inputs)) {
         return true;
     }
@@ -11,4 +11,4 @@ module.exports = async function sometimes(field, value) {
     }
 
     return true;
-}
+};

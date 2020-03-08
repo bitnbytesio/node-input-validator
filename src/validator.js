@@ -4,7 +4,9 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
+// @ts-ignore
 const validationRules = require('./rules');
+// @ts-ignore
 const postValidationRules = require('./postRules');
 
 const implicitRules = [
@@ -15,7 +17,7 @@ const implicitRules = [
     'requiredWithout',
     'accepted',
     'sometimes',
-    'nullable'
+    'nullable',
 ];
 
 module.exports.implicitRules = implicitRules;
@@ -40,9 +42,9 @@ module.exports.applyRules = async function apply(field, validator) {
                     field: indexedField,
                     multiple: false,
                     rules: field.rules,
-                    required: field.required
+                    required: field.required,
                 },
-                validator
+                validator,
             );
         }
 
@@ -53,8 +55,8 @@ module.exports.applyRules = async function apply(field, validator) {
         field.value = validator.inputVal(field.field, field.multiple);
         const { rule } = field.rules[r];
         if (
-            rule == 'nullable' ||
-      (field.nullable === true && field.value == null)
+            rule == 'nullable'
+            || (field.nullable === true && field.value == null)
         ) {
             continue;
         }

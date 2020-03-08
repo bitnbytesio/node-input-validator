@@ -1,6 +1,6 @@
 const v = require('validator');
 
 module.exports = async function phoneNumber(field, value) {
-    //@ts-ignore
+    // @ts-ignore
     return v.isMobilePhone(value);
-}
+};

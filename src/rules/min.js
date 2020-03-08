@@ -10,4 +10,4 @@ module.exports = async function min(field, value, minNum) {
     }
 
     return true;
-}
+};
