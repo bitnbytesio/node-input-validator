@@ -117,7 +117,7 @@ const rules = [
             },
         ],
         description: 'The field under validation must match the given date format (ISO 8601).',
-        types: [types.DATE, types.STRING],
+        types: [types.DATE],
     },
     {
         name: 'dateAfter',
