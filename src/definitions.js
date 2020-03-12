@@ -13,6 +13,38 @@ const rules = [
         types: ALL,
     },
     {
+        name: 'acceptedIf',
+        arguments: [
+            {
+                type: 'reference',
+                name: 'input',
+            },
+            {
+                type: 'string',
+                name: 'reference value',
+            },
+        ],
+        description: 'The field under validation must be accepted if the provided'
+                        + 'field value is equals to provided value.',
+        types: ALL,
+    },
+    {
+        name: 'acceptedNotIf',
+        arguments: [
+            {
+                type: 'reference',
+                name: 'input',
+            },
+            {
+                type: 'string',
+                name: 'reference value',
+            },
+        ],
+        description: 'The field under validation must not be accepted if the provided'
+                        + 'field value is equals to provided value..',
+        types: ALL,
+    },
+    {
         name: 'alpha',
         arguments: [],
         description: 'The field under validation must be entirely alphabetic characters.',
@@ -85,7 +117,7 @@ const rules = [
             },
         ],
         description: 'The field under validation must match the given date format (ISO 8601).',
-        types: [types.DATE],
+        types: [types.DATE, types.STRING],
     },
     {
         name: 'dateAfter',
