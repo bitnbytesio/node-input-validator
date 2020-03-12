@@ -72,11 +72,19 @@ const rules = [
         name: 'dateFormat',
         arguments: [
             {
-                type: 'string',
-                name: 'formating',
+                type: 'enum',
+                name: 'formatting',
+                options: [
+                    'YYYY',
+                    'YYYY-MM',
+                    'YYYY-MM-DD',
+                    'YYYY-MM-DDThh:mmTZD',
+                    'YYYY-MM-DDThh:mm:ssTZD',
+                    'YYYY-MM-DDThh:mm:ss.sTZD',
+                ],
             },
         ],
-        description: 'The field under validation must match the given date format.',
+        description: 'The field under validation must match the given date format (ISO 8601).',
         types: [types.DATE],
     },
     {
