@@ -1,5 +1,5 @@
-const v = require('validator');
+const isURL = require('validator/lib/isURL').default;
 
 module.exports = async function url(field, value) {
-    return v.isURL(value);
+    return isURL(value);
 };

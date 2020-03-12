@@ -1,7 +1,7 @@
-const v = require('validator');
+const isAscii = require('validator/lib/isAscii').default;
 
 module.exports = async function ascii(field, value) {
-    if (v.isAscii(value)) {
+    if (isAscii(value)) {
         return true;
     }
 

@@ -1,8 +1,8 @@
 /* eslint-disable radix */
-const v = require('validator');
+const isInt = require('validator/lib/isInt').default;
 
 module.exports = async function maxLength(field, value, maxNum) {
-    if (!v.isInt(maxNum)) {
+    if (!isInt(maxNum)) {
         return false;
     }
 

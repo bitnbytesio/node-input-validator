@@ -1,5 +1,5 @@
-const v = require('validator');
+const isHexadecimal = require('validator/lib/isHexadecimal').default;
 
 module.exports = async function hex(field, value) {
-    return v.isHexadecimal(value);
+    return isHexadecimal(value);
 };

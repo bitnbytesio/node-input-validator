@@ -1,5 +1,5 @@
-const v = require('validator');
+const isHexColor = require('validator/lib/isHexColor').default;
 
 module.exports = async function hexColor(field, value) {
-    return v.isHexColor(value);
+    return isHexColor(value);
 };

@@ -1,8 +1,8 @@
 /* eslint-disable radix */
-const v = require('validator');
+const isInt = require('validator/lib/isInt').default;
 
 module.exports = async function minLength(field, value, minNum) {
-    if (!v.isInt(minNum)) {
+    if (!isInt(minNum)) {
         return false;
     }
 

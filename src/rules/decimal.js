@@ -1,5 +1,5 @@
-const v = require('validator');
+const isDecimal = require('validator/lib/isDecimal').default;
 
 module.exports = async function decimal(field, value) {
-    return v.isDecimal(`${parseFloat(value)}`);
+    return isDecimal(`${parseFloat(value)}`);
 };

@@ -1,7 +1,7 @@
-const v = require('validator');
+const isJSON = require('validator/lib/isJSON').default;
 
 module.exports = async function json(field, value) {
-    if (!v.isJSON(value)) {
+    if (!isJSON(value)) {
         return false;
     }
 

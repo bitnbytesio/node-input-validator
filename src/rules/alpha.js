@@ -1,7 +1,7 @@
-const v = require('validator');
+const isAlpha = require('validator/lib/isAlpha').default;
 
 module.exports = async function alpha(field, value) {
-    if (v.isAlpha(value)) {
+    if (isAlpha(value)) {
         return true;
     }
 

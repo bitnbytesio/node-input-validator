@@ -1,5 +1,5 @@
-const v = require('validator');
+const isMongoId = require('validator/lib/isMongoId').default;
 
 module.exports = async function mongoId(field, value) {
-    return v.isMongoId(value);
+    return isMongoId(value);
 };
