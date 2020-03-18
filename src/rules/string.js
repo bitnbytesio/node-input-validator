@@ -5,4 +5,4 @@ module.exports = async function string(field, value) {
     }
 
     return true;
-}
+};

@@ -39,8 +39,6 @@ describe('requiredWithout', function () {
 
         assert.equal(v.errors.sex.message, v.parseExistingMessageOnly('requiredWithout', 'sex', '',4));
 
-        // should(v.errors).be.an.instanceOf(Object);
-        // should(v.errors).have.property('sex');
 
     });
 

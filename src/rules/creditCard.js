@@ -1,13 +1,10 @@
-const v = require('validator');
+const isCreditCard = require('validator/lib/isCreditCard').default;
 
 
 module.exports = async function creditCard(field, value) {
-
-    if (v.isCreditCard(value)) {
-
+    if (isCreditCard(value)) {
         return true;
     }
 
     return false;
-
-}
+};

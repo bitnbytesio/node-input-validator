@@ -1,12 +1,9 @@
-const v = require('validator');
+const containsFn = require('validator/lib/contains').default;
 
 module.exports = async function contains(field, value, inString) {
-
-    if (!v.contains(value, inString.toString())) {
-
+    if (!containsFn(value, inString.toString())) {
         return false;
     }
 
     return true;
-
-}
+};

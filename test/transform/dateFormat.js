@@ -11,8 +11,16 @@ describe('transform-dateFormat-rules', function () {
             const match = {
                 params: [{
                     'arguments': [{
-                        'name': 'formating',
-                        type: 'string',
+                        'name': 'formatting',
+                        'options': [
+                            'YYYY',
+                            'YYYY-MM',
+                            'YYYY-MM-DD',
+                            'YYYY-MM-DDThh:mmTZD',
+                            'YYYY-MM-DDThh:mm:ssTZD',
+                            'YYYY-MM-DDThh:mm:ss.sTZD',
+                        ],
+                        'type': 'enum',
                         'value': 'ddmmyyyy'
                     }],
                     'name': 'dateFormat',
@@ -24,17 +32,25 @@ describe('transform-dateFormat-rules', function () {
         });
 
         it('should return true when have options and is required', async () => {
-            const v = ['required','dateFormat:ddmmyyyy'];
+            const v = ['required','dateFormat:YYYY'];
             const obj = t.toObject(v);
             const match = {
                 params: [{
                     'name': 'required',
                     'types': ['string', 'integer', 'boolean', 'date'],
-                },{
+                }, {
                     'arguments': [{
-                        'name': 'formating',
-                        type: 'string',
-                        'value': 'ddmmyyyy'
+                        'name': 'formatting',
+                        'options': [
+                            'YYYY',
+                            'YYYY-MM',
+                            'YYYY-MM-DD',
+                            'YYYY-MM-DDThh:mmTZD',
+                            'YYYY-MM-DDThh:mm:ssTZD',
+                            'YYYY-MM-DDThh:mm:ss.sTZD',
+                        ],
+                        'type': 'enum',
+                        'value': 'YYYY'
                     }],
                     'name': 'dateFormat',
                     'options': undefined,

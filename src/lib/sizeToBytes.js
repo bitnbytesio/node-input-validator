@@ -1,10 +1,11 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable radix */
 /**
  * convert size into bytes
  * @param {string} size
  * @returns {Number}
  */
-module.exports = function sizeToBytes(size) { 
-
+module.exports = function sizeToBytes(size) {
     size = size.toString().toLowerCase();
 
     /* istanbul ignore next */
@@ -29,5 +30,4 @@ module.exports = function sizeToBytes(size) {
 
     /* istanbul ignore next */
     return parseInt(size) * 1024;
-
-}
+};

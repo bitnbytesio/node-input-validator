@@ -1,3 +1,4 @@
+// @ts-ignore
 const moment = require('moment');
 
 /**
@@ -13,7 +14,7 @@ const dateFormats = [
     'D/M/YYYY',
     'YYYY-MM-DD HH:mm:Z',
     'YYYY-MM-DD HH:mm:ZZ',
-    'YYYY-MM-DD HH:mm Z'
+    'YYYY-MM-DD HH:mm Z',
 ];
 
 module.exports = { dateFormats };

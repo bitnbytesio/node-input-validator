@@ -96,9 +96,6 @@ describe('requiredIf', function () {
 
         assert.equal(matched, false);
 
-        // should(v.errors).be.an.instanceOf(Object);
-        // should(v.errors).have.property('sex');
-
         v = new Validator({ name: 'Harcharan Singh', age: '16' }, { sex: 'requiredIf:age,16' });
 
         matched = await v.check();
@@ -143,9 +140,6 @@ describe('requiredIf', function () {
         matched = await v.check();
 
         assert.equal(matched, false);
-
-        // should(v.errors).be.an.instanceOf(Object);
-        // should(v.errors).have.property('email');
 
     });
 

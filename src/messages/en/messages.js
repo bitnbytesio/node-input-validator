@@ -20,10 +20,10 @@ module.exports = {
     creditCard: 'The :attribute value must be a valid card number.',
     date: 'The :attribute must be a valid date.',
     dateAfter: 'The :attribute must be a date after :arg0.',
-    dateDaysAfterToday : 'The :attribute must be a date after :arg0 days.',
-    dateYearsAfterToday : 'The :attribute must be a date after :arg0 years.',
-    dateDaysBeforeToday : 'The :attribute must be a date before :arg0 days.',
-    dateYearsBeforeToday : 'The :attribute must be a date before :arg0 years.',
+    dateDaysAfterToday: 'The :attribute must be a date after :arg0 days.',
+    dateYearsAfterToday: 'The :attribute must be a date after :arg0 years.',
+    dateDaysBeforeToday: 'The :attribute must be a date before :arg0 days.',
+    dateYearsBeforeToday: 'The :attribute must be a date before :arg0 years.',
     dateBefore: 'The :attribute must be a date before :arg0.',
     dateFormat: 'The :attribute does not match the date format :arg0.',
     decimal: 'The :attribute must be a valid decimal value.',
@@ -73,8 +73,8 @@ module.exports = {
     yoBiggerThan: 'The :attribute must be bigger than :arg0 years old.',
     any: 'At least one of :attribute fields must be provided',
     custom: {
-        'custom_attribute': 'Message goes here.',
+        custom_attribute: 'Message goes here.',
         'custom_attribute.rule': 'Message goes here.',
     },
-    _default: 'The :attribute value is malformed.'
+    _default: 'The :attribute value is malformed.',
 };

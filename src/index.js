@@ -1,3 +1,19 @@
+/* eslint-disable array-callback-return */
+// @ts-nocheck
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-mixed-operators */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-sequences */
+/* eslint-disable no-return-assign */
+/* eslint-disable consistent-return */
+/* eslint-disable eqeqeq */
+/* eslint-disable default-case */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-shadow */
 const rules = require('./rules');
 const postRules = require('./postRules');
 const messages = require('./messages');
@@ -9,7 +25,6 @@ const filters = require('./filters');
  * @class Validator
  */
 class Validator {
-
     /**
      * @constructor
      * @param {*} inputs
@@ -17,7 +32,6 @@ class Validator {
      * @param {*} customMessages
      */
     constructor(inputs, rules, customMessages = {}) {
-
         // errors collections
         this.errors = {};
 
@@ -50,7 +64,6 @@ class Validator {
 
         // parse rules
         this.parseRules(rules);
-
     }
 
     /**
@@ -60,8 +73,7 @@ class Validator {
      * @param {*} messages
      */
     static make(inputs, rules, messages = {}) {
-
-        let v = new Validator(inputs, {}, messages);
+        const v = new Validator(inputs, {}, messages);
 
         v.makeValidationsFromArray(rules);
 
@@ -75,7 +87,6 @@ class Validator {
      */
     /* istanbul ignore next */
     static create(rules, messages = {}) {
-
         return new Validator({}, rules, messages);
     }
 
@@ -85,14 +96,12 @@ class Validator {
      */
     /* istanbul ignore next */
     async apply(inputs) {
-
-        let v = new Validator(inputs, {});
+        const v = new Validator(inputs, {});
 
         v.validations = this.validations;
         v.postValidations = this.postValidations;
 
         return v;
-
     }
 
     /**
@@ -106,7 +115,7 @@ class Validator {
      * check if validation passes
      */
     async passes() {
-        return await this.check();
+        return this.check();
     }
 
     /**
@@ -135,10 +144,8 @@ class Validator {
      * @returns {boolean}
      */
     isEmpty(value) {
-
         return empty(value);
     }
-
 
 
     /**
@@ -148,12 +155,10 @@ class Validator {
      * @param message
      */
     addError(key, rule, message) {
-
         this.errors[key] = {
-            message: message,
-            rule: rule
+            message,
+            rule,
         };
-
     }
 
     /**
@@ -165,25 +170,24 @@ class Validator {
      * @param rule
     */
     addPostRule(rule) {
-
         if (typeof rule === 'function') {
             this.postValidations.push({
                 rule: 'function',
                 params: rule,
-                values: this.inputs
+                values: this.inputs,
             });
             return;
         }
 
         rule = rule.split(':', 2);
-        let ruleName = rule[0];
-        let ruleFields = rule[1].split(','); //there always be a list of fields
-        let values = ruleFields.reduce((acc, field) => (acc[field] = this.parseKey(field, this.inputs), acc), {});
+        const ruleName = rule[0];
+        const ruleFields = rule[1].split(','); // there always be a list of fields
+        const values = ruleFields.reduce((acc, field) => (acc[field] = this.parseKey(field, this.inputs), acc), {});
 
         this.postValidations.push({
             rule: ruleName,
             params: ruleFields,
-            values: values
+            values,
         });
     }
 
@@ -193,9 +197,7 @@ class Validator {
      * @param rules {string[]}
      */
     addPostRules(rules) {
-
         rules.map((rule) => this.addPostRule(rule));
-
     }
 
     /**
@@ -203,18 +205,16 @@ class Validator {
      * @returns {Promise.<boolean>}
      */
     async check() {
+        const validations = [];
 
+        // console.log(this.validations);
 
-        let validations = [];
-
-        //console.log(this.validations);
-
-        for (let i in this.validations) {
-            //console.log('check method index', i, this.validations[i]);
+        for (const i in this.validations) {
+            // console.log('check method index', i, this.validations[i]);
             validations.push(await this.evaluteInputs(this.validations[i]));
         }
 
-        for (let j in this.postValidations) {
+        for (const j in this.postValidations) {
             validations.push(await this.evaluteInputsPostValidation(this.postValidations[j]));
         }
 
@@ -222,7 +222,7 @@ class Validator {
             await validations;
         }
 
-        return (this.errors && Object.keys(this.errors) && Object.keys(this.errors).length) ? false : true;
+        return !((this.errors && Object.keys(this.errors) && Object.keys(this.errors).length));
     }
 
     /**
@@ -231,22 +231,18 @@ class Validator {
      * @returns {Promise.<void>}
      */
     async evaluteInputs(field) {
-
         if (field.rules.length) {
-
             await applyRules(field, this);
         }
-
     }
+
     /**
      * validate input as a whole against post rule
      * @param rule
      * @returns {Promise.<void>}
      */
     async evaluteInputsPostValidation(rule) {
-
         await applyPostRules(rule, this);
-
     }
 
     /**
@@ -256,18 +252,14 @@ class Validator {
      * @returns {*}
      */
     parseKey(key, data) {
-
         let value;
-        //let self = this;
+        // let self = this;
 
-        let keySplit = key.split('.').filter(function (e) {
-            return e !== '';
-        });
+        const keySplit = key.split('.').filter((e) => e !== '');
 
-        //console.log('Key Split', keySplit);
+        // console.log('Key Split', keySplit);
 
-        keySplit.map(function (item) {
-
+        keySplit.map((item) => {
             if (typeof value === 'undefined') {
                 value = data && data[item];
             } else {
@@ -276,29 +268,27 @@ class Validator {
         });
 
 
-
         if (value === null) {
             return value;
         }
 
         switch (typeof value) {
+        case 'string':
+            // @ts-ignore
+            value = value.trim();
+            break;
 
-            case 'string':
-                value = value.trim();
-                break;
+        case 'boolean':
+            value = String(value);
+            break;
 
-            case 'boolean':
-                value = String(value);
-                break;
+        case 'number':
+            value = String(value);
+            break;
 
-            case 'number':
-                value = String(value);
-                break;
-
-            case 'undefined':
-                value = '';
-                break;
-
+        case 'undefined':
+            value = '';
+            break;
         }
 
         return value;
@@ -310,8 +300,7 @@ class Validator {
      * @param {*} multiple
      */
     inputVal(field, multiple = false) {
-
-        //let val = this.inputs[field] || '';
+        // let val = this.inputs[field] || '';
 
         if (multiple == true) {
             this.parseKey(field, this.inputs);
@@ -325,22 +314,19 @@ class Validator {
      * @param {*} rules
      */
     parseRules(rules) {
-
-
         if (!rules || !Object.keys(rules).length) {
             return;
         }
 
 
-        let rsplit,
-            argsplit,
-            args,
-            field;
+        let rsplit;
+        let argsplit;
+        let args;
+        let field;
 
         // here r is field name
         for (field in rules) {
-
-            //console.log('rules->', r);
+            // console.log('rules->', r);
 
             let multipleFields = -1;
 
@@ -348,22 +334,19 @@ class Validator {
                 return this.addPostRules(rules[field].split(/\|\s*(?![^()]*\))/));
             }
 
-            //console.log('in loop', field);
+            // console.log('in loop', field);
 
             if (!this.validations[field]) {
-
                 multipleFields = field.indexOf('*');
 
                 this.validations[field] = {
-                    field: field,
+                    field,
                     multiple: (multipleFields > 0),
                     path: field.split('.'),
                     required: false,
                     nullable: false,
-                    rules: []
+                    rules: [],
                 };
-
-
             }
 
             if (Array.isArray(rules[field])) {
@@ -387,11 +370,9 @@ class Validator {
 
                 this.populateRule(field);
             }
-
         }
 
-        //console.log(JSON.stringify(this.validations, null, 2));
-
+        // console.log(JSON.stringify(this.validations, null, 2));
     }
 
     /**
@@ -399,42 +380,38 @@ class Validator {
      * @param {*} rules
      */
     makeValidationsFromArray(rules) {
-
-
         if (!rules || !Object.keys(rules).length) {
             return;
         }
 
-        let field, fieldRule;
+        let field; let
+            fieldRule;
 
         // here r is field name
         for (field in rules) {
-
-
-            let fieldWithIndex = [], multipleFields = 0;
+            const fieldWithIndex = []; let
+                multipleFields = 0;
 
             if (field === '*') {
                 return this.addPostRules(rules[field]);
             }
 
-            //console.log('in loop', field);
+            // console.log('in loop', field);
 
             if (!this.validations[field]) {
-
                 multipleFields = field.indexOf('*');
 
                 this.validations[field] = {
-                    field: field,
+                    field,
                     multiple: (multipleFields > 0),
                     path: field.split('.'),
                     required: false,
-                    rules: []
+                    rules: [],
                 };
             }
 
 
             for (fieldRule of rules[field]) {
-
                 let args = [];
 
                 if (fieldRule instanceof Array) {
@@ -445,12 +422,8 @@ class Validator {
                 this.rule = { rule: fieldRule, args: (args.length == 1) ? args[0] : args };
 
                 this.populateRule(field);
-
             }
-
         }
-
-
     }
 
     /**
@@ -458,8 +431,7 @@ class Validator {
      * @param field
      */
     populateRule(field) {
-
-        //console.log('filed and rule in populate rules', field, rule);
+        // console.log('filed and rule in populate rules', field, rule);
 
         if (implicitRules.indexOf(this.rule.rule) >= 0) {
             this.validations[field].rules.unshift(this.rule);
@@ -479,7 +451,6 @@ class Validator {
      * @param {*} args
      */
     parseMessage(rule, field, value, args) {
-
         /**
          * 1. check for attribute.rule
          * 2. check for rule
@@ -489,20 +460,19 @@ class Validator {
 
         let message;
 
-        let defaultMessage = messages[this.lang]._default || 'The :attribute value is malformed.';
+        const defaultMessage = messages[this.lang]._default || 'The :attribute value is malformed.';
 
         if (this.hasCustomMessages) {
-
-            message = this.customMessages[field + '.' + rule] ||
-                this.customMessages[rule] ||
-                this.customMessages[field];
+            message = this.customMessages[`${field}.${rule}`]
+                || this.customMessages[rule]
+                || this.customMessages[field];
         }
 
 
         if (!message) {
-            message = messages[this.lang].custom && messages[this.lang].custom[field + '.' + rule] ||
-                messages[this.lang][rule] ||
-                messages[this.lang].custom && messages[this.lang].custom[field] || defaultMessage;
+            message = messages[this.lang].custom && messages[this.lang].custom[`${field}.${rule}`]
+                || messages[this.lang][rule]
+                || messages[this.lang].custom && messages[this.lang].custom[field] || defaultMessage;
         }
 
         if (message.indexOf(':attribute') !== -1) {
@@ -518,8 +488,8 @@ class Validator {
         }
 
         for (let i = 0; i < 10; i++) {
-            if (message.indexOf(':arg' + i) >= 0) {
-                message = message.replace(':arg' + i, args[i]);
+            if (message.indexOf(`:arg${i}`) >= 0) {
+                message = message.replace(`:arg${i}`, args[i]);
             } else {
                 break;
             }
@@ -539,7 +509,6 @@ class Validator {
         }
 
         return message.replace('_', ' ');
-
     }
 
     /**
@@ -551,11 +520,9 @@ class Validator {
     */
     /* istanbul ignore next */
     parseExistingMessageOnly(rule, field, value, args) {
-
-
-        let message = messages[this.lang].custom[field + '.' + rule] ||
-            messages[this.lang][rule] ||
-            messages[this.lang].custom[field] || 'Messages is missing for rule ' + rule;
+        let message = messages[this.lang].custom[`${field}.${rule}`]
+            || messages[this.lang][rule]
+            || messages[this.lang].custom[field] || `Messages is missing for rule ${rule}`;
 
 
         if (message.indexOf(':attribute') !== -1) {
@@ -571,8 +538,8 @@ class Validator {
         }
 
         for (let i = 0; i < 10; i++) {
-            if (message.indexOf(':arg' + i) >= 0) {
-                message = message.replace(':arg' + i, args[i]);
+            if (message.indexOf(`:arg${i}`) >= 0) {
+                message = message.replace(`:arg${i}`, args[i]);
             } else {
                 break;
             }
@@ -592,9 +559,7 @@ class Validator {
         }
 
         return message.replace('_', ' ');
-
     }
-
 }
 
 module.exports = Validator;

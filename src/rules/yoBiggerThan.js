@@ -1,3 +1,4 @@
+// @ts-ignore
 const moment = require('moment');
 
 module.exports = async function yoBiggerThan(field, value, args) {
@@ -6,4 +7,4 @@ module.exports = async function yoBiggerThan(field, value, args) {
     const diffInYears = now.diff(birthday, 'years');
 
     return diffInYears >= args;
-}
+};
