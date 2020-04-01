@@ -15,6 +15,8 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-shadow */
 const rules = require('./rules');
+const rulesDefinition = require('./rulesDefinition');
+const transform = require('./transform');
 const postRules = require('./postRules');
 const messages = require('./messages');
 const { applyRules, implicitRules, applyPostRules } = require('./validator');
@@ -564,4 +566,6 @@ class Validator {
 
 module.exports = Validator;
 module.exports.rules = rules;
+module.exports.rulesDefinition = rulesDefinition;
+module.exports.transform = transform;
 module.exports.postRules = postRules;
