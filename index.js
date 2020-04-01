@@ -5,8 +5,8 @@
 
 const Validator = require('./src/index');
 const messages = require('./src/messages/index');
-const rulesDefinition = require('./src/rulesDefinition');
-const transform = require('./src/transform');
+const rulesDefinition = require('./src/rulesDefinition/rulesDefinition');
+const transform = require('./src/transform/transform');
 
 // main validator class
 module.exports = Validator;

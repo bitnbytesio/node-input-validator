@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-const { rules, types } = require('./definitions');
+const { rules, types } = require('../definitions');
 
 function definitions() {
     const ruleDefinitions = {};

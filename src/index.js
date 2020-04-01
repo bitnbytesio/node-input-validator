@@ -15,8 +15,8 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-shadow */
 const rules = require('./rules');
-const rulesDefinition = require('./rulesDefinition');
-const transform = require('./transform');
+const rulesDefinition = require('./rulesDefinition/rulesDefinition');
+const transform = require('./transform/transform');
 const postRules = require('./postRules');
 const messages = require('./messages');
 const { applyRules, implicitRules, applyPostRules } = require('./validator');

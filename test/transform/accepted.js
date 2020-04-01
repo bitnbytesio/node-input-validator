@@ -1,5 +1,5 @@
 const assert = require('assert');
-const t = require('../../src/transform');
+const t = require('../../src/transform/transform');
 
 describe('transform-accpeted-rules', function () {
 
