@@ -42,6 +42,7 @@
   "license": "ISC",
   "dependencies": {
     "file-type": "14.1.4",
+    "iban": "0.0.14",
     "lodash": "4.17.15",
     "mime-types": "2.1.26",
     "moment": "2.23.0",
