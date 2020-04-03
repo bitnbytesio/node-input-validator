@@ -28,6 +28,7 @@ exports.equals = require('./equals');
 exports.hash = require('./hash');
 exports.hex = require('./hex');
 exports.hexColor = require('./hexColor');
+exports.iban = require('./iban');
 exports.ifThisDateIs = require('./ifThisDateIs');
 exports.in = require('./in');
 exports.integer = require('./integer');
