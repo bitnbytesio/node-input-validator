@@ -241,6 +241,12 @@ const rules = [
         types: ALL,
     },
     {
+        name: 'iban',
+        arguments: [],
+        description: 'The field under validation must have a valid iban format.',
+        types: [types.STRING],
+    },
+    {
         name: 'ifThisDateIs',
         arguments: [
             {
