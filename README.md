@@ -601,6 +601,9 @@ The field under validation must be valid hex.
 **hexColor**
 The field under validation must be valid hex color code.
 
+**iban**
+The field under validation must a valid iban format.
+
 **ifThisDateIs:operation,field**
 The date field under validation must be {operation} than the related date field.
 Note: Check operation section below.
