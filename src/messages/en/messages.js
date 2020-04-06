@@ -36,7 +36,7 @@ module.exports = {
     hash: 'The :attribute must be a valid :arg0 hash.',
     hex: 'The :attribute must be a valid hex.',
     hexColor: 'The :attribute must be a valid hex color.',
-    iban: 'The :attribute must be a valid iban format.',
+    iban: 'The :attribute must have a valid iban format.',
     ifThisDateIs: 'The :attribute must be :arg0 than :arg1',
     in: 'The selected :attribute is invalid.',
     integer: 'The :attribute must be an integer.',
