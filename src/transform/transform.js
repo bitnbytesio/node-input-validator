@@ -1,4 +1,4 @@
-const definitions = require('./definitions');
+const definitions = require('../definitions');
 
 const getArgumentsDef = (name) => {
     const definitionObj = definitions.rules.find((d) => d.name === name);
