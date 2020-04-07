@@ -2,9 +2,8 @@
   "name": "node-input-validator",
   "version": "3.2.0",
   "description": "validation library for nodejs, inspired by laravel.",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
-    "build": "babel src -d lib",
     "test": "mocha --recursive",
     "lint": "eslint --debug src/",
     "cover": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --recursive",
@@ -12,7 +11,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run build"
+      "pre-commit": "npm run lint"
     }
   },
   "engines": {
@@ -42,7 +41,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@babel/plugin-transform-runtime": "7.9.0",
     "file-type": "14.1.4",
     "iban": "0.0.14",
     "lodash": "4.17.15",
@@ -52,9 +50,6 @@
     "validator": "12.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "7.9.0",
-    "@babel/preset-env": "7.9.0",
     "@types/mocha": "7.0.2",
     "@types/moment": "2.13.0",
     "@types/validator": "12.0.1",
