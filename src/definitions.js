@@ -3,6 +3,7 @@ const types = {
     INTEGER: 'integer',
     BOOLEAN: 'boolean',
     DATE: 'date',
+    NUMBER: 'number'
 };
 const ALL = Object.values(types);
 const rules = [
@@ -75,7 +76,7 @@ const rules = [
             },
         ],
         description: 'The field under validation must be between min and max seed.',
-        types: [types.INTEGER],
+        types: [types.INTEGER, types.NUMBER],
     },
     {
         name: 'boolean',
@@ -99,6 +100,13 @@ const rules = [
         arguments: [],
         description: 'The field under validation must be valid credit card string.',
         types: [types.STRING],
+    },
+    {
+        name: 'date',
+        arguments: [
+        ],
+        description: 'The field under validation must be a valid date',
+        types: [types.DATE],
     },
     {
         name: 'dateFormat',
@@ -189,7 +197,7 @@ const rules = [
         name: 'decimal',
         arguments: [],
         description: 'The field under validation must be a decimal value.',
-        types: [types.INTEGER],
+        types: [types.INTEGER, types.NUMBER],
     },
     {
         name: 'digits',
@@ -200,7 +208,7 @@ const rules = [
             },
         ],
         description: 'The field under validation must be numeric and must have an exact length.',
-        types: [types.INTEGER],
+        types: [types.INTEGER, types.NUMBER],
     },
     {
         name: 'digitsBetween',
@@ -215,7 +223,7 @@ const rules = [
             },
         ],
         description: 'The field under validation must have a length between provided min and max values.',
-        types: [types.INTEGER],
+        types: [types.INTEGER, types.NUMBER],
     },
     {
         name: 'domain',
@@ -283,7 +291,7 @@ const rules = [
         name: 'integer',
         arguments: [],
         description: 'The field must be an integer.',
-        types: [types.INTEGER],
+        types: [types.INTEGER, types.NUMBER],
     },
     {
         name: 'iso8601',
@@ -300,7 +308,7 @@ const rules = [
             },
         ],
         description: 'The field under validation must be less than given value.',
-        types: [types.INTEGER],
+        types: [types.INTEGER, types.NUMBER],
     },
     {
         name: 'min',
@@ -311,7 +319,7 @@ const rules = [
             },
         ],
         description: 'The field under validation must be greater than given value.',
-        types: [types.INTEGER],
+        types: [types.INTEGER, types.NUMBER],
     },
     {
         name: 'notContains',
@@ -339,7 +347,7 @@ const rules = [
         name: 'numeric',
         arguments: [],
         description: 'The field must be numeric.',
-        types: [types.INTEGER],
+        types: [types.INTEGER, types.NUMBER, types.STRING],
     },
     {
         name: 'percentageIfThisNumberIs',
@@ -365,7 +373,7 @@ const rules = [
             },
         ],
         description: ' ',
-        types: [types.INTEGER],
+        types: [types.INTEGER, types.NUMBER],
     },
     {
         name: 'object',
