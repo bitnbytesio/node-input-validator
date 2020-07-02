@@ -46,6 +46,14 @@ const input = {
             },
           ],
         },
+        { id: 14 },
+        { id: 15 },
+        { id: 16 },
+        { id: 17 },
+        { id: 18 },
+        { id: 19 },
+        { id: 20 },
+        { id: null }
       ],
     },
     {
@@ -203,6 +211,21 @@ describe('Nested', () => {
 
 
       v.errors.should.have.keys('cart.1.varients.0.colors.2.props.0.tags');
+    });
+
+    it('should fail with child required at array index > 9', async () => {
+      const v = new Validator(
+        input,
+        {
+          'cart.*.varients.*.id': 'required',
+        },
+      );
+
+      const matched = await v.check();
+
+      assert.equal(matched, false);
+
+      v.errors.should.have.keys('cart.0.varients.10.id');
     });
   });
 });
