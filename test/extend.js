@@ -20,6 +20,9 @@ niv.addCustomMessages({
   'status.required': 'Status khali nahi hona chahiye.',
 }, 'hi');
 
+niv.addCustomMessages({
+  'status.required': 'Status khali nahi hona chahiye.',
+});
 
 niv.extend('even', ({ value }) => {
   if ((parseInt(value) % 2) === 0) {
@@ -172,6 +175,20 @@ describe('Custom Rules', () => {
 });
 
 describe('Custom messages', () => {
+  it('should return status.required custom message', async () => {
+    const v = new Validator(
+      { status: '' },
+      { status: 'required' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+
+    v.errors.should.have.property('status').and.be.a.Object();
+    v.errors.status.should.have.property('message', 'Status khali nahi hona chahiye.');
+  });
+
   it('should return custom message for required', async () => {
     const v = new Validator(
       { number: '' },

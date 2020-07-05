@@ -284,7 +284,7 @@ niv.extendMessages({
 ```javascript
 const niv = require('node-input-validator');
 //Note: Default language is English (en).
-niv.customMessages({
+niv.addCustomMessages({
   'username.required': 'When username attribute required rule failed.',
   username: 'Default message for username attribute.'
 });

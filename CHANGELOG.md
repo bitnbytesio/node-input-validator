@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- correct pttren regex in applyOnDeep method to match multi-digit numbers
+- correct pattren regex in applyOnDeep method to match multi-digit numbers
+- issue with addCustomMessages method
 
 ## [4.2.0-rc2]
 
