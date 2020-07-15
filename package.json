@@ -65,6 +65,7 @@
   "dependencies": {
     "file-type": "^12.4.2",
     "image-size": "^0.8.3",
+    "lodash": "^4.17.19",
     "mime-types": "^2.1.27",
     "moment": "^2.27.0",
     "read-chunk": "^3.2.0",
