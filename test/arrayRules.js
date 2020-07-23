@@ -4,6 +4,20 @@ const { Validator } = require('../lib/index');
 
 
 describe('Rules as Array', () => {
+
+  it('should return false', async () => {
+    const v = new Validator(
+      {  },
+      {
+        name: ['required'],
+      },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
   it('should return true', async () => {
     const v = new Validator(
       { name: 'artisan' },

@@ -473,6 +473,29 @@ new niv.Validator({
   email: 'required|email|unique:User,email,5c2f29e9cefa7718a54f8ff1'
 }, inputs);
 ```
+#### Example of using rules as array
+
+```javascript
+const niv = require('node-input-validator');
+
+let v = new niv.Validator(
+  { foo: 'bar'},
+  { foo: ['required', 'string', ["minLength", 5]] },
+);
+
+let matched = await v.check();
+
+assert.equal(matched, true);
+
+v = new niv.Validator(
+  { foo: 'bar'},
+  { foo: ['required', 'string', "minLength:5" ] },
+);
+
+matched = await v.check();
+
+assert.equal(matched, true);
+```
 
 ## Rules
 
