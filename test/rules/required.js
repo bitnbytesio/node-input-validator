@@ -12,8 +12,24 @@ describe('#required', () => {
     assert.equal(matched, true);
   });
 
+  it('should pass', async () => {
+    const v = new Validator({ name: 'Harcharan Singh' }, { name: ['required'] });
+
+    const matched = await v.check();
+
+    assert.equal(matched, true);
+  });
+
   it('should fail with empty string', async () => {
     const v = new Validator({ name: '' }, { name: 'required' });
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
+  it('should fail with empty string', async () => {
+    const v = new Validator({ name: '' }, { name: ['required'] });
 
     const matched = await v.check();
 

@@ -1,8 +1,6 @@
 const assert = require('assert');
 
-
 const { Validator } = require('../../lib/index');
-
 
 describe('sometimes', () => {
   it('should fail', async () => {
@@ -57,5 +55,37 @@ describe('sometimes', () => {
         args: [],
       }),
     );
+  });
+
+  it('should fail', async () => {
+    const v = new Validator(
+      { info: { password: '', confirm_password: 'password' } },
+      { 'info.password': 'sometimes', 'info.confirm_password': 'sometimes|alpha' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, false);
+  });
+
+  it('should pass', async () => {
+    const v = new Validator(
+      { info: { password: 'password', confirm_password: 'password' } },
+      { 'info.password': 'sometimes', 'info.confirm_password': 'sometimes|alpha' },
+    );
+
+    const matched = await v.check();
+    assert.equal(matched, true);
+  });
+
+  it('should pass, attribute absent', async () => {
+    const v = new Validator(
+      {},
+      { 'info.password': 'sometimes', 'info.confirm_password': 'sometimes|alpha' },
+    );
+
+    const matched = await v.check();
+
+    assert.equal(matched, true);
   });
 });
