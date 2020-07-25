@@ -9,25 +9,17 @@ export class DateFnsAdapter extends DateAdapter {
   }
 
   isAfter(format: string, date: Date | number | string, dateToCompare: Date | number | string): boolean {
-    if (typeof date === 'string') {
-      date = this.parse(date, format)
-    }
+    date = this.parseDate(date, format)
 
-    if (typeof dateToCompare === 'string') {
-      dateToCompare = this.parse(dateToCompare, format)
-    }
+    dateToCompare = this.parseDate(dateToCompare, format)
 
     return this.dateLib.isAfter(date, dateToCompare);
   }
 
   isBefore(format: string, date: Date | number | string, dateToCompare: Date | number | string): boolean {
-    if (typeof date === 'string') {
-      date = this.parse(date, format)
-    }
+    date = this.parseDate(date, format)
 
-    if (typeof dateToCompare === 'string') {
-      dateToCompare = this.parse(dateToCompare, format)
-    }
+    dateToCompare = this.parseDate(dateToCompare, format)
 
     return this.dateLib.isBefore(date, dateToCompare);
   }
@@ -40,8 +32,31 @@ export class DateFnsAdapter extends DateAdapter {
     return this.dateLib.subDays(date, days);
   }
 
-  parse(date: string, format: string): Date {
-    return this.dateLib.parse(date, format, new Date);
+  parseDate(date: Date | string | number, format: string): Date {
+    if (!(date instanceof Date)) {
+      date = this.dateLib.parse(date, format, new Date);
+    }
+
+    // @ts-ignore
+    let d: Date = date;
+
+    d.setHours(0);
+    d.setMinutes(0);
+    d.setSeconds(0);
+    d.setMilliseconds(0);
+    return d;
+  }
+
+  parse(date: string, format: string, referenceDate: Date): Date {
+    return this.dateLib.parse(date, format, referenceDate);
+  }
+
+  isValidDateFormat(date: string, format: string): boolean {
+    return this.dateLib.isValid(this.parse(date, format, new Date))
+  }
+
+  isValidIsoDateFormat(date: string): boolean {
+    return this.dateLib.isValid(this.dateLib.parseISO(date));
   }
 
   format(date: Date, format: string): string {

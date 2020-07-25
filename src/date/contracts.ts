@@ -16,6 +16,8 @@ export abstract class DateAdapter {
 
   abstract addDays(date: Date, days: number): Date;
   abstract subDays(date: Date, days: number): Date;
-  abstract parse(date: string, format: string): Date;
+  abstract parse(date: string, format: string, referenceDate: Date): Date;
   abstract format(date: Date, format: string): string;
+  abstract isValidDateFormat(date: string, format: string): boolean
+  abstract isValidIsoDateFormat(date: string): boolean
 }

@@ -220,7 +220,7 @@ export class Validator {
         (validationRule.name === "nullable" && attrValue === null) ||
         // attribute will only be validated if presents
         (validationRule.name === "sometimes" &&
-          this.doAttributeHasValue(attrValue) === false)
+          this.isAttributePresent(attrName) === false)
       ) {
         return;
       }
@@ -317,6 +317,18 @@ export class Validator {
    */
   doAttributeHasValue(attr: string): boolean {
     return this.attributeValue(attr) === undefined ? true : false;
+  }
+
+  /**
+   * does attribute present in given inputs
+   * @param attr attribute name
+   */
+  isAttributePresent(attr: string): boolean {
+    if (this.inputs[attr] || this.notationVals[attr]) {
+      return true;
+    }
+
+    return false;
   }
 
   /**

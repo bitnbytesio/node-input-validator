@@ -78,3 +78,30 @@ export function dateBeforeToday(args: Array<string>): ValidationRuleContract {
     },
   };
 }
+
+export function dateFormat(args: Array<string>): ValidationRuleContract {
+  if (args.length !== 1) {
+    throw new Error('Rule accepts only 1 argument (format).');
+  }
+
+  const adapter: DateAdapter = dateAdapter();
+  const [format] = args;
+
+  return {
+    name: "dateFormat",
+    handler: (value: any): boolean => {
+      return adapter.isValidDateFormat(value, format);
+    },
+  };
+}
+
+export function dateISO(): ValidationRuleContract {
+  const adapter: DateAdapter = dateAdapter();
+
+  return {
+    name: "dateISO",
+    handler: (value: any) => {
+      return adapter.isValidIsoDateFormat(value);
+    },
+  };
+}
