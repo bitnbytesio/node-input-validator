@@ -12,4 +12,5 @@ npm-debug.log
 *.0x
 .nyc_output
 
-js
+cjs
+esm

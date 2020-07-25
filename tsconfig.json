@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "outDir": "js",
-    "target": "es6",
+    "outDir": "esm",
+    "target": "ES2015",
     "lib": [
       "es2015"
     ],
-    "module": "commonjs",
+    "module": "ES2020",
     "moduleResolution": "Node",
     "strict": true,
     "alwaysStrict": true,
@@ -14,7 +14,8 @@
     "noImplicitAny": true,
     "removeComments": false,
     "newLine": "lf",
-    "esModuleInterop": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "src/**/*"

@@ -19,6 +19,8 @@ import { messageParser } from "./utils/message-parser.util";
 
 import * as RulesProvider from './rules';
 import * as MessagesProvider from './messages';
+import { dateAdapter } from "./date";
+import { DateAdapter } from "./date/contracts";
 
 
 const implicitRules = [
@@ -329,5 +331,9 @@ export class Validator {
    */
   getErrors(): any {
     return this.errors;
+  }
+
+  dateAdapter(): DateAdapter {
+    return dateAdapter()
   }
 }
