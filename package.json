@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "jest",
-    "compile": "rm -rf js && npx tsc -p tsconfig.json && npx tsc -p cjs.tsconfig.json",
+    "compile": "npx tsc -p tsconfig.json && npx tsc -p cjs.tsconfig.json",
     "postinstall": "npm run compile"
   },
   "repository": {
