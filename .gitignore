@@ -11,3 +11,5 @@ npm-debug.log
 *.log
 *.0x
 .nyc_output
+
+js

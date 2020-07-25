@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "js",
+    "target": "es6",
+    "lib": [
+      "es2015"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "strict": true,
+    "alwaysStrict": true,
+    "declaration": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "removeComments": false,
+    "newLine": "lf",
+    "esModuleInterop": false,
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
