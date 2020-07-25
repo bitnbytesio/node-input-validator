@@ -1,0 +1,1 @@
+{"version":3,"file":"alpha.rule.js","sourceRoot":"","sources":["../../src/rules/alpha.rule.ts"],"names":[],"mappings":";;;AAAA,yCAAkC;AAKlC,SAAgB,KAAK;IAEnB,OAAO;QACL,IAAI,EAAE,OAAO;QACb,OAAO,EAAE,CAAC,KAAU,EAAE,EAAE;YACtB,OAAO,mBAAS,CAAC,OAAO,CAAC,KAAK,GAAG,EAAE,CAAC,CAAC;QACvC,CAAC;KACF,CAAC;AACJ,CAAC;AARD,sBAQC"}

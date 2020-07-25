@@ -7,13 +7,25 @@
 - confirmed
 - digitsBetween
 - dimensions
+- dateAfterToday
+- dateBeforeToday
+- dateFormat
+- dateiso
+- datetime
+- digitsBetween
+- dimensions
+- iso8601
 - length
 - lengthBetween
 - mime
+- nullable
+- object
+- required
 - requireNotIf
 - requiredWith
 - requiredWithout
 - size
+- sometimes
 - timezone
 - exception test cases for date rule
 - exception test cases almost pending in all rules
