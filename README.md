@@ -259,3 +259,56 @@ let v = new Validator(
 );
 let matched = await v.check();
 ```
+
+## Rules
+
+You can declare rules in string or in array 
+
+**accepted**  
+The field under validation must be yes, on, 1, or true.
+
+```javascript
+new Validator(
+  inputs,
+  { terms: 'accepted' },
+);
+```
+
+Customize: will only allow 1 ("1" should be string)
+
+```javascript
+new Validator(
+  inputs,
+  { terms: 'accepted:1' },
+);
+```
+
+in array example
+
+```javascript
+new Validator(
+  inputs,
+  { terms: [Rules.accepted()] },
+);
+```
+
+Customise in array style
+
+```javascript
+new Validator(
+  inputs,
+  { terms: [Rules.accepted(['1'])] },
+);
+```
+
+**alpha**  
+The field under validation must be entirely alphabetic characters.
+
+**alphaDash**  
+The field under validation may have alpha-numeric characters, as well as dashes and underscores.
+
+**alphaNumeric**  
+The field under validation only contains letters and numbers.
+
+**array**  
+The field under validation must be an array.
