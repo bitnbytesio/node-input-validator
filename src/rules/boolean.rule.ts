@@ -40,7 +40,8 @@ export function booleanStrict(): ValidationRuleContract {
 }
 
 /**
- * @deprecated Since version 5. Use booleanStrict,booleanStr,booleanInt instead
+ * @deprecated Since version 5. 
+ * Use booleanStrict,booleanStr,booleanInt instead.
  * @param args 
  */
 export function boolean(

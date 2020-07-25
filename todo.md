@@ -1,7 +1,6 @@
 - acceptedIf
 - activeUrl
 - alphaDash
-- alphaNumeric
 - ascii
 - base64
 - between
@@ -16,3 +15,5 @@
 - requiredWithout
 - size
 - timezone
+- exception test cases for date rule
+- exception test cases almost pending in all rules

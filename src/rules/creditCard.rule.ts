@@ -5,12 +5,8 @@ import { ValidationRuleContract } from "../contracts";
 export function creditCard(): ValidationRuleContract {
   return {
     name: "creditCard",
-    handler: (value: any) => {
-      if (validator.isCreditCard(String(value))) {
-        return true;
-      }
-
-      return false;
+    handler: (value: any): boolean => {
+      return validator.isCreditCard(String(value));
     },
   };
 }

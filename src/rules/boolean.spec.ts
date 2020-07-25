@@ -1,28 +1,46 @@
 import { booleanStrict, booleanStr, booleanInt, boolean } from "../rules/boolean.rule";
 
-test("rules:booleanStrict", function (): void {
-  const ruleHandler = booleanStrict().handler;
-  expect(ruleHandler(true)).toBe(true);
-  expect(ruleHandler(false)).toBe(true);
-  expect(ruleHandler("false")).toBe(false);
+describe("rules:booleanStrict", () => {
+  test("should pass", () => {
+    const ruleHandler = booleanStrict().handler;
+    expect(ruleHandler(true)).toBe(true);
+    expect(ruleHandler(false)).toBe(true);
+  });
+
+  test("should fail", () => {
+    const ruleHandler = booleanStrict().handler;
+    expect(ruleHandler("false")).toBe(false);
+  });
 });
 
-test("rules:booleanStr", function (): void {
-  const ruleHandler = booleanStr().handler;
-  expect(ruleHandler(true)).toBe(false);
-  expect(ruleHandler(false)).toBe(false);
-  expect(ruleHandler("false")).toBe(true);
-  expect(ruleHandler("true")).toBe(true);
+describe("rules:booleanStr", () => {
+  test("should pass", () => {
+    const ruleHandler = booleanStr().handler;
+    expect(ruleHandler("false")).toBe(true);
+    expect(ruleHandler("true")).toBe(true);
+  });
+
+  test("should fail", () => {
+    const ruleHandler = booleanStr().handler;
+    expect(ruleHandler(true)).toBe(false);
+    expect(ruleHandler(false)).toBe(false);
+  });
 });
 
-test("rules:booleanInt", function (): void {
-  const ruleHandler = booleanInt().handler;
-  expect(ruleHandler(true)).toBe(false);
-  expect(ruleHandler(false)).toBe(false);
-  expect(ruleHandler("0")).toBe(false);
-  expect(ruleHandler("1")).toBe(false);
-  expect(ruleHandler(0)).toBe(true);
-  expect(ruleHandler(1)).toBe(true);
+describe("rules:booleanInt", () => {
+  test("should pass", () => {
+    const ruleHandler = booleanInt().handler;
+    expect(ruleHandler(0)).toBe(true);
+    expect(ruleHandler(1)).toBe(true);
+  });
+
+  test("should fail", () => {
+    const ruleHandler = booleanInt().handler;
+    expect(ruleHandler(true)).toBe(false);
+    expect(ruleHandler(false)).toBe(false);
+    expect(ruleHandler("0")).toBe(false);
+    expect(ruleHandler("1")).toBe(false);
+  });
 });
 
 // test("rules:boolean", function (): void {
