@@ -8,7 +8,6 @@
 - activeUrl
 - confirmed
 - datetime
-- length
 - lengthBetween
 - mime
 - nullable

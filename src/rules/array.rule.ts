@@ -61,3 +61,22 @@ export function arrayUniqueObjects(
     },
   };
 }
+
+/**
+ * @since: v5
+ * The field under validation must be array of length as per seed.
+ * @param args seeds
+ */
+export function arrayLength(args: Array<string>): ValidationRuleContract {
+  if (args.length !== 1) {
+    throw new Error('Invalid number of arguments.');
+  }
+
+  const len = parseInt(args[0], 10);
+  return {
+    name: "array",
+    handler: (value: any) => {
+      return (Array.isArray(value) && value.length === len);
+    },
+  };
+}
