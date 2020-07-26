@@ -30,7 +30,7 @@
 
 \+ **new ValidatorLite**(`inputs`: any): *[ValidatorLite](_mock_validator_lite_mock_.validatorlite.md)*
 
-*Defined in [mock/validator-lite.mock.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/mock/validator-lite.mock.ts#L3)*
+*Defined in [mock/validator-lite.mock.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/mock/validator-lite.mock.ts#L3)*
 
 **Parameters:**
 
@@ -46,7 +46,7 @@ Name | Type |
 
 • **inputs**: *any*
 
-*Defined in [mock/validator-lite.mock.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/mock/validator-lite.mock.ts#L4)*
+*Defined in [mock/validator-lite.mock.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/mock/validator-lite.mock.ts#L4)*
 
 ## Methods
 
@@ -56,7 +56,7 @@ Name | Type |
 
 *Implementation of [ValidatorContract](../interfaces/_contracts_.validatorcontract.md)*
 
-*Defined in [mock/validator-lite.mock.ts:6](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/mock/validator-lite.mock.ts#L6)*
+*Defined in [mock/validator-lite.mock.ts:6](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/mock/validator-lite.mock.ts#L6)*
 
 **Parameters:**
 

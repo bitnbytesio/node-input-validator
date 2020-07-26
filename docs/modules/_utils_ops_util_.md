@@ -14,7 +14,7 @@
 
 ▸ **reallyEmpty**(`value`: any): *boolean*
 
-*Defined in [utils/ops.util.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/ops.util.ts#L3)*
+*Defined in [utils/ops.util.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/ops.util.ts#L3)*
 
 **Parameters:**
 

@@ -21,7 +21,7 @@
 
 • **attrName**: *string*
 
-*Defined in [contracts.ts:69](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L69)*
+*Defined in [contracts.ts:69](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L69)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **attrValue**? : *any*
 
-*Defined in [contracts.ts:71](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L71)*
+*Defined in [contracts.ts:71](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L71)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **ruleArgs**? : *any*
 
-*Defined in [contracts.ts:72](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L72)*
+*Defined in [contracts.ts:72](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L72)*
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **ruleName**: *string*
 
-*Defined in [contracts.ts:70](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L70)*
+*Defined in [contracts.ts:70](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L70)*

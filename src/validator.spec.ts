@@ -1,4 +1,6 @@
-import { Validator, Rules } from "./index";
+import { Rules } from "./index";
+
+import { Validator } from './validator';
 
 describe(
   "Validator:validate",

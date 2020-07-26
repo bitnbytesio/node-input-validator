@@ -21,7 +21,7 @@
 
 • **iterations**? : *undefined | number*
 
-*Defined in [utils/obj.util.ts:49](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.util.ts#L49)*
+*Defined in [utils/obj.util.ts:49](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.util.ts#L49)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **matchKeys**? : *Array‹string›*
 
-*Defined in [utils/obj.util.ts:50](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.util.ts#L50)*
+*Defined in [utils/obj.util.ts:50](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.util.ts#L50)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **prefix**? : *Array‹any›*
 
-*Defined in [utils/obj.util.ts:48](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.util.ts#L48)*
+*Defined in [utils/obj.util.ts:48](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.util.ts#L48)*
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **seperator**? : *undefined | string*
 
-*Defined in [utils/obj.util.ts:51](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.util.ts#L51)*
+*Defined in [utils/obj.util.ts:51](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.util.ts#L51)*

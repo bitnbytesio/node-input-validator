@@ -21,7 +21,7 @@
 
 • **DEFAULT_LANG**: *[Langs](../enums/_contracts_.langs.md)* = Langs.en_US
 
-*Defined in [messages/index.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/messages/index.ts#L5)*
+*Defined in [messages/index.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/messages/index.ts#L5)*
 
 ## Functions
 
@@ -29,7 +29,7 @@
 
 ▸ **addCustomMessages**(`customMessages`: any, `lang`: [Langs](../enums/_contracts_.langs.md)): *void*
 
-*Defined in [messages/index.ts:26](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/messages/index.ts#L26)*
+*Defined in [messages/index.ts:26](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/messages/index.ts#L26)*
 
 **Parameters:**
 
@@ -46,7 +46,7 @@ ___
 
 ▸ **addNiceNames**(`attributesNiceNames`: any, `lang`: [Langs](../enums/_contracts_.langs.md)): *void*
 
-*Defined in [messages/index.ts:36](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/messages/index.ts#L36)*
+*Defined in [messages/index.ts:36](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/messages/index.ts#L36)*
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ ___
 
 ▸ **extend**(`newMessages`: any, `lang`: [Langs](../enums/_contracts_.langs.md)): *void*
 
-*Defined in [messages/index.ts:20](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/messages/index.ts#L20)*
+*Defined in [messages/index.ts:20](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/messages/index.ts#L20)*
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ ___
 
 ▸ **messagesRefByLang**(`lang`: [Langs](../enums/_contracts_.langs.md)): *any*
 
-*Defined in [messages/index.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/messages/index.ts#L7)*
+*Defined in [messages/index.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/messages/index.ts#L7)*
 
 **Parameters:**
 

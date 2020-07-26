@@ -5,6 +5,7 @@
   "main": "js/index.js",
   "dependencies": {
     "@types/validator": "^13.1.0",
+    "mime-types": "^2.1.27",
     "validator": "^13.1.1"
   },
   "devDependencies": {
@@ -21,10 +22,12 @@
     "node": ">=8.16"
   },
   "scripts": {
-    "test": "jest",
+    "test": "npx jest",
+    "coverage": "npx jest --coverage",
     "compile": "npx tsc -p tsconfig.json && npx tsc -p cjs.tsconfig.json",
     "generate-docs": "npx typedoc --tsconfig",
-    "postinstall": "npm run compile"
+    "prepublish": "npm run compile",
+    "prepublishOnly": "npm test"
   },
   "repository": {
     "type": "git",

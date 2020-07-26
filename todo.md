@@ -6,17 +6,12 @@
 - dateDaysBeforeToday
 - dateYearsBeforeToday
 - activeUrl
-- confirmed
 - datetime
-- lengthBetween
 - mime
-- nullable
-- object
 - requireNotIf
 - requiredWith
 - requiredWithout
-- size
-- sometimes
+- sometimes & nullable implement we need test case for this
 - timezone
 - exception test cases for date rule
 - exception test cases almost pending in all rules

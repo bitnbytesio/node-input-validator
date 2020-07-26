@@ -36,7 +36,7 @@
 
 \+ **new DateAdapter**(`dateLib`: any): *[DateAdapter](_date_contracts_.dateadapter.md)*
 
-*Defined in [date/contracts.ts:10](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L10)*
+*Defined in [date/contracts.ts:10](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L10)*
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Name | Type |
 
 • **dateLib**: *any*
 
-*Defined in [date/contracts.ts:12](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L12)*
+*Defined in [date/contracts.ts:12](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L12)*
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 ▪ **FORMAT_yyyy_MM_dd**: *string* = "yyyy-MM-dd"
 
-*Defined in [date/contracts.ts:10](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L10)*
+*Defined in [date/contracts.ts:10](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L10)*
 
 ## Methods
 
@@ -68,7 +68,7 @@ ___
 
 ▸ **addDays**(`date`: Date, `days`: number): *Date*
 
-*Defined in [date/contracts.ts:17](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L17)*
+*Defined in [date/contracts.ts:17](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L17)*
 
 **Parameters:**
 
@@ -85,7 +85,7 @@ ___
 
 ▸ **format**(`date`: Date, `format`: string): *string*
 
-*Defined in [date/contracts.ts:20](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L20)*
+*Defined in [date/contracts.ts:20](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L20)*
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ ___
 
 ▸ **isAfter**(`format`: string, `date`: Date | number | string, `dateToCompare`: Date | number | string): *boolean*
 
-*Defined in [date/contracts.ts:14](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L14)*
+*Defined in [date/contracts.ts:14](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L14)*
 
 **Parameters:**
 
@@ -120,7 +120,7 @@ ___
 
 ▸ **isBefore**(`format`: string, `date`: Date | number | string, `dateToCompare`: Date | number | string): *boolean*
 
-*Defined in [date/contracts.ts:15](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L15)*
+*Defined in [date/contracts.ts:15](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L15)*
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **isValidDateFormat**(`date`: string, `format`: string): *boolean*
 
-*Defined in [date/contracts.ts:21](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L21)*
+*Defined in [date/contracts.ts:21](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L21)*
 
 **Parameters:**
 
@@ -155,7 +155,7 @@ ___
 
 ▸ **isValidIsoDateFormat**(`date`: string): *boolean*
 
-*Defined in [date/contracts.ts:22](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L22)*
+*Defined in [date/contracts.ts:22](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L22)*
 
 **Parameters:**
 
@@ -171,7 +171,7 @@ ___
 
 ▸ **parse**(`date`: string, `format`: string, `referenceDate`: Date): *Date*
 
-*Defined in [date/contracts.ts:19](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L19)*
+*Defined in [date/contracts.ts:19](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L19)*
 
 **Parameters:**
 
@@ -189,7 +189,7 @@ ___
 
 ▸ **subDays**(`date`: Date, `days`: number): *Date*
 
-*Defined in [date/contracts.ts:18](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L18)*
+*Defined in [date/contracts.ts:18](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L18)*
 
 **Parameters:**
 

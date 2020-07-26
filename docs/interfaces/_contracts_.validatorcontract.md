@@ -24,7 +24,7 @@ set of methods that rules may need
 
 ▸ **attributeValue**(`attrName`: string): *any*
 
-*Defined in [contracts.ts:50](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L50)*
+*Defined in [contracts.ts:50](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L50)*
 
 get attribute value
 

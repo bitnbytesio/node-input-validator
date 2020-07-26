@@ -24,7 +24,7 @@ each validation rule should implement this interface
 
 • **args**? : *any*
 
-*Defined in [contracts.ts:24](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L24)*
+*Defined in [contracts.ts:24](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L24)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **handler**: *Function*
 
-*Defined in [contracts.ts:23](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L23)*
+*Defined in [contracts.ts:23](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L23)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **name**: *string*
 
-*Defined in [contracts.ts:22](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L22)*
+*Defined in [contracts.ts:22](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L22)*
 
 ___
 
@@ -48,4 +48,4 @@ ___
 
 • **nullable**? : *undefined | false | true*
 
-*Defined in [contracts.ts:25](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L25)*
+*Defined in [contracts.ts:25](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L25)*

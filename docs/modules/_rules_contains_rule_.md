@@ -15,7 +15,7 @@
 
 ▸ **contains**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/contains.rule.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/contains.rule.ts#L5)*
+*Defined in [rules/contains.rule.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/contains.rule.ts#L5)*
 
 **Parameters:**
 
@@ -31,7 +31,7 @@ ___
 
 ▸ **notContains**(`args`: Array‹any›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/contains.rule.ts:20](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/contains.rule.ts#L20)*
+*Defined in [rules/contains.rule.ts:20](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/contains.rule.ts#L20)*
 
 **Parameters:**
 

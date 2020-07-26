@@ -14,7 +14,7 @@
 
 ▸ **different**(`args`: Array‹any›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/different.rule.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/different.rule.ts#L3)*
+*Defined in [rules/different.rule.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/different.rule.ts#L3)*
 
 **Parameters:**
 

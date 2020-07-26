@@ -21,7 +21,7 @@ validation error object interface
 
 • **message**: *string*
 
-*Defined in [contracts.ts:6](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L6)*
+*Defined in [contracts.ts:6](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L6)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 • **rule**: *string*
 
-*Defined in [contracts.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L7)*
+*Defined in [contracts.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L7)*

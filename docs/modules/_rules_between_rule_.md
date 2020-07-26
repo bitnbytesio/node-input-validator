@@ -14,7 +14,7 @@
 
 ▸ **between**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/between.rule.ts:11](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/between.rule.ts#L11)*
+*Defined in [rules/between.rule.ts:11](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/between.rule.ts#L11)*
 
 The field under validation must be between min and max seed.
 This will work with number as well as array.

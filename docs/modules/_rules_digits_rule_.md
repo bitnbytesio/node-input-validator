@@ -15,7 +15,7 @@
 
 ▸ **digits**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/digits.rule.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/digits.rule.ts#L5)*
+*Defined in [rules/digits.rule.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/digits.rule.ts#L5)*
 
 **Parameters:**
 
@@ -31,7 +31,7 @@ ___
 
 ▸ **digitsBetween**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/digits.rule.ts:35](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/digits.rule.ts#L35)*
+*Defined in [rules/digits.rule.ts:35](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/digits.rule.ts#L35)*
 
 **Parameters:**
 

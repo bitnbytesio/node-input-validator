@@ -15,7 +15,7 @@
 
 ▸ **accepted**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/accepted.rule.ts:9](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/accepted.rule.ts#L9)*
+*Defined in [rules/accepted.rule.ts:9](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/accepted.rule.ts#L9)*
 
 The field under validation must be yes, on, 1, or true.
 This is useful for validating "Terms of Service" acceptance.
@@ -34,7 +34,7 @@ ___
 
 ▸ **acceptedIf**(`args`: Array‹string›, `acceptedValues`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/accepted.rule.ts:24](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/accepted.rule.ts#L24)*
+*Defined in [rules/accepted.rule.ts:24](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/accepted.rule.ts#L24)*
 
 **Parameters:**
 

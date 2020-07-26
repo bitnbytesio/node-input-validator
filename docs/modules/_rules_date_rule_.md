@@ -19,7 +19,7 @@
 
 ▸ **dateAfter**(`args`: Array‹Date | string | number›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/date.rule.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/date.rule.ts#L7)*
+*Defined in [rules/date.rule.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/date.rule.ts#L7)*
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **dateAfterToday**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/date.rule.ts:27](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/date.rule.ts#L27)*
+*Defined in [rules/date.rule.ts:27](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/date.rule.ts#L27)*
 
 **Parameters:**
 
@@ -51,7 +51,7 @@ ___
 
 ▸ **dateBefore**(`args`: Array‹any›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/date.rule.ts:43](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/date.rule.ts#L43)*
+*Defined in [rules/date.rule.ts:43](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/date.rule.ts#L43)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ▸ **dateBeforeToday**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/date.rule.ts:66](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/date.rule.ts#L66)*
+*Defined in [rules/date.rule.ts:66](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/date.rule.ts#L66)*
 
 **Parameters:**
 
@@ -83,7 +83,7 @@ ___
 
 ▸ **dateFormat**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/date.rule.ts:82](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/date.rule.ts#L82)*
+*Defined in [rules/date.rule.ts:82](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/date.rule.ts#L82)*
 
 **Parameters:**
 
@@ -99,6 +99,6 @@ ___
 
 ▸ **dateISO**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/date.rule.ts:98](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/date.rule.ts#L98)*
+*Defined in [rules/date.rule.ts:98](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/date.rule.ts#L98)*
 
 **Returns:** *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*

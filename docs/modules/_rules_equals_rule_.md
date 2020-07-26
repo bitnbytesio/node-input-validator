@@ -14,7 +14,7 @@
 
 ▸ **equals**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/equals.rule.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/equals.rule.ts#L3)*
+*Defined in [rules/equals.rule.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/equals.rule.ts#L3)*
 
 **Parameters:**
 

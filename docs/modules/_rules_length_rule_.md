@@ -17,7 +17,7 @@
 
 ▸ **length**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/length.rule.ts:35](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/length.rule.ts#L35)*
+*Defined in [rules/length.rule.ts:35](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/length.rule.ts#L35)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 ▸ **lengthBetween**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/length.rule.ts:67](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/length.rule.ts#L67)*
+*Defined in [rules/length.rule.ts:67](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/length.rule.ts#L67)*
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ ___
 
 ▸ **maxLength**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/length.rule.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/length.rule.ts#L4)*
+*Defined in [rules/length.rule.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/length.rule.ts#L4)*
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ ___
 
 ▸ **minLength**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/length.rule.ts:19](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/length.rule.ts#L19)*
+*Defined in [rules/length.rule.ts:19](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/length.rule.ts#L19)*
 
 **Parameters:**
 

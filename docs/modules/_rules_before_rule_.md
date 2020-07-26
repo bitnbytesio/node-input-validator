@@ -14,7 +14,7 @@
 
 ▸ **before**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/before.rule.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/before.rule.ts#L5)*
+*Defined in [rules/before.rule.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/before.rule.ts#L5)*
 
 **Parameters:**
 

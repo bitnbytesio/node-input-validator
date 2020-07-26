@@ -22,7 +22,7 @@
 
 • **attrName**: *string*
 
-*Defined in [utils/message-parser.util.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/message-parser.util.ts#L5)*
+*Defined in [utils/message-parser.util.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/message-parser.util.ts#L5)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **attrValue**? : *any*
 
-*Defined in [utils/message-parser.util.ts:8](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/message-parser.util.ts#L8)*
+*Defined in [utils/message-parser.util.ts:8](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/message-parser.util.ts#L8)*
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 • **message**: *string*
 
-*Defined in [utils/message-parser.util.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/message-parser.util.ts#L4)*
+*Defined in [utils/message-parser.util.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/message-parser.util.ts#L4)*
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 • **ruleArgs**? : *any*
 
-*Defined in [utils/message-parser.util.ts:6](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/message-parser.util.ts#L6)*
+*Defined in [utils/message-parser.util.ts:6](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/message-parser.util.ts#L6)*
 
 ___
 
@@ -54,4 +54,4 @@ ___
 
 • **ruleName**: *string*
 
-*Defined in [utils/message-parser.util.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/message-parser.util.ts#L7)*
+*Defined in [utils/message-parser.util.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/message-parser.util.ts#L7)*

@@ -17,7 +17,7 @@
 
 ▸ **boolean**(`args`: Array‹any›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/boolean.rule.ts:47](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/boolean.rule.ts#L47)*
+*Defined in [rules/boolean.rule.ts:47](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/boolean.rule.ts#L47)*
 
 **`deprecated`** Since version 5.
 Use booleanStrict,booleanStr,booleanInt instead.
@@ -36,7 +36,7 @@ ___
 
 ▸ **booleanInt**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/boolean.rule.ts:16](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/boolean.rule.ts#L16)*
+*Defined in [rules/boolean.rule.ts:16](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/boolean.rule.ts#L16)*
 
 **Returns:** *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
@@ -46,7 +46,7 @@ ___
 
 ▸ **booleanStr**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/boolean.rule.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/boolean.rule.ts#L3)*
+*Defined in [rules/boolean.rule.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/boolean.rule.ts#L3)*
 
 **Returns:** *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
@@ -56,6 +56,6 @@ ___
 
 ▸ **booleanStrict**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/boolean.rule.ts:29](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/boolean.rule.ts#L29)*
+*Defined in [rules/boolean.rule.ts:29](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/boolean.rule.ts#L29)*
 
 **Returns:** *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*

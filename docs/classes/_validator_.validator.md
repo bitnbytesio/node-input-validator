@@ -50,7 +50,7 @@
 
 \+ **new Validator**(`inputs`: any, `rules`: [ValidationRulesContract](../interfaces/_contracts_.validationrulescontract.md) | [ValidationRuleStringNotationContract](../interfaces/_contracts_.validationrulestringnotationcontract.md), `customMessages`: [MessagesContract](../interfaces/_contracts_.messagescontract.md)): *[Validator](_validator_.validator.md)*
 
-*Defined in [validator.ts:55](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L55)*
+*Defined in [validator.ts:55](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L55)*
 
 init validator
 
@@ -70,7 +70,7 @@ Name | Type | Default | Description |
 
 • **customMessages**: *[MessagesContract](../interfaces/_contracts_.messagescontract.md)*
 
-*Defined in [validator.ts:68](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L68)*
+*Defined in [validator.ts:68](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L68)*
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 • **errors**: *[ValidatorErrorContract](../interfaces/_contracts_.validatorerrorcontract.md)*
 
-*Defined in [validator.ts:40](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L40)*
+*Defined in [validator.ts:40](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L40)*
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 • **hasCustomMessages**: *boolean* = false
 
-*Defined in [validator.ts:46](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L46)*
+*Defined in [validator.ts:46](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L46)*
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 • **hasNestedRules**: *boolean* = false
 
-*Defined in [validator.ts:52](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L52)*
+*Defined in [validator.ts:52](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L52)*
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 • **inputs**: *any*
 
-*Defined in [validator.ts:64](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L64)*
+*Defined in [validator.ts:64](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L64)*
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 • **niceNames**: *[NiceNamesContract](../interfaces/_contracts_.nicenamescontract.md)*
 
-*Defined in [validator.ts:43](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L43)*
+*Defined in [validator.ts:43](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L43)*
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 • **notationMap**: *any*
 
-*Defined in [validator.ts:48](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L48)*
+*Defined in [validator.ts:48](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L48)*
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 • **notationVals**: *any*
 
-*Defined in [validator.ts:49](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L49)*
+*Defined in [validator.ts:49](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L49)*
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 • **parsedRulesCollection**: *[ValidationRulesContract](../interfaces/_contracts_.validationrulescontract.md)*
 
-*Defined in [validator.ts:55](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L55)*
+*Defined in [validator.ts:55](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L55)*
 
 ___
 
@@ -142,7 +142,7 @@ ___
 
 • **rules**: *[ValidationRulesContract](../interfaces/_contracts_.validationrulescontract.md) | [ValidationRuleStringNotationContract](../interfaces/_contracts_.validationrulestringnotationcontract.md)*
 
-*Defined in [validator.ts:65](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L65)*
+*Defined in [validator.ts:65](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L65)*
 
 ## Methods
 
@@ -150,7 +150,7 @@ ___
 
 ▸ **applyFilters**(`filters`: any): *void*
 
-*Defined in [validator.ts:168](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L168)*
+*Defined in [validator.ts:168](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L168)*
 
 apply this set of filters to inputs
 
@@ -168,7 +168,7 @@ ___
 
 ▸ **applyPostRules**(`rules`: any): *void*
 
-*Defined in [validator.ts:176](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L176)*
+*Defined in [validator.ts:176](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L176)*
 
 apply post validation rules
 
@@ -186,7 +186,7 @@ ___
 
 ▸ **attributeValue**(`attr`: string): *any*
 
-*Defined in [validator.ts:311](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L311)*
+*Defined in [validator.ts:311](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L311)*
 
 get attribute value by its name
 
@@ -204,7 +204,7 @@ ___
 
 ▸ **createAttributeError**(`params`: [AttributeValidationMinimalInfo](../interfaces/_contracts_.attributevalidationminimalinfo.md)): *void*
 
-*Defined in [validator.ts:244](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L244)*
+*Defined in [validator.ts:244](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L244)*
 
 this will create error object for attribute
 
@@ -222,7 +222,7 @@ ___
 
 ▸ **createAttributeErrorMessage**(`params`: [AttributeValidationMinimalInfo](../interfaces/_contracts_.attributevalidationminimalinfo.md), `useDefaultMessage`: boolean): *string*
 
-*Defined in [validator.ts:256](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L256)*
+*Defined in [validator.ts:256](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L256)*
 
 this will return parsed error message as per rule or input
 
@@ -241,7 +241,7 @@ ___
 
 ▸ **dateAdapter**(): *[DateAdapter](_date_contracts_.dateadapter.md)*
 
-*Defined in [validator.ts:349](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L349)*
+*Defined in [validator.ts:349](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L349)*
 
 **Returns:** *[DateAdapter](_date_contracts_.dateadapter.md)*
 
@@ -251,7 +251,7 @@ ___
 
 ▸ **doAttributeHasValue**(`attr`: string): *boolean*
 
-*Defined in [validator.ts:319](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L319)*
+*Defined in [validator.ts:319](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L319)*
 
 check if attribute has value
 
@@ -269,7 +269,7 @@ ___
 
 ▸ **getErrors**(): *any*
 
-*Defined in [validator.ts:345](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L345)*
+*Defined in [validator.ts:345](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L345)*
 
 get validation errors
 
@@ -281,7 +281,7 @@ ___
 
 ▸ **hasErrors**(): *boolean*
 
-*Defined in [validator.ts:338](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L338)*
+*Defined in [validator.ts:338](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L338)*
 
 does we have any dirty/failed input
 
@@ -293,7 +293,7 @@ ___
 
 ▸ **isAttributePresent**(`attr`: string): *boolean*
 
-*Defined in [validator.ts:327](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L327)*
+*Defined in [validator.ts:327](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L327)*
 
 does attribute present in given inputs
 
@@ -311,7 +311,7 @@ ___
 
 ▸ **parse**(): *void*
 
-*Defined in [validator.ts:77](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L77)*
+*Defined in [validator.ts:77](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L77)*
 
 parse provided rules and inputs
 
@@ -323,7 +323,7 @@ ___
 
 ▸ **parseInputs**(): *void*
 
-*Defined in [validator.ts:139](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L139)*
+*Defined in [validator.ts:139](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L139)*
 
 **Returns:** *void*
 
@@ -333,7 +333,7 @@ ___
 
 ▸ **parseRules**(): *void*
 
-*Defined in [validator.ts:82](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L82)*
+*Defined in [validator.ts:82](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L82)*
 
 **Returns:** *void*
 
@@ -343,7 +343,7 @@ ___
 
 ▸ **parseStringNotationRules**(`attrRules`: string): *Array‹[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)›*
 
-*Defined in [validator.ts:110](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L110)*
+*Defined in [validator.ts:110](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L110)*
 
 parse rules those are in string notation
 
@@ -361,7 +361,7 @@ ___
 
 ▸ **validate**(): *Promise‹boolean›*
 
-*Defined in [validator.ts:183](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L183)*
+*Defined in [validator.ts:183](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L183)*
 
 validate inputs againest rules
 
@@ -373,7 +373,7 @@ ___
 
 ▸ **validateAttribute**(`attrName`: string, `attrRules`: Array‹[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)›): *void*
 
-*Defined in [validator.ts:206](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L206)*
+*Defined in [validator.ts:206](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L206)*
 
 apply rules on attribute
 

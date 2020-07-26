@@ -22,7 +22,7 @@
 
 ▸ **getKeyValue**(`key`: string): *(Anonymous function)*
 
-*Defined in [utils/obj.util.ts:1](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.util.ts#L1)*
+*Defined in [utils/obj.util.ts:1](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.util.ts#L1)*
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ ___
 
 ▸ **getValueByStringNotation**(`object`: any, `notation`: string): *string*
 
-*Defined in [utils/obj.util.ts:22](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.util.ts#L22)*
+*Defined in [utils/obj.util.ts:22](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.util.ts#L22)*
 
 **Parameters:**
 
@@ -55,7 +55,7 @@ ___
 
 ▸ **getValuesByWildCardStringNotation**(`iterable`: any, `options`: [NotationLoopOptions](../interfaces/_utils_obj_util_.notationloopoptions.md)): *object*
 
-*Defined in [utils/obj.util.ts:54](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.util.ts#L54)*
+*Defined in [utils/obj.util.ts:54](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.util.ts#L54)*
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ ___
 
 ▸ **isIterable**(`object`: any): *boolean*
 
-*Defined in [utils/obj.util.ts:42](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.util.ts#L42)*
+*Defined in [utils/obj.util.ts:42](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.util.ts#L42)*
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ ___
 
 ▸ **namedArgs**(`params`: Array‹string›): *object*
 
-*Defined in [utils/obj.util.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.util.ts#L5)*
+*Defined in [utils/obj.util.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.util.ts#L5)*
 
 **Parameters:**
 

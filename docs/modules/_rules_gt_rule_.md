@@ -15,7 +15,7 @@
 
 ▸ **gt**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/gt.rule.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/gt.rule.ts#L4)*
+*Defined in [rules/gt.rule.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/gt.rule.ts#L4)*
 
 **Parameters:**
 
@@ -31,7 +31,7 @@ ___
 
 ▸ **gte**(`args`: Array‹any›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/gt.rule.ts:23](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/gt.rule.ts#L23)*
+*Defined in [rules/gt.rule.ts:23](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/gt.rule.ts#L23)*
 
 **Parameters:**
 

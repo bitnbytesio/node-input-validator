@@ -27,4 +27,4 @@
   "nullable",
 ]
 
-*Defined in [validator.ts:26](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/validator.ts#L26)*
+*Defined in [validator.ts:26](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/validator.ts#L26)*

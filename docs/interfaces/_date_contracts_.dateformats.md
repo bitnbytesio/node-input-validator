@@ -18,4 +18,4 @@
 
 • **yyyy_MM_dd**: *string*
 
-*Defined in [date/contracts.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/contracts.ts#L4)*
+*Defined in [date/contracts.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/contracts.ts#L4)*

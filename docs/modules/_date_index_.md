@@ -19,7 +19,7 @@
 
 • **AdapterInstance**: *[DateAdapter](../classes/_date_contracts_.dateadapter.md)*
 
-*Defined in [date/index.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/index.ts#L4)*
+*Defined in [date/index.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/index.ts#L4)*
 
 ## Functions
 
@@ -27,7 +27,7 @@
 
 ▸ **dateAdapter**(): *[DateAdapter](../classes/_date_contracts_.dateadapter.md)*
 
-*Defined in [date/index.ts:10](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/index.ts#L10)*
+*Defined in [date/index.ts:10](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/index.ts#L10)*
 
 **Returns:** *[DateAdapter](../classes/_date_contracts_.dateadapter.md)*
 
@@ -37,7 +37,7 @@ ___
 
 ▸ **useDateAdapter**(`instance`: [DateFnsAdapter](../classes/_date_date_fns_adapter_.datefnsadapter.md)): *void*
 
-*Defined in [date/index.ts:6](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/date/index.ts#L6)*
+*Defined in [date/index.ts:6](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/date/index.ts#L6)*
 
 **Parameters:**
 

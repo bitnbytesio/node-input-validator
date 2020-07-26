@@ -14,6 +14,6 @@
 
 ▸ **object**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/object.rule.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/object.rule.ts#L4)*
+*Defined in [rules/object.rule.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/object.rule.ts#L4)*
 
 **Returns:** *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*

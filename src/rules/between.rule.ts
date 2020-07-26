@@ -1,6 +1,6 @@
 import { ValidationRuleContract } from "../contracts";
 import validator from "validator";
-import { lte } from "./lte.rule";
+
 
 /**
  * The field under validation must be between min and max seed.

@@ -18,7 +18,7 @@
 
 ▸ **messageParser**(`params`: [MessageParserParams](../interfaces/_utils_message_parser_util_.messageparserparams.md)): *string*
 
-*Defined in [utils/message-parser.util.ts:11](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/message-parser.util.ts#L11)*
+*Defined in [utils/message-parser.util.ts:11](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/message-parser.util.ts#L11)*
 
 **Parameters:**
 

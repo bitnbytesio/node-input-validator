@@ -226,7 +226,7 @@ export class Validator {
         return;
       }
       // console.log('attr val', attrValue);
-      if (!validationRule.handler(attrValue, this)) {
+      if (!validationRule.handler(attrValue, this, attrName)) {
         this.createAttributeError({
           attrName,
           attrValue,

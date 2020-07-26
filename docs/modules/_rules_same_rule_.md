@@ -14,7 +14,7 @@
 
 ▸ **same**(`args`: Array‹string›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/same.rule.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/same.rule.ts#L4)*
+*Defined in [rules/same.rule.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/same.rule.ts#L3)*
 
 **Parameters:**
 

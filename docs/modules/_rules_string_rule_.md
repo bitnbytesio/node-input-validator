@@ -14,6 +14,6 @@
 
 ▸ **string**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/string.rule.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/string.rule.ts#L3)*
+*Defined in [rules/string.rule.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/string.rule.ts#L3)*
 
 **Returns:** *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*

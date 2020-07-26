@@ -18,7 +18,7 @@
 
 ▸ **alpha**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/alpha.rule.ts:8](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/alpha.rule.ts#L8)*
+*Defined in [rules/alpha.rule.ts:8](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/alpha.rule.ts#L8)*
 
 The field under validation must be entirely alphabetic characters.
 
@@ -30,7 +30,7 @@ ___
 
 ▸ **alphaDash**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/alpha.rule.ts:21](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/alpha.rule.ts#L21)*
+*Defined in [rules/alpha.rule.ts:21](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/alpha.rule.ts#L21)*
 
 The field under validation may have alpha characters, as well as hyphens and underscores.
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **alphaHyphen**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/alpha.rule.ts:38](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/alpha.rule.ts#L38)*
+*Defined in [rules/alpha.rule.ts:38](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/alpha.rule.ts#L38)*
 
 The field under validation may have alpha characters, as well as hyphens.
 
@@ -54,7 +54,7 @@ ___
 
 ▸ **alphaNumeric**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/alpha.rule.ts:55](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/alpha.rule.ts#L55)*
+*Defined in [rules/alpha.rule.ts:55](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/alpha.rule.ts#L55)*
 
 The field under validation must contains alpha-numeric characters.
 
@@ -66,7 +66,7 @@ ___
 
 ▸ **alphaNumericDash**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/alpha.rule.ts:68](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/alpha.rule.ts#L68)*
+*Defined in [rules/alpha.rule.ts:68](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/alpha.rule.ts#L68)*
 
 The field under validation may have alpha-numeric characters, as well as hyphens and underscores.
 

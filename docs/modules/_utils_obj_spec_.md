@@ -20,7 +20,7 @@
 
 • **inputs**: *any[]* = [input]
 
-*Defined in [utils/obj.spec.ts:26](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.spec.ts#L26)*
+*Defined in [utils/obj.spec.ts:26](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.spec.ts#L26)*
 
 ## Object literals
 
@@ -28,11 +28,11 @@
 
 ### ▪ **inp**: *object*
 
-*Defined in [utils/obj.spec.ts:27](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.spec.ts#L27)*
+*Defined in [utils/obj.spec.ts:27](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.spec.ts#L27)*
 
 ▪ **user**: *object*
 
-*Defined in [utils/obj.spec.ts:28](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.spec.ts#L28)*
+*Defined in [utils/obj.spec.ts:28](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.spec.ts#L28)*
 
 * **address**: *object*
 
@@ -46,19 +46,19 @@ ___
 
 ### ▪ **inpf**: *object*
 
-*Defined in [utils/obj.spec.ts:37](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.spec.ts#L37)*
+*Defined in [utils/obj.spec.ts:37](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.spec.ts#L37)*
 
 ###  email
 
 • **email**: *string* = "user@example.com"
 
-*Defined in [utils/obj.spec.ts:39](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.spec.ts#L39)*
+*Defined in [utils/obj.spec.ts:39](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.spec.ts#L39)*
 
 ###  name
 
 • **name**: *string* = "username"
 
-*Defined in [utils/obj.spec.ts:38](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.spec.ts#L38)*
+*Defined in [utils/obj.spec.ts:38](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.spec.ts#L38)*
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 ### ▪ **input**: *object*
 
-*Defined in [utils/obj.spec.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.spec.ts#L3)*
+*Defined in [utils/obj.spec.ts:3](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.spec.ts#L3)*
 
 ###  users
 
@@ -88,10 +88,10 @@ ___
     },
   ]
 
-*Defined in [utils/obj.spec.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.spec.ts#L7)*
+*Defined in [utils/obj.spec.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.spec.ts#L7)*
 
 ▪ **event**: *object*
 
-*Defined in [utils/obj.spec.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/utils/obj.spec.ts#L4)*
+*Defined in [utils/obj.spec.ts:4](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/utils/obj.spec.ts#L4)*
 
 * **name**: *string* = "event name"

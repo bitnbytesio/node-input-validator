@@ -38,7 +38,7 @@ ___
 
 ▸ **extend**(`ruleName`: string, `callback`: Function): *void*
 
-*Defined in [index.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/index.ts#L7)*
+*Defined in [index.ts:7](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/index.ts#L7)*
 
 **Parameters:**
 

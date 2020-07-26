@@ -14,4 +14,4 @@
 
 • **en_US**:
 
-*Defined in [contracts.ts:76](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/contracts.ts#L76)*
+*Defined in [contracts.ts:76](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/contracts.ts#L76)*

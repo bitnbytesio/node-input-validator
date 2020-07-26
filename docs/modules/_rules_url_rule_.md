@@ -14,6 +14,6 @@
 
 ▸ **url**(): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/url.rule.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/url.rule.ts#L5)*
+*Defined in [rules/url.rule.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/url.rule.ts#L5)*
 
 **Returns:** *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*

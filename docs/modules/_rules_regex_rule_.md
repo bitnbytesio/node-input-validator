@@ -14,7 +14,7 @@
 
 ▸ **regex**(`args`: Array‹any›): *[ValidationRuleContract](../interfaces/_contracts_.validationrulecontract.md)*
 
-*Defined in [rules/regex.rule.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/952f4ba/src/rules/regex.rule.ts#L5)*
+*Defined in [rules/regex.rule.ts:5](https://github.com/bitnbytesio/node-input-validator/blob/f6990fa/src/rules/regex.rule.ts#L5)*
 
 **Parameters:**
 
