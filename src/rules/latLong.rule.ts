@@ -1,16 +1,12 @@
 import validator from 'validator';
 
-import { ValidationRuleContract, ValidatorContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts";
 
 export function latLong(): ValidationRuleContract {
   return {
     name: "latLong",
     handler: (value: any) => {
-      if (validator.isLatLong(String(value))) {
-        return true;
-      }
-
-      return false;
+      return validator.isLatLong(String(value));
     },
   };
 }

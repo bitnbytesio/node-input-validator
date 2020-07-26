@@ -1,4 +1,3 @@
-
 import { json } from "./json.rule";
 
 test("rules:json", function (): void {
