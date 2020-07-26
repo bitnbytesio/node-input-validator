@@ -35,13 +35,14 @@ const implicitRules = [
 ];
 
 export class Validator {
-  // errors collection
+
+  // validation errors collection
   errors: ValidatorErrorContract = {};
 
-  // local custom attributes collecction
+  // local custom attributes collection
   niceNames: NiceNamesContract = {};
 
-  // do we have local custom messages?
+  // do we have custom messages?
   hasCustomMessages: boolean = false;
 
   notationMap: any = {};

@@ -23,5 +23,9 @@
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
-  ]
+  ],
+  "typedocOptions": {
+    "inputFiles": ["./src"],
+    "out": "docs"
+  }
 }
