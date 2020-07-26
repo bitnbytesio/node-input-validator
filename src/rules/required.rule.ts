@@ -41,8 +41,6 @@ export function requiredIf(args: Array<string>): ValidationRuleContract {
         }
       }
 
-      // console.log('final con', required, reallyEmpty(value));
-
       return (required && reallyEmpty(value)) ? false : true;
     },
   };

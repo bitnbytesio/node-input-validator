@@ -1,7 +1,4 @@
-- acceptedIf
 - acceptedNotIf
-- after
-- before
 - afterOrEqual
 - BeforeOrEqual
 - dateDaysAfterToday
@@ -9,12 +6,8 @@
 - dateDaysBeforeToday
 - dateYearsBeforeToday
 - activeUrl
-- ascii
-- base64
-- between
 - confirmed
 - datetime
-- iso8601
 - length
 - lengthBetween
 - mime
@@ -28,3 +21,4 @@
 - timezone
 - exception test cases for date rule
 - exception test cases almost pending in all rules
+- test case of acceptedIf
