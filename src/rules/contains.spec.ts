@@ -1,14 +1,25 @@
-import {ValidatorLite} from '../mock/validator-lite.mock'
-import { contains } from "./contains.rule";
+import { contains, notContains } from "./contains.rule";
 
-test("rules:contains", function (): void {
-  const ruleHandler = contains(["contains"]).handler;
-  expect(
-    ruleHandler(
-      "This package is awesome.",
-      new ValidatorLite({ contains: "package" }),
-    )).toBe(true);
-  expect(
-    ruleHandler("Yes, Node is awesome", new ValidatorLite({ contains: "yes" }))).toBe(false)
-  
+describe("rules:contains", () => {
+  test("should pass", () => {
+    const ruleHandler = contains(["package"]).handler;
+    expect(ruleHandler("This package is awesome.")).toBe(true);
+  });
+
+  test("should fail", () => {
+    const ruleHandler = contains(["package"]).handler;
+    expect(ruleHandler("Node is awesome.")).toBe(false);
+  });
+});
+
+describe("rules:notContains", () => {
+  test("should pass", () => {
+    const ruleHandler = notContains(["Node"]).handler;
+    expect(ruleHandler("This package is awesome.")).toBe(true);
+  });
+
+  test("should fail", () => {
+    const ruleHandler = notContains(["Node"]).handler;
+    expect(ruleHandler("Node is awesome.")).toBe(false);
+  });
 });

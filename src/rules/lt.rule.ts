@@ -1,21 +1,19 @@
-
 import { ValidationRuleContract, ValidatorContract } from "../contracts";
 
 export function lt(
-  args: Array<any>,
+  args: Array<string>,
 ): ValidationRuleContract {
+  if (args.length !== 1) {
+    throw new Error('Invalid number of arguments.');
+  }
+
+  const [anotherAttr] = args;
+
   return {
     name: "lt",
     handler: (value: any, v: ValidatorContract) => {
-      const [anotherAttr] = args;
-
       const anotherAttrVal = v.attributeValue(anotherAttr);
-
-      if (Number(value) < Number(anotherAttrVal)) {
-        return true;
-      }
-
-      return false;
+      return Number(value) < Number(anotherAttrVal);
     },
   };
 }

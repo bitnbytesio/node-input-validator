@@ -1,24 +1,26 @@
-import { ValidatorLite } from '../mock/validator-lite.mock'
+import { _in, notIn } from "./in.rule";
 
-import { _in } from "./in.rule";
+describe("rules:in", () => {
+  test("should pass", () => {
+    const ruleHandler = _in(["public", "private"]).handler;
+    expect(ruleHandler("public")).toBe(true);
+  });
 
-test("rules:in", function (): void {
-  const ruleHandler = _in(["in"]).handler;
-  expect(
-    ruleHandler(
-      "public",
-      new ValidatorLite({ in: "private,public,draft" }),
-    )).toBe(true);
+  test("should fail", () => {
+    const ruleHandler = _in(["public", "private"]).handler;
+    expect(ruleHandler("active")).toBe(false);
+  });
+});
 
-  expect(
-    ruleHandler(
-      "public",
-      new ValidatorLite({ in: "public" }),
-    )).toBe(true);
 
-  expect(
-    ruleHandler(
-      "draft",
-      new ValidatorLite({ in: "public,private" }),
-    )).toBe(false);
+describe("rules:notIn", () => {
+  test("should pass", () => {
+    const ruleHandler = notIn(["public", "private"]).handler;
+    expect(ruleHandler("active")).toBe(true);
+  });
+
+  test("should fail", () => {
+    const ruleHandler = notIn(["public", "private"]).handler;
+    expect(ruleHandler("public")).toBe(false);
+  });
 });

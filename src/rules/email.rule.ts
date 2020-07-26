@@ -6,11 +6,7 @@ export function email(): ValidationRuleContract {
   return {
     name: "email",
     handler: (value: any) => {
-      if (!validator.isEmail(String(value))) {
-        return false;
-      }
-
-      return true;
+      return validator.isEmail(String(value))
     },
   };
 }

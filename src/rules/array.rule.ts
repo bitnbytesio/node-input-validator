@@ -1,5 +1,12 @@
 import { ValidationRuleContract } from "../contracts";
 
+// This file is the perfect example of when to place multiple rules in same file.
+// All rules in this file have common check ie. isArray and on top of that 
+// 2 of them have unique check.
+
+/**
+ * The field under validation must be array.
+ */
 export function array(): ValidationRuleContract {
   return {
     name: "array",
@@ -9,6 +16,10 @@ export function array(): ValidationRuleContract {
   };
 }
 
+/**
+ * The field under validation must be array of unique values.
+ * No need to use array rule. This rule will take care of that.
+ */
 export function arrayUnique(): ValidationRuleContract {
   return {
     name: "arrayUnique",
@@ -22,8 +33,13 @@ export function arrayUnique(): ValidationRuleContract {
   };
 }
 
+/**
+ * The field under validation must be array and should have objects with unique attributes as per seed.
+ * No need to use array rule. This rule will take care of that.
+ * @param args seeds
+ */
 export function arrayUniqueObjects(
-  args: Array<any>,
+  args: Array<string>,
 ): ValidationRuleContract {
   return {
     name: "arrayUniqueObjects",

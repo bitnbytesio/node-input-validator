@@ -1,5 +1,7 @@
 export * from './accepted.rule'
 export * from './alpha.rule'
 export * from './array.rule'
+export * from './digits.rule'
+export * from './email.rule'
 export * from './required.rule'
 export * from './string.rule'
