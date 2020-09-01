@@ -7,10 +7,11 @@
 - dateYearsBeforeToday
 - activeUrl
 - mime
+- dimensions
 - requireNotIf
 - requiredWith
 - requiredWithout
-- sometimes & nullable implement we need test case for this
+- sometimes & nullable test cases
 - timezone
 - exception test cases for date rule
 - exception test cases almost pending in all rules

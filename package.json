@@ -4,13 +4,13 @@
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "js/index.js",
   "dependencies": {
-    "@types/validator": "^13.1.0",
     "file-type": "^14.6.2",
     "mime-types": "^2.1.27",
     "read-chunk": "^3.2.0",
     "validator": "^13.1.1"
   },
   "devDependencies": {
+    "@types/validator": "^13.1.0",
     "@types/jest": "^26.0.7",
     "date-fns": "^2.15.0",
     "eslint": "^7.5.0",
@@ -21,14 +21,14 @@
     "typescript": "^3.9.7"
   },
   "engines": {
-    "node": ">=8.16"
+    "node": ">=10.12"
   },
   "scripts": {
     "test": "npx jest",
     "coverage": "npx jest --coverage",
     "compile": "npx tsc -p tsconfig.json && npx tsc -p cjs.tsconfig.json",
     "generate-docs": "npx typedoc --tsconfig",
-    "prepublish": "npm run compile",
+    "prepare": "npm run compile",
     "prepublishOnly": "npm test"
   },
   "repository": {

@@ -1,0 +1,174 @@
+
+**alpha**  
+The field under validation must be entirely alphabetic characters.
+
+**alphaDash**  
+The field under validation may have alpha-numeric characters, as well as dashes and underscores.
+
+**alphaNumeric**  
+The field under validation only contains letters and numbers.
+
+**array**  
+The field under validation must be an array.
+
+**arrayUnique**  
+<sub>Added in: v3.5</sub>  
+The field under validation must be an array and must contains unique values. No need to use array rule. This rule will take care of that.
+
+**boolean**  
+**boolean:custom**  
+The field under validation must be boolean (true, false, 'true', 'false', 0, 1, '0', '1') or in custom seed.
+
+**contains:value**  
+The field under validation must contains provided seeds.
+
+```javascript
+let v = new Validator({bio:'My profile is: example.com'}, {bio:'required|contains:profile'});
+```
+
+**creditCard**  
+The field under validation must be valid credit card string.
+
+**date**  
+The field under validation must be a valid date (YYYY-MM-DD).
+
+**decimal**  
+The field under validation must be a decimal value.
+
+**digits:length**  
+The field under validation must be numeric and must have an exact length.
+
+**domain**  
+The field under validation must a qualified domain.
+
+**email**  
+The field under validation must be formatted as an e-mail address.
+
+**equals**  
+The field under validation must be equal to given value.
+
+**gt:another_field**  
+<sub>Added in: v3.4</sub>  
+The field under validation must be greater then another field value. This rule is for Numbers comparision.
+
+**gte:another_field**  
+<sub>Added in: v3.4</sub>  
+The field under validation must be greater or equals to another field value. This rule is for Numbers comparision.
+
+**hash:algo**  
+The field under validation must be a valid hash as per provided seed.
+
+```javascript
+new Validator(
+  {
+    id: 'fd1baf48377a9f644f9af89abbee29f6'
+  },
+  {
+    id: 'required|hash:md5'
+  },
+);
+```
+
+Supported algorithms: md4, md5, sha1, sha256, sha384, sha512, ripemd128, ripemd160, tiger128, tiger160, tiger192, crc32, crc32b.
+
+**hex**  
+The field under validation must be valid hex.
+
+**hexColor**  
+The field under validation must be valid hex color code.
+
+**in:a,b...n**  
+The field under validation must exist in the given list of values.
+
+```javascript
+new Validator(
+  { status: '' },
+  { status: 'required|in:active,inactive,blocked' },
+);
+```
+
+**integer**  
+The field under validation must be an integer.
+
+**ip**  
+The field under validation must be an IP address.
+
+**json**  
+The field under validation must be a valid JSON string.
+
+**latLong**  
+The field under validation must be a valid latitude-longitude coordinate
+
+**lt:another_field**  
+<sub>Added in: v3.4</sub>  
+The field under validation must be less then another field value. This rule is for Numbers comparision.
+
+**lte:another_field**  
+<sub>Added in: v3.4</sub>  
+The field under validation must be less or equals to another field value. This rule is for Numbers comparision.
+
+**macAddress**  
+The field under validation should be a valid Mac Address.
+
+**max:seed**  
+The field under validation must be less than given value.
+
+```javascript
+new Validator(
+  { age: '' },
+  { age: 'required|max:35' },
+);
+```
+
+**maxLength:seed**  
+The length of field under validation should be less than given value.
+
+```javascript
+new Validator(
+  { username: '' },
+  { username: 'required|max:10' },
+);
+```
+
+**min**  
+The field under validation must be greater than given value.
+
+**minLength**  
+The length of field under validation should be greater than given value.
+
+**mongoId**  
+The field under validation should be a valid MongoDB ID.
+
+**notContains:seed**  
+The field under validation may not contains provided seeds.
+
+**notIn:seeds**  
+The field under validation must not exist in the given list of values.
+
+**numeric**  
+The field under validation must be numeric.
+
+**phoneNumber**  
+The field under validation must be a valid phone number.
+
+**regex**  
+The field under validation must match the given regular expression.
+
+Note: Currently regex rules break on using colon (:) or pipe delimiters. Use array of rules style declaration instead of string.
+
+```javascript
+new Validator(
+  req.body,
+  { username: ['required', 'regex:[a-z]'] },
+  { password: 'required|same:confirm_password' },
+);
+```
+
+**same**  
+The given field must match the field under validation.
+
+**string**  
+The field under validation must be string.
+
+**url**  
+The field under validation must be a valid URL.

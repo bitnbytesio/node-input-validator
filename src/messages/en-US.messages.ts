@@ -1,4 +1,4 @@
-export const messages = {
+export default {
   accepted: 'The :attribute must be accepted.',
   acceptedIf: 'The :attribute should be accepted if the parameter :arg0 is :arg1.',
   acceptedNotIf: 'The :attribute can\'t be accepted if the parameter :arg0 is :arg1.',

@@ -1,9 +1,9 @@
 import { DateAdapter } from "./contracts";
-import { DateFnsAdapter } from "./date-fns.adapter";
+// import { DateFnsAdapter } from "./date-fns.adapter";
 
 let AdapterInstance: DateAdapter;
 
-export function useDateAdapter(instance: DateFnsAdapter) {
+export function useDateAdapter(instance: DateAdapter) {
   AdapterInstance = instance;
 }
 
