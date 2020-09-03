@@ -1,4 +1,4 @@
-import { ValidatorLite } from '../mock/validator-lite.mock'
+import { ValidatorMock } from '../mock/validator.mock'
 
 import { regex } from "./regex.rule";
 
@@ -7,11 +7,11 @@ test("rules:regex", function (): void {
   expect(
     ruleHandler(
       "abc",
-      new ValidatorLite({ regex: "[abc]" }),
+      new ValidatorMock({ regex: "[abc]" }),
     )).toBe(true),
     expect(
       ruleHandler(
         "xyz",
-        new ValidatorLite({ regex: "[abc]" }),
+        new ValidatorMock({ regex: "[abc]" }),
       )).toBe(false);
 });

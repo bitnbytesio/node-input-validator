@@ -1,5 +1,3 @@
-import { ValidatorLite } from '../mock/validator-lite.mock'
-
 import { mongoId } from "./mongoId.rule";
 
 test("rules:mongoId", function (): void {

@@ -1,8 +1,10 @@
-import * as RulesProvider from './rules';
+import * as Rules from './rules';
 import './messages';
 import { dateAdapter } from "./date";
 import { DateAdapter } from "./date/contracts";
-import { ValidatorAbstract } from "./utils/validator-abstract";
+import { ValidatorAbstract, registerRules } from "./validator-abstract";
+
+registerRules(Rules);
 
 export class Validator extends ValidatorAbstract {
 

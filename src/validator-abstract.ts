@@ -1,4 +1,4 @@
-import { messageParser } from "./message-parser.util";
+import { messageParser } from "./utils/message-parser.util";
 import {
   Langs,
   AttributeValidationMinimalInfo,
@@ -8,14 +8,22 @@ import {
   MessagesContract,
   NiceNamesContract,
   ValidatorErrorContract,
-} from "../contracts";
-import { implicitRules } from "../implicit-rules";
-import { reallyEmpty } from "./ops.util";
-import { getValuesByWildCardStringNotation } from "./obj.util";
-import { parseStringNotationRules } from "./rules-parser.util";
-import * as MessagesProvider from '../messages/provider';
+} from "./contracts";
+import { implicitRules } from "./implicit-rules";
+import { reallyEmpty } from "./utils/ops.util";
+import { getValuesByWildCardStringNotation } from "./utils/obj.util";
+import { parseStringNotationRules } from "./utils/rules-parser.util";
+import * as MessagesProvider from './messages/provider';
 
-export const RulesProvider = {};
+export const RulesProvider: any = {};
+
+export function registerRules(rules: any) {
+  Object.keys(rules).forEach((rule) => {
+    RulesProvider[rule] = rules[rule];
+  });
+
+  return RulesProvider;
+}
 
 export abstract class ValidatorAbstract {
   // validation errors collection

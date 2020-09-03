@@ -1,8 +1,8 @@
 {
   "name": "node-input-validator",
-  "version": "5.0.0-rc1",
+  "version": "5.0.0-rc2",
   "description": "validation library for nodejs, inspired by laravel.",
-  "main": "js/index.js",
+  "main": "index.js",
   "dependencies": {
     "file-type": "^14.6.2",
     "mime-types": "^2.1.27",

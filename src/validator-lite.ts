@@ -1,4 +1,6 @@
-import { ValidatorAbstract } from "./utils/validator-abstract";
+import { ValidatorAbstract, registerRules } from "./validator-abstract";
+
+export { registerRules };
 
 export class ValidatorLite extends ValidatorAbstract {
 

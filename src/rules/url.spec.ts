@@ -1,5 +1,3 @@
-import { ValidatorLite } from '../mock/validator-lite.mock'
-
 import { url } from "./url.rule";
 
 test("rules:url", function (): void {

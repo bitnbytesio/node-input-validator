@@ -1,6 +1,6 @@
 import { ValidatorContract } from "../contracts";
 
-export class ValidatorLite implements ValidatorContract {
+export class ValidatorMock implements ValidatorContract {
   constructor(private inputs: any) {}
 
   attributeValue(attrName: string): any {

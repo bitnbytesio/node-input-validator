@@ -9,8 +9,6 @@
 - mime
 - dimensions
 - requireNotIf
-- requiredWith
-- requiredWithout
 - sometimes & nullable test cases
 - timezone
 - exception test cases for date rule
