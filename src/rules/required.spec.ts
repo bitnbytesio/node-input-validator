@@ -1,3 +1,4 @@
+import { Messages } from '../messages';
 import { ValidatorMock } from '../mock/validator.mock';
 
 import {
@@ -18,7 +19,9 @@ test("rules:required", function (): void {
   expect(ruleHandler("")).toBe(false);
   expect(ruleHandler()).toBe(false);
   expect(ruleHandler(null)).toBe(false);
+  expect(Messages.en_US.messages).toHaveProperty('required');
 });
+
 
 test("rules:requiredIf", function (): void {
   const inputs = {
@@ -40,7 +43,11 @@ test("rules:requiredIf", function (): void {
   expect(requiredIf(['age', '15', 'sex', 'male']).handler(undefined, new ValidatorMock(inputs))).toBe(true);
 
   expect(requiredIf(['age', '18', 'sex', 'male']).handler(undefined, new ValidatorMock(inputs))).toBe(false);
+
+  expect(Messages.en_US.messages).toHaveProperty('requiredIf');
 });
+
+
 
 
 test("rules:requiredWithout", function (): void {
@@ -72,6 +79,8 @@ test("rules:requiredWithout", function (): void {
   expect(requiredWithout(['age', 'sex']).handler(undefined, new ValidatorMock(inputs))).toBe(true);
   expect(requiredWithout(['age', 'sex']).handler('', new ValidatorMock(inputs))).toBe(true);
   expect(requiredWithout(['age', 'sex']).handler(null, new ValidatorMock(inputs))).toBe(true);
+
+  expect(Messages.en_US.messages).toHaveProperty('requiredWithout');
 });
 
 
@@ -104,4 +113,6 @@ test("rules:requiredWithoutAll", function (): void {
   expect(requiredWithoutAll(['age', 'sex']).handler(undefined, new ValidatorMock(inputs))).toBe(true);
   expect(requiredWithoutAll(['age', 'sex']).handler('', new ValidatorMock(inputs))).toBe(true);
   expect(requiredWithoutAll(['age', 'sex']).handler(null, new ValidatorMock(inputs))).toBe(true);
+
+  expect(Messages.en_US.messages).toHaveProperty('requiredWithoutAll');
 });

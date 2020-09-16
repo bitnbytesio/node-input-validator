@@ -11,6 +11,7 @@ import {
 } from './date.rule';
 
 import { DateFnsAdapter } from '../date/date-fns.adapter';
+import { Messages } from '../messages';
 
 const adapter = new DateFnsAdapter(dateFns);
 useDateAdapter(adapter);
@@ -24,6 +25,10 @@ describe("rules:dateAfter", () => {
   test("should fail", () => {
     const ruleHandler = dateAfter([DateFnsAdapter.FORMAT_yyyy_MM_dd, "2020-05-20"]).handler;
     expect(ruleHandler("2020-04-20")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('dateAfter');
   });
 });
 
@@ -45,6 +50,10 @@ describe("rules:dateAfterToday", () => {
     const dateToday = adapter.format(new Date, DateFnsAdapter.FORMAT_yyyy_MM_dd);
     expect(ruleHandler(dateToday)).toBe(false);
   });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('dateAfterToday');
+  });
 });
 
 describe("rules:dateBefore", () => {
@@ -65,6 +74,10 @@ describe("rules:dateBefore", () => {
     const dateafterToday = adapter.format(adapter.addDays(new Date, 1), DateFnsAdapter.FORMAT_yyyy_MM_dd);
 
     expect(ruleHandler(dateafterToday)).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('dateBefore');
   });
 });
 
@@ -88,6 +101,10 @@ describe("rules:dateBeforeToday", () => {
 
     expect(ruleHandler(dateToday)).toBe(false);
   });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('dateBeforeToday');
+  });
 });
 
 describe("rules:dateFormat", (): void => {
@@ -99,6 +116,10 @@ describe("rules:dateFormat", (): void => {
   test("should fail", (): void => {
     const ruleHandler = dateFormat([DateFnsAdapter.FORMAT_yyyy_MM_dd]).handler;
     expect(ruleHandler("2021-13-25")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('dateFormat');
   });
 });
 
@@ -113,5 +134,9 @@ describe("rules:dateISO", () => {
     const ruleHandler = dateISO().handler;
     expect(ruleHandler("01/26/2018")).toBe(false);
     expect(ruleHandler("12 12 18")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('dateISO');
   });
 });

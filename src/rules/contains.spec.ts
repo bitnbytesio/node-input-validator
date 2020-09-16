@@ -1,3 +1,4 @@
+import { Messages } from "../messages";
 import { contains, notContains } from "./contains.rule";
 
 describe("rules:contains", () => {
@@ -10,6 +11,10 @@ describe("rules:contains", () => {
     const ruleHandler = contains(["package"]).handler;
     expect(ruleHandler("Node is awesome.")).toBe(false);
   });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('contains');
+  });
 });
 
 describe("rules:notContains", () => {
@@ -21,5 +26,9 @@ describe("rules:notContains", () => {
   test("should fail", () => {
     const ruleHandler = notContains(["Node"]).handler;
     expect(ruleHandler("Node is awesome.")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('notContains');
   });
 });

@@ -1,4 +1,5 @@
 
+import { Messages } from "../messages";
 import { hex, hexColor } from "./hex.rule";
 
 describe("rules:hex", () => {
@@ -10,6 +11,10 @@ describe("rules:hex", () => {
   test("should fail", () => {
     const ruleHandler = hex().handler;
     expect(ruleHandler("Yes, Node is awesome")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('hex');
   });
 });
 
@@ -24,5 +29,9 @@ describe("rules:hexColor", () => {
   test("should fail", () => {
     const ruleHandler = hexColor().handler;
     expect(ruleHandler("Yes, Node is awesome")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('hexColor');
   });
 });

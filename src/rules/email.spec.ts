@@ -1,3 +1,4 @@
+import { Messages } from "../messages";
 import { email } from "./email.rule";
 
 describe("rules:email", () => {
@@ -9,5 +10,9 @@ describe("rules:email", () => {
   test("should fail", () => {
     const ruleHandler = email().handler;
     expect(ruleHandler("form@example")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('email');
   });
 });

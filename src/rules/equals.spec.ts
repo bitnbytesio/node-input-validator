@@ -1,3 +1,4 @@
+import { Messages } from "../messages";
 import { equals } from "./equals.rule";
 
 describe("rules:equals", function (): void {
@@ -13,5 +14,9 @@ describe("rules:equals", function (): void {
 
   test("should throw exception", function (): void {
     expect(() => equals([])).toThrowError(new Error('Invalid number of arguments.'));
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('equals');
   });
 });

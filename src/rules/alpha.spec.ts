@@ -1,3 +1,4 @@
+import { Messages } from "../messages";
 import {
   alpha,
   alphaNumeric,
@@ -16,6 +17,10 @@ describe("rules:alpha", (): void => {
     expect(ruleHandler("abc123")).toBe(false);
     expect(ruleHandler("123")).toBe(false);
   });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('alpha');
+  });
 });
 
 describe("rules:alphaDash", (): void => {
@@ -31,6 +36,10 @@ describe("rules:alphaDash", (): void => {
     expect(ruleHandler("abc_123")).toBe(false);
     expect(ruleHandler("yes-123")).toBe(false);
   });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('alphaDash');
+  });
 });
 
 describe("rules:alphaNumeric", (): void => {
@@ -45,6 +54,10 @@ describe("rules:alphaNumeric", (): void => {
     const ruleHandler = alphaNumeric().handler;
     expect(ruleHandler("abc123_")).toBe(false);
     expect(ruleHandler("123-")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('alphaNumeric');
   });
 });
 
@@ -65,5 +78,9 @@ describe("rules:alphaNumericDash", (): void => {
     const ruleHandler = alphaNumericDash().handler;
     expect(ruleHandler("abc123_!")).toBe(false);
     expect(ruleHandler("a+123")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('alphaNumericDash');
   });
 });

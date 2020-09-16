@@ -1,3 +1,4 @@
+import { Messages } from '../messages';
 import { ValidatorMock } from '../mock/validator.mock'
 import { gt, gte } from "./gt.rule";
 
@@ -11,6 +12,10 @@ describe("rules:gt", () => {
     const ruleHandler = gt(["max"]).handler;
     expect(ruleHandler(8, new ValidatorMock({ max: 9 }))).toBe(false);
   });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('gt');
+  });
 });
 
 describe("rules:gte", () => {
@@ -23,5 +28,9 @@ describe("rules:gte", () => {
   test("should fail", () => {
     const ruleHandler = gte(["max"]).handler;
     expect(ruleHandler(8, new ValidatorMock({ max: 9 }))).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('gte');
   });
 });

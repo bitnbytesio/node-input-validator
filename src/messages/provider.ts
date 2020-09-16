@@ -1,9 +1,9 @@
 import { getKeyValue } from "../utils/obj.util";
-import { Langs } from "../contracts";
+import { Langs, MessagesContract, MessagesDictContract } from "../contracts";
 
 export const DEFAULT_LANG: Langs = Langs.en_US;
 
-export const MessagesRef = {};
+const MessagesRef = {};
 
 export function messagesRefByLang(lang: Langs) {
   let messages = getKeyValue(lang.toString())(MessagesRef);
@@ -18,7 +18,7 @@ export function messagesRefByLang(lang: Langs) {
   return messages;
 };
 
-export function extend(newMessages: any, lang: Langs = Langs.en_US) {
+export function extend(newMessages: MessagesContract | MessagesDictContract, lang: Langs = Langs.en_US) {
   const messages = messagesRefByLang(lang);
 
   Object.assign(messages, newMessages);

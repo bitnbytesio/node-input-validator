@@ -1,3 +1,4 @@
+import { Messages } from "../messages";
 import { domain } from "./domain.rule";
 
 describe("rules:domain", function (): void {
@@ -11,5 +12,9 @@ describe("rules:domain", function (): void {
     const ruleHandler = domain().handler;
     expect(ruleHandler("http://www.example.com")).toBe(false);
     expect(ruleHandler("localhost")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('domain');
   });
 });

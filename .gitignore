@@ -1,4 +1,4 @@
-#ide
+# ide
 node_modules
 .idea
 .vscode
@@ -12,5 +12,9 @@ npm-debug.log
 *.0x
 .nyc_output
 
+# builds
 cjs
 esm
+
+# extra files
+t.js

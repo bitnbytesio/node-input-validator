@@ -1,4 +1,5 @@
 import { accepted } from "../rules/accepted.rule";
+import { Messages } from '../messages';
 
 describe("rules:accepted", () => {
   test("should pass", () => {
@@ -12,5 +13,9 @@ describe("rules:accepted", () => {
   test("should fail", () => {
     expect(accepted().handler("no")).toBe(false);
     expect(accepted(['ok']).handler("on")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('accepted');
   });
 });

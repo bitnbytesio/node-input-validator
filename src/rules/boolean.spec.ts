@@ -1,5 +1,7 @@
 import { booleanStrict, booleanStr, booleanInt, boolean } from "../rules/boolean.rule";
 
+import { Messages } from '../messages';
+
 describe("rules:booleanStrict", () => {
   test("should pass", () => {
     const ruleHandler = booleanStrict().handler;
@@ -10,6 +12,10 @@ describe("rules:booleanStrict", () => {
   test("should fail", () => {
     const ruleHandler = booleanStrict().handler;
     expect(ruleHandler("false")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('booleanStrict');
   });
 });
 
@@ -24,6 +30,10 @@ describe("rules:booleanStr", () => {
     const ruleHandler = booleanStr().handler;
     expect(ruleHandler(true)).toBe(false);
     expect(ruleHandler(false)).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('booleanStr');
   });
 });
 
@@ -40,6 +50,10 @@ describe("rules:booleanInt", () => {
     expect(ruleHandler(false)).toBe(false);
     expect(ruleHandler("0")).toBe(false);
     expect(ruleHandler("1")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('booleanInt');
   });
 });
 

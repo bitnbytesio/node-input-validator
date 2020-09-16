@@ -1,3 +1,4 @@
+import { Messages } from "../messages";
 import {
   integer,
   decimal,
@@ -18,6 +19,10 @@ describe("rules:integer", () => {
     expect(ruleHandler("12.5")).toBe(false);
     expect(ruleHandler("draft")).toBe(false);
   });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('integer');
+  });
 });
 
 describe("rules:decimal", () => {
@@ -35,6 +40,10 @@ describe("rules:decimal", () => {
     expect(ruleHandler("abc")).toBe(false);
     expect(ruleHandler([])).toBe(false);
     expect(ruleHandler({})).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('decimal');
   });
 });
 
@@ -56,6 +65,10 @@ describe("rules:max", () => {
     expect(ruleHandler([])).toBe(false)
     expect(ruleHandler({})).toBe(false)
   });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('max');
+  });
 });
 
 describe("rules:min", () => {
@@ -71,6 +84,10 @@ describe("rules:min", () => {
     expect(ruleHandler("abc")).toBe(false);
     expect(ruleHandler([])).toBe(false);
     expect(ruleHandler({})).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('min');
   });
 });
 
@@ -89,5 +106,9 @@ describe("rules:numeric", function (): void {
     expect(ruleHandler("draft")).toBe(false);
     expect(ruleHandler([])).toBe(false);
     expect(ruleHandler({})).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('numeric');
   });
 });

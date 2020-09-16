@@ -1,4 +1,5 @@
 
+import { Messages } from "../messages";
 import { hash } from "./hash.rule";
 
 
@@ -11,5 +12,9 @@ describe("rules:hash", () => {
   test("should fail", () => {
     const ruleHandler = hash(["md5"]).handler;
     expect(ruleHandler("Yes, Node is awesome")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('hash');
   });
 });

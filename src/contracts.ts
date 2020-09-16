@@ -64,6 +64,12 @@ export interface MessagesContract {
   [key: string]: string;
 }
 
+export interface MessagesDictContract {
+  $niceNames: NodeJS.Dict<string>;
+  $custom: NodeJS.Dict<string>;
+  $default: string;
+  [key: string]: string | NodeJS.Dict<string>;
+}
 
 export interface AttributeValidationMinimalInfo {
   attrName: string;

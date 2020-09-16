@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { Messages } from '../messages';
 
 import { size } from './size.rule';
 
@@ -18,5 +19,10 @@ describe('size', () => {
   test('should fail', async () => {
     expect(await size(['2kb']).handler(file)).toBe(false);
     expect(await size(['4kb', '3kb']).handler(file)).toBe(false);
+  });
+
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('size');
   });
 });

@@ -1,7 +1,7 @@
+import { Langs } from "../contracts";
 import * as en_US from "./en-US.messages";
-import { MessagesRef } from './provider';
+import { extend } from './provider';
 
-// @ts-ignore
-MessagesRef.en_US = en_US;
+extend(en_US.messages, Langs.en_US);
 
-export default MessagesRef;
+export { en_US };

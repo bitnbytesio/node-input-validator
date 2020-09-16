@@ -1,3 +1,4 @@
+import { Messages } from "../messages";
 import { digits, digitsBetween } from "./digits.rule";
 
 describe('rules:digits', () => {
@@ -20,6 +21,10 @@ describe('rules:digits', () => {
     expect(() => digits([])).toThrowError(new Error('Invalid number of arguments.'));
     expect(() => digits(["1", "2"])).toThrowError(new Error('Invalid number of arguments.'));
     expect(() => digits(["abc"])).toThrowError(new TypeError('Seeds must be number.'));
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('digits');
   });
 });
 
@@ -49,4 +54,7 @@ describe('rules:digitsBetween', () => {
     expect(() => digitsBetween(["abc", "xyz"])).toThrowError(new TypeError('Seeds must be number.'));
   });
 
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('digitsBetween');
+  });
 });

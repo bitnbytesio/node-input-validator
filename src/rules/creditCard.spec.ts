@@ -1,3 +1,4 @@
+import { Messages } from "../messages";
 import { creditCard } from "./creditCard.rule";
 
 describe("rules:creditCard", () => {
@@ -12,5 +13,9 @@ describe("rules:creditCard", () => {
   test("should fail", () => {
     const ruleHandler = creditCard().handler;
     expect(ruleHandler("412365")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('creditCard');
   });
 });

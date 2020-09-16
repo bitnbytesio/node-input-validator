@@ -1,4 +1,5 @@
 
+import { Messages } from "../messages";
 import { object } from "./object.rule";
 
 describe("rules:object", () => {
@@ -13,5 +14,9 @@ describe("rules:object", () => {
     expect(ruleHandler(1)).toBe(false);
     expect(ruleHandler("Test")).toBe(false);
     expect(ruleHandler(true)).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('object');
   });
 });

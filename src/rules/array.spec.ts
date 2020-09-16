@@ -1,3 +1,4 @@
+import { Messages } from "../messages";
 import { array, arrayUnique, arrayUniqueObjects } from "../rules/array.rule";
 
 describe("rules:array", () => {
@@ -12,6 +13,10 @@ describe("rules:array", () => {
     expect(ruleHandler(1)).toBe(false);
     expect(ruleHandler("Test")).toBe(false);
     expect(ruleHandler(true)).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('array');
   });
 });
 
@@ -32,6 +37,10 @@ describe("rules:arrayUnique", () => {
     expect(ruleHandler([1, 2, 3, 1])).toBe(false);
     expect(ruleHandler(["a", "b", "c", "a", "d"])).toBe(false);
   });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('arrayUnique');
+  });
 })
 
 describe("rules:arrayUniqueObjects", () => {
@@ -49,5 +58,9 @@ describe("rules:arrayUniqueObjects", () => {
     expect(ruleHandler(true)).toBe(false);
     expect(ruleHandler([1, 2, 3])).toBe(false);
     expect(ruleHandler([{ id: 1 }, { id: 1 }])).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('arrayUniqueObjects');
   });
 });
