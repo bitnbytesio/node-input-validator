@@ -15,14 +15,15 @@ import { getValuesByWildCardStringNotation } from "./utils/obj.util";
 import { parseStringNotationRules } from "./utils/rules-parser.util";
 import * as MessagesProvider from './messages/provider';
 
-export const RulesProvider: any = {};
+let RulesProvider: any = {};
 
 export function registerRules(rules: any) {
-  Object.keys(rules).forEach((rule) => {
-    RulesProvider[rule] = rules[rule];
-  });
+  // Object.keys(rules).forEach((rule) => {
+  //   RulesProvider[rule] = rules[rule];
+  // });
 
-  return RulesProvider;
+  // return RulesProvider;
+  return RulesProvider = rules;
 }
 
 export abstract class ValidatorAbstract {

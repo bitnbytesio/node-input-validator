@@ -27,6 +27,12 @@ describe(
       expect(niv.Rules.even().handler("2")).toBe(true);
     });
 
+    test("should pass, with custom rule as string notation", async () => {
+      const v = new niv.Validator({ num: 2 }, { num: 'even' });
+      const pass = await v.validate();
+      expect(pass).toBe(true);
+    });
+
     test("should fail, with custom rule", () => {
       // @ts-ignore
       expect(niv.Rules.even().handler("3")).toBe(false);

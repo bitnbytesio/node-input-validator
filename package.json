@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "5.0.0-rc8",
+  "version": "5.0.0-rc9",
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "index",
   "module": "index.mjs",
