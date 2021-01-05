@@ -1,3 +1,5 @@
+import * as config from '../config';
+
 export function getKeyValue(key: string) {
   return (obj: any) => obj[key];
 }
@@ -55,8 +57,10 @@ export function getValuesByWildCardStringNotation(
   iterable: any,
   options: NotationLoopOptions = {},
 ) {
+  const currentConfig = config.get();
+
   const { prefix, iterations, seperator } = Object.assign(
-    { prefix: [], iterations: 10000, seperator: "." },
+    { prefix: [], iterations: currentConfig.wildcardIterations, seperator: currentConfig.wildcardSeperator },
     options,
   );
 
