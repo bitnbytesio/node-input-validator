@@ -11,6 +11,7 @@ npm-debug.log
 *.log
 *.0x
 .nyc_output
+samples
 
 # builds
 cjs

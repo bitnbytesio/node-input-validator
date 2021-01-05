@@ -28,6 +28,8 @@ export function parseStringNotationRules(RulesProvider: any, attrRules: string):
 
     const ruleObj = ruleProvider(args);
 
+    ruleObj.args = args;
+
     rulesArr.push(ruleObj);
   });
 
