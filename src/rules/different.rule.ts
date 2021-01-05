@@ -10,7 +10,7 @@ export function different(args: Array<any>): ValidationRuleContract {
 
       const [otherInput] = args;
 
-      const otherValue = v[otherInput];
+      const otherValue = v.attributeValue(otherInput);
 
       if (otherValue === value) {
         return false;

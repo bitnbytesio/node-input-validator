@@ -1,5 +1,5 @@
 import { Messages } from "../messages";
-import { json } from "./json.rule";
+import { json } from "./encoding.rule";
 
 test("rules:json", function (): void {
   const ruleHandler = json().handler;
