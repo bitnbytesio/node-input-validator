@@ -83,5 +83,5 @@ export interface AttributeValidationMinimalInfo {
 }
 
 export enum Langs {
-  "en_US",
+  en_US = "en_US",
 }
