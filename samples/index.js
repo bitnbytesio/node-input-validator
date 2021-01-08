@@ -1,92 +1,155 @@
+const path = require('path');
+const fs = require('fs');
 const niv = require('../cjs');
 
-setInterval(() => {
-  const v = new niv.Validator(
-    {
-      name: 'Harcharan',
-      tags: ['ok', 'abc', 'xyz'],
-      numbers: [1, 2, 3, 4],
-      arrayUniqueObjects: [
-        {
-          id: 1,
-          name: 'a',
-        },
-        {
-          id: 2,
-          name: 'b',
-        },
-        {
-          id: 3,
-          name: 'c',
-        },
-      ],
-      betweenInt: 5,
-      betweenArray: [1, 2, 3, 4],
-      booleanStrict: false,
-      booleanStr: 'false',
-      booleanInt: 0,
-      confirmed: 'password',
-      confirmedConfirmation: 'password',
-      contains: 'yes it is',
-      notContains: 'yes it should',
-      creditCard: '4242424242424242',
-      dateiso: '2021-01-05T08:11:36+00:00',
-      different: 'ok',
-      digits: '1234567890',
-      digitsBetween: '12345',
-      domain: 'bitnbytes.io',
-      email: 'email@example.com',
-      json: '{"name":"NIV"}',
-      base64: 'TklW',
-      equals: '18',
-      gt: 21,
-      gte: 20,
-      lt: 19,
-      lte: 20,
-      age: 30,
-      amount: 35.55,
-      tandc: "yes",
-    },
-    {
-      name: 'required|string|alpha|ascii',
-      tags: 'required|array|length:3,1',
-      numbers: 'required|arrayUnique|arrayLength:4',
-      'tags.*': 'string',
-      arrayUniqueObjects: 'required|arrayUniqueObjects:id',
-      'arrayUniqueObjects.*.id': 'required|integer',
-      'arrayUniqueObjects.*.name': 'required|string|alpha',
-      betweenInt: 'required|between:1,10',
-      betweenArray: 'required|between:1,4',
-      booleanStrict: 'required|booleanStrict',
-      booleanStr: 'required|booleanStr',
-      booleanInt: 'required|booleanInt',
-      confirmed: 'required|confirmed|alpha',
-      contains: 'required|contains:is',
-      notContains: 'required|notContains:is',
-      creditCard: 'creditCard',
-      dateiso: 'dateiso',
-      different: 'different:dateiso',
-      digits: 'digits:10',
-      digitsBetween: 'digitsBetween:5,6',
-      domain: 'domain',
-      email: 'email',
-      json: 'json',
-      base64: 'base64',
-      equals: 'equals:18',
-      gt: 'gt:gte', // 20
-      gte: 'gte:lte', // 20
-      lt: 'lt:gte', // 20
-      lte: 'lte:gte', // 20
-      age: 'required|integer|min:25|max:31',
-      amount: 'required|numeric',
-      tandc: 'accepted',
-    },
-  );
+const fileSmallPngPath = path.resolve(__dirname, '../stubs/file-small.png');
+const fileSmallPngBuffer = fs.readFileSync(fileSmallPngPath);
 
-  v.validate().then((matched) => {
-    console.log(matched);
-    if (!matched) {
-      console.log(v.getErrors());
-    }
-  })
-}, 5000);
+// setInterval(() => {
+const v = new niv.Validator(
+  {
+    name: 'Harcharan',
+    tags: ['ok', 'abc', 'xyz'],
+    numbers: [1, 2, 3, 4],
+    arrayUniqueObjects: [
+      {
+        id: 1,
+        name: 'a',
+      },
+      {
+        id: 2,
+        name: 'b',
+      },
+      {
+        id: 3,
+        name: 'c',
+      },
+    ],
+    betweenInt: 5,
+    betweenArray: [1, 2, 3, 4],
+    booleanStrict: false,
+    booleanStr: 'false',
+    booleanInt: 0,
+    confirmed: 'password',
+    confirmedConfirmation: 'password',
+    contains: 'yes it is',
+    notContains: 'yes it should',
+    creditCard: '4242424242424242',
+    dateiso: '2021-01-05T08:11:36+00:00',
+    different: 'ok',
+    digits: '1234567890',
+    digitsBetween: '12345',
+    domain: 'bitnbytes.io',
+    email: 'email@example.com',
+    json: '{"name":"NIV"}',
+    base64: 'TklW',
+    equals: '18',
+    gt: 21,
+    gte: 20,
+    lt: 19,
+    lte: 20,
+    hash: '9c4866beaf29670dfc0ccb0f2ee622bb',
+    hex: 'fff',
+    hexColor: 'F00',
+    in: 'public',
+    notIn: 'private',
+    ip: '127.0.0.1',
+    latLong: '30.704649,76.717873',
+    maxLength: '123456',
+    minLength: '123456',
+    length: '123',
+    lengthBetween: '123',
+    macAddress: '00:14:22:01:23:45',
+    mimeWithPath: {
+      path: fileSmallPngPath,
+    },
+    mimeWithBuf: fileSmallPngBuffer,
+    mongoId: '5f6cc6358c622106796f0178',
+    integer: 0,
+    integerStr: '0',
+    min: 15,
+    max: 15,
+    decimal: '15.5',
+    numeric: 15,
+    object: {},
+    phoneNumber: '8699987073',
+    regex: 'atoz',
+    required: 'requried',
+    // requiredIf: '',
+    requiredIfFilled: 'requiredIf',
+    requiredWithout: 'requriedIf',
+    age: 30,
+    amount: 35.55,
+    tandc: "yes",
+  },
+  {
+    name: 'required|string|alpha|ascii',
+    tags: 'required|array|length:3,1',
+    numbers: 'required|arrayUnique|arrayLength:4',
+    'tags.*': 'string',
+    arrayUniqueObjects: 'required|arrayUniqueObjects:id',
+    'arrayUniqueObjects.*.id': 'required|integer',
+    'arrayUniqueObjects.*.name': 'required|string|alpha',
+    betweenInt: 'required|between:1,10',
+    betweenArray: 'required|between:1,4',
+    booleanStrict: 'required|booleanStrict',
+    booleanStr: 'required|booleanStr',
+    booleanInt: 'required|booleanInt',
+    confirmed: 'required|confirmed|alpha',
+    contains: 'required|contains:is',
+    notContains: 'required|notContains:is',
+    creditCard: 'creditCard',
+    dateiso: 'dateiso',
+    different: 'different:dateiso',
+    digits: 'digits:10',
+    digitsBetween: 'digitsBetween:5,6',
+    domain: 'domain',
+    email: 'email',
+    json: 'json',
+    base64: 'base64',
+    equals: 'equals:18',
+    gt: 'gt:gte', // 20
+    gte: 'gte:lte', // 20
+    lt: 'lt:gte', // 20
+    lte: 'lte:gte', // 20
+    hash: 'hash:md5',
+    hex: 'hex',
+    hexColor: 'hexColor',
+    in: 'in:public,private',
+    notIn: 'notIn:active,inactive',
+    ip: 'ip',
+    latLong: 'latLong',
+    maxLength: 'maxLength:6',
+    minLength: 'minLength:4',
+    length: 'length:5,2',
+    lengthBetween: 'lengthBetween:2,4',
+    macAddress: 'macAddress',
+    mimeWithPath: 'mime:png',
+    mimeWithBuf: 'mime:jpg,png',
+    mongoId: 'mongoId',
+    integer: 'integer',
+    integerStr: 'integer',
+    min: 'min:15',
+    max: 'max:15',
+    decimal: 'decimal',
+    numeric: 'numeric',
+    object: 'object',
+    phoneNumber: 'phoneNumber',
+    regex: 'regex:[a-z]',
+    required: 'required',
+    requiredIf: 'requiredIf:requried,required',
+    requiredIfFilled: 'requiredIf:requried,required',
+    requiredWithout: 'requiredWithout:requriedIf',
+    age: 'required|integer|min:25|max:31',
+    amount: 'required|numeric',
+    tandc: 'accepted',
+  },
+);
+
+v.validate().then((matched) => {
+  console.log(matched);
+  if (!matched) {
+    console.log(v.getErrors());
+  }
+})
+//}, 5000);

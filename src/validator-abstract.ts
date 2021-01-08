@@ -142,15 +142,18 @@ export abstract class ValidatorAbstract {
     const keys = Object.keys(this.parsedRulesCollection);
     const len = keys.length;
     let i = 0;
+    const promises = [];
     for (i; i < len; i += 1) {
       const attrName = keys[i];
       if (attrName.indexOf('*') < 0) {
         const attrRules: Array<ValidationRuleContract> = this.parsedRulesCollection[attrName];
         if (attrRules) {
-          this.validateAttribute(attrName, attrRules);
+          promises.push(this.validateAttribute(attrName, attrRules));
         }
       }
     }
+
+    await Promise.all(promises);
 
     return !this.hasErrors();
   }
@@ -161,7 +164,7 @@ export abstract class ValidatorAbstract {
   * @param attrName attribute name
   * @param attrRules attribute rules
   */
-  validateAttribute(
+  async validateAttribute(
     attrName: string,
     attrRules: Array<ValidationRuleContract>,
   ) {
@@ -185,7 +188,8 @@ export abstract class ValidatorAbstract {
       }
 
       // console.log('attr val', attrValue);
-      if (!validationRule.handler(attrValue, this, attrName)) {
+      const passed = await validationRule.handler(attrValue, this, attrName)
+      if (!passed) {
         this.createAttributeError({
           attrName,
           attrValue,

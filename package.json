@@ -1,18 +1,19 @@
 {
   "name": "node-input-validator",
-  "version": "5.0.0-rc10",
+  "version": "5.0.0-rc11",
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "index",
   "module": "index.mjs",
   "dependencies": {
-    "file-type": "^14.6.2",
-    "mime-types": "^2.1.27",
+    "file-type": "^16.1.0",
+    "mime-types": "^2.1.28",
     "read-chunk": "^3.2.0",
-    "validator": "^13.1.1"
+    "validator": "^13.5.2"
   },
   "devDependencies": {
-    "@types/validator": "^13.1.0",
     "@types/jest": "^26.0.7",
+    "@types/mime-types": "^2.1.0",
+    "@types/validator": "^13.1.0",
     "date-fns": "^2.15.0",
     "eslint": "^7.5.0",
     "jest": "^26.1.0",
