@@ -4,9 +4,21 @@ export * as Messages from './messages';
 
 import * as Rules from './rules';
 
-import { ValidationRuleContract } from './contracts';
+import { Langs, ValidationRuleContract } from './contracts';
+
+import * as config from "./config";
 
 export { Validator, Rules };
+
+export function configure(config: config.IConfig) {
+  config.set(config);
+}
+
+export function lang(lang: Langs) {
+  config.set({
+    lang,
+  });
+}
 
 export function extend(ruleName: string, ruleFunc: (args?: Array<string>) => ValidationRuleContract) {
   // @ts-ignore

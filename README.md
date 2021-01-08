@@ -10,11 +10,14 @@ NIV (Node Input Validator) is a validation library for node.js. You can also ext
 npm i node-input-validator@v5
 ```
 
+## Documentation
+For detailed documentation, [see https://bitnbytes.io/niv](https://bitnbytes.io/docs/niv)
+
 ## Features
 
 - typescript compatible
 - large collection of rules
-- add your own custom rules
+- add custom rules
 - supports nested inputs
 - declare rules as strings or array
 - post validation rules
@@ -27,20 +30,56 @@ npm i node-input-validator@v5
 - [basic](#basic-example)  
 - [koa middleware](#for-koa2)  
 - [with express](#with-express)  
-- [object validation examples](#objects-validation)  
-- [array validation examples](#array-validation)  
-- [add/modify messages](#add-or-modify-messages)  
+- [object validation examples](#validate-objects)  
+- [array validation examples](#validate-array)  
+- [add custom rules](#add-custom-rules)  
+- [add/modify messages](#add/modify-messages)  
+- [change attribute names in messages examples](#set-nicenames)  
 - [change default language examples](#set-default-language)  
-- [toggle multiple errors](#toggle-multiple-errors-support)  
-- [change attribute names in messages examples](#set-attribute-nicecustom-name)  
-- [add custom rules](#add-your-own-custom-validation-rules)  
+- [toggle multiple errors](#toggle-multiple-errors-support)
 - [rules](#rules)  
 
 ### Basic Example  
 
-#### js
+#### Vanila Javascript
 
-```javascript
+##### Style 1
+
+```js
+const { Validator, Rules } = require('node-input-validator');
+
+const v = new Validator(
+  { name: '' },
+  { name: 'required|alpha' },
+);
+
+v.validate().then((passed) => {
+  console.log(passed);
+
+  if (!passed) {
+    console.log(v.getErrors());
+  }
+});
+```
+##### Style 2
+
+```js
+const { Validator, Rules } = require('node-input-validator');
+
+const v = new Validator(
+  { name: '' },
+  { name: ['required', 'alpha'] },
+);
+
+v.validate().then(function (passed) {
+  console.log(passed);
+  console.log(v.errors);
+});
+```
+
+##### Style 3
+
+```js
 const { Validator, Rules } = require('node-input-validator');
 
 const v = new Validator(
@@ -69,22 +108,7 @@ console.log(passed);
 console.log(v.errors);
 ```
 
-#### laravel like rules
-
-```javascript
-const { Validator, Rules } = require('node-input-validator');
-
-const v = new Validator(
-  { name: '' },
-  { name: 'required|alpha' },
-);
-
-const passed = await v.validate()
-console.log(passed);
-console.log(v.errors);
-```
-
-#### ts
+#### Typescript
 
 ```ts
 import { Validator, Rules } from 'node-input-validator';
@@ -104,7 +128,7 @@ console.log(v.errors);
 
 #### Attach koa middleware
 
-```javascript
+```js
 const niv = require('node-input-validator');
 
 // keep this under your error handler
@@ -113,7 +137,7 @@ app.use(niv.koa());
 
 #### Then in controller
 
-```javascript
+```js
 // if validation fails, this will auto abort request with status code 422 and errors in body
 await ctx.validate({
   name: 'required|maxLength:50',
@@ -128,14 +152,16 @@ await ctx.validate({
 
 #### With custom inputs
 
-```javascript
+```js
+const cutomInputs = {...}
+
 // if validation fails, this will auto abort request with status code 422 and errors in body
 await ctx.validate({
   name: 'required|maxLength:50',
   username: 'required|maxLength:15',
   email: 'required|email',
   password: 'required'
-}, ctx.request.body);
+}, cutomInputs);
 
 // validation passes
 // do some code
@@ -143,7 +169,7 @@ await ctx.validate({
 
 #### With custom inputs and custom messages
 
-```javascript
+```js
 // if validation fails, this will auto abort request with status code 422 and errors in body
 await ctx.validate({
   name: 'required|maxLength:50',
@@ -158,8 +184,7 @@ await ctx.validate({
 
 #### In case you wants control over validator, Then use
 
-```javascript
-// if validation fails, this will auto abort request with status code 422 and errors in body
+```js
 const v = await ctx.validator(ctx.request.body, {
   name: 'required|maxLength:50',
   username: 'required|maxLength:15',
@@ -179,7 +204,7 @@ if (v.fails()) {
 
 ### with express
 
-```javascript
+```js
 const { Validator } = require('node-input-validator');
 
 app.post('login', function (req, res) {
@@ -196,7 +221,7 @@ app.post('login', function (req, res) {
 });
 ```
 
-### Objects Validation
+### Validate objects
 
 #### Example 1
 
@@ -222,7 +247,7 @@ const v = new Validator(
 const matched = await v.validate();
 ```
 
-### Array Validation
+### Validate Array
 
 #### Example 1
 
@@ -237,7 +262,7 @@ let v = new Validator(
   },
 );
 
-let matched = await v.check();
+const matched = await v.validate();
 ```
 
 #### Example 2
@@ -258,46 +283,80 @@ let v = new Validator(
     'plans.*.title': 'required'
   },
 );
-let matched = await v.check();
+
+const matched = await v.validate();
+```
+
+## Add custom rules
+
+```js
+const niv = require('node-input-validator');
+
+niv.extend('even', () => {
+  return {
+    name: 'even',
+    handler: (v) => v % 2,
+  }
+});
+
+// Add message for your rule
+niv.Messages.extend({
+  even: 'The :attr value must be an even number.',
+  required: 'The attribute is required.',
+})
+```
+
+## Add/Modify messages
+
+```js
+// modify existing rule message
+niv.Messages.extend({
+  required: 'The attribute is required.',
+});
+
+// add custom message on required rule for name
+niv.Messages.addCustomMessages({
+  'name.required': 'The name is required.',
+});
+
+// or no matter what the rule is use common message for name
+niv.Messages.addCustomMessages({
+  name: 'The name is malformed.',
+});
+```
+
+## Set Nicenames
+
+### Set nicenames globally
+
+```js
+// email in error message will be replaced with E-mail
+niv.Messages.addNiceNames({
+  email: 'E-mail',
+});
+```
+
+### Set nicenames locally
+
+```js
+const { Validator } = require('node-input-validator');
+
+const v = new Validator(
+  {},
+  {
+    email: 'required|email',
+  },
+)
+
+// this will only replace email with E-mail for error message of this instance
+v.niceNames({
+  email: 'E-mail',
+});
+
+v.validate()
+
 ```
 
 ## Rules
 
-You can declare rules in string or in array
-
-**accepted**  
-The field under validation must be yes, on, 1, or true.
-
-```javascript
-new Validator(
-  inputs,
-  { terms: 'accepted' },
-);
-```
-
-Customize: will only allow 1 ("1" should be string)
-
-```javascript
-new Validator(
-  inputs,
-  { terms: 'accepted:1' },
-);
-```
-
-in array example
-
-```javascript
-new Validator(
-  inputs,
-  { terms: [Rules.accepted()] },
-);
-```
-
-Customise in array style
-
-```javascript
-new Validator(
-  inputs,
-  { terms: [Rules.accepted(['1'])] },
-);
-```
+For rules documentation, [see https://bitnbytes.io/docs/niv/modules/rules.html](https://bitnbytes.io/docs/niv/modules/rules.html)

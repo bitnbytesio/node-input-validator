@@ -3,22 +3,27 @@ import { camelCaseToSentance, snakeCaseToSentance } from './str.util';
 interface MessageParserParams {
   message: string;
   attrName: string;
+  niceName?: string;
   ruleArgs?: any;
   ruleName: string;
   attrValue?: any;
 }
 
 export function messageParser(params: MessageParserParams) {
-  const { message, attrName, ruleArgs, ruleName, attrValue } = params;
+  const { message, attrName, niceName, ruleArgs, ruleName, attrValue } = params;
 
   let defaultMessage = message || 'Attribute :attr is malformed.';
+
+  if (defaultMessage.indexOf(":rule") >= 0) {
+    defaultMessage = defaultMessage.replace(":rule", ruleName);
+  }
 
   // replace attribute name
   if (defaultMessage.indexOf(":attr") >= 0) {
     // convert camel to sentance and replce _ with space
-    let attributeName = attrName || "";
+    let attributeName = niceName || attrName || "";
 
-    if (attributeName.indexOf(".") < 0) {
+    if (!niceName && attributeName.indexOf(".") < 0) {
       attributeName = camelCaseToSentance(snakeCaseToSentance(attrName));
     }
 

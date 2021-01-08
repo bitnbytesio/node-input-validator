@@ -6,6 +6,18 @@ import { reallyEmpty } from "../utils/ops.util";
  * This is useful for validating "Terms of Service" acceptance.
  * @param {Array<string>} args seeds
  */
+
+/**
+ * Usage Example
+ * 
+ * ```js
+ *  async (req,res) => {
+ *    const v = new niv.Validator(req.body, { tandc: 'accepted' })
+ *    const passed = await v.validate();
+ *    console.log(passed) // output: true
+ *  }
+ * ```
+ */
 export function accepted(
   args: Array<string> = ["true", "1", "yes", "on"],
 ): ValidationRuleContract {

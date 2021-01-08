@@ -11,27 +11,34 @@ export function parseStringNotationRules(RulesProvider: any, attrRules: string):
   const rulesArr: Array<ValidationRuleContract> = [];
 
   rulesStrArr.forEach((ruleStr) => {
-    const ruleNameAndArgs: Array<string> = ruleStr.split(":");
-    const [ruleName, ruleArgsStr] = ruleNameAndArgs;
-
-    let args;
-
-    if (ruleArgsStr) {
-      args = ruleArgsStr.split(",");
-    }
-
-    const ruleProvider = getKeyValue(ruleName)(RulesProvider);
-
-    if (!ruleProvider) {
-      throw new Error(`Rule ${ruleName} does not exists.`);
-    }
-
-    const ruleObj = ruleProvider(args);
-
-    ruleObj.args = args;
+    const ruleObj = parseStringRule(RulesProvider, ruleStr);
 
     rulesArr.push(ruleObj);
   });
 
   return rulesArr;
+}
+
+
+export function parseStringRule(RulesProvider: any, ruleStr: string): ValidationRuleContract {
+  const ruleNameAndArgs: Array<string> = ruleStr.split(":");
+  const [ruleName, ruleArgsStr] = ruleNameAndArgs;
+
+  let args;
+
+  if (ruleArgsStr) {
+    args = ruleArgsStr.split(",");
+  }
+
+  const ruleProvider = getKeyValue(ruleName)(RulesProvider);
+
+  if (!ruleProvider) {
+    throw new Error(`Rule ${ruleName} does not exists.`);
+  }
+
+  const ruleObj = ruleProvider(args);
+
+  ruleObj.args = args;
+
+  return ruleObj;
 }

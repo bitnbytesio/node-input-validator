@@ -25,7 +25,7 @@
     "**/*.spec.ts"
   ],
   "typedocOptions": {
-    "inputFiles": ["./src"],
+    "entryPoints": ["./src"],
     "out": "docs"
   }
 }

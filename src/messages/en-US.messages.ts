@@ -103,5 +103,5 @@ export const messages = {
     // customAttributeName: 'Message goes here.',
     // 'customAttributeName.ruleName': 'Message goes here.',
   },
-  $default: "The :attr validation failed using rule :rule against :value.",
+  $default: "The :attr validation failed under rule :rule against value :value.",
 };

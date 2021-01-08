@@ -8,12 +8,15 @@ import {
   MessagesContract,
   NiceNamesContract,
   ValidatorErrorContract,
+  ValidationRuleArrayStringNotationContract,
 } from "./contracts";
 import { implicitRules } from "./implicit-rules";
 import { reallyEmpty } from "./utils/ops.util";
 import { getValuesByWildCardStringNotation } from "./utils/obj.util";
-import { parseStringNotationRules } from "./utils/rules-parser.util";
+import { parseStringNotationRules, parseStringRule } from "./utils/rules-parser.util";
 import * as MessagesProvider from './messages/provider';
+
+import * as config from './config';
 
 let RulesProvider: any = {};
 
@@ -31,7 +34,7 @@ export abstract class ValidatorAbstract {
   errors: ValidatorErrorContract = {};
 
   // local custom attributes collection
-  niceNames: NiceNamesContract = {};
+  localNiceNames: NiceNamesContract = {};
 
   // do we have custom messages?
   hasCustomMessages: boolean = false;
@@ -45,6 +48,8 @@ export abstract class ValidatorAbstract {
   // rules collection
   parsedRulesCollection: ValidationRulesContract = {};
 
+  lang: Langs = config.get('lang');
+
   /**
    * init validator
    * @param inputs 
@@ -55,7 +60,8 @@ export abstract class ValidatorAbstract {
     private inputs: any,
     private rules:
       | ValidationRulesContract
-      | ValidationRuleStringNotationContract = {},
+      | ValidationRuleStringNotationContract
+      | ValidationRuleArrayStringNotationContract = {},
     private customMessages: MessagesContract = {},
   ) {
     this.hasCustomMessages = Object.keys(customMessages).length > 0;
@@ -83,6 +89,12 @@ export abstract class ValidatorAbstract {
       if (typeof attrRules === 'string') {
         this.parsedRulesCollection[attr] = parseStringNotationRules(RulesProvider, attrRules);
       } else {
+        attrRules.forEach((strRule: any, index: number) => {
+          if (typeof strRule === 'string') {
+            attrRules[index] = parseStringRule(RulesProvider, strRule);
+          }
+        });
+
         // @ts-ignore
         this.parsedRulesCollection[attr] = attrRules;
       }
@@ -222,7 +234,7 @@ export abstract class ValidatorAbstract {
   ): string {
     const { attrName, ruleName, attrValue, ruleArgs } = params;
 
-    const messagesCollection: any = MessagesProvider.messagesRefByLang(Langs.en_US);
+    const messagesCollection: any = MessagesProvider.messagesRefByLang(this.lang);
     const defaultMessage = messagesCollection.$default;
 
     let message;
@@ -238,8 +250,8 @@ export abstract class ValidatorAbstract {
     if (!message) {
       message = (messagesCollection.$custom &&
         messagesCollection.$custom[`${attrName}.${ruleName}`]) ||
-        messagesCollection[ruleName] ||
-        (messagesCollection.$custom && messagesCollection.$custom[attrName]);
+        (messagesCollection.$custom && messagesCollection.$custom[attrName]) ||
+        messagesCollection[ruleName];
 
       if (useDefaultMessage && !message) {
         message = defaultMessage;
@@ -248,19 +260,22 @@ export abstract class ValidatorAbstract {
 
     let attributeName = attrName;
 
+    let niceName;
+
     // check if we have nice name in local scope
-    if (this.niceNames[attrName]) {
-      attributeName = this.niceNames[attrName];
+    if (this.localNiceNames[attrName]) {
+      niceName = this.localNiceNames[attrName];
     } else if (
       messagesCollection.$niceNames && messagesCollection.$niceNames[attrName]
     ) {
       // check if we have nice name in global scope
-      attributeName = messagesCollection.$niceNames[attrName];
+      niceName = messagesCollection.$niceNames[attrName];
     }
 
     return messageParser({
       message,
       attrName: attributeName,
+      niceName,
       ruleName,
       attrValue,
       ruleArgs,
@@ -307,5 +322,9 @@ export abstract class ValidatorAbstract {
    */
   getErrors(): any {
     return this.errors;
+  }
+
+  niceNames(niceNames: NiceNamesContract) {
+    this.localNiceNames = niceNames;
   }
 }

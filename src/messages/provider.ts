@@ -41,5 +41,5 @@ export function addNiceNames(attributesNiceNames: any, lang: Langs = Langs.en_US
     messages.$niceNames = {};
   }
 
-  Object.assign(messages[lang].$niceNames, attributesNiceNames);
+  Object.assign(messages.$niceNames, attributesNiceNames);
 }

@@ -39,6 +39,10 @@ export interface ValidationRuleStringNotationContract {
   [key: string]: string;
 }
 
+export interface ValidationRuleArrayStringNotationContract {
+  [key: string]: Array<string>;
+}
+
 /**
  * set of methods that rules may need
  */

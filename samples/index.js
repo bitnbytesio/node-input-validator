@@ -83,7 +83,7 @@ const v = new niv.Validator(
     tandc: "yes",
   },
   {
-    name: 'required|string|alpha|ascii',
+    name: ['required', 'string', 'alpha', 'ascii'],
     tags: 'required|array|length:3,1',
     numbers: 'required|arrayUnique|arrayLength:4',
     'tags.*': 'string',

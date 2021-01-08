@@ -4,6 +4,7 @@ node_modules
 .vscode
 
 # others
+docs
 test.js
 coverage
 npm-debug.log
