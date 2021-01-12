@@ -14,7 +14,7 @@ import { reallyEmpty } from "../utils/ops.util";
  *  async (req,res) => {
  *    const v = new niv.Validator(req.body, { tandc: 'accepted' })
  *    const passed = await v.validate();
- *    console.log(passed) // output: true
+ *    console.log(passed) // output: true/false, depends on input
  *  }
  * ```
  */
@@ -32,7 +32,24 @@ export function accepted(
   };
 }
 
+/**
+ * The field under validation must be yes, on, 1, or true if the attribute given in the seed present and has value.
+ * This is useful for validating "Terms of Service" acceptance of some service that is optional and user only have to agree, if user has enabled that service.
+ * @param args seeds
+ * @param acceptedValues 
+ */
 
+/**
+* Usage Example
+* 
+* ```js
+*  async (req,res) => {
+*    const v = new niv.Validator(req.body, { tandc: 'acceptedIf:newsletter' })
+*    const passed = await v.validate();
+*    console.log(passed) // output: true/false, depends on input
+*  }
+* ```
+*/
 export function acceptedIf(
   args: Array<string>,
   acceptedValues: Array<string> = ["true", "1", "yes", "on"],

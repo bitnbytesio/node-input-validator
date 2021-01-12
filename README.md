@@ -11,7 +11,7 @@ npm i node-input-validator@v5
 ```
 
 ## Documentation
-For detailed documentation, [see https://bitnbytes.io/docs/niv/index.html](https://bitnbytes.io/docs/niv/index.html)
+For detailed documentation, <a target="_blank" href="https://bitnbytes.io/docs/niv/index.html">see https://bitnbytes.io/docs/niv/index.html</a>
 
 ## Features
 
@@ -359,4 +359,4 @@ v.validate()
 
 ## Rules
 
-For rules documentation, [see https://bitnbytes.io/docs/niv/modules/rules.html](https://bitnbytes.io/docs/niv/modules/rules.html)
+For rules documentation, <a href="https://bitnbytes.io/docs/niv/modules/rules.html" target="_blank">see https://bitnbytes.io/docs/niv/modules/rules.html</a>
