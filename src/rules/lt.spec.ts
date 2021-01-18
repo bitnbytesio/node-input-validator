@@ -18,6 +18,10 @@ describe("rules:lt", () => {
     expect(ruleHandler(8, new ValidatorMock({ max: 4 }))).toBe(false);
   });
 
+  test("should throw exception", function (): void {
+    expect(() => lt([])).toThrowError(new Error('Invalid number of arguments.'));
+  });
+
   test("message should exists", () => {
     expect(Messages.en_US.messages).toHaveProperty('lt');
   });
@@ -38,6 +42,10 @@ describe("rules:lte", () => {
     expect(ruleHandler(8, new ValidatorMock({ max: 4 }))).toBe(false);
     expect(ruleHandler("8", new ValidatorMock({ max: "7" }))).toBe(false);
     expect(ruleHandler("8.5", new ValidatorMock({ max: "8.4" }))).toBe(false);
+  });
+
+  test("should throw exception", function (): void {
+    expect(() => lte([])).toThrowError(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {

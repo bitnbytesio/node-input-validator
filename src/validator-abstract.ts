@@ -237,7 +237,7 @@ export abstract class ValidatorAbstract {
     const messagesCollection: any = MessagesProvider.messagesRefByLang(this.lang);
     const defaultMessage = messagesCollection.$default;
 
-    let message;
+    let message: any;
 
     // check for local scope messages
     if (this.hasCustomMessages) {

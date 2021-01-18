@@ -67,16 +67,82 @@ export function arrayUniqueObjects(
  * The field under validation must be array of length as per seed.
  * @param args seeds
  */
-export function arrayLength(args: Array<string>): ValidationRuleContract {
+export function arrayLen(args: Array<string>): ValidationRuleContract {
   if (args.length !== 1) {
     throw new Error('Invalid number of arguments.');
   }
 
   const len = parseInt(args[0], 10);
   return {
-    name: "array",
+    name: "arrayLen",
     handler: (value: any) => {
       return (Array.isArray(value) && value.length === len);
+    },
+  };
+}
+
+
+/**
+ * @since: v5
+ * The field under validation must be array and has length range as per seed.
+ * @param args seeds
+ */
+export function arrayLenRange(args: Array<string>): ValidationRuleContract {
+  if (args.length < 1 || args.length > 2) {
+    throw new Error('Invalid number of arguments.');
+  }
+
+  const max = parseInt(args[0], 10);
+  const min = parseInt(args[1] || '0', 10);
+
+  return {
+    name: "arrayLenRange",
+    handler: (value: any) => {
+      const len = value.length;
+      return (Array.isArray(value) && len <= max && (!min || len >= min));
+    },
+  };
+}
+
+
+/**
+ * @since: v5
+ * The field under validation must be array and has minumun length as per seed.
+ * @param args seeds
+ */
+export function arrayLenMin(args: Array<string>): ValidationRuleContract {
+  if (args.length !== 1) {
+    throw new Error('Invalid number of arguments.');
+  }
+
+  const min = parseInt(args[0], 10);
+
+  return {
+    name: "arrayLenMin",
+    handler: (value: any) => {
+      const len = value.length;
+      return (Array.isArray(value) && len >= min);
+    },
+  };
+}
+
+/**
+ * @since: v5
+ * The field under validation must be array and has maximum length as per seed.
+ * @param args seeds
+ */
+export function arrayLenMax(args: Array<string>): ValidationRuleContract {
+  if (args.length !== 1) {
+    throw new Error('Invalid number of arguments.');
+  }
+
+  const max = parseInt(args[0], 10);
+
+  return {
+    name: "arrayLenMax",
+    handler: (value: any) => {
+      const len = value.length;
+      return (Array.isArray(value) && len <= max);
     },
   };
 }

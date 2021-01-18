@@ -1,5 +1,6 @@
-import { accepted } from "../rules/accepted.rule";
+import { accepted, acceptedIf, acceptedNotIf } from "../rules/accepted.rule";
 import { Messages } from '../messages';
+import { ValidatorMock } from '../mock/validator.mock';
 
 describe("rules:accepted", () => {
   test("should pass", () => {
@@ -17,5 +18,60 @@ describe("rules:accepted", () => {
 
   test("message should exists", () => {
     expect(Messages.en_US.messages).toHaveProperty('accepted');
+  });
+});
+
+describe("rules:acceptedIf", () => {
+  test("should pass", () => {
+    // service not enabled and t&c not accepted
+    expect(acceptedIf(['services', 'yes'])
+      .handler("false", new ValidatorMock({ services: 'no' })))
+      .toBe(true);
+
+    // service enabled and t&c accepted
+    expect(acceptedIf(['services', 'yes'])
+      .handler("true", new ValidatorMock({ services: 'yes' })))
+      .toBe(true);
+  });
+
+  test("should fail", () => {
+    expect(acceptedIf(['services', 'yes'])
+      .handler("false", new ValidatorMock({ services: 'yes' })))
+      .toBe(false);
+  });
+
+  test("should throw", () => {
+    expect(() => acceptedIf(['services'])
+      .handler("true", new ValidatorMock({ services: 'true' })))
+      .toThrowError(new Error('Invalid number of arguments.'));
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('acceptedIf');
+  });
+});
+
+
+describe("rules:acceptedNotIf", () => {
+  test("should pass", () => {
+    expect(acceptedNotIf(['services', 'no'])
+      .handler("false", new ValidatorMock({ services: 'no' })))
+      .toBe(true);
+  });
+
+  test("should fail", () => {
+    expect(acceptedNotIf(['services', 'no'])
+      .handler("true", new ValidatorMock({ services: 'no' })))
+      .toBe(false);
+  });
+
+  test("should throw", () => {
+    expect(() => acceptedNotIf(['services'])
+      .handler("true", new ValidatorMock({ services: 'true' })))
+      .toThrowError(new Error('Invalid number of arguments.'));
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('acceptedNotIf');
   });
 });

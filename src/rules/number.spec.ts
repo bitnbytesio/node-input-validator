@@ -66,6 +66,11 @@ describe("rules:max", () => {
     expect(ruleHandler({})).toBe(false)
   });
 
+  test("should throw exception", function (): void {
+    expect(() => max([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => max(['a'])).toThrowError(TypeError('Seed must be number.'));
+  });
+
   test("message should exists", () => {
     expect(Messages.en_US.messages).toHaveProperty('max');
   });
@@ -84,6 +89,11 @@ describe("rules:min", () => {
     expect(ruleHandler("abc")).toBe(false);
     expect(ruleHandler([])).toBe(false);
     expect(ruleHandler({})).toBe(false);
+  });
+
+  test("should throw exception", function (): void {
+    expect(() => min([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => min(['a'])).toThrowError(TypeError('Seed must be number.'));
   });
 
   test("message should exists", () => {

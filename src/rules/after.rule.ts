@@ -3,7 +3,7 @@ import validator from 'validator';
 import { ValidationRuleContract } from "../contracts";
 
 export function after(
-  args: Array<string>
+  args: Array<string> = []
 ): ValidationRuleContract {
   const date = args[0] || undefined;
 

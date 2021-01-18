@@ -62,7 +62,7 @@ export function size(args: Array<string>, trust: boolean = false): ValidationRul
           /* istanbul ignore next */
           console.error(e);
         }
-        return Promise.resolve(false);
+        // return Promise.resolve(false);
       } else if (file instanceof Buffer) {
         return bytesBetween(file.byteLength, maxBytes, minBytes);
       }

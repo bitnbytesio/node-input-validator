@@ -1,7 +1,8 @@
+import { MessageProviderFuncation } from '../contracts';
 import { camelCaseToSentance, snakeCaseToSentance } from './str.util';
 
 interface MessageParserParams {
-  message: string;
+  message: string | MessageProviderFuncation;
   attrName: string;
   niceName?: string;
   ruleArgs?: any;
@@ -13,6 +14,10 @@ export function messageParser(params: MessageParserParams) {
   const { message, attrName, niceName, ruleArgs, ruleName, attrValue } = params;
 
   let defaultMessage = message || 'Attribute :attr is malformed.';
+
+  if (typeof defaultMessage === 'function') {
+    defaultMessage = defaultMessage(params);
+  }
 
   if (defaultMessage.indexOf(":rule") >= 0) {
     defaultMessage = defaultMessage.replace(":rule", ruleName);

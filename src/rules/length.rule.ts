@@ -73,8 +73,12 @@ export function lengthBetween(args: Array<string>): ValidationRuleContract {
 
   const max: number = parseInt(args[1], 10);
 
+  if (min >= max) {
+    throw new RangeError('Seed min must be less then max.');
+  }
+
   return {
-    name: 'length',
+    name: 'lengthBetween',
     handler: (value: any): boolean => {
       if (typeof value === 'string' || Array.isArray(value)) {
         const len = value.length;

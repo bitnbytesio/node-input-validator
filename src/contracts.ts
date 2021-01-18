@@ -1,4 +1,3 @@
-
 /**
  * validation error object interface
  */
@@ -61,18 +60,20 @@ export interface NiceNamesContract {
   [key: string]: string;
 }
 
+export type MessageProviderFuncation = (...args: any) => string;
+
 /**
  * messages interface
  */
 export interface MessagesContract {
-  [key: string]: string;
+  [key: string]: string | MessageProviderFuncation | NodeJS.Dict<string>;
 }
 
 export interface MessagesDictContract {
   $niceNames: NodeJS.Dict<string>;
   $custom: NodeJS.Dict<string>;
   $default: string;
-  [key: string]: string | NodeJS.Dict<string>;
+  [key: string]: string | MessageProviderFuncation | NodeJS.Dict<string>;
 }
 
 export interface AttributeValidationMinimalInfo {
@@ -84,4 +85,7 @@ export interface AttributeValidationMinimalInfo {
 
 export enum Langs {
   en_US = "en_US",
+  pb = "pb",
+  fa = "fa",
+  pt_BR = 'pt_BR',
 }

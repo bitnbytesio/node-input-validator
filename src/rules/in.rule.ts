@@ -14,6 +14,10 @@ export function _in(args: Array<any>): ValidationRuleContract {
 }
 
 export function notIn(args: Array<any>): ValidationRuleContract {
+  if (!args.length) {
+    throw new Error('Invalid number of arguments.');
+  }
+
   return {
     name: "notIn",
     handler: (value: any): boolean => {

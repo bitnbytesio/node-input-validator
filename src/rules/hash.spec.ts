@@ -14,6 +14,10 @@ describe("rules:hash", () => {
     expect(ruleHandler("Yes, Node is awesome")).toBe(false);
   });
 
+  test("should throw exception", function (): void {
+    expect(() => hash([])).toThrowError(new Error('Invalid number of arguments.'));
+  });
+
   test("message should exists", () => {
     expect(Messages.en_US.messages).toHaveProperty('hash');
   });

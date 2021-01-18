@@ -57,12 +57,14 @@ describe("rules:booleanInt", () => {
   });
 });
 
-// test("rules:boolean", function (): void {
-//   const ruleHandler = boolean().handler;
-//   expect(ruleHandler(true)).toBe(true);
-//   expect(ruleHandler(true)).toBe(true);
-//   expect(ruleHandler("0")).toBe(true);
-//   expect(ruleHandler("1")).toBe(true);
-//   expect(ruleHandler(0)).toBe(true);
-//   expect(ruleHandler(1)).toBe(true);
-// });
+test("rules:boolean", function (): void {
+  const ruleHandler = boolean().handler;
+  expect(ruleHandler(true)).toBe(true);
+  expect(ruleHandler(true)).toBe(true);
+  expect(ruleHandler("0")).toBe(true);
+  expect(ruleHandler("1")).toBe(true);
+  expect(ruleHandler(0)).toBe(true);
+  expect(ruleHandler(1)).toBe(true);
+  expect(ruleHandler(2)).toBe(false);
+  expect(ruleHandler('no')).toBe(false);
+});

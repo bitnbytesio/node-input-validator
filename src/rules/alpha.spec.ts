@@ -4,6 +4,7 @@ import {
   alphaNumeric,
   alphaNumericDash,
   alphaDash,
+  alphaHyphen,
 } from "../rules/alpha.rule";
 
 describe("rules:alpha", (): void => {
@@ -39,6 +40,25 @@ describe("rules:alphaDash", (): void => {
 
   test("message should exists", () => {
     expect(Messages.en_US.messages).toHaveProperty('alphaDash');
+  });
+});
+
+describe("rules:alphaHyphen", (): void => {
+  test("should pass", (): void => {
+    const ruleHandler = alphaHyphen().handler;
+    expect(ruleHandler("yes")).toBe(true);
+    expect(ruleHandler("yes-ok")).toBe(true);
+    expect(ruleHandler("yes-or-ok")).toBe(true);
+  });
+
+  test("should fail", (): void => {
+    const ruleHandler = alphaHyphen().handler;
+    expect(ruleHandler("abc_123")).toBe(false);
+    expect(ruleHandler("yes-123")).toBe(false);
+  });
+
+  test("message should exists", () => {
+    expect(Messages.en_US.messages).toHaveProperty('alphaHyphen');
   });
 });
 

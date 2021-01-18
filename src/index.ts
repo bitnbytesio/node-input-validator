@@ -10,8 +10,8 @@ import * as config from "./config";
 
 export { Validator, Rules };
 
-export function configure(config: config.IConfig) {
-  config.set(config);
+export function configure(customConf: config.IConfig) {
+  config.set(customConf);
 }
 
 export function lang(lang: Langs) {

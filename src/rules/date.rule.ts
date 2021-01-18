@@ -13,7 +13,7 @@ export function dateAfter(args: Array<Date | string | number>): ValidationRuleCo
   const [format, dateToCompare] = args;
 
   if (typeof format !== 'string') {
-    throw new Error('First element must be date format.')
+    throw new TypeError('First element must be date format.')
   }
 
   return {
@@ -51,7 +51,7 @@ export function dateBefore(
   const [format, dateToCompare] = args;
 
   if (typeof format !== 'string') {
-    throw new Error('First element must be date format.')
+    throw new TypeError('First element must be date format.')
   }
 
   return {

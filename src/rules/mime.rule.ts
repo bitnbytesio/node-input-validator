@@ -21,21 +21,19 @@ export function mime(args: Array<string>, trust: boolean = false): ValidationRul
       } else if (file instanceof Buffer) {
         try {
           const fileType = await fromBuffer(file);
-          if (!fileType) {
-            throw new Error('Unable to detect file type')
+          if (fileType) {
+            mtype = fileType.mime;
           }
-          mtype = fileType.mime;
         } catch (e) {
           /* istanbul ignore next */
           console.error(e);
         }
       } else if (file.buffer && file.buffer instanceof Buffer) {
         try {
-          const fileType = await fromBuffer(file);
-          if (!fileType) {
-            throw new Error('Unable to detect file type')
+          const fileType = await fromBuffer(file.buffer);
+          if (fileType) {
+            mtype = fileType.mime;
           }
-          mtype = fileType.mime;
         } catch (e) {
           /* istanbul ignore next */
           console.error(e);
@@ -44,10 +42,9 @@ export function mime(args: Array<string>, trust: boolean = false): ValidationRul
         try {
           const buffer = await readChunk(file, 0, 4100);
           const fileType = await fromBuffer(buffer);
-          if (!fileType) {
-            throw new Error('Unable to detect file type')
+          if (fileType) {
+            mtype = fileType.mime;
           }
-          mtype = fileType.mime;
         } catch (e) {
           /* istanbul ignore next */
           console.error(e);
@@ -56,17 +53,17 @@ export function mime(args: Array<string>, trust: boolean = false): ValidationRul
         try {
           const buffer = await readChunk(file.path, 0, 4100);
           const fileType = await fromBuffer(buffer);
-          if (!fileType) {
-            throw new Error('Unable to detect file type')
+          if (fileType) {
+            mtype = fileType.mime;
           }
-          mtype = fileType.mime;
         } catch (e) {
           /* istanbul ignore next */
           console.error(e);
         }
-      } else {
-        throw new Error('MIME rule only accepts Buffer,file path or type/mime property in file object.');
       }
+      // else {
+      //   throw new Error('MIME rule only accepts Buffer,file path or type/mime property in file object.');
+      // }
 
       for (let i = 0; i < args.length; ++i) {
         if (mimeTypes.lookup(args[i]) !== mtype) {

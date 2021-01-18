@@ -1,5 +1,27 @@
 # NIV (Node Input Validator)
 
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Known Vulnerabilities](https://snyk.io/test/npm/node-input-validator/badge.svg)](https://snyk.io/test/npm/node-input-validator)
+[![codecov.io Status][codecov-img]][codecov-url]
+[![David][deps-image]][david-url]
+[![node version][node-image]][node-url]
+
+[travis-image]: https://api.travis-ci.org/bitnbytesio/node-input-validator.svg?branch=development
+[travis-url]: https://travis-ci.org/bitnbytesio/node-input-validator?branch=development
+
+[codecov-img]: https://codecov.io/gh/bitnbytesio/node-input-validator/branch/development/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/bitnbytesio/node-input-validator
+
+[deps-image]:https://img.shields.io/david/bitnbytesio/node-input-validator?style=flat-square
+[david-url]: https://david-dm.org/bitnbytesio/node-input-validator?branch=development
+
+[npm-image]: https://img.shields.io/npm/v/node-input-validator/beta?style=flat-square
+[npm-url]: https://www.npmjs.com/package/node-input-validator/v/5.0.0-beta.0
+
+[node-image]: https://img.shields.io/badge/node.js-%3E=_10.12-green.svg?style=flat-square
+[node-url]: http://nodejs.org/download/
+
 NIV (Node Input Validator) is a validation library for node.js. You can also extend library to add custom rules.
 
 **Note**: For use case of any rule, please check test cases, If you have any doubt or confusion with documentation or regarding rule behaviour.

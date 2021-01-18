@@ -8,6 +8,10 @@ test("rules:different", function (): void {
   expect(ruleHandler("000000", new ValidatorMock({ new_password: "000000" }))).toBe(false);
 });
 
+test("should throw exception", function (): void {
+  expect(() => different([])).toThrowError(new Error('Invalid number of arguments.'));
+});
+
 test("message should exists", () => {
   expect(Messages.en_US.messages).toHaveProperty('different');
 });

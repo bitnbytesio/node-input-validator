@@ -18,15 +18,29 @@ describe(
       });
 
     test(
-      "should fail, value is no as per given rule",
+      "should fail, and return error message with nicename",
       async function (): Promise<void> {
         // should fail as value is not as per given rule
         const vF = new Validator(
           { tandc: "no" },
           { tandc: [Rules.accepted()] },
         );
+        vF.niceNames({
+          tandc: 'Terms & Conditions',
+        });
         const passedF: boolean = await vF.validate();
         expect(passedF).toBe(false);
+        expect(vF.getErrors()).toMatchObject({
+          tandc: {
+            rule: 'accepted',
+            message: vF.createAttributeErrorMessage({
+              attrName: 'tandc',
+              ruleName: 'accepted',
+              attrValue: 'no',
+
+            }),
+          }
+        });
       });
 
     test(

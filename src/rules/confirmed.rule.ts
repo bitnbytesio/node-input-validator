@@ -1,7 +1,7 @@
 import { ValidationRuleContract, ValidatorContract } from "../contracts";
 
 export function confirmed(
-  args: Array<string>,
+  args: Array<string> = [],
 ): ValidationRuleContract {
   return {
     name: "confirmed",

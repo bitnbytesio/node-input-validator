@@ -18,7 +18,18 @@ export const messages = {
   alpha: 'The :attr can only contain alphabets.',
   alphaDash: 'The :attr can only contain letters, numbers, and dashes.',
   alphaNumeric: 'The :attr can only contain letters and numbers.',
+  alphaHyphen: 'The :attr can only contain letters and hyphen (-).',
   alphaNumericDash: 'The :attr can only contain letters, numbers and dashes.',
+  arrayLen: 'The :attr must be an array of length :arg0.',
+  arrayLenRange: (params: any) => {
+    if (params.ruleArgs.length == 1) {
+      return 'The :attr must be an array max length :arg0.'
+    }
+
+    return 'The :attr must be an array of length between :arg1 - :arg0.'
+  },
+  arrayLenMin: 'The :attr must be an array with minimum length :arg0.',
+  arrayLenMax: 'The :attr must be an array with maximum length :arg0.',
   array: 'The :attr must be an array.',
   arrayUnique: 'The :attr must be an array of unique values.',
   arrayUniqueObjects: 'The :attr must be an array of unique :args attributes of object.',

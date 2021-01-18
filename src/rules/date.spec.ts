@@ -27,6 +27,12 @@ describe("rules:dateAfter", () => {
     expect(ruleHandler("2020-04-20")).toBe(false);
   });
 
+  test("should throw exception", function (): void {
+    expect(() => dateAfter([])).toThrowError(new Error('Rule accepts 2 argument (format,date).'));
+    expect(() => dateAfter([1, 2, 3])).toThrowError(new Error('Rule accepts 2 argument (format,date).'));
+    expect(() => dateAfter([1, 2])).toThrowError(new TypeError('First element must be date format.'));
+  });
+
   test("message should exists", () => {
     expect(Messages.en_US.messages).toHaveProperty('dateAfter');
   });
@@ -49,6 +55,10 @@ describe("rules:dateAfterToday", () => {
 
     const dateToday = adapter.format(new Date, DateFnsAdapter.FORMAT_yyyy_MM_dd);
     expect(ruleHandler(dateToday)).toBe(false);
+  });
+
+  test("should throw exception", function (): void {
+    expect(() => dateAfterToday([])).toThrowError(new Error('Rule accepts only 1 argument (format).'));
   });
 
   test("message should exists", () => {
@@ -74,6 +84,12 @@ describe("rules:dateBefore", () => {
     const dateafterToday = adapter.format(adapter.addDays(new Date, 1), DateFnsAdapter.FORMAT_yyyy_MM_dd);
 
     expect(ruleHandler(dateafterToday)).toBe(false);
+  });
+
+  test("should throw exception", function (): void {
+    expect(() => dateBefore([])).toThrowError(new Error('Rule accepts 2 argument (format,date).'));
+    expect(() => dateBefore([1, 2, 3])).toThrowError(new Error('Rule accepts 2 argument (format,date).'));
+    expect(() => dateBefore([1, 2])).toThrowError(new TypeError('First element must be date format.'));
   });
 
   test("message should exists", () => {
@@ -102,6 +118,11 @@ describe("rules:dateBeforeToday", () => {
     expect(ruleHandler(dateToday)).toBe(false);
   });
 
+  test("should throw exception", function (): void {
+    expect(() => dateBeforeToday([])).toThrowError(new Error('Rule accepts only 1 argument (format).'));
+  });
+
+
   test("message should exists", () => {
     expect(Messages.en_US.messages).toHaveProperty('dateBeforeToday');
   });
@@ -116,6 +137,10 @@ describe("rules:dateFormat", (): void => {
   test("should fail", (): void => {
     const ruleHandler = dateFormat([DateFnsAdapter.FORMAT_yyyy_MM_dd]).handler;
     expect(ruleHandler("2021-13-25")).toBe(false);
+  });
+
+  test("should throw exception", function (): void {
+    expect(() => dateFormat([])).toThrowError(new Error('Rule accepts only 1 argument (format).'));
   });
 
   test("message should exists", () => {

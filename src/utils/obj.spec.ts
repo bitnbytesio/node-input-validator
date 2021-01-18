@@ -1,4 +1,5 @@
 import { getValuesByWildCardStringNotation } from "./obj.util";
+import *  as objUtil from "./obj.util";
 
 const input: any = {
   event: {
@@ -99,3 +100,27 @@ describe('util:obj:getValuesByWildCardStringNotation', (): void => {
     expect(notationMap).toMatchObject(compareMap);
   });
 })
+
+describe('util:obj', (): void => {
+  test('obj:namedArgs with non array', () => {
+    // @ts-ignore
+    expect(objUtil.namedArgs('postStatus')).toMatchObject({});
+  })
+
+  test('obj:namedArgs with array', () => {
+    expect(objUtil.namedArgs(['width=200', 'height=200']))
+      .toMatchObject({
+        width: '200',
+        height: '200',
+      });
+  })
+
+  test('obj:namedArgs with array', () => {
+    expect(objUtil.getValueByStringNotation({
+      product: {
+        name: 'abc',
+      },
+    }, 'product.name'))
+      .toMatch('abc');
+  })
+});

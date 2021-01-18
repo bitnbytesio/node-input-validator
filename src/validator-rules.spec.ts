@@ -9,9 +9,11 @@ describe(
         const v = new Validator(
           {
             accepted: 'yes',
+            status: 'draft',
           },
           {
             accepted: 'required|accepted',
+            status: 'in:draft,public',
           },
         );
       });

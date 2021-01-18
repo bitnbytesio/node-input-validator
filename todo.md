@@ -6,7 +6,6 @@
 - dateDaysBeforeToday
 - dateYearsBeforeToday
 - activeUrl
-- mime
 - dimensions
 - requireNotIf
 - sometimes & nullable test cases

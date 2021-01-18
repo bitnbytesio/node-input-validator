@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-beta.1",
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "index",
   "module": "index.mjs",
@@ -14,6 +14,7 @@
     "@types/jest": "^26.0.7",
     "@types/mime-types": "^2.1.0",
     "@types/validator": "^13.1.0",
+    "codecov": "^3.8.1",
     "date-fns": "^2.15.0",
     "eslint": "^7.5.0",
     "jest": "^26.1.0",
@@ -25,9 +26,10 @@
     "node": ">=10.12"
   },
   "scripts": {
-    "test": "npx jest",
-    "coverage": "npx jest --coverage",
-    "compile": "npx tsc -p tsconfig.json && npx tsc -p cjs.tsconfig.json",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "report-coverage": "./node_modules/.bin/codecov -f coverage/coverage-final.json",
+    "compile": "tsc -p tsconfig.json && npx tsc -p cjs.tsconfig.json",
     "docs": "typedoc",
     "prepare": "npm run compile",
     "prepublishOnly": "npm test"
