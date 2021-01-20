@@ -1,0 +1,1 @@
+{"version":3,"file":"email.rule.js","sourceRoot":"","sources":["../../src/rules/email.rule.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,WAAW,CAAC;AAIlC,MAAM,UAAU,KAAK;IACnB,OAAO;QACL,IAAI,EAAE,OAAO;QACb,OAAO,EAAE,CAAC,KAAU,EAAE,EAAE;YACtB,OAAO,SAAS,CAAC,OAAO,CAAC,MAAM,CAAC,KAAK,CAAC,CAAC,CAAA;QACzC,CAAC;KACF,CAAC;AACJ,CAAC"}

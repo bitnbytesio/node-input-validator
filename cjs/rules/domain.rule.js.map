@@ -1,0 +1,1 @@
+{"version":3,"file":"domain.rule.js","sourceRoot":"","sources":["../../src/rules/domain.rule.ts"],"names":[],"mappings":";;;;;;AAAA,0DAAkC;AAIlC,SAAgB,MAAM;IACpB,OAAO;QACL,IAAI,EAAE,QAAQ;QACd,OAAO,EAAE,CAAC,KAAU,EAAE,EAAE;YACtB,OAAO,mBAAS,CAAC,MAAM,CAAC,MAAM,CAAC,KAAK,CAAC,CAAC,CAAC;QACzC,CAAC;KACF,CAAC;AACJ,CAAC;AAPD,wBAOC"}

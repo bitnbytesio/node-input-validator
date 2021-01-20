@@ -1,0 +1,1 @@
+{"version":3,"file":"ip.rule.js","sourceRoot":"","sources":["../../src/rules/ip.rule.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,WAAW,CAAC;AAIlC,MAAM,UAAU,EAAE;IAChB,OAAO;QACL,IAAI,EAAE,IAAI;QACV,OAAO,EAAE,CAAC,KAAU,EAAE,EAAE;YACtB,OAAO,SAAS,CAAC,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,CAAC,CAAC;QACvC,CAAC;KACF,CAAC;AACJ,CAAC"}

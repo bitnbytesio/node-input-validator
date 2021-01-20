@@ -1,0 +1,839 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ValidatorLite | node-input-validator</title>
+	<meta name="description" content="Documentation for node-input-validator">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="../assets/images/logo-32.png">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/custom.css">
+	<!-- Google Tag Manager -->
+	<script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NZXPQBT');
+    </script>
+	<!-- End Google Tag Manager -->
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZXPQBT" height="0" width="0"
+style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="nav">
+				<a href="/" class="title brand-logo">
+					<img src="../assets/images/logo.png" />
+				</a>
+			</div>
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">node-input-validator</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../modules.html">node-input-validator</a>
+				</li>
+				<li>
+					<a href="../modules/validator_lite.html">validator-lite</a>
+				</li>
+				<li>
+					<a href="validator_lite.validatorlite.html">ValidatorLite</a>
+				</li>
+			</ul>
+			<h1>Class ValidatorLite</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<a href="validator_abstract.validatorabstract.html" class="tsd-signature-type" data-tsd-kind="Class">ValidatorAbstract</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ValidatorLite</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#errors" class="tsd-kind-icon">errors</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#hascustommessages" class="tsd-kind-icon">has<wbr>Custom<wbr>Messages</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#hasnestedrules" class="tsd-kind-icon">has<wbr>Nested<wbr>Rules</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#lang" class="tsd-kind-icon">lang</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#localnicenames" class="tsd-kind-icon">local<wbr>Nice<wbr>Names</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#notationmap" class="tsd-kind-icon">notation<wbr>Map</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#notationvals" class="tsd-kind-icon">notation<wbr>Vals</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#parsedrulescollection" class="tsd-kind-icon">parsed<wbr>Rules<wbr>Collection</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#applyfilters" class="tsd-kind-icon">apply<wbr>Filters</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#applypostrules" class="tsd-kind-icon">apply<wbr>Post<wbr>Rules</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#attributevalue" class="tsd-kind-icon">attribute<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#createattributeerror" class="tsd-kind-icon">create<wbr>Attribute<wbr>Error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#createattributeerrormessage" class="tsd-kind-icon">create<wbr>Attribute<wbr>Error<wbr>Message</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#doattributehasvalue" class="tsd-kind-icon">do<wbr>Attribute<wbr>Has<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#geterrors" class="tsd-kind-icon">get<wbr>Errors</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#haserrors" class="tsd-kind-icon">has<wbr>Errors</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#isattributepresent" class="tsd-kind-icon">is<wbr>Attribute<wbr>Present</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#nicenames" class="tsd-kind-icon">nice<wbr>Names</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#parse" class="tsd-kind-icon">parse</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#parseinputs" class="tsd-kind-icon">parse<wbr>Inputs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#parserules" class="tsd-kind-icon">parse<wbr>Rules</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#validate" class="tsd-kind-icon">validate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="validator_lite.validatorlite.html#validateattribute" class="tsd-kind-icon">validate<wbr>Attribute</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Validator<wbr>Lite<span class="tsd-signature-symbol">(</span>inputs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, rules<span class="tsd-signature-symbol">?: </span><a href="../interfaces/contracts.validationrulescontract.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidationRulesContract</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/contracts.validationrulestringnotationcontract.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidationRuleStringNotationContract</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/contracts.validationrulearraystringnotationcontract.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidationRuleArrayStringNotationContract</a>, customMessages<span class="tsd-signature-symbol">?: </span><a href="../interfaces/contracts.messagescontract.html" class="tsd-signature-type" data-tsd-kind="Interface">MessagesContract</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="validator_lite.validatorlite.html" class="tsd-signature-type" data-tsd-kind="Class">ValidatorLite</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L51">validator-abstract.ts:51</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>init validator</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>inputs: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>rules: <a href="../interfaces/contracts.validationrulescontract.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidationRulesContract</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/contracts.validationrulestringnotationcontract.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidationRuleStringNotationContract</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/contracts.validationrulearraystringnotationcontract.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidationRuleArrayStringNotationContract</a><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
+								<li>
+									<h5>customMessages: <a href="../interfaces/contracts.messagescontract.html" class="tsd-signature-type" data-tsd-kind="Interface">MessagesContract</a><span class="tsd-signature-symbol"> = ...</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="validator_lite.validatorlite.html" class="tsd-signature-type" data-tsd-kind="Class">ValidatorLite</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="errors" class="tsd-anchor"></a>
+					<h3>errors</h3>
+					<div class="tsd-signature tsd-kind-icon">errors<span class="tsd-signature-symbol">:</span> <a href="../interfaces/contracts.validatorerrorcontract.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidatorErrorContract</a><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#errors">errors</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L34">validator-abstract.ts:34</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="hascustommessages" class="tsd-anchor"></a>
+					<h3>has<wbr>Custom<wbr>Messages</h3>
+					<div class="tsd-signature tsd-kind-icon">has<wbr>Custom<wbr>Messages<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#hascustommessages">hasCustomMessages</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L40">validator-abstract.ts:40</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="hasnestedrules" class="tsd-anchor"></a>
+					<h3>has<wbr>Nested<wbr>Rules</h3>
+					<div class="tsd-signature tsd-kind-icon">has<wbr>Nested<wbr>Rules<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#hasnestedrules">hasNestedRules</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L46">validator-abstract.ts:46</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="lang" class="tsd-anchor"></a>
+					<h3>lang</h3>
+					<div class="tsd-signature tsd-kind-icon">lang<span class="tsd-signature-symbol">:</span> <a href="../enums/contracts.langs.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Langs</a><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#lang">lang</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L51">validator-abstract.ts:51</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="localnicenames" class="tsd-anchor"></a>
+					<h3>local<wbr>Nice<wbr>Names</h3>
+					<div class="tsd-signature tsd-kind-icon">local<wbr>Nice<wbr>Names<span class="tsd-signature-symbol">:</span> <a href="../interfaces/contracts.nicenamescontract.html" class="tsd-signature-type" data-tsd-kind="Interface">NiceNamesContract</a><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#localnicenames">localNiceNames</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L37">validator-abstract.ts:37</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="notationmap" class="tsd-anchor"></a>
+					<h3>notation<wbr>Map</h3>
+					<div class="tsd-signature tsd-kind-icon">notation<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#notationmap">notationMap</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L42">validator-abstract.ts:42</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="notationvals" class="tsd-anchor"></a>
+					<h3>notation<wbr>Vals</h3>
+					<div class="tsd-signature tsd-kind-icon">notation<wbr>Vals<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#notationvals">notationVals</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L43">validator-abstract.ts:43</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="parsedrulescollection" class="tsd-anchor"></a>
+					<h3>parsed<wbr>Rules<wbr>Collection</h3>
+					<div class="tsd-signature tsd-kind-icon">parsed<wbr>Rules<wbr>Collection<span class="tsd-signature-symbol">:</span> <a href="../interfaces/contracts.validationrulescontract.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidationRulesContract</a><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#parsedrulescollection">parsedRulesCollection</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L49">validator-abstract.ts:49</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="applyfilters" class="tsd-anchor"></a>
+					<h3>apply<wbr>Filters</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">apply<wbr>Filters<span class="tsd-signature-symbol">(</span>filters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#applyfilters">applyFilters</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L138">validator-abstract.ts:138</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>apply this set of filters to inputs</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filters: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>set of filters</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="applypostrules" class="tsd-anchor"></a>
+					<h3>apply<wbr>Post<wbr>Rules</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">apply<wbr>Post<wbr>Rules<span class="tsd-signature-symbol">(</span>rules<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#applypostrules">applyPostRules</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L146">validator-abstract.ts:146</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>apply post validation rules</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>rules: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>post rules</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="attributevalue" class="tsd-anchor"></a>
+					<h3>attribute<wbr>Value</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">attribute<wbr>Value<span class="tsd-signature-symbol">(</span>attr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#attributevalue">attributeValue</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L289">validator-abstract.ts:289</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>get attribute value by its name</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>attr: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>attribute name</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="createattributeerror" class="tsd-anchor"></a>
+					<h3>create<wbr>Attribute<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Attribute<wbr>Error<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/contracts.attributevalidationminimalinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">AttributeValidationMinimalInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#createattributeerror">createAttributeError</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L219">validator-abstract.ts:219</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>this will create error object for attribute</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>params: <a href="../interfaces/contracts.attributevalidationminimalinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">AttributeValidationMinimalInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>info object</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="createattributeerrormessage" class="tsd-anchor"></a>
+					<h3>create<wbr>Attribute<wbr>Error<wbr>Message</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Attribute<wbr>Error<wbr>Message<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/contracts.attributevalidationminimalinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">AttributeValidationMinimalInfo</a>, useDefaultMessage<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#createattributeerrormessage">createAttributeErrorMessage</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L231">validator-abstract.ts:231</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>this will return parsed error message as per rule or input</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>params: <a href="../interfaces/contracts.attributevalidationminimalinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">AttributeValidationMinimalInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>object with attr and rule name, value, args</p>
+									</div>
+								</li>
+								<li>
+									<h5>useDefaultMessage: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="doattributehasvalue" class="tsd-anchor"></a>
+					<h3>do<wbr>Attribute<wbr>Has<wbr>Value</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">do<wbr>Attribute<wbr>Has<wbr>Value<span class="tsd-signature-symbol">(</span>attr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#doattributehasvalue">doAttributeHasValue</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L297">validator-abstract.ts:297</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>check if attribute has value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>attr: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>attribute name</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="geterrors" class="tsd-anchor"></a>
+					<h3>get<wbr>Errors</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Errors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#geterrors">getErrors</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L323">validator-abstract.ts:323</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>get validation errors</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="haserrors" class="tsd-anchor"></a>
+					<h3>has<wbr>Errors</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Errors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#haserrors">hasErrors</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L316">validator-abstract.ts:316</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>does we have any dirty/failed input</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="isattributepresent" class="tsd-anchor"></a>
+					<h3>is<wbr>Attribute<wbr>Present</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Attribute<wbr>Present<span class="tsd-signature-symbol">(</span>attr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#isattributepresent">isAttributePresent</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L305">validator-abstract.ts:305</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>does attribute present in given inputs</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>attr: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>attribute name</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="nicenames" class="tsd-anchor"></a>
+					<h3>nice<wbr>Names</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">nice<wbr>Names<span class="tsd-signature-symbol">(</span>niceNames<span class="tsd-signature-symbol">: </span><a href="../interfaces/contracts.nicenamescontract.html" class="tsd-signature-type" data-tsd-kind="Interface">NiceNamesContract</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#nicenames">niceNames</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L327">validator-abstract.ts:327</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>niceNames: <a href="../interfaces/contracts.nicenamescontract.html" class="tsd-signature-type" data-tsd-kind="Interface">NiceNamesContract</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="parse" class="tsd-anchor"></a>
+					<h3>parse</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#parse">parse</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L74">validator-abstract.ts:74</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>parse provided rules and inputs</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="parseinputs" class="tsd-anchor"></a>
+					<h3>parse<wbr>Inputs</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Inputs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#parseinputs">parseInputs</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L109">validator-abstract.ts:109</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="parserules" class="tsd-anchor"></a>
+					<h3>parse<wbr>Rules</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Rules<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#parserules">parseRules</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L79">validator-abstract.ts:79</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="validate" class="tsd-anchor"></a>
+					<h3>validate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">validate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#validate">validate</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L153">validator-abstract.ts:153</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>validate inputs againest rules</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="validateattribute" class="tsd-anchor"></a>
+					<h3>validate<wbr>Attribute</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Attribute<span class="tsd-signature-symbol">(</span>attrName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, attrRules<span class="tsd-signature-symbol">: </span><a href="../interfaces/contracts.validationrulecontract.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidationRuleContract</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="validator_abstract.validatorabstract.html">ValidatorAbstract</a>.<a href="validator_abstract.validatorabstract.html#validateattribute">validateAttribute</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bitnbytesio/node-input-validator/blob/51b6bad/src/validator-abstract.ts#L179">validator-abstract.ts:179</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>apply rules on attribute</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>attrName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>attribute name</p>
+									</div>
+								</li>
+								<li>
+									<h5>attrRules: <a href="../interfaces/contracts.validationrulecontract.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidationRuleContract</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>attribute rules</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/validator_lite.html">validator-<wbr>lite</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="../modules/validator_lite.html#registerrules" class="tsd-kind-icon">register<wbr>Rules</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-module">
+						<a href="validator_lite.validatorlite.html" class="tsd-kind-icon">Validator<wbr>Lite</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#errors" class="tsd-kind-icon">errors</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#hascustommessages" class="tsd-kind-icon">has<wbr>Custom<wbr>Messages</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#hasnestedrules" class="tsd-kind-icon">has<wbr>Nested<wbr>Rules</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#lang" class="tsd-kind-icon">lang</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#localnicenames" class="tsd-kind-icon">local<wbr>Nice<wbr>Names</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#notationmap" class="tsd-kind-icon">notation<wbr>Map</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#notationvals" class="tsd-kind-icon">notation<wbr>Vals</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#parsedrulescollection" class="tsd-kind-icon">parsed<wbr>Rules<wbr>Collection</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#applyfilters" class="tsd-kind-icon">apply<wbr>Filters</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#applypostrules" class="tsd-kind-icon">apply<wbr>Post<wbr>Rules</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#attributevalue" class="tsd-kind-icon">attribute<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#createattributeerror" class="tsd-kind-icon">create<wbr>Attribute<wbr>Error</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#createattributeerrormessage" class="tsd-kind-icon">create<wbr>Attribute<wbr>Error<wbr>Message</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#doattributehasvalue" class="tsd-kind-icon">do<wbr>Attribute<wbr>Has<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#geterrors" class="tsd-kind-icon">get<wbr>Errors</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#haserrors" class="tsd-kind-icon">has<wbr>Errors</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#isattributepresent" class="tsd-kind-icon">is<wbr>Attribute<wbr>Present</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#nicenames" class="tsd-kind-icon">nice<wbr>Names</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#parse" class="tsd-kind-icon">parse</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#parseinputs" class="tsd-kind-icon">parse<wbr>Inputs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#parserules" class="tsd-kind-icon">parse<wbr>Rules</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#validate" class="tsd-kind-icon">validate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="validator_lite.validatorlite.html#validateattribute" class="tsd-kind-icon">validate<wbr>Attribute</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

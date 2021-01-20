@@ -1,0 +1,1 @@
+{"version":3,"file":"latLong.rule.js","sourceRoot":"","sources":["../../src/rules/latLong.rule.ts"],"names":[],"mappings":";;;;;;AAAA,0DAAkC;AAIlC,SAAgB,OAAO;IACrB,OAAO;QACL,IAAI,EAAE,SAAS;QACf,OAAO,EAAE,CAAC,KAAU,EAAE,EAAE;YACtB,OAAO,mBAAS,CAAC,SAAS,CAAC,MAAM,CAAC,KAAK,CAAC,CAAC,CAAC;QAC5C,CAAC;KACF,CAAC;AACJ,CAAC;AAPD,0BAOC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"validator-lite.mock.js","sourceRoot":"","sources":["../../src/mock/validator-lite.mock.ts"],"names":[],"mappings":";;;AAEA,MAAa,aAAa;IACxB,YAAoB,MAAW;QAAX,WAAM,GAAN,MAAM,CAAK;IAAG,CAAC;IAEnC,cAAc,CAAC,QAAgB;QAC7B,OAAO,IAAI,CAAC,MAAM,CAAC,QAAQ,CAAC,CAAC;IAC/B,CAAC;CACF;AAND,sCAMC"}

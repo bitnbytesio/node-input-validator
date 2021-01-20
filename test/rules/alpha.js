@@ -12,7 +12,18 @@ describe('alpha', () => {
 
     const matched = await v.check();
 
-    assert.equal(matched, true);
+    assert.strictEqual(matched, true);
+  });
+
+  it('should pass with example', async () => {
+    const v = new Validator(
+      { username: 'está' },
+      { username: 'alpha:pt-BR' },
+    );
+
+    const matched = await v.check();
+
+    assert.strictEqual(matched, true);
   });
 
 

@@ -1,0 +1,1 @@
+{"version":3,"file":"phoneNumber.rule.js","sourceRoot":"","sources":["../../src/rules/phoneNumber.rule.ts"],"names":[],"mappings":";;;;;;AAAA,0DAAkC;AAIlC,SAAgB,WAAW;IACzB,OAAO;QACL,IAAI,EAAE,aAAa;QACnB,OAAO,EAAE,CAAC,KAAU,EAAE,EAAE;YACtB,OAAO,mBAAS,CAAC,aAAa,CAAC,MAAM,CAAC,KAAK,CAAC,CAAC,CAAC;QAChD,CAAC;KACF,CAAC;AACJ,CAAC;AAPD,kCAOC"}
