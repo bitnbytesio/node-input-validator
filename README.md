@@ -575,12 +575,14 @@ new Validator(
 ```
 
 **alpha**  
+**alpha:locale**  
 The field under validation must be entirely alphabetic characters.
 
 **alphaDash**  
 The field under validation may have alpha-numeric characters, as well as dashes and underscores.
 
 **alphaNumeric**  
+**alphaNumeric:locale**
 The field under validation only contains letters and numbers.
 
 **array**  

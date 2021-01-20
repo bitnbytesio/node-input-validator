@@ -1,1 +1,0 @@
-{"version":3,"file":"integer.rule.js","sourceRoot":"","sources":["../../src/rules/integer.rule.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,WAAW,CAAC;AAIlC,MAAM,UAAU,OAAO;IACrB,OAAO;QACL,IAAI,EAAE,SAAS;QACf,OAAO,EAAE,CAAC,KAAU,EAAE,EAAE;YACtB,OAAO,SAAS,CAAC,KAAK,CAAC,MAAM,CAAC,KAAK,CAAC,CAAC,CAAC;QACxC,CAAC;KACF,CAAC;AACJ,CAAC"}

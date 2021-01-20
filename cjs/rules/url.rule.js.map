@@ -1,1 +1,0 @@
-{"version":3,"file":"url.rule.js","sourceRoot":"","sources":["../../src/rules/url.rule.ts"],"names":[],"mappings":";;;;;;AAAA,0DAAkC;AAIlC,SAAgB,GAAG;IACjB,OAAO;QACL,IAAI,EAAE,KAAK;QACX,OAAO,EAAE,CAAC,KAAU,EAAE,EAAE;YACtB,OAAO,mBAAS,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC;QAChC,CAAC;KACF,CAAC;AACJ,CAAC;AAPD,kBAOC"}
