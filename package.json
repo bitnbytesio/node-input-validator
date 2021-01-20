@@ -27,10 +27,11 @@
   },
   "scripts": {
     "test": "npx jest",
+    "test:coverage": "npx jest --coverage",
     "coverage": "npx jest --coverage",
     "report-coverage": "npx codecov -f coverage/coverage-final.json",
     "compile": "npx tsc -p tsconfig.json && npx tsc -p cjs.tsconfig.json",
-    "docs": "npx typedoc",
+    "docs": "npx typedoc --theme ./doctheme",
     "prepare": "npm run compile",
     "prepublishOnly": "npm test"
   },

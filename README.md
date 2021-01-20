@@ -11,16 +11,16 @@
 [travis-url]: https://travis-ci.org/bitnbytesio/node-input-validator?branch=development
 
 [codecov-img]: https://codecov.io/gh/bitnbytesio/node-input-validator/branch/development/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/bitnbytesio/node-input-validator
+[codecov-url]: https://codecov.io/gh/bitnbytesio/node-input-validator/branch/development
 
-[deps-image]:https://img.shields.io/david/bitnbytesio/node-input-validator?style=flat-square
-[david-url]: https://david-dm.org/bitnbytesio/node-input-validator?branch=development
+[deps-image]:https://status.david-dm.org/gh/bitnbytesio/node-input-validator.svg?ref=development
+[david-url]: https://david-dm.org/bitnbytesio/node-input-validator/development
 
 [npm-image]: https://img.shields.io/npm/v/node-input-validator/beta?style=flat-square
 [npm-url]: https://www.npmjs.com/package/node-input-validator/v/5.0.0-beta.0
 
 [node-image]: https://img.shields.io/badge/node.js-%3E=_10.12-green.svg?style=flat-square
-[node-url]: http://nodejs.org/download/
+[node-url]: https://nodejs.org/en/download/
 
 NIV (Node Input Validator) is a validation library for node.js. You can also extend library to add custom rules.
 
@@ -382,3 +382,8 @@ v.validate()
 ## Rules
 
 For rules documentation, <a href="https://bitnbytes.io/docs/niv/modules/rules.html" target="_blank">see https://bitnbytes.io/docs/niv/modules/rules.html</a>
+
+
+**Many thanks**
+
+- <a href="https://github.com/jgnovais">jgnovais</a>

@@ -5,6 +5,7 @@ node_modules
 
 # others
 docs
+doctheme
 test.js
 coverage
 npm-debug.log

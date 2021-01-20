@@ -3,7 +3,6 @@ node_js:
   - "10.12"
 install:
   - npm install
-script: "npm test"
+script: "npm test:coverage"
 after_success:
-  - npm run coverage
   - npm run report-coverage
