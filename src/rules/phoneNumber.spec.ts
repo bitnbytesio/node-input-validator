@@ -5,8 +5,9 @@ import { phoneNumber } from "./phoneNumber.rule";
 test("rules:phoneNumber", function (): void {
   const ruleHandler = phoneNumber().handler;
   expect(ruleHandler("+918699987073")).toBe(true);
-  expect(ruleHandler("+1-541-754-3010")).toBe(true);
+  expect(ruleHandler("+15417543010")).toBe(true);
   expect(ruleHandler("draft")).toBe(false);
+  expect(ruleHandler(null)).toBe(false);
 });
 
 test("message should exists", () => {

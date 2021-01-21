@@ -1,5 +1,3 @@
-import validator from 'validator';
-
 import { ValidationRuleContract, ValidatorContract } from "../contracts";
 
 export function regex(args: Array<any>): ValidationRuleContract {

@@ -19,7 +19,27 @@ export function dateAfter(args: Array<Date | string | number>): ValidationRuleCo
   return {
     name: "dateAfter",
     handler: (value: any): boolean => {
-      return adapter.isAfter(format, value, dateToCompare);
+      return adapter.isAfter(format, value, dateToCompare || new Date);
+    },
+  };
+}
+
+export function after(args: Array<Date | string | number>): ValidationRuleContract {
+  if (!args.length || args.length > 2) {
+    throw new Error('Rule accepts 2 argument (format,[date optional]).');
+  }
+
+  const adapter: DateAdapter = dateAdapter();
+  const [format, dateToCompare] = args;
+
+  if (typeof format !== 'string') {
+    throw new TypeError('First element must be date format.')
+  }
+
+  return {
+    name: "after",
+    handler: (value: any): boolean => {
+      return adapter.isAfter(format, value, dateToCompare || new Date());
     },
   };
 }
@@ -62,6 +82,26 @@ export function dateBefore(
   };
 }
 
+export function before(args: Array<Date | string | number>): ValidationRuleContract {
+  if (!args.length || args.length > 2) {
+    throw new Error('Rule accepts 2 argument (format,[date optional]).');
+  }
+
+  const adapter: DateAdapter = dateAdapter();
+  const [format, dateToCompare] = args;
+
+  if (typeof format !== 'string') {
+    throw new TypeError('First element must be date format.')
+  }
+
+  return {
+    name: "before",
+    handler: (value: any): boolean => {
+      return adapter.isBefore(format, value, dateToCompare || new Date());
+    },
+  };
+}
+
 
 export function dateBeforeToday(args: Array<string>): ValidationRuleContract {
   if (args.length !== 1) {
@@ -84,8 +124,8 @@ export function dateFormat(args: Array<string>): ValidationRuleContract {
     throw new Error('Rule accepts only 1 argument (format).');
   }
 
-  const adapter: DateAdapter = dateAdapter();
   const [format] = args;
+  const adapter: DateAdapter = dateAdapter();
 
   return {
     name: "dateFormat",
@@ -104,4 +144,30 @@ export function dateISO(): ValidationRuleContract {
       return adapter.isValidIsoDateFormat(value);
     },
   };
+}
+
+// export { dateISO as dateiso, dateISO as iso8601 };
+
+export function datetime(): ValidationRuleContract {
+  const adapter: DateAdapter = dateAdapter();
+
+  return {
+    name: 'datetime',
+    handler: (value: any): boolean => {
+      return adapter.isValidDateFormat(value, adapter.FORMAT_DATETIME);
+    }
+  }
+}
+
+
+export function date(args: Array<string> = []): ValidationRuleContract {
+  const adapter: DateAdapter = dateAdapter();
+  const [format = adapter.FORMAT_DATE] = args;
+
+  return {
+    name: 'date',
+    handler: (value: any): boolean => {
+      return adapter.isValidDateFormat(value, format);
+    }
+  }
 }

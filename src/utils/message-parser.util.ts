@@ -1,4 +1,5 @@
 import { MessageProviderFuncation } from '../contracts';
+import { messages } from '../messages/en-US.messages';
 import { camelCaseToSentance, snakeCaseToSentance } from './str.util';
 
 interface MessageParserParams {

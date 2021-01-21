@@ -1,4 +1,3 @@
-
 import { Messages } from "../messages";
 import { hash } from "./hash.rule";
 
@@ -16,6 +15,7 @@ describe("rules:hash", () => {
 
   test("should throw exception", function (): void {
     expect(() => hash([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => hash(['abc'])).toThrowError(new Error('Algo abc not supported.'));
   });
 
   test("message should exists", () => {

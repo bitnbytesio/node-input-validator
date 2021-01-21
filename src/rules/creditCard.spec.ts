@@ -13,6 +13,7 @@ describe("rules:creditCard", () => {
   test("should fail", () => {
     const ruleHandler = creditCard().handler;
     expect(ruleHandler("412365")).toBe(false);
+    expect(ruleHandler(["412365"])).toBe(false);
   });
 
   test("message should exists", () => {

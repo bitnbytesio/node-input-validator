@@ -10,6 +10,7 @@ describe("rules:email", () => {
   test("should fail", () => {
     const ruleHandler = email().handler;
     expect(ruleHandler("form@example")).toBe(false);
+    expect(ruleHandler(["array"])).toBe(false);
   });
 
   test("message should exists", () => {

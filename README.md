@@ -379,6 +379,95 @@ v.validate()
 
 ```
 
+## Date Rules
+
+To use date rules, you has to install <a target="_blank" href="https://www.npmjs.com/package/moment">moment</a> or <a target="_blank" href="https://www.npmjs.com/package/date-fns">date-fns</a>
+
+### For moment
+
+```js
+const { MomentAdapter, useDateAdapter  } = require('node-input-validator');
+const moment = require('moment');
+
+useDateAdapter(new MomentAdapter(moment));
+```
+### For date-fns
+
+```js
+const { DateFnsAdapter, useDateAdapter  } = require('node-input-validator');
+const dateFns = require('date-fns');
+
+useDateAdapter(new DateFnsAdapter(dateFns));
+```
+
+## using <a target="_blank" href="https://www.npmjs.com/package/validator">validator</a>
+
+To use validator rules, first your need to install it
+
+```ssh
+npm i validator
+```
+
+### Example 1
+
+Then your can use all rules of validator.js as sub rule under rule validator.
+
+```js
+const { Validator } = require('node-input-validator');
+
+const v = new Validator(
+  {},
+  {
+    email: 'validator:isEmail',
+  },
+)
+
+v.validate()
+
+```
+
+### Example 2
+
+Passing arguments to validator.js rules, example passing locale to isAlpha rule.
+
+```js
+const { Validator } = require('node-input-validator');
+
+const v = new Validator(
+  req.body,
+  {
+    email: 'validator:isAlpha,pt-BR',
+  },
+)
+
+v.validate()
+
+```
+
+### Example 3
+
+```js
+const { Validator, Rules } = require('node-input-validator');
+
+const v = new Validator(
+  req.body,
+  {
+    email: [Rules.validator('isAlpha', ['pt-BR'])],
+  },
+)
+
+v.validate()
+
+```
+
+Note: You have to manually add messages for most validator.js rules.
+
+### How package check messages for validator.js
+
+Package internaly remove "is" from validator.js rule and make it lowercase.
+
+For example: isEmail -> email, hence it can use existing email message.
+
 ## Rules
 
 For rules documentation, <a href="https://bitnbytes.io/docs/niv/modules/rules.html" target="_blank">see https://bitnbytes.io/docs/niv/modules/rules.html</a>

@@ -1,13 +1,10 @@
-import { string } from "../rules"
-
-export interface DateFormats {
-  yyyy_MM_dd: string
-}
-
 export abstract class DateAdapter {
 
   // https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
-  static FORMAT_yyyy_MM_dd: string = 'yyyy-MM-dd';
+  // readonly FORMAT_yyyy_MM_dd: string = 'yyyy-MM-dd';
+
+  readonly FORMAT_DATE: string = 'yyyy-MM-dd';
+  readonly FORMAT_DATETIME: string = 'yyyy-MM-dd HH:mm:ss';
 
   constructor(protected dateLib: any) { }
 
@@ -16,7 +13,7 @@ export abstract class DateAdapter {
 
   abstract addDays(date: Date, days: number): Date;
   abstract subDays(date: Date, days: number): Date;
-  abstract parse(date: string, format: string, referenceDate: Date): Date;
+  abstract parse(date: string, format: string, referenceDate?: Date): Date;
   abstract format(date: Date, format: string): string;
   abstract isValidDateFormat(date: string, format: string): boolean
   abstract isValidIsoDateFormat(date: string): boolean

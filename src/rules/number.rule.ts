@@ -1,12 +1,12 @@
-import validator from 'validator';
-
 import { ValidationRuleContract } from "../contracts";
 
-export function integer(): ValidationRuleContract {
+import { isDecimal, isInt, isNumeric } from '../utils/number.util';
+
+export function integer(args: Array<'0'> = []): ValidationRuleContract {
   return {
     name: "integer",
     handler: (value: any) => {
-      return validator.isInt(String(value));
+      return isInt(value + "", args && args[0] === '0');
     },
   };
 }
@@ -29,7 +29,7 @@ export function min(args: Array<string>): ValidationRuleContract {
       const v = String(value);
 
       if (
-        !validator.isNumeric(v)
+        !isNumeric(v)
         || Number(v) < minNum
       ) {
         return false;
@@ -57,7 +57,7 @@ export function max(args: Array<string>): ValidationRuleContract {
       const v = String(value);
 
       if (
-        !validator.isNumeric(v)
+        !isNumeric(v)
         || Number(v) > maxNum
       ) {
         return false;
@@ -72,7 +72,11 @@ export function decimal(): ValidationRuleContract {
   return {
     name: "decimal",
     handler: (value: any) => {
-      return validator.isDecimal(String(value));
+      if (typeof value !== 'string') {
+        return false;
+      }
+
+      return isDecimal(value);
     },
   };
 }
@@ -81,7 +85,7 @@ export function numeric(): ValidationRuleContract {
   return {
     name: "numeric",
     handler: (value: any) => {
-      return validator.isNumeric(String(value));
+      return isNumeric(value + "");
     },
   };
 }

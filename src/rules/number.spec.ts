@@ -29,15 +29,16 @@ describe("rules:decimal", () => {
   test("should pass", () => {
     const ruleHandler = decimal().handler;
     expect(ruleHandler("12.50")).toBe(true);
-    expect(ruleHandler(12.55)).toBe(true);
-    expect(ruleHandler(12)).toBe(true);
-    expect(ruleHandler(0)).toBe(true);
+    expect(ruleHandler("12.5")).toBe(true);
+    expect(ruleHandler("12")).toBe(true);
+    expect(ruleHandler("0.5345")).toBe(true);
     expect(ruleHandler("0")).toBe(true);
   });
 
   test("should fail", () => {
     const ruleHandler = decimal().handler;
     expect(ruleHandler("abc")).toBe(false);
+    expect(ruleHandler(12.5)).toBe(false);
     expect(ruleHandler([])).toBe(false);
     expect(ruleHandler({})).toBe(false);
   });

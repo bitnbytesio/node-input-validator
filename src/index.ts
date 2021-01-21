@@ -7,17 +7,22 @@ import * as Rules from './rules';
 import { Langs, ValidationRuleContract } from './contracts';
 
 import * as config from "./config";
+import { DateAdapter } from './date/contracts';
 
 export { Validator, Rules };
+
+export { MomentAdapter, DateFnsAdapter } from './date';
 
 export function configure(customConf: config.IConfig) {
   config.set(customConf);
 }
 
+export function useDateAdapter(dateAdapter: DateAdapter) {
+  config.modify('dateAdapter', dateAdapter);
+}
+
 export function lang(lang: Langs) {
-  config.set({
-    lang,
-  });
+  config.modify('lang', lang);
 }
 
 export function extend(ruleName: string, ruleFunc: (args?: Array<string>) => ValidationRuleContract) {

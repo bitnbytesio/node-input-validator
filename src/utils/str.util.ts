@@ -60,3 +60,9 @@ export function sizeToBytes(inputSize: string): number {
   /* istanbul ignore next */
   return parseInt(size) * 1024;
 };
+
+const hexadecimal = /^(0x|0h)?[0-9A-F]+$/i;
+
+export function isHexadecimal(value: string) {
+  return hexadecimal.test(value);
+}

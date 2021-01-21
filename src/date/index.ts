@@ -1,16 +1,16 @@
 import { DateAdapter } from "./contracts";
-// import { DateFnsAdapter } from "./date-fns.adapter";
+import { get } from '../config';
 
-let AdapterInstance: DateAdapter;
+export * from './date-fns.adapter';
+export * from './moment.adapter';
 
-export function useDateAdapter(instance: DateAdapter) {
-  AdapterInstance = instance;
-}
+export { DateAdapter };
 
 export function dateAdapter(): DateAdapter {
-  if (!AdapterInstance) {
-    throw new Error('Please set date adapter.');
+  const adapterInstance = get('dateAdapter');
+  if (!adapterInstance) {
+    throw new Error('Please set date adapter to use date rules.');
   }
 
-  return AdapterInstance;
+  return adapterInstance;
 }

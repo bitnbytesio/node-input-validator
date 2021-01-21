@@ -1,5 +1,4 @@
 import { ValidationRuleContract } from "../contracts";
-import validator from "validator";
 
 export function maxLength(args: Array<string>): ValidationRuleContract {
   if (args.length !== 1) {

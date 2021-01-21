@@ -1,6 +1,5 @@
 import { ValidationRuleContract } from "../contracts";
-import validator from "validator";
-
+import { isNumeric } from "../utils/number.util";
 
 /**
  * The field under validation must be between min and max seed.
@@ -13,7 +12,7 @@ export function between(args: Array<string>): ValidationRuleContract {
     throw new Error('Invalid number of arguments.');
   }
 
-  if (!validator.isNumeric(args[0]) || !validator.isNumeric(args[0])) {
+  if (!isNumeric(args[0]) || !isNumeric(args[0])) {
     throw new TypeError('Seeds must be number.');
   }
 
@@ -34,7 +33,7 @@ export function between(args: Array<string>): ValidationRuleContract {
         for (i; i < len; i++) {
           const v = String(value[i]);
 
-          if (!validator.isNumeric(v)) {
+          if (!isNumeric(v)) {
             return false;
           }
         }
@@ -50,7 +49,7 @@ export function between(args: Array<string>): ValidationRuleContract {
 
       const v = String(value);
 
-      if (!validator.isNumeric(v)) {
+      if (!isNumeric(v)) {
         return false;
       }
 

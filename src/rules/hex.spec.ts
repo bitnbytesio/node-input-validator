@@ -11,6 +11,7 @@ describe("rules:hex", () => {
   test("should fail", () => {
     const ruleHandler = hex().handler;
     expect(ruleHandler("Yes, Node is awesome")).toBe(false);
+    expect(ruleHandler({})).toBe(false);
   });
 
   test("message should exists", () => {
@@ -29,6 +30,7 @@ describe("rules:hexColor", () => {
   test("should fail", () => {
     const ruleHandler = hexColor().handler;
     expect(ruleHandler("Yes, Node is awesome")).toBe(false);
+    expect(ruleHandler(false)).toBe(false);
   });
 
   test("message should exists", () => {

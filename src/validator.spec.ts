@@ -2,6 +2,9 @@ import { Rules } from "./index";
 
 import { Validator } from './validator';
 
+import { messages } from './messages/en-US.messages';
+import { messageParser } from './utils/message-parser.util';
+
 describe(
   "Validator:validate",
   function (): void {
@@ -16,6 +19,22 @@ describe(
         const passed: boolean = await v.validate();
         expect(passed).toBe(true);
       });
+
+    test('should use message if available, validator.js', async () => {
+      // should pass, as value is as per given rule
+      const v = new Validator(
+        { email: "email" },
+        { email: 'validator:isEmail' },
+      );
+      const passed: boolean = await v.validate();
+      expect(passed).toBe(false);
+      expect(v.errors.email.message).toBe(messageParser({
+        message: messages.email,
+        ruleArgs: ['isEmail'],
+        attrName: 'email',
+        ruleName: 'validator',
+      }));
+    });
 
     test(
       "should fail, and return error message with nicename",

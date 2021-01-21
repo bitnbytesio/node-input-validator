@@ -1,6 +1,10 @@
-import validator from 'validator';
-
 import { ValidationRuleContract } from "../contracts";
+
+const REGEX_ALPHA = /^[A-Z]+$/i;
+const REGEX_ALPHA_DASH = /^[A-Z_-]+$/i;
+const REGEX_ALPHA_HYPHEN = /^[A-Z-]+$/i;
+const REGEX_ALPHA_NUMERIC = /^[0-9A-Z]+$/i;
+const REGEX_ALPHA_NUMERIC_DASH = /^[A-Z0-9_-]+$/i;
 
 /**
  * The field under validation must be entirely alphabetic characters.
@@ -10,7 +14,11 @@ export function alpha(
   return {
     name: "alpha",
     handler: (value: any) => {
-      return validator.isAlpha(value + "");
+      if (typeof value !== 'string') {
+        return false;
+      }
+
+      return REGEX_ALPHA.test(value);
     },
   };
 }
@@ -23,11 +31,11 @@ export function alphaDash(
   return {
     name: "alphaDash",
     handler: (value: any) => {
-      if (!(/^[A-Z_-]+$/i.test(value + ""))) {
+      if (typeof value !== 'string') {
         return false;
       }
 
-      return true;
+      return REGEX_ALPHA_DASH.test(value);
     },
   };
 }
@@ -40,11 +48,11 @@ export function alphaHyphen(
   return {
     name: "alphaHyphen",
     handler: (value: any) => {
-      if (!(/^[A-Z-]+$/i.test(value + ""))) {
+      if (typeof value !== 'string') {
         return false;
       }
 
-      return true;
+      return REGEX_ALPHA_HYPHEN.test(value);
     },
   };
 }
@@ -57,7 +65,11 @@ export function alphaNumeric(
   return {
     name: "alphaNumeric",
     handler: (value: any) => {
-      return validator.isAlphanumeric(value + "");
+      if (typeof value !== 'string') {
+        return false;
+      }
+
+      return REGEX_ALPHA_NUMERIC.test(value);
     },
   };
 }
@@ -70,11 +82,11 @@ export function alphaNumericDash(
   return {
     name: "alphaNumericDash",
     handler: (value: any) => {
-      if (!(/^[A-Z0-9_-]+$/i.test(value + ""))) {
+      if (typeof value !== 'string') {
         return false;
       }
 
-      return true;
+      return REGEX_ALPHA_NUMERIC_DASH.test(value);
     },
   };
 }

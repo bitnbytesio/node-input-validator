@@ -1,27 +1,27 @@
-import validator from 'validator';
-
 import { ValidationRuleContract } from "../contracts";
+
+import { isInt } from '../utils/number.util';
 
 export function digits(args: Array<string> = []): ValidationRuleContract {
   if (args.length !== 1) {
     throw new Error('Invalid number of arguments.');
   }
 
-  const [len] = args;
+  const [lenStr] = args;
 
-  if (!validator.isInt(len)) {
-    throw new TypeError('Seeds must be number.');
+  const len = parseInt(lenStr, 10);
+
+  if (!len) {
+    throw new TypeError('Seed must be number, greater then 0.');
   }
-
-  const lenInt = parseInt(len, 10);
 
   return {
     name: "digits",
     handler: (value: any) => {
       const v = String(value);
       if (
-        validator.isInt(v)
-        && v.length === lenInt
+        isInt(v)
+        && v.length === len
       ) {
         return true;
       }
@@ -39,12 +39,16 @@ export function digitsBetween(args: Array<string> = []): ValidationRuleContract 
 
   const [min, max] = args;
 
-  if (!validator.isInt(min) || !validator.isInt(max)) {
-    throw new TypeError('Seeds must be number.');
-  }
-
   const minInt = parseInt(min, 10);
   const maxInt = parseInt(max, 10);
+
+  if (!minInt || !maxInt) {
+    throw new TypeError('Seeds must be number, greater then 0.');
+  }
+
+  if (min > max) {
+    throw new RangeError('Seed min must be less then max.');
+  }
 
   return {
     name: "digitsBetween",
@@ -52,7 +56,7 @@ export function digitsBetween(args: Array<string> = []): ValidationRuleContract 
       const v = String(value);
       const len = v.length;
       if (
-        validator.isInt(v)
+        isInt(v)
         && len >= minInt
         && len <= maxInt
       ) {

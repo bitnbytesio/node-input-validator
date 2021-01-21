@@ -1,12 +1,16 @@
-import validator from 'validator';
+import { ValidationRuleContract } from "../contracts";
 
-import { ValidationRuleContract, ValidatorContract } from "../contracts";
+const regex = /^(\+?\d{1,3})?\d{7,10}$/;
 
-export function phoneNumber(): ValidationRuleContract {
+export function phoneNumber(args: Array<string> = []): ValidationRuleContract {
   return {
     name: "phoneNumber",
     handler: (value: any) => {
-      return validator.isMobilePhone(String(value));
+      if (typeof value !== 'string') {
+        return false;
+      }
+
+      return regex.test(value);
     },
   };
 }

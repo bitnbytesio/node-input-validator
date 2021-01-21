@@ -1,12 +1,23 @@
-import validator from 'validator';
+import { ValidationRuleContract } from "../contracts";
+import { URL } from 'url';
 
-import { ValidationRuleContract, ValidatorContract } from "../contracts";
-
-export function url(): ValidationRuleContract {
+export function url(args: Array<string> = ['http:', 'https:']): ValidationRuleContract {
   return {
     name: "url",
     handler: (value: any) => {
-      return validator.isURL(value);
+      if (typeof value !== 'string') {
+        return false;
+      }
+
+      let url;
+
+      try {
+        url = new URL(value);
+      } catch (_) {
+        return false;
+      }
+
+      return args.indexOf(url.protocol) >= 0;
     },
   };
 }

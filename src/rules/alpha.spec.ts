@@ -17,6 +17,7 @@ describe("rules:alpha", (): void => {
     const ruleHandler = alpha().handler;
     expect(ruleHandler("abc123")).toBe(false);
     expect(ruleHandler("123")).toBe(false);
+    expect(ruleHandler({})).toBe(false);
   });
 
   test("message should exists", () => {
@@ -36,6 +37,7 @@ describe("rules:alphaDash", (): void => {
     const ruleHandler = alphaDash().handler;
     expect(ruleHandler("abc_123")).toBe(false);
     expect(ruleHandler("yes-123")).toBe(false);
+    expect(ruleHandler({})).toBe(false);
   });
 
   test("message should exists", () => {
@@ -55,6 +57,7 @@ describe("rules:alphaHyphen", (): void => {
     const ruleHandler = alphaHyphen().handler;
     expect(ruleHandler("abc_123")).toBe(false);
     expect(ruleHandler("yes-123")).toBe(false);
+    expect(ruleHandler({})).toBe(false);
   });
 
   test("message should exists", () => {
@@ -74,6 +77,7 @@ describe("rules:alphaNumeric", (): void => {
     const ruleHandler = alphaNumeric().handler;
     expect(ruleHandler("abc123_")).toBe(false);
     expect(ruleHandler("123-")).toBe(false);
+    expect(ruleHandler(["123-"])).toBe(false);
   });
 
   test("message should exists", () => {
@@ -98,6 +102,7 @@ describe("rules:alphaNumericDash", (): void => {
     const ruleHandler = alphaNumericDash().handler;
     expect(ruleHandler("abc123_!")).toBe(false);
     expect(ruleHandler("a+123")).toBe(false);
+    expect(ruleHandler(null)).toBe(false);
   });
 
   test("message should exists", () => {

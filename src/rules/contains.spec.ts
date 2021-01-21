@@ -5,15 +5,19 @@ describe("rules:contains", () => {
   test("should pass", () => {
     const ruleHandler = contains(["package"]).handler;
     expect(ruleHandler("This package is awesome.")).toBe(true);
+    expect(contains(["package", 'i']).handler("This Package is awesome.")).toBe(true);
   });
 
   test("should fail", () => {
     const ruleHandler = contains(["package"]).handler;
     expect(ruleHandler("Node is awesome.")).toBe(false);
+    expect(ruleHandler("Node is Package.")).toBe(false);
+    expect(ruleHandler(["array"])).toBe(false);
   });
 
   test("should throw exception", function (): void {
     expect(() => contains([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => contains(['test', 'g'])).toThrowError(new Error('Only support modifier is insensitive (i).'));
   });
 
   test("message should exists", () => {

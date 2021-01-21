@@ -12,6 +12,7 @@ describe("rules:domain", function (): void {
     const ruleHandler = domain().handler;
     expect(ruleHandler("http://www.example.com")).toBe(false);
     expect(ruleHandler("localhost")).toBe(false);
+    expect(ruleHandler(["localhost"])).toBe(false);
   });
 
   test("message should exists", () => {

@@ -1,9 +1,11 @@
 import { Langs } from "./contracts";
+import { DateAdapter } from "./date/contracts";
 
 export interface IConfig extends NodeJS.Dict<any> {
   wildcardIterations?: number;
   wildcardSeperator?: string;
   lang?: Langs,
+  dateAdapter?: DateAdapter,
 }
 
 let config: IConfig = {
@@ -23,4 +25,8 @@ export function get(key?: string, defaultValue = null) {
   }
 
   return config;
+}
+
+export function modify(key: string, value: Langs | DateAdapter) {
+  config[key] = value;
 }

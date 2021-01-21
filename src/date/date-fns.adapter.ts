@@ -2,7 +2,8 @@ import { DateAdapter } from "./contracts";
 
 export class DateFnsAdapter extends DateAdapter {
   protected dateLib: any;
-  static FORMAT_yyyy_MM_dd: string = 'yyyy-MM-dd';
+  readonly FORMAT_DATE: string = 'yyyy-MM-dd';
+  readonly FORMAT_DATETIME: string = 'yyyy-MM-dd HH:mm:ss';
 
   constructor(dateLib: any) {
     super(dateLib);

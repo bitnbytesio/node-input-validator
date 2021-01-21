@@ -108,6 +108,17 @@ export const messages = {
   timezone: 'The :attr must be a valid zone.',
   unique: 'The :attr has already been taken.',
   url: 'The :attr format is invalid.',
+  // validator: (params: any) => {
+  //   if (!params.ruleArgs || !params.ruleArgs[0]) {
+  //     // throw params.ruleArgs;
+  //     return messages.$default;
+  //   }
+
+  //   const rule = params.ruleArgs[0].replace('is', '').toLowerCase();
+  //   // throw rule;
+  //   // @ts-ignore
+  //   return messages[rule] || messages.$default;
+  // },
   any: 'At least one of :attr fields must be provided',
   $niceNames: {},
   $custom: {

@@ -1,0 +1,11 @@
+- phoneNumber
+- url
+- json
+- base64
+- ascii
+- email
+- ip
+- domain
+- dateiso
+- after
+- before
