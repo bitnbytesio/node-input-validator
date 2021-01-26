@@ -10,7 +10,11 @@ export function niceNames(attributes: object, lang?: string): void;
 
 export function koa(): Function;
 
+export function bailable(sure: boolean): void;
+
 export function assert(rules: object): any;
+
+export function setStrNotationRepetition(repetition: number): void;
 
 export declare class Validator {
 
@@ -33,7 +37,11 @@ export declare class Validator {
 
   parseRules(validationRules: object): void;
 
-  check(): Promise<boolean>
+  getErrors(): any;
+
+  validate(): Promise<boolean>;
+
+  check(): Promise<boolean>;
 
   fails(): Promise<boolean>;
 
@@ -57,5 +65,9 @@ export declare class Validator {
 
   getExistinParsedMessage(options: any): string;
 
+  error(key: string, rule: string, message: string): void;
+
   addError(key: string, rule: string, message: string): void;
+
+  appendError(key: string, rule: string, message: string): void;
 }
