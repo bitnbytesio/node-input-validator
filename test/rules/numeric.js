@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('numeric', () => {
   it('should pass with numbers in string', async () => {
     const v = new Validator(
@@ -36,7 +35,6 @@ describe('numeric', () => {
 
     assert.equal(matched, true);
   });
-
 
   it('should fail with non numeric', async () => {
     const v = new Validator(

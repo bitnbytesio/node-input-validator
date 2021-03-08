@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('alphaNumeric', () => {
   it('should pass with example', async () => {
     const v = new Validator(
@@ -14,7 +13,6 @@ describe('alphaNumeric', () => {
 
     assert.equal(matched, true);
   });
-
 
   it('should pass with alpha-numeric', async () => {
     const v = new Validator(

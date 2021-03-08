@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('regex', () => {
   it('should pass', async () => {
     const v = new Validator(
@@ -14,7 +13,6 @@ describe('regex', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail', async () => {
     const v = new Validator(
       { attribute: 'xyz' }, { attribute: 'regex:[abc]' },
@@ -25,13 +23,11 @@ describe('regex', () => {
     assert.equal(matched, false);
   });
 
-
   it('message should exist', async () => {
     const v = new Validator(
       { attr: '123' },
       { attr: 'regex:[abc]' },
     );
-
 
     const matched = await v.check();
     assert.equal(matched, false);

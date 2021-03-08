@@ -14,7 +14,6 @@ describe('hash', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail with plain text', async () => {
     const v = new Validator(
       { attr: 'Yes, Node is awesome' },

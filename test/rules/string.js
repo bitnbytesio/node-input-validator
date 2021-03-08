@@ -1,6 +1,5 @@
 const assert = require('assert');
 
-
 const { Validator } = require('../../lib/index');
 
 describe('string', () => {

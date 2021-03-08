@@ -15,6 +15,13 @@
     "parserOptions": {
         "ecmaVersion": 2017
     },
+    "ignorePatterns": [
+        "cjs/*",
+        "coverage",
+        "docs",
+        "esm",
+        "node_modules"
+    ],
     "rules": {
         "no-plusplus": "off",
         "no-continue": "off",

@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('arrayUnique', () => {
   it('should fail with string', async () => {
     const v = new Validator(
@@ -14,7 +13,6 @@ describe('arrayUnique', () => {
 
     assert.equal(matched, false);
   });
-
 
   it('should pass with empty array', async () => {
     const v = new Validator(

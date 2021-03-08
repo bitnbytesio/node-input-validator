@@ -11,18 +11,15 @@ describe('mime', () => {
       { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'mime:png,jpg' },
     );
 
-
     const matched = await v.check();
 
     assert.equal(matched, true);
   });
 
-
   it('should fail, using buffer', async () => {
     const v = new Validator(
       { file: { buffer: fs.readFileSync('./test/stubs/file-small.png') } }, { file: 'mime:bmp' },
     );
-
 
     const matched = await v.check();
 
@@ -34,7 +31,6 @@ describe('mime', () => {
       { file: { path: './test/stubs/file-small.png' } }, { file: 'mime:gif,bmp' },
     );
 
-
     const matched = await v.check();
 
     assert.equal(matched, false);
@@ -44,7 +40,6 @@ describe('mime', () => {
     const v = new Validator(
       { file: './test/stubs/file-small.png' }, { file: 'mime:gif,bmp' },
     );
-
 
     const matched = await v.check();
 
@@ -56,7 +51,6 @@ describe('mime', () => {
       { file: { mime: 'image/gif' } }, { file: 'mime:gif,bmp' },
     );
 
-
     const matched = await v.check();
 
     assert.equal(matched, true);
@@ -67,7 +61,6 @@ describe('mime', () => {
       { file: { type: 'image/gif' } }, { file: 'mime:gif,bmp' },
     );
 
-
     const matched = await v.check();
 
     assert.equal(matched, true);
@@ -77,7 +70,6 @@ describe('mime', () => {
     const v = new Validator(
       { file: { mimetype: 'image/gif' } }, { file: 'mime:gif,bmp' },
     );
-
 
     const matched = await v.check();
 

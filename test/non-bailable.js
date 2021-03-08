@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator, bailable } = require('../lib/index');
 
-
 describe('Non bailable', () => {
   it('should return multiple errors', async () => {
     // bailable(false);

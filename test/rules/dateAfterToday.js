@@ -30,7 +30,6 @@ describe('#dateAfterToday', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail', async () => {
     const v = new Validator(
       {

@@ -14,7 +14,6 @@ describe('notContains', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail', async () => {
     const v = new Validator(
       { attr: 'Yes, Node is awesome' },

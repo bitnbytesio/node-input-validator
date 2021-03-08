@@ -1,6 +1,5 @@
 const assert = require('assert');
 
-
 const { Validator } = require('../../lib/index');
 
 describe('requiredNotIf', () => {
@@ -15,7 +14,6 @@ describe('requiredNotIf', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail', async () => {
     const v = new Validator(
       { name: 'Harcharan Singh', age: 15, sex: 'male' },
@@ -26,7 +24,6 @@ describe('requiredNotIf', () => {
 
     assert.equal(matched, false);
   });
-
 
   it('should pass with multiple seeds', async () => {
     const v = new Validator(

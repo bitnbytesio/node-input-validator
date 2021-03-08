@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('decimal', () => {
   it('should pass with numbers in string', async () => {
     const v = new Validator(
@@ -58,7 +57,6 @@ describe('decimal', () => {
     assert.equal(matched, true);
   });
 
-
   it('message should exist', async () => {
     const v = new Validator(
       { attr: 'a12' },
@@ -66,7 +64,6 @@ describe('decimal', () => {
     );
 
     const matched = await v.check();
-
 
     assert.equal(matched, false);
     assert.equal(

@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('digitsBetween', () => {
   it('should pass with min length', async () => {
     const v = new Validator(
@@ -34,7 +33,6 @@ describe('digitsBetween', () => {
 
     const matched = await v.check();
 
-
     assert.equal(matched, false);
   });
 
@@ -46,10 +44,8 @@ describe('digitsBetween', () => {
 
     const matched = await v.check();
 
-
     assert.equal(matched, false);
   });
-
 
   it('should throw seed count exception', async () => {
     try {
@@ -62,7 +58,6 @@ describe('digitsBetween', () => {
       assert.equal(e, 'Error: The number of arguments for digitsBetween rule in the field attribute are invalid.');
     }
   });
-
 
   it('should throw invalid min seed exception', async () => {
     try {
@@ -87,7 +82,6 @@ describe('digitsBetween', () => {
       assert.equal(e, 'Error: Seeds must be integer for attribute under digitsBetween rule.');
     }
   });
-
 
   it('should throw min must be less then max seed exception', async () => {
     try {

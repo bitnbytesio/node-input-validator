@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('hexColor', () => {
   it('should pass', async () => {
     const v = new Validator(
@@ -37,7 +36,6 @@ describe('hexColor', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail with plain text', async () => {
     const v = new Validator(
       { attr: 'Yes, Node is awesome' },
@@ -54,7 +52,6 @@ describe('hexColor', () => {
       { attr: 'Yes, Node is awesome' },
       { attr: 'hexColor' },
     );
-
 
     const matched = await v.check();
     assert.equal(matched, false);

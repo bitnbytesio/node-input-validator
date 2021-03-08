@@ -4,7 +4,6 @@ const niv = require('../lib/index');
 
 const { Validator } = niv;
 
-
 niv.extend('asyncIn', async ({ value, args }) => {
   const results = await new Promise((resolve) => {
     setTimeout(() => {
@@ -18,7 +17,6 @@ niv.extend('asyncIn', async ({ value, args }) => {
   });
   return results;
 });
-
 
 describe('Async Rules', () => {
   it('should pass using async', async () => {

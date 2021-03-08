@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('domain', () => {
   it('should pass with example.com', async () => {
     const v = new Validator(
@@ -36,7 +35,6 @@ describe('domain', () => {
 
     assert.equal(matched, false);
   });
-
 
   it('should fail with string', async () => {
     const v = new Validator(

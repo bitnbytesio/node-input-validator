@@ -1,7 +1,6 @@
 const assert = require('assert');
 const { Validator } = require('../../lib/index');
 
-
 describe('object', () => {
   it('should pass with empty {}', async () => {
     const v = new Validator(
@@ -25,7 +24,6 @@ describe('object', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail with string', async () => {
     const v = new Validator(
       { features: 'no' },
@@ -37,13 +35,11 @@ describe('object', () => {
     assert.equal(matched, false);
   });
 
-
   it('message should exist', async () => {
     const v = new Validator(
       { attr: 'draft' },
       { attr: 'object' },
     );
-
 
     const matched = await v.check();
     assert.equal(matched, false);

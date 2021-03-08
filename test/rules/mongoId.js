@@ -13,7 +13,6 @@ describe('mongoId', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail', async () => {
     const v = new Validator(
       { attr: '1945690' },
@@ -24,7 +23,6 @@ describe('mongoId', () => {
 
     assert.equal(matched, false);
   });
-
 
   it('message should exist', async () => {
     const v = new Validator(

@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('base64', () => {
   it('should pass with valida base64 string', async () => {
     const v = new Validator(

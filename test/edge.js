@@ -11,7 +11,6 @@ describe('Edge Cases', () => {
       assert.equal(matched, true);
     });
 
-
     it('should reject undefined and required fields', async () => {
       const v = new Validator({ field: undefined }, { field: 'required|string' });
 
@@ -28,7 +27,6 @@ describe('Edge Cases', () => {
       assert.equal(matched, true);
     });
 
-
     it('should reject null and required fields', async () => {
       const v = new Validator({ field: null }, { field: 'required|string' });
 
@@ -44,7 +42,6 @@ describe('Edge Cases', () => {
       const matched = await v.check();
       assert.equal(matched, true);
     });
-
 
     it('should reject empty string in required fields', async () => {
       const v = new Validator({ field: '' }, { field: 'required|string' });

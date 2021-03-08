@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('creditCard', () => {
   it('should pass with visa card', async () => {
     const v = new Validator(

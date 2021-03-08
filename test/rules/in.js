@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('in', () => {
   it('should pass', async () => {
     const v = new Validator(
@@ -25,7 +24,6 @@ describe('in', () => {
 
     assert.equal(matched, true);
   });
-
 
   it('should fail with missing one', async () => {
     const v = new Validator(

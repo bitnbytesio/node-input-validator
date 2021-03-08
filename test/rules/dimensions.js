@@ -64,7 +64,6 @@ describe('dimensions', () => {
     assert.equal(matched, false);
   });
 
-
   it('should pass with excat width,height', async () => {
     const v = new Validator(
       { file: './test/stubs/file-small.png' }, { file: 'dimensions:width=50,height=32' },

@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('iso8601', () => {
   it('should pass', async () => {
     const v = new Validator(
@@ -14,7 +13,6 @@ describe('iso8601', () => {
 
     assert.equal(matched, true);
   });
-
 
   it('should fail', async () => {
     const v = new Validator(

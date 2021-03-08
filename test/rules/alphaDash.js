@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('alphaDash', () => {
   it('should pass with example', async () => {
     const v = new Validator(
@@ -25,7 +24,6 @@ describe('alphaDash', () => {
 
     assert.equal(matched, true);
   });
-
 
   it('should pass with alpha-numeric value', async () => {
     const v = new Validator(

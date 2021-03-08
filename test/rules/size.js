@@ -1,7 +1,6 @@
 const assert = require('assert');
 const fs = require('fs');
 
-
 const { Validator } = require('../../lib/index');
 
 describe('size', () => {
@@ -9,7 +8,6 @@ describe('size', () => {
     const v = new Validator(
       { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:4kb' },
     );
-
 
     const matched = await v.check();
 
@@ -21,7 +19,6 @@ describe('size', () => {
       { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:4kb,2kb' },
     );
 
-
     const matched = await v.check();
 
     assert.equal(matched, true);
@@ -31,7 +28,6 @@ describe('size', () => {
     const v = new Validator(
       { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:5kb,4kb' },
     );
-
 
     const matched = await v.check();
 
@@ -43,7 +39,6 @@ describe('size', () => {
       { file: fs.readFileSync('./test/stubs/file-small.png') }, { file: 'size:,4kb' },
     );
 
-
     const matched = await v.check();
 
     assert.equal(matched, false);
@@ -54,7 +49,6 @@ describe('size', () => {
       { file: { path: './test/stubs/file-small.png' } }, { file: 'size:4kb' },
     );
 
-
     const matched = await v.check();
 
     assert.equal(matched, true);
@@ -64,7 +58,6 @@ describe('size', () => {
     const v = new Validator(
       { file: { buffer: fs.readFileSync('./test/stubs/file-small.png') } }, { file: 'size:1kb' },
     );
-
 
     const matched = await v.check();
 
@@ -108,7 +101,6 @@ describe('size', () => {
     const v = new Validator(
       { file: './test/stubs/file-small.png' }, { file: 'size:1kb' },
     );
-
 
     const matched = await v.check();
 

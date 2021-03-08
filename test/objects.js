@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../lib/index');
 
-
 describe('Objects', () => {
   describe('Single Level', () => {
     it('should pass with top level required', async () => {

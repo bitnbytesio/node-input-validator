@@ -2,12 +2,10 @@ const assert = require('assert');
 
 const { Validator } = require('../lib/index');
 
-
 describe('Rules as Array', () => {
-
   it('should return false', async () => {
     const v = new Validator(
-      {  },
+      { },
       {
         name: ['required'],
       },
@@ -70,7 +68,6 @@ describe('Rules as Array', () => {
     assert.equal(matched, true);
   });
 });
-
 
 describe('Rules as Mixed', () => {
   it('should return true', async () => {

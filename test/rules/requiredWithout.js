@@ -1,8 +1,6 @@
 const assert = require('assert');
 
-
 const { Validator } = require('../../lib/index');
-
 
 describe('requiredWithout', () => {
   it('should return false for missing seed length', async () => {
@@ -44,7 +42,6 @@ describe('requiredWithout', () => {
     const matched = await v.check();
     assert.equal(matched, false);
   });
-
 
   it('message should exist', async () => {
     const v = new Validator(

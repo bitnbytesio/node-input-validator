@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('email', () => {
   it('should pass with valid email', async () => {
     const v = new Validator(
@@ -14,7 +13,6 @@ describe('email', () => {
 
     assert.equal(matched, true);
   });
-
 
   it('should fail', async () => {
     const v = new Validator(

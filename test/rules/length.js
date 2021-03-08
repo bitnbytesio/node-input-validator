@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('length', () => {
   it('should passwith exact len', async () => {
     const v = new Validator(
@@ -47,7 +46,6 @@ describe('length', () => {
 
     assert.equal(matched, true);
   });
-
 
   it('should fail with array of max len', async () => {
     const v = new Validator(

@@ -14,7 +14,6 @@ describe('contains', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail with no-match', async () => {
     const v = new Validator(
       { attr: 'Yes, Node is awesome' },

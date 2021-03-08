@@ -3,7 +3,6 @@ const assert = require('assert');
 const moment = require('moment');
 const { Validator } = require('../../lib/index');
 
-
 describe('#dateBeforeToday', () => {
   it('should pass', async () => {
     const v = new Validator(
@@ -18,7 +17,6 @@ describe('#dateBeforeToday', () => {
     const matched = await v.passes();
     assert.equal(matched, true);
   });
-
 
   it('should fail', async () => {
     const v = new Validator(

@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('gte', () => {
   it('should pass with greater seed', async () => {
     const v = new Validator(

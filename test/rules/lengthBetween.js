@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('lengthBetween', () => {
   it('should pass with string', async () => {
     const v = new Validator(
@@ -60,7 +59,6 @@ describe('lengthBetween', () => {
     }
   });
 
-
   it('should throw invalid min seed exception', async () => {
     try {
       const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|lengthBetween:a,10' });
@@ -84,7 +82,6 @@ describe('lengthBetween', () => {
       assert.equal(e, 'Error: Seeds must be integer for lengthBetween rule.');
     }
   });
-
 
   it('should throw min must be less then max seed exception', async () => {
     try {

@@ -14,7 +14,6 @@ describe('maxLength', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail with max length', async () => {
     const v = new Validator(
       { attr: 'uname' },

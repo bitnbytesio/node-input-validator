@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('boolean', () => {
   it('should pass with boolean(true/false)', async () => {
     const v = new Validator(
@@ -14,7 +13,6 @@ describe('boolean', () => {
 
     assert.equal(matched, true);
   });
-
 
   it('should pass with String(true,false)', async () => {
     const v = new Validator(
@@ -37,7 +35,6 @@ describe('boolean', () => {
 
     assert.equal(matched, true);
   });
-
 
   it('should pass with custom seed', async () => {
     const v = new Validator(

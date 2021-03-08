@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('min', () => {
   it('should pass with string', async () => {
     const v = new Validator(
@@ -36,7 +35,6 @@ describe('min', () => {
 
     assert.equal(matched, true);
   });
-
 
   it('should fail', async () => {
     const v = new Validator(

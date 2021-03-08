@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('latLong', () => {
   it('should pass', async () => {
     const v = new Validator(
@@ -15,7 +14,6 @@ describe('latLong', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail', async () => {
     const v = new Validator(
       { attr: 'Yes, Node is awesome' },
@@ -26,7 +24,6 @@ describe('latLong', () => {
 
     assert.equal(matched, false);
   });
-
 
   it('message should exist', async () => {
     const v = new Validator(

@@ -15,7 +15,6 @@ niv.extendMessages({
   status: 'Galat Status.',
 }, 'pb');
 
-
 niv.addCustomMessages({
   'status.required': 'Status khali nahi hona chahiye.',
 }, 'hi');
@@ -56,7 +55,6 @@ niv.extend('sumOfFields', ({ value, args }, v) => {
   return true;
 });
 
-
 describe('Custom Rules', () => {
   it('sumOfFields:should pass', async () => {
     const v = new Validator(
@@ -87,7 +85,6 @@ describe('Custom Rules', () => {
 
     assert.equal(matched, false);
   });
-
 
   it('even:should pass', async () => {
     const v = new Validator(

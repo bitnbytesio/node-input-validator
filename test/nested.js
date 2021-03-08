@@ -186,14 +186,12 @@ describe('Nested', () => {
         'product.features.0.value',
         'product.features.1.value');
 
-
       v.errors.should.have.keys('cart.0.colors.name',
         'cart.0.varients.2.colors.0.name',
         'cart.0.varients.2.colors.1.name',
         'cart.1.varients.0.colors.2.name',
         'cart.1.varients.0.colors.2.props.0.name');
     });
-
 
     it('should fail with deep child level length', async () => {
       const v = new Validator(
@@ -208,7 +206,6 @@ describe('Nested', () => {
       const matched = await v.check();
 
       assert.equal(matched, false);
-
 
       v.errors.should.have.keys('cart.1.varients.0.colors.2.props.0.tags');
     });

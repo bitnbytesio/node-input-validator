@@ -12,7 +12,6 @@ describe('#dateAfter', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail with invalida date format', async () => {
     let v = new Validator({ dob: '1993-28-02' }, { dob: 'required|dateFormat:YYYY-MM-DD|dateAfter:2000-15-31' });
 

@@ -14,7 +14,6 @@ describe('notIn', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail: misnotIng attribute', async () => {
     const v = new Validator(
       { attribute: 'draft' },

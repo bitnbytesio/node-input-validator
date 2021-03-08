@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('datetime', () => {
   it('should pass', async () => {
     const v = new Validator(

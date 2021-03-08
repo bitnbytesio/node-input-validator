@@ -114,7 +114,6 @@ describe('between', () => {
     }
   });
 
-
   it('should throw invalid min seed exception', async () => {
     try {
       const v = new Validator({ attribute: 'Harcharan Singh' }, { attribute: 'required|between:a,10' });
@@ -138,7 +137,6 @@ describe('between', () => {
       assert.equal(e, 'Error: Seeds must be numeric for attribute under between rule.');
     }
   });
-
 
   it('should throw min must be less then max seed exception', async () => {
     try {

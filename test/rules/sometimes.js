@@ -42,7 +42,6 @@ describe('sometimes', () => {
       { password: 'sometimes', confirm_password: 'sometimes|alpha' },
     );
 
-
     const matched = await v.check();
 
     assert.equal(matched, false);

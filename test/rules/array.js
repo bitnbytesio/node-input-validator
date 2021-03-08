@@ -25,7 +25,6 @@ describe('array', () => {
     assert.equal(matched, true);
   });
 
-
   it('should fail with string', async () => {
     const v = new Validator(
       { features: 'no' },

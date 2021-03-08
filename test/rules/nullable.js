@@ -2,7 +2,6 @@ const assert = require('assert');
 
 const { Validator } = require('../../lib/index');
 
-
 describe('nullable', () => {
   it('should fail', async () => {
     const v = new Validator(
@@ -25,7 +24,6 @@ describe('nullable', () => {
 
     assert.equal(matched, false);
   });
-
 
   it('should pass, attr is null', async () => {
     const v = new Validator(

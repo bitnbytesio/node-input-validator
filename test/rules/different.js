@@ -1,8 +1,6 @@
 const assert = require('assert');
 
-
 const { Validator } = require('../../lib/index');
-
 
 describe('different', () => {
   it('should pass', async () => {
@@ -32,7 +30,6 @@ describe('different', () => {
       { password: '000000', new_password: '000000' },
       { password: 'required', new_password: 'required|different:password' },
     );
-
 
     const matched = await v.check();
 
