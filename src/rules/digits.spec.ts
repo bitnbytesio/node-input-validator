@@ -6,6 +6,7 @@ describe('rules:digits', () => {
     const ruleHandler = digits(["5"]).handler;
     expect(ruleHandler(12345)).toBe(true);
     expect(ruleHandler("12345")).toBe(true);
+    expect(ruleHandler("00123")).toBe(true);
   });
 
   test("should fails", function (): void {

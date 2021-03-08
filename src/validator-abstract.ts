@@ -19,7 +19,12 @@ import * as MessagesProvider from './messages/provider';
 import * as config from './config';
 
 let RulesProvider: any = {};
+let PostRulesProvider: any = {};
 
+/**
+ * registerRules will replace old registered rules 
+ * @param rules validation rules
+ */
 export function registerRules(rules: any) {
   // Object.keys(rules).forEach((rule) => {
   //   RulesProvider[rule] = rules[rule];
@@ -27,6 +32,14 @@ export function registerRules(rules: any) {
 
   // return RulesProvider;
   return RulesProvider = rules;
+}
+
+/**
+ * registerPostRules will replace old post validation rules
+ * @param rules post validation rules
+ */
+export function registerPostRules(rules: any) {
+  return PostRulesProvider = rules;
 }
 
 export abstract class ValidatorAbstract {
@@ -50,6 +63,9 @@ export abstract class ValidatorAbstract {
 
   lang: Langs = config.get('lang');
 
+  // post validation rules collection
+  postRules: Array<any> = [];
+
   /**
    * init validator
    * @param inputs 
@@ -57,7 +73,7 @@ export abstract class ValidatorAbstract {
    * @param customMessages 
    */
   constructor(
-    private inputs: any,
+    private inputs: any = {},
     private rules:
       | ValidationRulesContract
       | ValidationRuleStringNotationContract
@@ -66,6 +82,65 @@ export abstract class ValidatorAbstract {
   ) {
     this.hasCustomMessages = Object.keys(customMessages).length > 0;
     this.parse();
+  }
+
+  addRules(rules:
+    | ValidationRulesContract
+    | ValidationRuleStringNotationContract
+    | ValidationRuleArrayStringNotationContract = {}) {
+    this.rules = rules;
+    this.parseRules();
+  }
+
+
+  async postRuleApply(rule: any) {
+    if (rule.rule === 'function') {
+      // eslint-disable-next-line no-return-await
+      return await rule.handler(this);
+    }
+
+    // eslint-disable-next-line no-return-await
+    return await PostRulesProvider[rule.rule](rule, this);
+  }
+
+  /**
+  * add post rule
+  *
+  * post rule is applied to whole input and is used to check constraints
+  * across multiple fields
+  *
+  * @param {*} rule
+ */
+  addPostRule(rule: any) {
+    if (typeof rule === 'function') {
+      this.postRules.push({
+        rule: 'function',
+        handler: rule,
+      });
+      return;
+    }
+
+    const ruleArray = rule.split(':', 2);
+    const ruleName = ruleArray[0];
+    const ruleFields = ruleArray[1].split(','); // there always be a list of fields
+
+    this.postRules.push({
+      rule: ruleName,
+      params: ruleFields,
+    });
+  }
+
+  /**
+    * add set of post rules
+    *
+    * @param {string[]} postRulesObj
+    */
+  addPostRules(postRulesObj: any) {
+    if (!Array.isArray(postRulesObj)) {
+      postRulesObj = postRulesObj.split('|');
+    }
+
+    postRulesObj.map((rule: any) => this.addPostRule(rule));
   }
 
   /**
@@ -80,6 +155,11 @@ export abstract class ValidatorAbstract {
     let attr: string;
 
     for (attr of Object.keys(this.rules)) {
+      if (attr === '*') {
+        this.addPostRules(this.rules[attr]);
+        return;
+      }
+
       if (attr.indexOf(".")) {
         this.hasNestedRules = true;
       }
@@ -150,7 +230,12 @@ export abstract class ValidatorAbstract {
   /**
    * validate inputs againest rules
    */
-  async validate(): Promise<boolean> {
+  async validate(inputs?: any): Promise<boolean> {
+    if (inputs) {
+      this.inputs = inputs;
+      this.parseInputs();
+    }
+
     const keys = Object.keys(this.parsedRulesCollection);
     const len = keys.length;
     let i = 0;
@@ -164,6 +249,12 @@ export abstract class ValidatorAbstract {
         }
       }
     }
+
+    // post validation rules
+    this.postRules.forEach((postRule: any) => {
+      promises.push(this.postRuleApply(postRule));
+    });
+
 
     await Promise.all(promises);
 

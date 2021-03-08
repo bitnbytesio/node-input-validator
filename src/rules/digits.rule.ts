@@ -20,7 +20,7 @@ export function digits(args: Array<string> = []): ValidationRuleContract {
     handler: (value: any) => {
       const v = String(value);
       if (
-        isInt(v)
+        isInt(v, true)
         && v.length === len
       ) {
         return true;
@@ -56,7 +56,7 @@ export function digitsBetween(args: Array<string> = []): ValidationRuleContract 
       const v = String(value);
       const len = v.length;
       if (
-        isInt(v)
+        isInt(v, true)
         && len >= minInt
         && len <= maxInt
       ) {

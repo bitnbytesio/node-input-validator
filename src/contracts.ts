@@ -51,6 +51,8 @@ export interface ValidatorContract {
    * @param attrName attribute name
    */
   attributeValue(attrName: string): any;
+
+  createAttributeError(params: AttributeValidationMinimalInfo): void;
 }
 
 /**
