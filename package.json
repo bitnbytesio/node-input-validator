@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "4.4.0",
+  "version": "4.4.1",
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "lib/index.js",
   "scripts": {
