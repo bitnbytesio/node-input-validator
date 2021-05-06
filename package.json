@@ -1,7 +1,11 @@
 {
-  "name": "node-input-validator",
+  "name": "@wefox/node-input-validator",
   "version": "3.3.1",
   "description": "validation library for nodejs, inspired by laravel.",
+  "publishConfig": {
+    "registry": "https://registry.wefox.io/repository/npm-hosted/"
+  },
+  "types": "./index.d.ts",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive",
