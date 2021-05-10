@@ -4,34 +4,34 @@ const t = require('../../src/transform/transform');
 describe('transform-in-rules', () => {
     describe('#in', () => {
         it('should return true when have arguments', async () => {
-            const v = ['in:1,2,q,4,5'];
+            const v = ['in:1;2;q;4;5'];
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     arguments: [{
                         name: 'list of values',
                         type: 'array',
-                        value: ['1', '2', 'q', '4', '5'],
+                        value: ['1;2;q;4;5'],
                     }],
                     name: 'in',
-                    types: ['string', 'integer', 'boolean', 'date'],
+                    types: ['string', 'integer', 'boolean', 'date', 'number'],
                 }],
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
 
         it('should return true when have 2 rules', async () => {
-            const v = ['in:1,2,q,4,5', 'between:1,2'];
+            const v = ['in:1;2;q;4;5', 'between:1;2'];
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     arguments: [{
                         name: 'list of values',
                         type: 'array',
-                        value: ['1', '2', 'q', '4', '5'],
+                        value: ['1;2;q;4;5'],
                     }],
                     name: 'in',
-                    types: ['string', 'integer', 'boolean', 'date'],
+                    types: ['string', 'integer', 'boolean', 'date', 'number'],
                 }, {
                     arguments: [{
                         name: 'min',
@@ -44,7 +44,7 @@ describe('transform-in-rules', () => {
                     },
                     ],
                     name: 'between',
-                    types: ['integer'],
+                    types: ['integer', 'number'],
                 },
                 ],
             };
@@ -52,20 +52,20 @@ describe('transform-in-rules', () => {
         });
 
         it('should return true when have 2 rules and is required', async () => {
-            const v = ['required', 'in:1,2,q,4,5', 'between:1,2'];
+            const v = ['required', 'in:1;2;q;4;5', 'between:1;2'];
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
                     name: 'required',
-                    types: ['string', 'integer', 'boolean', 'date'],
+                    types: ['string', 'integer', 'boolean', 'date', 'number'],
                 }, {
                     arguments: [{
                         name: 'list of values',
                         type: 'array',
-                        value: ['1', '2', 'q', '4', '5'],
+                        value: ['1;2;q;4;5'],
                     }],
                     name: 'in',
-                    types: ['string', 'integer', 'boolean', 'date'],
+                    types: ['string', 'integer', 'boolean', 'date', 'number'],
                 }, {
                     arguments: [{
                         name: 'min',
@@ -78,7 +78,7 @@ describe('transform-in-rules', () => {
                     },
                     ],
                     name: 'between',
-                    types: ['integer'],
+                    types: ['integer', 'number'],
                 },
                 ],
             };
@@ -86,16 +86,16 @@ describe('transform-in-rules', () => {
         });
 
         it('should return true when the string have arguments', async () => {
-            const stringMatch = ['in:1,2,q,4,5'];
+            const stringMatch = ['in:1;2;q;4;5'];
             const objToTransform = {
                 params: [{
                     arguments: [{
                         name: 'list of values',
                         type: 'array',
-                        value: ['1', '2', 'q', '4', '5'],
+                        value: ['1;2;q;4;5'],
                     }],
                     name: 'in',
-                    types: ['string', 'integer', 'boolean', 'date'],
+                    types: ['string', 'integer', 'boolean', 'date', 'number'],
                 }],
             };
             const result = t.normalize(objToTransform);
@@ -103,16 +103,16 @@ describe('transform-in-rules', () => {
         });
 
         it('should return true when the string have 2 rules', async () => {
-            const stringMatch = ['in:1,2,q,4,5', 'between:1,2'];
+            const stringMatch = ['in:1;2;q;4;5', 'between:1;2'];
             const objToTransform = {
                 params: [{
                     arguments: [{
                         name: 'list of values',
                         type: 'array',
-                        value: ['1', '2', 'q', '4', '5'],
+                        value: ['1;2;q;4;5'],
                     }],
                     name: 'in',
-                    types: ['string', 'integer', 'boolean', 'date'],
+                    types: ['string', 'integer', 'boolean', 'date', 'number'],
                 }, {
                     arguments: [{
                         name: 'min',
@@ -125,7 +125,7 @@ describe('transform-in-rules', () => {
                     },
                     ],
                     name: 'between',
-                    types: ['integer'],
+                    types: ['integer', 'number'],
                 },
                 ],
             };
@@ -134,19 +134,19 @@ describe('transform-in-rules', () => {
         });
 
         it('should return true when the string have 2 rules and is required', async () => {
-            const stringMatch = ['required', 'in:1,2,q,4,5', 'between:1,2'];
+            const stringMatch = ['required', 'in:1;2;q;4;5', 'between:1;2'];
             const objToTransform = {
                 params: [{
                     name: 'required',
-                    types: ['string', 'integer', 'boolean', 'date'],
+                    types: ['string', 'integer', 'boolean', 'date', 'number'],
                 }, {
                     arguments: [{
                         name: 'list of values',
                         type: 'array',
-                        value: ['1', '2', 'q', '4', '5'],
+                        value: ['1;2;q;4;5'],
                     }],
                     name: 'in',
-                    types: ['string', 'integer', 'boolean', 'date'],
+                    types: ['string', 'integer', 'boolean', 'date', 'number'],
                 }, {
                     arguments: [{
                         name: 'min',
@@ -159,7 +159,7 @@ describe('transform-in-rules', () => {
                     },
                     ],
                     name: 'between',
-                    types: ['integer'],
+                    types: ['integer', 'number'],
                 },
                 ],
             };

@@ -6,7 +6,7 @@ describe('transform-ifThisDateIs-rules', function () {
     describe('#ifThisDateIs', function () {
 
         it('should return true when ifThisDateIs =', async () => {
-            const v = ['ifThisDateIs:=,olderDate'];
+            const v = ['ifThisDateIs:=;olderDate'];
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
@@ -21,12 +21,12 @@ describe('transform-ifThisDateIs-rules', function () {
                         ],
                         "type": "enum",
                         "value": "="
-                    },{
+                    }, {
                         "name": "date",
                         "type": "date",
                         "value": "olderDate"
                     }
-                ],
+                    ],
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
@@ -35,7 +35,7 @@ describe('transform-ifThisDateIs-rules', function () {
         });
 
         it('should return true when ifThisDateIs >', async () => {
-            const v = ['ifThisDateIs:>,olderDate'];
+            const v = ['ifThisDateIs:>;olderDate'];
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
@@ -50,12 +50,12 @@ describe('transform-ifThisDateIs-rules', function () {
                         ],
                         "type": "enum",
                         "value": ">"
-                    },{
+                    }, {
                         "name": "date",
                         "type": "date",
                         "value": "olderDate"
                     }
-                ],
+                    ],
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
@@ -64,7 +64,7 @@ describe('transform-ifThisDateIs-rules', function () {
         });
 
         it('should return true when ifThisDateIs <', async () => {
-            const v = ['ifThisDateIs:<,olderDate'];
+            const v = ['ifThisDateIs:<;olderDate'];
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
@@ -79,12 +79,12 @@ describe('transform-ifThisDateIs-rules', function () {
                         ],
                         "type": "enum",
                         "value": "<"
-                    },{
+                    }, {
                         "name": "date",
                         "type": "date",
                         "value": "olderDate"
                     }
-                ],
+                    ],
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
@@ -93,36 +93,36 @@ describe('transform-ifThisDateIs-rules', function () {
         });
 
         it('should return true when ifThisDateIs <=', async () => {
-            const v = ['ifThisDateIs:<=,olderDate'];
+            const v = ['ifThisDateIs:<=;olderDate'];
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
-                'arguments': [{
-                    "name": "comparison",
-                    "options": [
-                        '<',
-                        '>',
-                        '<=',
-                        '>=',
-                        '='
+                    'arguments': [{
+                        "name": "comparison",
+                        "options": [
+                            '<',
+                            '>',
+                            '<=',
+                            '>=',
+                            '='
+                        ],
+                        "type": "enum",
+                        "value": "<="
+                    }, {
+                        "name": "date",
+                        "type": "date",
+                        "value": "olderDate"
+                    }
                     ],
-                    "type": "enum",
-                    "value": "<="
-                },{
-                    "name": "date",
-                    "type": "date",
-                    "value": "olderDate"
-                }
-            ],
-                'name': 'ifThisDateIs',
-                'types': ['date'],
-            }],
-        };
+                    'name': 'ifThisDateIs',
+                    'types': ['date'],
+                }],
+            };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
 
         it('should return true when ifThisDateIs >=', async () => {
-            const v = ['ifThisDateIs:>=,olderDate'];
+            const v = ['ifThisDateIs:>=;olderDate'];
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
@@ -137,12 +137,12 @@ describe('transform-ifThisDateIs-rules', function () {
                         ],
                         "type": "enum",
                         "value": ">="
-                    },{
+                    }, {
                         "name": "date",
                         "type": "date",
                         "value": "olderDate"
                     }
-                ],
+                    ],
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
@@ -151,7 +151,7 @@ describe('transform-ifThisDateIs-rules', function () {
         });
 
         it('should return true when the string ifThisDateIs =', async () => {
-            const stringMatch = ['ifThisDateIs:=,olderDate'];
+            const stringMatch = ['ifThisDateIs:=;olderDate'];
             const objToTransform = {
                 params: [{
                     'arguments': [{
@@ -165,12 +165,12 @@ describe('transform-ifThisDateIs-rules', function () {
                         ],
                         "type": "enum",
                         "value": "="
-                    },{
+                    }, {
                         "name": "date",
                         "type": "date",
                         "value": "olderDate"
                     }
-                ],
+                    ],
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
@@ -180,7 +180,7 @@ describe('transform-ifThisDateIs-rules', function () {
         });
 
         it('should return true when the string ifThisDateIs >', async () => {
-            const stringMatch = ['ifThisDateIs:>,olderDate'];
+            const stringMatch = ['ifThisDateIs:>;olderDate'];
             const objToTransform = {
                 params: [{
                     'arguments': [{
@@ -194,12 +194,12 @@ describe('transform-ifThisDateIs-rules', function () {
                         ],
                         "type": "enum",
                         "value": ">"
-                    },{
+                    }, {
                         "name": "date",
                         "type": "date",
                         "value": "olderDate"
                     }
-                ],
+                    ],
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
@@ -209,7 +209,7 @@ describe('transform-ifThisDateIs-rules', function () {
         });
 
         it('should return true when the string ifThisDateIs <', async () => {
-            const stringMatch = ['ifThisDateIs:<,olderDate'];
+            const stringMatch = ['ifThisDateIs:<;olderDate'];
             const objToTransform = {
                 params: [{
                     'arguments': [{
@@ -223,12 +223,12 @@ describe('transform-ifThisDateIs-rules', function () {
                         ],
                         "type": "enum",
                         "value": "<"
-                    },{
+                    }, {
                         "name": "date",
                         "type": "date",
                         "value": "olderDate"
                     }
-                ],
+                    ],
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
@@ -238,7 +238,7 @@ describe('transform-ifThisDateIs-rules', function () {
         });
 
         it('should return true when ifThisDateIs <=', async () => {
-            const stringMatch = ['ifThisDateIs:<=,olderDate'];
+            const stringMatch = ['ifThisDateIs:<=;olderDate'];
             const objToTransform = {
                 params: [{
                     'arguments': [{
@@ -252,12 +252,12 @@ describe('transform-ifThisDateIs-rules', function () {
                         ],
                         "type": "enum",
                         "value": "<="
-                    },{
+                    }, {
                         "name": "date",
                         "type": "date",
                         "value": "olderDate"
                     }
-                ],
+                    ],
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],
@@ -267,7 +267,7 @@ describe('transform-ifThisDateIs-rules', function () {
         });
 
         it('should return true when the string ifThisDateIs >=', async () => {
-            const stringMatch = ['ifThisDateIs:>=,olderDate'];
+            const stringMatch = ['ifThisDateIs:>=;olderDate'];
             const objToTransform = {
                 params: [{
                     'arguments': [{
@@ -281,12 +281,12 @@ describe('transform-ifThisDateIs-rules', function () {
                         ],
                         "type": "enum",
                         "value": ">="
-                    },{
+                    }, {
                         "name": "date",
                         "type": "date",
                         "value": "olderDate"
                     }
-                ],
+                    ],
                     'name': 'ifThisDateIs',
                     'types': ['date'],
                 }],

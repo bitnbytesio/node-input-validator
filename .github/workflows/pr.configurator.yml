@@ -1,0 +1,35 @@
+name: PR configurator
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+env:
+  ACT_GITHUB_HEAD_REF: ${{ github.head_ref }}
+
+jobs:
+  pr-semver-validator:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed' && (startsWith(github.head_ref, 'release/') || startsWith(github.head_ref, 'hotfix/'))
+    runs-on: [self-hosted, vmslave]
+    steps:
+      - name: Checkout core actions
+        uses: actions/checkout@v2
+        with:
+          path: ./.github/core-actions
+          repository: uberforcede/wg-core-gh-actions
+          token: ${{ secrets.ORG_CORE_GITHUB_PAT }}
+      - name: Semver validator
+        uses: ./.github/core-actions/pr-semver-validator/v1
+
+  pr-autotag:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && (startsWith(github.head_ref, 'release/') || startsWith(github.head_ref, 'hotfix/'))
+    runs-on: [self-hosted, vmslave]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ORG_CORE_GITHUB_PAT }}
+      - name: Pull request autotag
+        run: |
+          git tag -a -m "v${ACT_GITHUB_HEAD_REF/*\//}" "${ACT_GITHUB_HEAD_REF/*\//}"
+          git push --follow-tags

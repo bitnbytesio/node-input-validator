@@ -16,14 +16,14 @@ describe('transform-min-rules', function () {
                         value: 1
                     }],
                     'name': 'min',
-                    'types': ['integer'],
+                    'types': ['integer', 'number'],
                 }],
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
 
         it('should return true when the string min arguments', async () => {
-            const stringMatch= ['min:1'];
+            const stringMatch = ['min:1'];
             const objToTransform = {
                 params: [{
                     'arguments': [{
@@ -32,7 +32,7 @@ describe('transform-min-rules', function () {
                         value: 1
                     }],
                     'name': 'min',
-                    'types': ['integer'],
+                    'types': ['integer', 'number'],
                 }],
             };
             const result = t.normalize(objToTransform);

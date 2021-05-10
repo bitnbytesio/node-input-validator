@@ -6,7 +6,7 @@ describe('transform-requiredIf-rules', function () {
     describe('#requiredIf', function () {
 
         it('should return true when has one require if field', async () => {
-            const v = ['requiredIf:human.age,16'];
+            const v = ['requiredIf:human.age;16'];
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
@@ -14,21 +14,21 @@ describe('transform-requiredIf-rules', function () {
                         name: "input",
                         type: "reference",
                         value: "human.age"
-                    },{
+                    }, {
                         name: "reference value",
                         type: "string",
                         value: "16"
                     }
-                ],
+                    ],
                     'name': 'requiredIf',
-                    'types': ['string', 'integer', 'boolean', 'date'],
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
                 }],
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
 
         it('should return true when has mutiple fields', async () => {
-            const v = ['requiredIf:age,16,parent,yes,type,subscribed'];
+            const v = ['requiredIf:age;16;parent;yes;type;subscribed'];
             const obj = t.toObject(v);
             const objMatch = {
                 params: [{
@@ -36,15 +36,15 @@ describe('transform-requiredIf-rules', function () {
                         name: "input",
                         type: "reference",
                         value: "age"
-                    },{
+                    }, {
                         name: "reference value",
                         type: "string",
                         value: "16"
-                    },{
+                    }, {
                         name: "input",
                         type: "reference",
                         value: "parent"
-                    },{
+                    }, {
                         name: "reference value",
                         type: "string",
                         value: "yes"
@@ -52,34 +52,34 @@ describe('transform-requiredIf-rules', function () {
                         name: "input",
                         type: "reference",
                         value: "type"
-                    },{
+                    }, {
                         name: "reference value",
                         type: "string",
                         value: "subscribed"
                     }],
                     'name': 'requiredIf',
-                    'types': ['string', 'integer', 'boolean', 'date'],
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
                 }],
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
         });
 
         it('should return true when the string has one require if field', async () => {
-            const stringMatch = ['requiredIf:human.age,16'];
+            const stringMatch = ['requiredIf:human.age;16'];
             const objToTransform = {
                 params: [{
                     'arguments': [{
                         name: "input",
                         type: "reference",
                         value: "human.age"
-                    },{
+                    }, {
                         name: "reference value",
                         type: "string",
                         value: "16"
                     }
-                ],
+                    ],
                     'name': 'requiredIf',
-                    'types': ['string', 'integer', 'boolean', 'date'],
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
                 }],
             };
             const result = t.normalize(objToTransform);
@@ -87,22 +87,22 @@ describe('transform-requiredIf-rules', function () {
         });
 
         it('should return true when the string has mutiple fields', async () => {
-            const stringMatch = ['requiredIf:age,16,parent,yes,type,subscribed'];
+            const stringMatch = ['requiredIf:age;16;parent;yes;type;subscribed'];
             const objToTransform = {
                 params: [{
                     'arguments': [{
                         name: "input",
                         type: "reference",
                         value: "age"
-                    },{
+                    }, {
                         name: "reference value",
                         type: "string",
                         value: "16"
-                    },{
+                    }, {
                         name: "input",
                         type: "reference",
                         value: "parent"
-                    },{
+                    }, {
                         name: "reference value",
                         type: "string",
                         value: "yes"
@@ -110,13 +110,13 @@ describe('transform-requiredIf-rules', function () {
                         name: "input",
                         type: "reference",
                         value: "type"
-                    },{
+                    }, {
                         name: "reference value",
                         type: "string",
                         value: "subscribed"
                     }],
                     'name': 'requiredIf',
-                    'types': ['string', 'integer', 'boolean', 'date'],
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
                 }],
             };
             const result = t.normalize(objToTransform);

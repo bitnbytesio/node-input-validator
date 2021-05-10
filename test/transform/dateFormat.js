@@ -32,12 +32,12 @@ describe('transform-dateFormat-rules', function () {
         });
 
         it('should return true when have options and is required', async () => {
-            const v = ['required','dateFormat:YYYY'];
+            const v = ['required', 'dateFormat:YYYY'];
             const obj = t.toObject(v);
             const match = {
                 params: [{
                     'name': 'required',
-                    'types': ['string', 'integer', 'boolean', 'date'],
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
                 }, {
                     'arguments': [{
                         'name': 'formatting',
@@ -79,11 +79,11 @@ describe('transform-dateFormat-rules', function () {
         });
 
         it('should return true when the string have options and is required', async () => {
-            const stringMatch = ['required','dateFormat:ddmmyyyy'];
+            const stringMatch = ['required', 'dateFormat:ddmmyyyy'];
             const objToTransform = {
                 params: [{
                     'name': 'required',
-                    'types': ['string', 'integer', 'boolean', 'date'],
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
                 }, {
                     'arguments': [{
                         'name': 'formating',

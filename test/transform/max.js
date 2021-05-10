@@ -16,7 +16,7 @@ describe('transform-max-rules', function () {
                         value: 1
                     }],
                     'name': 'max',
-                    'types': ['integer'],
+                    'types': ['integer', 'number'],
                 }],
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
@@ -32,7 +32,7 @@ describe('transform-max-rules', function () {
                         value: 1
                     }],
                     'name': 'max',
-                    'types': ['integer'],
+                    'types': ['integer', 'number'],
                 }],
             };
             const result = t.normalize(objToTransform);

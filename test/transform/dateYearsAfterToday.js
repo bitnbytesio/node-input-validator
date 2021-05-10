@@ -24,13 +24,13 @@ describe('transform-dateYearsAfterToday-rules', function () {
         });
 
         it('should return true when have options and is requred', async () => {
-            const v = ['required','dateYearsAfterToday:3'];
+            const v = ['required', 'dateYearsAfterToday:3'];
             const obj = t.toObject(v);
             const match = {
                 params: [{
                     'name': 'required',
-                    'types': ['string', 'integer', 'boolean', 'date'],
-                },{
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
+                }, {
                     'arguments': [{
                         'name': 'number of years',
                         type: 'integer',
@@ -63,12 +63,12 @@ describe('transform-dateYearsAfterToday-rules', function () {
         });
 
         it('should return true when the string have options and is requred', async () => {
-            const stringMatch = ['required','dateYearsAfterToday:3'];
+            const stringMatch = ['required', 'dateYearsAfterToday:3'];
             const objToTransform = {
                 params: [{
                     'name': 'required',
-                    'types': ['string', 'integer', 'boolean', 'date'],
-                },{
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
+                }, {
                     'arguments': [{
                         'name': 'number of years',
                         type: 'integer',

@@ -27,7 +27,7 @@ describe('transform-dateAfter-rules', () => {
             const match = {
                 params: [{
                     name: 'required',
-                    types: ['string', 'integer', 'boolean', 'date'],
+                    types: ['string', 'integer', 'boolean', 'date', 'number'],
                 }, {
                     arguments: [{
                         name: 'date',
@@ -66,7 +66,7 @@ describe('transform-dateAfter-rules', () => {
             const objToTransform = {
                 params: [{
                     name: 'required',
-                    types: ['string', 'integer', 'boolean', 'date'],
+                    types: ['string', 'integer', 'boolean', 'date', 'number'],
                 }, {
                     arguments: [{
                         name: 'date',

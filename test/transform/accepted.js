@@ -11,10 +11,10 @@ describe('transform-accpeted-rules', function () {
             const objMatch = {
                 params: [{
                     'name': 'required',
-                    'types': ['string', 'integer', 'boolean', 'date'],
-                },{
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
+                }, {
                     'name': 'accepted',
-                    'types': ['string', 'integer', 'boolean', 'date'],
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
                 }],
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));
@@ -26,7 +26,7 @@ describe('transform-accpeted-rules', function () {
             const objMatch = {
                 params: [{
                     'name': 'accepted',
-                    'types': ['string', 'integer', 'boolean', 'date'],
+                    'types': ['string', 'integer', 'boolean', 'date', 'number'],
                 }],
             };
             assert.equal(JSON.stringify(obj), JSON.stringify(objMatch));

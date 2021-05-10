@@ -1,0 +1,33 @@
+name: PR review
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+      - feature/*
+      - story/*
+      - release/*
+
+env:
+  APP_NODE_VERSION: 12.x
+
+jobs:
+  pr-review:
+    runs-on: [self-hosted, vmslave]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.APP_NODE_VERSION }}
+          registry-url: ${{ secrets.ORG_CORE_NEXUS_NPM_WEFOX_URL }}
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.ORG_CORE_NEXUS_NPM_TOKEN }}
+      - name: Linter (eslint)
+        run: npm run lint
+      - name: Run tests
+        run: npm run test
