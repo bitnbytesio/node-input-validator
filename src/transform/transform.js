@@ -33,7 +33,7 @@ const getElements = (rule) => {
     const argumentsDef = getArgumentsDef(nameRule);
     const argumentsRule = ((argumentsDef.length === 1) && ['string', 'array'].includes(argumentsDef[0].type))
         ? [argString]
-        : argString.toString().split(',');
+        : argString.toString().split(';');
     // if it's string and has one argument the defintion, return the value without split
     const argumentsResult = argumentsRule.map((argumentRule, index) => {
         // calculate index for parameters that repeats like requiredIf:age,16,parent,yes,type,subscribed
@@ -66,7 +66,7 @@ module.exports.normalize = (ruleObj) => ruleObj.params.map((prevParam) => {
     if (!prevParam.arguments) {
         return prevParam.name;
     }
-    const params = prevParam.arguments.reduce((prevArgs, ruleArgs) => `${prevArgs}${ruleArgs.value},`, '');
+    const params = prevParam.arguments.reduce((prevArgs, ruleArgs) => `${prevArgs}${ruleArgs.value};`, '');
     // delete the last ,
     const paramsFormated = (params !== '') ? params.substring(0, params.length - 1) : params;
     return `${prevParam.name}:${paramsFormated}`;

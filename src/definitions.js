@@ -3,7 +3,7 @@ const types = {
     INTEGER: 'integer',
     BOOLEAN: 'boolean',
     DATE: 'date',
-    NUMBER: 'number'
+    NUMBER: 'number',
 };
 const ALL = Object.values(types);
 const rules = [
