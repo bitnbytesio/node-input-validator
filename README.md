@@ -398,7 +398,7 @@ niv.extend('even', ({ value }) => {
 });
 ```
 
-#### Example of using other fileds in rule
+#### Example of using other fields in rule
 
 ```javascript
 const niv = require('node-input-validator');
@@ -440,11 +440,11 @@ const mongoose = require('mongoose');
 
 niv.extend('unique', async ({ value, args }) => {
   // default field is email in this example
-  const filed = args[1] || 'email';
+  const field = args[1] || 'email';
 
   let condition = {};
 
-  condition[filed] = value;
+  condition[field] = value;
 
   // add ignore condition
   if (args[2]) {
