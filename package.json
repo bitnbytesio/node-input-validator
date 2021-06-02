@@ -69,6 +69,6 @@
     "mime-types": "^2.1.28",
     "moment": "^2.29.1",
     "read-chunk": "^3.2.0",
-    "validator": "^13.5.2"
+    "validator": "^13.6.0"
   }
 }
