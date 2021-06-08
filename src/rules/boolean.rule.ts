@@ -39,11 +39,11 @@ export function booleanStrict(): ValidationRuleContract {
   };
 }
 
-/**
- * @deprecated Since version 5. 
- * Use booleanStrict,booleanStr,booleanInt instead.
- * @param args 
- */
+// /**
+//  * @deprecated Since version 5. 
+//  * Use booleanStrict,booleanStr,booleanInt instead.
+//  * @param args 
+//  */
 export function boolean(
   args: Array<any> = [true, false, 0, 1, "true", "false", "0", "1"],
 ): ValidationRuleContract {

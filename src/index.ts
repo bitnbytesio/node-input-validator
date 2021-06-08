@@ -25,6 +25,10 @@ export function lang(lang: Langs) {
   config.modify('lang', lang);
 }
 
+export function addImplicitRule(ruleName:string) {
+  config.addImplicitRule(ruleName);
+}
+
 export function extend(ruleName: string, ruleFunc: (args?: Array<string>) => ValidationRuleContract) {
   // @ts-ignore
   Rules[ruleName] = ruleFunc;
@@ -75,4 +79,12 @@ export function koa() {
       throw err;
     }
   };
+}
+
+/**
+ * enable/disable multiple errors output
+ * @param {boolean} sure
+ */
+ export function bailable(sure:boolean) {
+  Validator.bailable(sure);
 }

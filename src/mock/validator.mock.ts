@@ -10,4 +10,12 @@ export class ValidatorMock implements ValidatorContract {
   createAttributeError(params: AttributeValidationMinimalInfo): void {
 
   }
+
+  isAttributePresent(attrName:string):boolean {
+    return false;
+  }
+
+  release():boolean {
+    return false;
+  }
 }

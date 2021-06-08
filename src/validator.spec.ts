@@ -28,6 +28,7 @@ describe(
       );
       const passed: boolean = await v.validate();
       expect(passed).toBe(false);
+      // @ts-ignore
       expect(v.errors.email.message).toBe(messageParser({
         message: messages.email,
         ruleArgs: ['isEmail'],
@@ -134,6 +135,7 @@ describe(
         );
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);
+        // @ts-ignore
         expect(v.errors["user.name"].rule).toBe("alpha");
       });
 
@@ -146,6 +148,7 @@ describe(
         );
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);
+        // @ts-ignore
         expect(v.errors["user.name"].rule).toBe("required");
       });
 
@@ -158,6 +161,7 @@ describe(
         );
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);
+        // @ts-ignore
         expect(v.errors["user.name"].rule).toBe("required");
       });
 
@@ -181,6 +185,7 @@ describe(
         );
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);
+        // @ts-ignore
         expect(v.errors["user.name"].rule).toBe("required");
       });
 
@@ -204,6 +209,7 @@ describe(
         );
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);
+        // @ts-ignore
         expect(v.errors["user.name"].rule).toBe("required");
       });
 
@@ -249,6 +255,7 @@ describe(
         );
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);
+        // @ts-ignore
         expect(v.errors["user.address.city"].rule).toBe("required");
       },
     );
@@ -265,6 +272,7 @@ describe(
         );
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);
+        // @ts-ignore
         expect(v.errors["user.address.city"].rule).toBe("required");
       },
     );

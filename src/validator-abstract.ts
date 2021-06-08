@@ -8,9 +8,9 @@ import {
   MessagesContract,
   NiceNamesContract,
   ValidatorErrorContract,
+  ValidatorErrorsContract,
   ValidationRuleArrayStringNotationContract,
 } from "./contracts";
-import { implicitRules } from "./implicit-rules";
 import { reallyEmpty } from "./utils/ops.util";
 import { getValuesByWildCardStringNotation } from "./utils/obj.util";
 import { parseStringNotationRules, parseStringRule } from "./utils/rules-parser.util";
@@ -42,9 +42,14 @@ export function registerPostRules(rules: any) {
   return PostRulesProvider = rules;
 }
 
+// you can change this value with static method
+let shouldBreakIfFailed = true;
+
 export abstract class ValidatorAbstract {
+  implicitRules:Array<string> = config.get('implicitRules');
+
   // validation errors collection
-  errors: ValidatorErrorContract = {};
+  errors: ValidatorErrorContract | ValidatorErrorsContract = {};
 
   // local custom attributes collection
   localNiceNames: NiceNamesContract = {};
@@ -66,6 +71,12 @@ export abstract class ValidatorAbstract {
   // post validation rules collection
   postRules: Array<any> = [];
 
+  // break rules validation loop when failed
+  breakWhenFailed = shouldBreakIfFailed;
+
+  // release attribute from futher validation rules
+  shouldRelease = false;
+
   /**
    * init validator
    * @param inputs 
@@ -82,6 +93,45 @@ export abstract class ValidatorAbstract {
   ) {
     this.hasCustomMessages = Object.keys(customMessages).length > 0;
     this.parse();
+  }
+
+  /**
+   * globally should break/bail on failed validation or not
+   * @param {boolean} sure
+   */
+  static bailable(sure:boolean) {
+    shouldBreakIfFailed = sure;
+  }
+
+  /**
+   * enable/disable multiple errors on current instance only
+   * @param {boolean} sure
+   */
+  bail(sure:boolean) {
+    this.breakWhenFailed = sure;
+  }
+
+  /**
+   * release attribute from rules validation
+   */
+  release() {
+    this.shouldRelease = true;
+  }
+
+  /**
+   * check is instance is bailable or not
+   * @returns {boolean}
+   */
+  isBailable() : boolean {
+    return this.breakWhenFailed;
+  }
+
+  /**
+   * allows a custom rule to be added as an implicit rule for the instance only
+   * @param {String} ruleName
+   */
+   addImplicitRule(ruleName:string) {
+    this.implicitRules.push(ruleName);
   }
 
   addRules(rules:
@@ -276,22 +326,35 @@ export abstract class ValidatorAbstract {
 
     for (i; i < len; i += 1) {
       const validationRule: ValidationRuleContract = attrRules[i];
-      const attrValue = this.attributeValue(attrName);
+      let attrValue = this.attributeValue(attrName);
+      
       if (
         // no implicit rule and attribute value is empty
         (implicitRules.indexOf(validationRule.name) < 0 &&
-          reallyEmpty(attrValue)) ||
+          reallyEmpty(attrValue)) 
         // attribute can be nullable
-        (validationRule.name === "nullable" && attrValue === null) ||
-        // attribute will only be validated if presents
-        (validationRule.name === "sometimes" &&
-          this.isAttributePresent(attrName) === false)
+        // (validationRule.name === "nullable" && attrValue === null) ||
+        // // attribute will only be validated if presents
+        // (validationRule.name === "sometimes" &&
+        //   this.isAttributePresent(attrName) === false)
       ) {
-        return;
+        if (this.isBailable()) {
+          // console.log(' here i m ...');
+          return;
+        }
+
+        attrValue = '';
       }
 
-      // console.log('attr val', attrValue);
-      const passed = await validationRule.handler(attrValue, this, attrName)
+      // console.log(this.breakWhenFailed, this.isBailable());
+
+      const passed = await validationRule.handler(attrValue, this, attrName);
+
+      this.shouldRelease = false;
+
+
+      // console.log('attr', attrName, validationRule.name, passed);
+
       if (!passed) {
         this.createAttributeError({
           attrName,
@@ -299,6 +362,10 @@ export abstract class ValidatorAbstract {
           ruleName: validationRule.name,
           ruleArgs: validationRule.args,
         });
+
+        if (this.isBailable()) {
+          return;
+        }
       }
     }
   }
@@ -309,10 +376,22 @@ export abstract class ValidatorAbstract {
   */
   createAttributeError(params: AttributeValidationMinimalInfo): void {
     const { attrName, ruleName } = params;
-    this.errors[attrName] = {
+
+    const error = {
       rule: ruleName,
       message: this.createAttributeErrorMessage(params),
     };
+
+    if (!this.breakWhenFailed) {
+      if (!this.errors[attrName]) {
+        this.errors[attrName] = [];
+      }
+
+      // @ts-ignore
+      this.errors[attrName].push(error);
+      return;
+    }
+    this.errors[attrName] = error;
   }
 
   /**

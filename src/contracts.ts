@@ -13,6 +13,10 @@ export interface ValidatorErrorContract {
   [key: string]: ValidatorErrorAttributeContract;
 }
 
+export interface ValidatorErrorsContract {
+  [key: string]: Array<ValidatorErrorAttributeContract>;
+}
+
 /**
  * validation rule interface
  * each validation rule should implement this interface
@@ -53,6 +57,10 @@ export interface ValidatorContract {
   attributeValue(attrName: string): any;
 
   createAttributeError(params: AttributeValidationMinimalInfo): void;
+
+  isAttributePresent(attrName:string):boolean;
+
+  release():boolean;
 }
 
 /**

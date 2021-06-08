@@ -6,12 +6,23 @@ export interface IConfig extends NodeJS.Dict<any> {
   wildcardSeperator?: string;
   lang?: Langs,
   dateAdapter?: DateAdapter,
+  implicitRules?: Array<string>,
 }
 
 let config: IConfig = {
   wildcardIterations: 1000,
   wildcardSeperator: '.',
   lang: Langs.en_US,
+  implicitRules: [
+    "required",
+    "requiredIf",
+    "requiredNotIf",
+    "requiredWith",
+    "requiredWithout",
+    "accepted",
+    "sometimes",
+    "nullable",
+  ],
 };
 
 export function set(customConfig: IConfig) {
@@ -29,4 +40,8 @@ export function get(key?: string, defaultValue = null) {
 
 export function modify(key: string, value: Langs | DateAdapter) {
   config[key] = value;
+}
+
+export function addImplicitRule(ruleName:string) {
+  config.implicitRules?.push(ruleName);
 }
