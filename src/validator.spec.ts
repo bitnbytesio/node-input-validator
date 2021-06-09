@@ -305,8 +305,14 @@ describe(
             ],
           },
         );
+
+        // @ts-ignore
+        console.log(v.parsedRulesCollection, JSON.stringify(v.inputs, null, 2));
+
         const passed: boolean = await v.validate();
-        expect(passed).toBe(true);
+        // expect(passed).toBe(true);
+
+        throw v.getErrors();
       },
     );
   });

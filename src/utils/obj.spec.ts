@@ -123,4 +123,11 @@ describe('util:obj', (): void => {
     }, 'product.name'))
       .toMatch('abc');
   })
+
+  test('obj:namedArgs with flat value', () => {
+    expect(objUtil.getValueByStringNotation({
+      product: 'abc',
+    }, 'product'))
+      .toMatch('abc');
+  })
 });

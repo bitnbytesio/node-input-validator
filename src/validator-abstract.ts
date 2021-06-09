@@ -12,7 +12,7 @@ import {
   ValidationRuleArrayStringNotationContract,
 } from "./contracts";
 import { reallyEmpty } from "./utils/ops.util";
-import { getValuesByWildCardStringNotation } from "./utils/obj.util";
+import { fillMissingSpots, getValueByStringNotation, getValuesByWildCardStringNotation } from "./utils/obj.util";
 import { parseStringNotationRules, parseStringRule } from "./utils/rules-parser.util";
 import * as MessagesProvider from './messages/provider';
 
@@ -46,7 +46,7 @@ export function registerPostRules(rules: any) {
 let shouldBreakIfFailed = true;
 
 export abstract class ValidatorAbstract {
-  implicitRules:Array<string> = config.get('implicitRules');
+  implicitRules: Array<string> = config.get('implicitRules');
 
   // validation errors collection
   errors: ValidatorErrorContract | ValidatorErrorsContract = {};
@@ -57,8 +57,8 @@ export abstract class ValidatorAbstract {
   // do we have custom messages?
   hasCustomMessages: boolean = false;
 
-  notationMap: any = {};
-  notationVals: any = {};
+  // notationMap: any = {};
+  // notationVals: any = {};
 
   // do we have nested rules?
   hasNestedRules: boolean = false;
@@ -99,7 +99,7 @@ export abstract class ValidatorAbstract {
    * globally should break/bail on failed validation or not
    * @param {boolean} sure
    */
-  static bailable(sure:boolean) {
+  static bailable(sure: boolean) {
     shouldBreakIfFailed = sure;
   }
 
@@ -107,7 +107,7 @@ export abstract class ValidatorAbstract {
    * enable/disable multiple errors on current instance only
    * @param {boolean} sure
    */
-  bail(sure:boolean) {
+  bail(sure: boolean) {
     this.breakWhenFailed = sure;
   }
 
@@ -122,7 +122,7 @@ export abstract class ValidatorAbstract {
    * check is instance is bailable or not
    * @returns {boolean}
    */
-  isBailable() : boolean {
+  isBailable(): boolean {
     return this.breakWhenFailed;
   }
 
@@ -130,7 +130,7 @@ export abstract class ValidatorAbstract {
    * allows a custom rule to be added as an implicit rule for the instance only
    * @param {String} ruleName
    */
-   addImplicitRule(ruleName:string) {
+  addImplicitRule(ruleName: string) {
     this.implicitRules.push(ruleName);
   }
 
@@ -231,8 +231,43 @@ export abstract class ValidatorAbstract {
 
       // sort rules as
       this.parsedRulesCollection[attr].sort((obj: any) => {
-        return (implicitRules.indexOf(obj.name) >= 0) ? -1 : 1;
+        return (this.implicitRules.indexOf(obj.name) >= 0) ? -1 : 1;
       });
+    }
+  }
+
+  fillMissingAttributes(key: string) {
+    const data: any = {};
+    const [frontKey] = key.split('.');
+    data[frontKey] = this.inputs[frontKey];
+
+    // let f = false;
+
+    if (key[key.length - 1] !== '*') {
+      fillMissingSpots(data, key, null, true);
+    }
+    // else {
+    //   f = true;
+    //   console.log(key);
+    // }
+
+    const { notationMap } = getValuesByWildCardStringNotation(data);
+
+    // if (f) {
+    //   console.log(notationMap, )
+    // }
+
+    const keys = Object.keys(notationMap);
+    const len = keys.length;
+    let i = 0;
+    for (i; i < len; i += 1) {
+      const key = keys[i];
+      const attrRules: Array<ValidationRuleContract> = this.parsedRulesCollection[key];
+      if (attrRules && key.indexOf('*') >= 0) {
+        notationMap[key].forEach((attrName: string) => {
+          this.parsedRulesCollection[attrName] = attrRules;
+        });
+      }
     }
   }
 
@@ -241,24 +276,46 @@ export abstract class ValidatorAbstract {
       return;
     }
 
-    const { notationMap, notationsVals } = getValuesByWildCardStringNotation(
-      this.inputs,
-    );
-    this.notationMap = notationMap;
-    this.notationVals = notationsVals;
+    // const flat = (data: any, prepend = '') => {
+    //   const results: any = {};
 
-    const keys = Object.keys(this.notationMap);
-    const len = keys.length;
-    let i = 0;
-    for (i; i < len; i += 1) {
-      const key = keys[i];
-      const attrRules: Array<ValidationRuleContract> = this.parsedRulesCollection[key];
-      if (attrRules && key.indexOf('*') >= 0) {
-        this.notationMap[key].forEach((attrName: string) => {
-          this.parsedRulesCollection[attrName] = attrRules;
-        });
+    //   Object.keys(data).forEach(key => {
+    //     const value = data[key];
+
+    //     if (typeof value === 'object') {
+    //       results.push(...results, ...flat(value, prepend + key + '.'));
+    //     } else {
+    //       results[prepend + key] = value;
+    //     }
+    //   });
+
+    //   return results;
+    // }
+
+    Object.keys(this.rules).forEach((key) => {
+      if (key.indexOf('*') >= 0) {
+        this.fillMissingAttributes(key);
       }
-    }
+    });
+
+    // const { notationMap, notationsVals } = getValuesByWildCardStringNotation(
+    //   this.inputs, this.rules,
+    // );
+    // this.notationMap = notationMap;
+    // this.notationVals = notationsVals;
+
+    // const keys = Object.keys(this.notationMap);
+    // const len = keys.length;
+    // let i = 0;
+    // for (i; i < len; i += 1) {
+    //   const key = keys[i];
+    //   const attrRules: Array<ValidationRuleContract> = this.parsedRulesCollection[key];
+    //   if (attrRules && key.indexOf('*') >= 0) {
+    //     this.notationMap[key].forEach((attrName: string) => {
+    //       this.parsedRulesCollection[attrName] = attrRules;
+    //     });
+    //   }
+    // }
   }
 
   /**
@@ -290,6 +347,7 @@ export abstract class ValidatorAbstract {
     const len = keys.length;
     let i = 0;
     const promises = [];
+
     for (i; i < len; i += 1) {
       const attrName = keys[i];
       if (attrName.indexOf('*') < 0) {
@@ -327,11 +385,11 @@ export abstract class ValidatorAbstract {
     for (i; i < len; i += 1) {
       const validationRule: ValidationRuleContract = attrRules[i];
       let attrValue = this.attributeValue(attrName);
-      
+
       if (
         // no implicit rule and attribute value is empty
-        (implicitRules.indexOf(validationRule.name) < 0 &&
-          reallyEmpty(attrValue)) 
+        (this.implicitRules.indexOf(validationRule.name) < 0 &&
+          reallyEmpty(attrValue))
         // attribute can be nullable
         // (validationRule.name === "nullable" && attrValue === null) ||
         // // attribute will only be validated if presents
@@ -457,7 +515,8 @@ export abstract class ValidatorAbstract {
   * @param attr attribute name
   */
   attributeValue(attr: string): any {
-    return this.inputs[attr] || this.notationVals[attr];
+    return getValueByStringNotation(this.inputs, attr);
+    // return this.inputs[attr] || this.notationVals[attr];
   }
 
   /**
@@ -473,7 +532,7 @@ export abstract class ValidatorAbstract {
    * @param attr attribute name
    */
   isAttributePresent(attr: string): boolean {
-    if (this.inputs[attr] || this.notationVals[attr]) {
+    if (this.inputs[attr]) {
       return true;
     }
 

@@ -55,6 +55,7 @@ interface NotationLoopOptions {
 
 export function getValuesByWildCardStringNotation(
   iterable: any,
+  rules: any = {},
   options: NotationLoopOptions = {},
 ) {
   const currentConfig = config.get();
@@ -100,4 +101,44 @@ export function getValuesByWildCardStringNotation(
   parse(iterable, [...prefix]);
 
   return { notationsVals, notationMap };
+}
+
+export function fillMissingSpots(target: any, key: string | Array<string>, value: any, overwrite: boolean = true) {
+  const segments: Array<string> = Array.isArray(key) ? [...key] : key.split('.');
+  const segment: any = segments.shift();
+
+  if (segment === '*') {
+    if (!Array.isArray(target)) {
+      target = [];
+    }
+
+    if (segments.length) {
+      Object.keys(target).forEach((targetKey) => {
+        // console.log(segments, target[targetKey]);
+        fillMissingSpots(target[targetKey], segments, value, overwrite);
+      });
+    } else if (overwrite) {
+      Object.keys(target).forEach((targetKey) => {
+        target[targetKey] = value;
+      });
+    }
+  } else if (typeof target === 'object') {
+    if (segments.length) {
+      if (!target[segment]) {
+        target[segment] = [];
+      }
+      fillMissingSpots(target[segment], segments, value, overwrite)
+    } else if (overwrite || !target[segment]) {
+      target[segment] = value;
+    }
+  } else {
+    target = [];
+    if (segments.length) {
+      fillMissingSpots(target[segment], segments, value, overwrite)
+    } else if (overwrite) {
+      target[segment] = value;
+    }
+  }
+
+  return target;
 }

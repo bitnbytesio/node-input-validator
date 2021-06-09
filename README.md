@@ -476,3 +476,8 @@ For rules documentation, <a href="https://bitnbytes.io/docs/niv/modules/rules.ht
 **Many thanks**
 
 - <a href="https://github.com/jgnovais">jgnovais</a>
+
+
+## Roadblock
+
+- fillMissingSpots overwriting array value in nested inputs, eg. product.attributes.*.colors.*
