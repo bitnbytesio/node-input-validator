@@ -2,7 +2,8 @@ import { Validator } from './validator';
 
 export * as Messages from './messages';
 
-import * as Rules from './rules';
+import * as rules from './rules';
+const Rules = {...rules}
 
 import { Langs, ValidationRuleContract } from './contracts';
 
