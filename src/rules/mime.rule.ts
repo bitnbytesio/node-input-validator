@@ -1,8 +1,8 @@
 import { ValidationRuleContract } from "../contracts";
 
 import * as mimeTypes from 'mime-types'
-import fileType from 'file-type'
-const { fromBuffer } = fileType
+import { fromBuffer } from 'file-type'
+// const { fromBuffer } = fileType
 import readChunk from 'read-chunk'
 
 export function mime(args: Array<string>, trust: boolean = false): ValidationRuleContract {

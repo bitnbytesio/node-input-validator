@@ -1,1 +1,1 @@
-module.exports = require('./esm');
+export * from './esm/index';
