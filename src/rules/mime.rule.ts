@@ -9,19 +9,13 @@ export function mime(args: Array<string>, trust: boolean = false): ValidationRul
   return {
     name: "mime",
     handler: async (value: any) => {
-      const file = value;
-
-      let success = true;
-
       let mtype;
 
-      if (file.mime && trust) {
-        mtype = file.mime;
-      } else if (file.type && trust) {
-        mtype = file.type;
-      } else if (file instanceof Buffer) {
+      if (trust) {
+        mtype = value.mime || value.type;
+      } else if (value instanceof Buffer) {
         try {
-          const fileType = await fromBuffer(file);
+          const fileType = await fromBuffer(value);
           if (fileType) {
             mtype = fileType.mime;
           }
@@ -29,19 +23,22 @@ export function mime(args: Array<string>, trust: boolean = false): ValidationRul
           /* istanbul ignore next */
           console.error(e);
         }
-      } else if (file.buffer && file.buffer instanceof Buffer) {
+      }
+      // should uncomment if found any practile use
+      // else if (value.buffer && value.buffer instanceof Buffer) {
+      //   try {
+      //     const fileType = await fromBuffer(value.buffer);
+      //     if (fileType) {
+      //       mtype = fileType.mime;
+      //     }
+      //   } catch (e) {
+      //     /* istanbul ignore next */
+      //     console.error(e);
+      //   }
+      // } 
+      else if (typeof value === 'string') {
         try {
-          const fileType = await fromBuffer(file.buffer);
-          if (fileType) {
-            mtype = fileType.mime;
-          }
-        } catch (e) {
-          /* istanbul ignore next */
-          console.error(e);
-        }
-      } else if (typeof file === 'string') {
-        try {
-          const buffer = await readChunk(file, 0, 4100);
+          const buffer = await readChunk(value, 0, 4100);
           const fileType = await fromBuffer(buffer);
           if (fileType) {
             mtype = fileType.mime;
@@ -50,9 +47,9 @@ export function mime(args: Array<string>, trust: boolean = false): ValidationRul
           /* istanbul ignore next */
           console.error(e);
         }
-      } else if (file.path && typeof file.path === 'string') {
+      } else if (value.path && typeof value.path === 'string') {
         try {
-          const buffer = await readChunk(file.path, 0, 4100);
+          const buffer = await readChunk(value.path, 0, 4100);
           const fileType = await fromBuffer(buffer);
           if (fileType) {
             mtype = fileType.mime;
@@ -67,19 +64,12 @@ export function mime(args: Array<string>, trust: boolean = false): ValidationRul
       // }
 
       for (let i = 0; i < args.length; ++i) {
-        if (mimeTypes.lookup(args[i]) !== mtype) {
-          success = false;
-        } else {
-          success = true;
-          break;
+        if (mimeTypes.lookup(args[i]) === mtype || args[i] === mtype) {
+          return true;
         }
       }
 
-      if (!success) {
-        return false;
-      }
-
-      return true;
+      return false;
     },
   };
 }

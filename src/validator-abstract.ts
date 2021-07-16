@@ -11,8 +11,8 @@ import {
   ValidatorErrorsContract,
   ValidationRuleArrayStringNotationContract,
 } from "./contracts";
-import { reallyEmpty } from "./utils/ops.util";
-import { fillMissingSpots, getValueByStringNotation, getValuesByWildCardStringNotation } from "./utils/obj.util";
+import { reallyEmpty, fillMissingSpots } from "./utils/ops.util";
+import { getValueByStringNotation, getValuesByWildCardStringNotation } from "./utils/obj.util";
 import { parseStringNotationRules, parseStringRule } from "./utils/rules-parser.util";
 import * as MessagesProvider from './messages/provider';
 
@@ -76,6 +76,8 @@ export abstract class ValidatorAbstract {
 
   // release attribute from futher validation rules
   shouldRelease = false;
+
+  implicitInputs: NodeJS.Dict<any> = {};
 
   /**
    * init validator
@@ -239,23 +241,13 @@ export abstract class ValidatorAbstract {
   fillMissingAttributes(key: string) {
     const data: any = {};
     const [frontKey] = key.split('.');
+
     data[frontKey] = this.inputs[frontKey];
 
-    // let f = false;
-
-    if (key[key.length - 1] !== '*') {
-      fillMissingSpots(data, key, null, true);
-    }
-    // else {
-    //   f = true;
-    //   console.log(key);
-    // }
+    fillMissingSpots(data, key);
+    // this.implicitInputs[frontKey] = data[frontKey];
 
     const { notationMap } = getValuesByWildCardStringNotation(data);
-
-    // if (f) {
-    //   console.log(notationMap, )
-    // }
 
     const keys = Object.keys(notationMap);
     const len = keys.length;
@@ -263,7 +255,7 @@ export abstract class ValidatorAbstract {
     for (i; i < len; i += 1) {
       const key = keys[i];
       const attrRules: Array<ValidationRuleContract> = this.parsedRulesCollection[key];
-      if (attrRules && key.indexOf('*') >= 0) {
+      if (attrRules /*&& key.indexOf('*') >= 0*/) {
         notationMap[key].forEach((attrName: string) => {
           this.parsedRulesCollection[attrName] = attrRules;
         });

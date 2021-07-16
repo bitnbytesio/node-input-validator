@@ -6,7 +6,6 @@ node_modules
 # others
 docs
 doctheme
-test.js
 coverage
 npm-debug.log
 .coveralls.yml
@@ -20,3 +19,4 @@ esm
 
 # extra files
 t.js
+test.js

@@ -47,7 +47,7 @@ export function booleanStrict(): ValidationRuleContract {
 export function boolean(
   args: Array<any> = [true, false, 0, 1, "true", "false", "0", "1"],
 ): ValidationRuleContract {
-  console.warn("Rule boolean has be deprecated, please use booleanStrict,booleanStr,booleanInt instead.");
+  // console.warn("Rule boolean has be deprecated, please use booleanStrict,booleanStr,booleanInt instead.");
   return {
     name: "boolean",
     handler: (value: any) => {

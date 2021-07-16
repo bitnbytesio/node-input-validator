@@ -31,9 +31,9 @@
   "scripts": {
     "test": "npx jest",
     "test:coverage": "npx jest --coverage",
-    "report-coverage": "npx codecov -f coverage/coverage-final.json",
+    "report:coverage": "npx codecov -f coverage/coverage-final.json",
     "compile": "npx tsc -p tsconfig.json && npx tsc -p cjs.tsconfig.json",
-    "docs": "npx typedoc --theme ../doctheme",
+    "compile:docs": "npx typedoc --theme ../doctheme",
     "prepare": "npm run compile",
     "prepublishOnly": "npm test"
   },
