@@ -2,13 +2,13 @@
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
-[![Known Vulnerabilities](https://snyk.io/test/npm/node-input-validator/badge.svg)](https://snyk.io/test/npm/node-input-validator)
+[![known vulnerabilities](https://snyk.io/test/npm/node-input-validator/badge.svg)](https://snyk.io/test/npm/node-input-validator)
 [![codecov.io Status][codecov-img]][codecov-url]
-[![David][deps-image]][david-url]
+[![david][deps-image]][david-url]
 [![node version][node-image]][node-url]
 
-[travis-image]: https://api.travis-ci.org/bitnbytesio/node-input-validator.svg?branch=development
-[travis-url]: https://travis-ci.org/bitnbytesio/node-input-validator?branch=development
+[travis-image]: https://travis-ci.com/bitnbytesio/node-input-validator.svg?branch=development
+[travis-url]: https://travis-ci.com/bitnbytesio/node-input-validator
 
 [codecov-img]: https://codecov.io/gh/bitnbytesio/node-input-validator/branch/development/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/bitnbytesio/node-input-validator/branch/development
