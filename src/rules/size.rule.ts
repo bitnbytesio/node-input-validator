@@ -64,7 +64,7 @@ export function size(args: Array<string>, trust: boolean = false): ValidationRul
         }
         // return Promise.resolve(false);
       } else if (file instanceof Buffer) {
-        return bytesBetween(file.byteLength, maxBytes, minBytes);
+        return bytesBetween(file.length, maxBytes, minBytes);
       }
 
       return Promise.resolve(false);

@@ -1,9 +1,10 @@
 {
   "name": "node-input-validator",
-  "version": "5.0.0-beta.4",
+  "version": "5.0.0-beta.5",
   "description": "validation library for nodejs, inspired by laravel.",
-  "main": "index.js",
-  "module": "index.mjs",
+  "main": "cjs/index.js",
+  "module": "esm/index.mjs",
+  "types": "types/index.d.ts",
   "dependencies": {
     "file-type": "^16.2.0",
     "mime-types": "^2.1.28",

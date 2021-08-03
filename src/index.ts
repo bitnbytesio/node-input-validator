@@ -1,17 +1,20 @@
-import { Validator } from './validator';
+export * from './contracts';
 
 export * as Messages from './messages';
 
 import * as Rules from './rules';
 
-import { Langs, ValidationRuleContract } from './contracts';
-
-import * as config from "./config";
-import { DateAdapter } from './date/contracts';
+import { Validator } from './validator';
 
 export { Validator, Rules };
 
 export { MomentAdapter, DateFnsAdapter } from './date';
+
+import { Langs, ValidationRuleContract } from './contracts';
+
+import * as config from "./config";
+
+import { DateAdapter } from './date/contracts';
 
 export function configure(customConf: config.IConfig) {
   config.set(customConf);
@@ -25,7 +28,7 @@ export function lang(lang: Langs) {
   config.modify('lang', lang);
 }
 
-export function addImplicitRule(ruleName:string) {
+export function addImplicitRule(ruleName: string) {
   config.addImplicitRule(ruleName);
 }
 
@@ -85,6 +88,6 @@ export function koa() {
  * enable/disable multiple errors output
  * @param {boolean} sure
  */
- export function bailable(sure:boolean) {
+export function bailable(sure: boolean) {
   Validator.bailable(sure);
 }
