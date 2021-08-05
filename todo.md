@@ -14,3 +14,4 @@
 - exception test cases almost pending in all rules
 - test case of acceptedIf
 - make this library browser compatible
+- fix read-chunk package depecrated dep

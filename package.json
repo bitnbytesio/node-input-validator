@@ -14,8 +14,8 @@
   },
   "types": "types/index.d.ts",
   "dependencies": {
-    "file-type": "^16.2.0",
-    "mime-types": "^2.1.28",
+    "file-type": "^16.5.3",
+    "mime-types": "^2.1.32",
     "read-chunk": "^3.2.0"
   },
   "devDependencies": {
