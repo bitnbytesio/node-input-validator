@@ -32,6 +32,18 @@ NIV (Node Input Validator) is a validation library for node.js. You can also ext
 npm i node-input-validator@v5
 ```
 
+This library supports both cjs and esm.
+
+Using CJS
+```js
+const { Validator } = require('node-input-validator');
+```
+
+Using ESM
+```js
+import { Validator } from 'node-input-validator';
+```
+
 ## Documentation
 For detailed documentation, <a target="_blank" href="https://bitnbytes.io/docs/niv/index.html">see https://bitnbytes.io/docs/niv/index.html</a>
 
