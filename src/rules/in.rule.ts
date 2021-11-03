@@ -1,7 +1,7 @@
 import { ValidationRuleContract } from "../contracts";
 
 export function _in(args: Array<any>): ValidationRuleContract {
-  if (!args.length) {
+  if (!args || !args.length) {
     throw new Error('Invalid number of arguments.');
   }
 
