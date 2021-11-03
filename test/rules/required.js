@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-const { Validator } = require('../../lib/index');
+const { Validator, empty } = require('../../lib/index');
 
 describe('#required', () => {
   it('should pass', async () => {
@@ -27,8 +27,8 @@ describe('#required', () => {
     assert.equal(matched, false);
   });
 
-  it('should fail with empty string', async () => {
-    const v = new Validator({ name: '' }, { name: ['required'] });
+  it('should pass with spaceed string with modified behaviour', async () => {
+    const v = new Validator({ name: ' ' }, { name: ['required'] });
 
     const matched = await v.check();
 
