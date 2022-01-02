@@ -16,6 +16,9 @@ export function assert(rules: object): any;
 
 export function setStrNotationRepetition(repetition: number): void;
 
+export function addImplicitRule(ruleName: string): void;
+
+
 export declare class Validator {
 
   inputs: any;
