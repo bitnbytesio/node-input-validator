@@ -1,4 +1,4 @@
-import * as Rules from './rules';
+import Rules from './rules';
 import * as PostRules from './post-rules';
 import './messages';
 import { dateAdapter } from "./date";

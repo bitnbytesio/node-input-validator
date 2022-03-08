@@ -1,5 +1,4 @@
 import { Rules } from "./index";
-import { nullable } from "./rules";
 
 import { Validator } from './validator';
 

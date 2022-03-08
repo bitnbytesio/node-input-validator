@@ -2,7 +2,7 @@ export * from './contracts';
 
 export * as Messages from './messages';
 
-import * as Rules from './rules';
+import Rules from './rules';
 
 import { Validator } from './validator';
 
@@ -33,15 +33,13 @@ export function addImplicitRule(ruleName: string) {
 }
 
 export function extend(ruleName: string, ruleFunc: (args?: Array<string>) => ValidationRuleContract) {
-  // @ts-ignore
-  Rules[ruleName] = ruleFunc;
+  (Rules as Record<string,any>)[ruleName] = ruleFunc;
 }
 
 /* istanbul ignore next */
 export function koa() {
   return async (ctx: any, next: any) => {
-    // @ts-ignore
-    ctx.validationErrors = function validationErrors(errors) {
+    ctx.validationErrors = function validationErrors(errors: any) {
       return {
         body: {
           message: 'The given data is invalid.',
@@ -72,11 +70,11 @@ export function koa() {
 
     try {
       await next();
-    } catch (err) {
-      if (err.status && err.status === 422) {
+    } catch (err) { 
+      if ((err as any).status && (err as any).status === 422) {
         ctx.type = 'json';
         ctx.status = 422;
-        ctx.body = err.body;
+        ctx.body = (err as any).body;
         return;
       }
       throw err;
