@@ -63,11 +63,11 @@
     "should": "^13.2.3"
   },
   "dependencies": {
-    "file-type": "^16.2.0",
+    "file-type": "^16.5.4",
     "image-size": "^0.8.3",
     "lodash.has": "^4.5.2",
     "mime-types": "^2.1.28",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "read-chunk": "^3.2.0",
     "validator": "^13.5.2"
   }
