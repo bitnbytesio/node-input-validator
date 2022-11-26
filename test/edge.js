@@ -28,7 +28,10 @@ describe('Edge Cases', () => {
     });
 
     it('should reject null and required fields', async () => {
-      const v = new Validator({ field: null }, { field: 'required|string' });
+      const v = new Validator({ field: null }, {
+        field: 'required|object',
+        'field.id': 'required|string'
+      });
 
       const matched = await v.check();
       assert.equal(matched, false);
