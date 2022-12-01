@@ -1,11 +1,11 @@
-import { Messages } from "../messages";
+import { Messages } from "../messages/index.js";
 import {
   alpha,
   alphaNumeric,
   alphaNumericDash,
   alphaDash,
   alphaHyphen,
-} from "../rules/alpha.rule";
+} from "../rules/alpha.rule.js";
 
 describe("rules:alpha", (): void => {
   test("should pass", (): void => {

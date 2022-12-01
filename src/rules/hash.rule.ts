@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
 const lengths: NodeJS.Dict<number> = {
   md5: 32,

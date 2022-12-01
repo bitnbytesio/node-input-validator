@@ -1,6 +1,6 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
-import { isDecimal, isInt, isNumeric } from '../utils/number.util';
+import { isDecimal, isInt, isNumeric } from '../utils/number.util.js';
 
 export function integer(args: Array<'0'> = []): ValidationRuleContract {
   return {

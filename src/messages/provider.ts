@@ -1,5 +1,5 @@
-import { getKeyValue } from "../utils/obj.util";
-import { Langs, MessagesContract, MessagesDictContract } from "../contracts";
+import { getKeyValue } from "../utils/obj.util.js";
+import { Langs, MessagesContract, MessagesDictContract } from "../contracts.js";
 
 export const DEFAULT_LANG: Langs = Langs.en_US;
 

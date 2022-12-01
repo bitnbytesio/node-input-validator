@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
 // This file is the perfect example of when to place multiple rules in same file.
 // All rules in this file have common check ie. isArray and on top of that 

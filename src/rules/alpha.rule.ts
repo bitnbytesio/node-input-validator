@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
 const REGEX_ALPHA = /^[A-Z]+$/i;
 const REGEX_ALPHA_DASH = /^[A-Z_-]+$/i;

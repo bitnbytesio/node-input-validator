@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 import { URL } from 'url';
 
 export function url(args: Array<string> = ['http:', 'https:']): ValidationRuleContract {

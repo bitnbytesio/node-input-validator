@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { ascii, base64, json } from "./encoding.rule";
+import { Messages } from "../messages/index.js";
+import { ascii, base64, json } from "./encoding.rule.js";
 
 describe('rules:ascii', () => {
   test("should pass", function (): void {

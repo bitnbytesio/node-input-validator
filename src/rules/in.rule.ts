@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
 export function _in(args: Array<any>): ValidationRuleContract {
   if (!args || !args.length) {

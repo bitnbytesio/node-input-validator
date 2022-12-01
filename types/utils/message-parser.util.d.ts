@@ -1,4 +1,4 @@
-import { MessageProviderFuncation } from '../contracts';
+import { MessageProviderFuncation } from '../contracts.js';
 interface MessageParserParams {
     message: string | MessageProviderFuncation;
     attrName: string;

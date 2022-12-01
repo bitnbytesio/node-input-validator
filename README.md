@@ -17,7 +17,7 @@
 [david-url]: https://david-dm.org/bitnbytesio/node-input-validator/development
 
 [npm-image]: https://img.shields.io/npm/v/node-input-validator/beta?style=flat-square
-[npm-url]: https://www.npmjs.com/package/node-input-validator/v/5.0.0-beta.0
+[npm-url]: https://www.npmjs.com/package/node-input-validator/v/5.0.0-beta.6
 
 [node-image]: https://img.shields.io/badge/node.js-%3E=_10.12-green.svg?style=flat-square
 [node-url]: https://nodejs.org/en/download/
@@ -25,6 +25,9 @@
 NIV (Node Input Validator) is a validation library for node.js. You can also extend library to add custom rules.
 
 **Note**: For use case of any rule, please check test cases, If you have any doubt or confusion with documentation or regarding rule behaviour.
+
+> There are some major changes in nested fields validations and some rules behaviour. Will update documentation soon.
+> Post validations rules are broken
 
 ## Installation
 
@@ -489,7 +492,6 @@ For rules documentation, <a href="https://bitnbytes.io/docs/niv/modules/rules.ht
 
 - <a href="https://github.com/jgnovais">jgnovais</a>
 
-
 ## Roadblock
-
+### v5.0.0-beta.5
 - fillMissingSpots overwriting array value in nested inputs, eg. product.attributes.*.colors.*

@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 /**
   * parse rules those are in string notation
   * @param attrRules attribute string rules

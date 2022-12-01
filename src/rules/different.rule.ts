@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
 export function different(args: Array<any>): ValidationRuleContract {
   if (!args.length) {

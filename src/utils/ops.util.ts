@@ -1,4 +1,4 @@
-import { isObject } from './obj.util';
+import { isObject } from './obj.util.js';
 
 export function reallyEmpty(value: any): boolean {
   const str = (value === undefined || value === null ? "" : value) + "";

@@ -1,20 +1,20 @@
-export * from './contracts';
+export * from './contracts.js';
 
-export * as Messages from './messages';
+export * as Messages from './messages/index.js';
 
-import * as Rules from './rules';
+import * as Rules from './rules/index.js';
 
-import { Validator } from './validator';
+import { Validator } from './validator.js';
 
 export { Validator, Rules };
 
-export { MomentAdapter, DateFnsAdapter } from './date';
+export { MomentAdapter, DateFnsAdapter } from './date/index.js';
 
-import { Langs, ValidationRuleContract } from './contracts';
+import { Langs, ValidationRuleContract } from './contracts.js';
 
-import * as config from "./config";
+import * as config from "./config.js";
 
-import { DateAdapter } from './date/contracts';
+import { DateAdapter } from './date/contracts.js';
 
 export function configure(customConf: config.IConfig) {
   config.set(customConf);

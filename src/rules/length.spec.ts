@@ -1,10 +1,10 @@
-import { Messages } from "../messages";
+import { Messages } from "../messages/index.js";
 import {
   minLength,
   maxLength,
   length,
   lengthBetween,
-} from "./length.rule";
+} from "./length.rule.js";
 
 describe('rules:minLength', () => {
   test("should pass", () => {

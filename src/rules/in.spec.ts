@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { _in, notIn } from "./in.rule";
+import { Messages } from "../messages/index.js";
+import { _in, notIn } from "./in.rule.js";
 
 describe("rules:in", () => {
   test("should pass", () => {

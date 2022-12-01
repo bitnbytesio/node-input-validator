@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { domain } from "./domain.rule";
+import { Messages } from "../messages/index.js";
+import { domain } from "./domain.rule.js";
 
 describe("rules:domain", function (): void {
   test("should pass", function (): void {

@@ -1,6 +1,6 @@
-import { Messages } from "../messages";
-import { different } from "./different.rule";
-import { ValidatorMock } from '../mock/validator.mock'
+import { Messages } from "../messages/index.js";
+import { different } from "./different.rule.js";
+import { ValidatorMock } from '../mock/validator.mock.js'
 
 test("rules:different", function (): void {
   const ruleHandler = different(["new_password"]).handler;

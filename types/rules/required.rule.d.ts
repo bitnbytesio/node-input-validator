@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 export declare function required(): ValidationRuleContract;
 export declare function requiredIf(args: Array<string>): ValidationRuleContract;
 /**

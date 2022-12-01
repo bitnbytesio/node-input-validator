@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 export declare function booleanStr(): ValidationRuleContract;
 export declare function booleanInt(): ValidationRuleContract;
 export declare function booleanStrict(): ValidationRuleContract;

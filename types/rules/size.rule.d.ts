@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 /**
  * The field under validation should be file path, Buffer or File object.
  *

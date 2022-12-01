@@ -1,7 +1,7 @@
 import {
   ValidationRuleContract,
   ValidatorContract,
-} from "../contracts";
+} from "../contracts.js";
 
 export function all(args: Array<string>): ValidationRuleContract {
   return {
@@ -34,7 +34,7 @@ export function all(args: Array<string>): ValidationRuleContract {
       });
 
       v.createAttributeError({
-        ruleName: 'any',
+        ruleName: 'all',
         attrName: '*',
         attrValue: values,
         ruleArgs: args,

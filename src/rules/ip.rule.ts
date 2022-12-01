@@ -1,5 +1,5 @@
-import { ValidationRuleContract } from "../contracts";
-import { isIp } from '../utils/borrowed';
+import { ValidationRuleContract } from "../contracts.js";
+import { isIp } from '../utils/borrowed.js';
 
 export function ip(args: Array<'4' | '6'> = []): ValidationRuleContract {
   return {

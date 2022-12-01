@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
 export function contains(args: Array<string>): ValidationRuleContract {
   if (args.length < 1 || args.length > 2) {

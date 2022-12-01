@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { email } from "./email.rule";
+import { Messages } from "../messages/index.js";
+import { email } from "./email.rule.js";
 
 describe("rules:email", () => {
   test("should pass", () => {

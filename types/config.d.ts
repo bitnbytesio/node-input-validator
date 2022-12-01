@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import { Langs } from "./contracts";
-import { DateAdapter } from "./date/contracts";
+import { Langs } from "./contracts.js";
+import { DateAdapter } from "./date/contracts.js";
 export interface IConfig extends NodeJS.Dict<any> {
     wildcardIterations?: number;
     wildcardSeperator?: string;

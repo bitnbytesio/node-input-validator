@@ -1,4 +1,4 @@
-import { DateAdapter } from "./contracts";
+import { DateAdapter } from "./contracts.js";
 
 export class DateFnsAdapter extends DateAdapter {
   protected dateLib: any;

@@ -1,2 +1,2 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 export declare function string(): ValidationRuleContract;

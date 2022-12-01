@@ -1,9 +1,9 @@
 import fs from 'fs';
 import util from 'util';
 
-import { sizeToBytes } from '../utils/str.util'
+import { sizeToBytes } from '../utils/str.util.js'
 
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
 /**
  * check if bytes are within given range

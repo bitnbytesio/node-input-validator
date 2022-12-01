@@ -1,4 +1,4 @@
-import { isDomain, isEmail, isIp, isCreditCard } from './borrowed';
+import { isDomain, isEmail, isIp, isCreditCard } from './borrowed.js';
 
 test('borrowed:code', () => {
   expect(isDomain('bitnbytes.io')).toBe(true);

@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
 const regex = /^(\+?\d{1,3})?\d{7,10}$/;
 

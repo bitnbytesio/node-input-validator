@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { hash } from "./hash.rule";
+import { Messages } from "../messages/index.js";
+import { hash } from "./hash.rule.js";
 
 
 describe("rules:hash", () => {

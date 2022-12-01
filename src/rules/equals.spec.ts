@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { equals } from "./equals.rule";
+import { Messages } from "../messages/index.js";
+import { equals } from "./equals.rule.js";
 
 describe("rules:equals", function (): void {
   test("should pass", function (): void {

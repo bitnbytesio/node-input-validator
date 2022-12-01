@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { useDateAdapter } from '../index';
+import { useDateAdapter } from '../index.js';
 
 import {
   dateAfter,
@@ -11,10 +11,10 @@ import {
   dateISO,
   date,
   datetime,
-} from './date.rule';
+} from './date.rule.js';
 
-import { MomentAdapter } from '../date/moment.adapter';
-import { Messages } from '../messages';
+import { MomentAdapter } from '../date/moment.adapter.js';
+import { Messages } from '../messages/index.js';
 
 const adapter = new MomentAdapter(moment);
 useDateAdapter(adapter);
@@ -28,7 +28,7 @@ describe("rules:dateAfter", () => {
 
     d.setTime(d.getTime() + (1 * 60 * 60 * 1000));
 
-    expect(after([adapter.FORMAT_DATETIME]).handler('2021-12-12 10:00:00')).toBe(true);
+    expect(after([adapter.FORMAT_DATETIME]).handler('2025-12-12 10:00:00')).toBe(true);
     expect(after([adapter.FORMAT_DATETIME, '2020-12-12 10:00:00']).handler('2021-12-12 10:00:00')).toBe(true);
   });
 

@@ -1,6 +1,6 @@
-import { accepted, acceptedIf, acceptedNotIf } from "../rules/accepted.rule";
-import { Messages } from '../messages';
-import { ValidatorMock } from '../mock/validator.mock';
+import { accepted, acceptedIf, acceptedNotIf } from "../rules/accepted.rule.js";
+import { Messages } from '../messages/index.js';
+import { ValidatorMock } from '../mock/validator.mock.js';
 
 describe("rules:accepted", () => {
   test("should pass", () => {

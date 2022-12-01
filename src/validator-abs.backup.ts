@@ -204,52 +204,109 @@ export abstract class ValidatorAbstract {
   }
 
   parseRules() {
-    const keys = Object.keys(this.rules);
-    const parsed = {};
-    for (const key of keys) {
-      if (key === '*') {
-        this.addPostRules(this.rules[key]);
-        continue;
+    let attr: string;
+
+    for (attr of Object.keys(this.rules)) {
+      if (attr === '*') {
+        this.addPostRules(this.rules[attr]);
+        return;
       }
 
-      let rules = this.rules[key];
-      if (Array.isArray(rules)) {
-        for (const index in rules) {
-          if (typeof rules[index] == 'string') {
-            rules[index] = parseStringRule(RulesProvider, rules[index] as string);
-          }
-        }
+      if (attr.indexOf(".")) {
+        this.hasNestedRules = true;
+      }
+
+      const attrRules = this.rules[attr];
+
+      if (typeof attrRules === 'string') {
+        this.parsedRulesCollection[attr] = parseStringNotationRules(RulesProvider, attrRules);
       } else {
-        rules = parseStringNotationRules(RulesProvider, rules);
+        attrRules.forEach((strRule: any, index: number) => {
+          if (typeof strRule === 'string') {
+            attrRules[index] = parseStringRule(RulesProvider, strRule);
+          }
+        });
+
+        // @ts-ignore
+        this.parsedRulesCollection[attr] = attrRules;
       }
 
-      rules.sort((obj: any) => {
+      // sort rules as
+      this.parsedRulesCollection[attr].sort((obj: any) => {
         return (this.implicitRules.indexOf(obj.name) >= 0) ? -1 : 1;
       });
-
-      let kobj: any = parsed;
-      let path = '';
-      key.split('.').forEach((k, i) => {
-        path += k;
-
-        if (!kobj[k]) {
-          kobj[k] = {
-            rules: this.rules[path] ? rules : [],
-            child: {},
-          };
-        }
-
-        kobj = kobj[k].child;
-        path += '.';
-      });
     }
+  }
 
-    this.parsedRulesCollection = parsed;
+  fillMissingAttributes(key: string) {
+    const data: any = {};
+    const [frontKey] = key.split('.');
+
+    data[frontKey] = this.inputs[frontKey];
+
+    fillMissingSpots(data, key);
+    // this.implicitInputs[frontKey] = data[frontKey];
+
+    const { notationMap } = getValuesByWildCardStringNotation(data);
+
+    const keys = Object.keys(notationMap);
+    const len = keys.length;
+    let i = 0;
+    for (i; i < len; i += 1) {
+      const key = keys[i];
+      const attrRules: Array<ValidationRuleContract> = this.parsedRulesCollection[key];
+      if (attrRules /*&& key.indexOf('*') >= 0*/) {
+        notationMap[key].forEach((attrName: string) => {
+          this.parsedRulesCollection[attrName] = attrRules;
+        });
+      }
+    }
   }
 
   parseInputs() {
-    // if (!this.hasNestedRules) {
-    //   return;
+    if (!this.hasNestedRules) {
+      return;
+    }
+
+    // const flat = (data: any, prepend = '') => {
+    //   const results: any = {};
+
+    //   Object.keys(data).forEach(key => {
+    //     const value = data[key];
+
+    //     if (typeof value === 'object') {
+    //       results.push(...results, ...flat(value, prepend + key + '.'));
+    //     } else {
+    //       results[prepend + key] = value;
+    //     }
+    //   });
+
+    //   return results;
+    // }
+
+    Object.keys(this.rules).forEach((key) => {
+      if (key.indexOf('*') >= 0) {
+        this.fillMissingAttributes(key);
+      }
+    });
+
+    // const { notationMap, notationsVals } = getValuesByWildCardStringNotation(
+    //   this.inputs, this.rules,
+    // );
+    // this.notationMap = notationMap;
+    // this.notationVals = notationsVals;
+
+    // const keys = Object.keys(this.notationMap);
+    // const len = keys.length;
+    // let i = 0;
+    // for (i; i < len; i += 1) {
+    //   const key = keys[i];
+    //   const attrRules: Array<ValidationRuleContract> = this.parsedRulesCollection[key];
+    //   if (attrRules && key.indexOf('*') >= 0) {
+    //     this.notationMap[key].forEach((attrName: string) => {
+    //       this.parsedRulesCollection[attrName] = attrRules;
+    //     });
+    //   }
     // }
   }
 
@@ -278,8 +335,6 @@ export abstract class ValidatorAbstract {
       this.parseInputs();
     }
 
-    // console.log(JSON.stringify(this.parsedRulesCollection, null, 2))
-
     const keys = Object.keys(this.parsedRulesCollection);
     const len = keys.length;
     let i = 0;
@@ -287,7 +342,12 @@ export abstract class ValidatorAbstract {
 
     for (i; i < len; i += 1) {
       const attrName = keys[i];
-      promises.push(this.applyParsedRules(attrName, this.parsedRulesCollection[attrName], this.inputs));
+      if (attrName.indexOf('*') < 0) {
+        const attrRules: Array<ValidationRuleContract> = this.parsedRulesCollection[attrName];
+        if (attrRules) {
+          promises.push(this.validateAttribute(attrName, attrRules));
+        }
+      }
     }
 
     // post validation rules
@@ -301,43 +361,6 @@ export abstract class ValidatorAbstract {
     return !this.hasErrors();
   }
 
-  async applyParsedRules(attrName: any, rules: any, inputs: any, prefix = '') {
-    if (attrName === '*') {
-      if (!Array.isArray(inputs)) {
-        // this.createAttributeError({
-        //     attrName,
-        //     attrValue: inputs,
-        //     ruleName: 'array',
-        //     ruleArgs: [],
-        // });
-        return
-      }
-
-      let i = 0;
-      for (const val of inputs) {
-        // console.log(i, rules, [val], `${prefix}${i}`);
-        await this.applyParsedRules(i, rules, inputs, prefix);
-        i += 1;
-      }
-      return;
-    }
-
-    const attrValue = inputs[attrName];
-
-
-    const info = await this.validateAttribute(attrName, attrValue, rules.rules, { prefix, inputs });
-
-    //console.log(attrName, attrValue, info)
-    if (info.empty && info.passed) {
-      return;
-    }
-
-    for (const cattrName in rules.child) {
-      await this.applyParsedRules(cattrName, rules.child[cattrName], attrValue || {}, prefix.length ? `${prefix}${attrName}.` : `${attrName}.`);
-      //  break;
-    }
-  }
-
 
   /**
   * apply rules on attribute
@@ -346,59 +369,55 @@ export abstract class ValidatorAbstract {
   */
   async validateAttribute(
     attrName: string,
-    attrValue: any,
     attrRules: Array<ValidationRuleContract>,
-    { prefix, inputs }: any,
   ) {
-    const info = {
-      implicit: false,
-      implicitFailed: false,
-      passed: true,
-      empty: reallyEmpty(attrValue),
-    };
-
-
     let i = 0;
     let len = attrRules.length;
 
     for (i; i < len; i += 1) {
       const validationRule: ValidationRuleContract = attrRules[i];
-      const isImplicitRule = this.implicitRules.indexOf(validationRule.name) >= 0;
+      let attrValue = this.attributeValue(attrName);
 
-      if (isImplicitRule) {
-        info.implicit = true;
-      }
-
-      if (!isImplicitRule && info.empty) {
+      if (
+        // no implicit rule and attribute value is empty
+        (this.implicitRules.indexOf(validationRule.name) < 0 &&
+          reallyEmpty(attrValue))
+        // attribute can be nullable
+        // (validationRule.name === "nullable" && attrValue === null) ||
+        // // attribute will only be validated if presents
+        // (validationRule.name === "sometimes" &&
+        //   this.isAttributePresent(attrName) === false)
+      ) {
         if (this.isBailable()) {
-          return info;
+          // console.log(' here i m ...');
+          return;
         }
+
         attrValue = '';
       }
 
-      const passed = await validationRule.handler(attrValue, this, attrName, { path: prefix + attrName, inputs });
+      // console.log(this.breakWhenFailed, this.isBailable());
 
-      if (passed == -1) {
-        continue;
-      }
+      const passed = await validationRule.handler(attrValue, this, attrName);
 
       this.shouldRelease = false;
 
+
+      // console.log('attr', attrName, validationRule.name, passed);
+
       if (!passed) {
-        info.passed = false;
         this.createAttributeError({
-          attrName: prefix + attrName,
+          attrName,
           attrValue,
           ruleName: validationRule.name,
           ruleArgs: validationRule.args,
         });
 
         if (this.isBailable()) {
-          return info;
+          return;
         }
       }
     }
-    return info;
   }
 
   /**
@@ -505,7 +524,7 @@ export abstract class ValidatorAbstract {
    * @param attr attribute name
    */
   isAttributePresent(attr: string): boolean {
-    if (this.inputs[attr] != undefined) {
+    if (this.inputs[attr]) {
       return true;
     }
 

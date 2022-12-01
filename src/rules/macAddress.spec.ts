@@ -1,6 +1,6 @@
 
-import { Messages } from "../messages";
-import { macAddress } from "./macAddress.rule";
+import { Messages } from "../messages/index.js";
+import { macAddress } from "./macAddress.rule.js";
 
 test("rules:macAddress", function (): void {
   const ruleHandler = macAddress().handler;

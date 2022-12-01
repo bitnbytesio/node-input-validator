@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
 export function booleanStr(): ValidationRuleContract {
   const args: Array<string> = ["true", "false"];

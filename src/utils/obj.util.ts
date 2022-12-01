@@ -1,4 +1,4 @@
-import * as config from '../config';
+import * as config from '../config.js';
 
 export function getKeyValue(key: string) {
   return (obj: any) => obj[key];

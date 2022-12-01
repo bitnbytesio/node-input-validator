@@ -1,5 +1,5 @@
-import { ValidationRuleContract, ValidatorContract } from "../contracts";
-import { isHexadecimal } from "../utils/str.util";
+import { ValidationRuleContract, ValidatorContract } from "../contracts.js";
+import { isHexadecimal } from "../utils/str.util.js";
 
 export function mongoId(): ValidationRuleContract {
   return {

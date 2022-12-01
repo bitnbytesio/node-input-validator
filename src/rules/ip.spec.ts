@@ -1,6 +1,6 @@
 
-import { Messages } from "../messages";
-import { ip } from "./ip.rule";
+import { Messages } from "../messages/index.js";
+import { ip } from "./ip.rule.js";
 
 test("rules:ip", () => {
   const ruleHandler = ip().handler;

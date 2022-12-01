@@ -1,4 +1,4 @@
-import { Messages } from "../messages";
+import { Messages } from "../messages/index.js";
 import {
   array,
   arrayLen,
@@ -7,7 +7,7 @@ import {
   arrayLenRange,
   arrayUnique,
   arrayUniqueObjects,
-} from "../rules/array.rule";
+} from "../rules/array.rule.js";
 
 describe("rules:array", () => {
   test("should pass", () => {

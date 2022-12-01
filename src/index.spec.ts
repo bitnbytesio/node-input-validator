@@ -1,6 +1,6 @@
-import { Langs, ValidationRuleContract } from './contracts';
-import * as niv from './index';
-import * as config from './config';
+import { Langs, ValidationRuleContract } from './contracts.js';
+import * as niv from './index.js';
+import * as config from './config.js';
 
 describe(
   "niv:extend",

@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 /**
  * The field under validation must be between min and max seed.
  * This will work with number as well as array.

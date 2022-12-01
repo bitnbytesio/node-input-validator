@@ -1,6 +1,6 @@
 
-import { Messages } from "../messages";
-import { object } from "./object.rule";
+import { Messages } from "../messages/index.js";
+import { object } from "./object.rule.js";
 
 describe("rules:object", () => {
   test("should pass", () => {

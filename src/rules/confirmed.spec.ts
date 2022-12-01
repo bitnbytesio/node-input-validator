@@ -1,6 +1,6 @@
-import { Messages } from "../messages";
-import { confirmed } from "./confirmed.rule";
-import { ValidatorMock } from '../mock/validator.mock';
+import { Messages } from "../messages/index.js";
+import { confirmed } from "./confirmed.rule.js";
+import { ValidatorMock } from '../mock/validator.mock.js';
 
 describe('rules:confirmed', () => {
 

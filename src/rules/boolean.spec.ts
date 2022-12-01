@@ -1,6 +1,6 @@
-import { booleanStrict, booleanStr, booleanInt, boolean } from "../rules/boolean.rule";
+import { booleanStrict, booleanStr, booleanInt, boolean } from "../rules/boolean.rule.js";
 
-import { Messages } from '../messages';
+import { Messages } from '../messages/index.js';
 
 describe("rules:booleanStrict", () => {
   test("should pass", () => {

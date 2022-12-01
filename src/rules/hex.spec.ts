@@ -1,6 +1,6 @@
 
-import { Messages } from "../messages";
-import { hex, hexColor } from "./hex.rule";
+import { Messages } from "../messages/index.js";
+import { hex, hexColor } from "./hex.rule.js";
 
 describe("rules:hex", () => {
   test("should pass", () => {

@@ -1,5 +1,5 @@
 
-import { ValidationRuleContract, ValidatorContract } from "../contracts";
+import { ValidationRuleContract, ValidatorContract } from "../contracts.js";
 
 export function object(): ValidationRuleContract {
   return {

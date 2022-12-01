@@ -1,9 +1,9 @@
-import { Rules } from "./index";
+import { Rules } from "./index.js";
 
-import { Validator } from './validator';
+import { Validator } from './validator.js';
 
-import { messages } from './messages/en-US.messages';
-import { messageParser } from './utils/message-parser.util';
+import { messages } from './messages/en-US.messages.js';
+import { messageParser } from './utils/message-parser.util.js';
 
 describe(
   "Validator:validate",
@@ -144,7 +144,10 @@ describe(
       async function (): Promise<void> {
         const v = new Validator(
           {},
-          { "user.name": [Rules.string(), Rules.alpha(), Rules.required()] },
+          {
+            user: [Rules.required()],
+            "user.name": [Rules.string(), Rules.alpha(), Rules.required()]
+          },
         );
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);
@@ -157,7 +160,10 @@ describe(
       async function (): Promise<void> {
         const v = new Validator(
           { user: undefined },
-          { "user.name": [Rules.string(), Rules.alpha(), Rules.required()] },
+          {
+            user: [Rules.required()],
+            "user.name": [Rules.string(), Rules.alpha(), Rules.required()]
+          },
         );
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);
@@ -267,8 +273,10 @@ describe(
         let v = new Validator(
           { user: { name: "Node" } },
           {
+            user: 'required|object',
+            'user.address': 'required|object',
             "user.address.city": [Rules.string(), Rules.alpha(), Rules.required()],
-          },
+          } as any,
         );
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);

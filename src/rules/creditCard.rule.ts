@@ -1,5 +1,5 @@
-import { ValidationRuleContract } from "../contracts";
-import { isCreditCard } from "../utils/borrowed";
+import { ValidationRuleContract } from "../contracts.js";
+import { isCreditCard } from "../utils/borrowed.js";
 
 export function creditCard(): ValidationRuleContract {
   return {

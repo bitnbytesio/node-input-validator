@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { url } from "./url.rule";
+import { Messages } from "../messages/index.js";
+import { url } from "./url.rule.js";
 
 test("rules:url", function (): void {
   const ruleHandler = url().handler;

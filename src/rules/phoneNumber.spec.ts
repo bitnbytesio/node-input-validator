@@ -1,6 +1,6 @@
 
-import { Messages } from "../messages";
-import { phoneNumber } from "./phoneNumber.rule";
+import { Messages } from "../messages/index.js";
+import { phoneNumber } from "./phoneNumber.rule.js";
 
 test("rules:phoneNumber", function (): void {
   const ruleHandler = phoneNumber().handler;

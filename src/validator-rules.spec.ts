@@ -1,4 +1,4 @@
-import { Validator } from './validator';
+import { Validator } from './validator.js';
 
 describe(
   "Validator:validate string rules",

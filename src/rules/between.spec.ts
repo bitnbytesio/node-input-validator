@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { between } from "./between.rule";
+import { Messages } from "../messages/index.js";
+import { between } from "./between.rule.js";
 
 describe('rules:between', () => {
 

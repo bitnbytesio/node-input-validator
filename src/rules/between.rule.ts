@@ -1,5 +1,5 @@
-import { ValidationRuleContract } from "../contracts";
-import { isNumeric } from "../utils/number.util";
+import { ValidationRuleContract } from "../contracts.js";
+import { isNumeric } from "../utils/number.util.js";
 
 /**
  * The field under validation must be between min and max seed.

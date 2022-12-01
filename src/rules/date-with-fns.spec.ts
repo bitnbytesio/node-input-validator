@@ -1,5 +1,5 @@
 import * as dateFns from 'date-fns'
-import { useDateAdapter } from '../index';
+import { useDateAdapter } from '../index.js';
 
 import {
   dateAfter,
@@ -10,10 +10,10 @@ import {
   dateFormat,
   dateISO,
   date,
-} from './date.rule';
+} from './date.rule.js';
 
-import { DateFnsAdapter } from '../date/date-fns.adapter';
-import { Messages } from '../messages';
+import { DateFnsAdapter } from '../date/date-fns.adapter.js';
+import { Messages } from '../messages/index.js';
 
 const adapter = new DateFnsAdapter(dateFns);
 useDateAdapter(adapter);
@@ -23,11 +23,7 @@ describe("rules:dateAfter", () => {
     const ruleHandler = dateAfter([adapter.FORMAT_DATE, "2020-05-20"]).handler;
     expect(ruleHandler("2020-06-20")).toBe(true);
 
-    const d = new Date();
-
-    d.setTime(d.getTime() + (1 * 60 * 60 * 1000));
-
-    expect(after([adapter.FORMAT_DATETIME]).handler('2021-12-12 10:00:00')).toBe(true);
+    expect(after([adapter.FORMAT_DATETIME]).handler('2025-12-12 10:00:00')).toBe(true);
     expect(after([adapter.FORMAT_DATETIME, '2020-12-12 10:00:00']).handler('2021-12-12 10:00:00')).toBe(true);
   });
 

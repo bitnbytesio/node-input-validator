@@ -1,4 +1,4 @@
-import { AttributeValidationMinimalInfo, ValidatorContract } from "../contracts";
+import { AttributeValidationMinimalInfo, ValidatorContract } from "../contracts.js";
 
 export class ValidatorMock implements ValidatorContract {
   constructor(private inputs: any) { }

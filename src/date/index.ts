@@ -1,8 +1,8 @@
-import { DateAdapter } from "./contracts";
-import { get } from '../config';
+import { DateAdapter } from "./contracts.js";
+import { get } from '../config.js';
 
-export * from './date-fns.adapter';
-export * from './moment.adapter';
+export * from './date-fns.adapter.js';
+export * from './moment.adapter.js';
 
 export { DateAdapter };
 

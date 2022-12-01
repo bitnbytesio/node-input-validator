@@ -1,5 +1,5 @@
-import { getValuesByWildCardStringNotation } from "./obj.util";
-import *  as objUtil from "./obj.util";
+import { getValuesByWildCardStringNotation } from "./obj.util.js";
+import *  as objUtil from "./obj.util.js";
 
 const input: any = {
   event: {

@@ -78,6 +78,7 @@ export declare abstract class ValidatorAbstract {
      */
     parse(): void;
     parseRules(): void;
+    fillMissingAttributes(key: string): void;
     parseInputs(): void;
     /**
      * apply this set of filters to inputs
@@ -93,18 +94,12 @@ export declare abstract class ValidatorAbstract {
      * validate inputs againest rules
      */
     validate(inputs?: any): Promise<boolean>;
-    applyParsedRules(attrName: any, rules: any, inputs: any, prefix?: string): Promise<void>;
     /**
     * apply rules on attribute
     * @param attrName attribute name
     * @param attrRules attribute rules
     */
-    validateAttribute(attrName: string, attrValue: any, attrRules: Array<ValidationRuleContract>, { prefix, inputs }: any): Promise<{
-        implicit: boolean;
-        implicitFailed: boolean;
-        passed: boolean;
-        empty: boolean;
-    }>;
+    validateAttribute(attrName: string, attrRules: Array<ValidationRuleContract>): Promise<void>;
     /**
     * this will create error object for attribute
     * @param params info object

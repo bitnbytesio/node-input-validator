@@ -1,4 +1,4 @@
-import * as str from './str.util';
+import * as str from './str.util.js';
 
 describe('util:str', () => {
   test('str:camelCaseToSentance', () => {

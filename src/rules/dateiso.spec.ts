@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { dateiso, iso8601 } from "./dateiso.rule";
+import { Messages } from "../messages/index.js";
+import { dateiso, iso8601 } from "./dateiso.rule.js";
 
 test("rules:dateiso", function (): void {
   const ruleHandler = dateiso().handler;

@@ -1,5 +1,5 @@
-import { ValidationRuleContract, ValidatorContract } from "../contracts";
-import { reallyEmpty } from "../utils/ops.util";
+import { ValidationRuleContract, ValidatorContract } from "../contracts.js";
+import { reallyEmpty } from "../utils/ops.util.js";
 
 /**
  * The field under validation must be yes, on, 1, or true. 

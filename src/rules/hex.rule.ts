@@ -1,5 +1,5 @@
-import { ValidationRuleContract } from "../contracts";
-import { isHexadecimal } from "../utils/str.util";
+import { ValidationRuleContract } from "../contracts.js";
+import { isHexadecimal } from "../utils/str.util.js";
 
 const hexcolor = /^#?([0-9A-F]{3}|[0-9A-F]{4}|[0-9A-F]{6}|[0-9A-F]{8})$/i;
 const hexadecimal = /^(0x|0h)?[0-9A-F]+$/i;

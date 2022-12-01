@@ -1,5 +1,5 @@
-import { Langs } from '../contracts';
-import * as prov from './provider';
+import { Langs } from '../contracts.js';
+import * as prov from './provider.js';
 
 describe('messages:provider', () => {
   test('should add custom message in default lang', () => {

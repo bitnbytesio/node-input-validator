@@ -1,5 +1,5 @@
-import { ValidationRuleContract } from "../contracts";
-import { isDomain } from "../utils/borrowed";
+import { ValidationRuleContract } from "../contracts.js";
+import { isDomain } from "../utils/borrowed.js";
 
 export function domain(): ValidationRuleContract {
   return {

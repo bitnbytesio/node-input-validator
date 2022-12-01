@@ -1,7 +1,7 @@
 import fs from 'fs';
-import { Messages } from '../messages';
+import { Messages } from '../messages/index.js';
 
-import { size } from './size.rule';
+import { size } from './size.rule.js';
 
 const filePath = './stubs/file-small.png';
 

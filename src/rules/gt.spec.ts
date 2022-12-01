@@ -1,6 +1,6 @@
-import { Messages } from '../messages';
-import { ValidatorMock } from '../mock/validator.mock'
-import { gt, gte } from "./gt.rule";
+import { Messages } from '../messages/index.js';
+import { ValidatorMock } from '../mock/validator.mock.js'
+import { gt, gte } from "./gt.rule.js";
 
 describe("rules:gt", () => {
   test("should pass", () => {

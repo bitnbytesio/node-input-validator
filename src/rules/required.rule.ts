@@ -1,6 +1,6 @@
-import { ValidationRuleContract, ValidatorContract } from "../contracts";
+import { ValidationRuleContract, ValidatorContract } from "../contracts.js";
 
-import { reallyEmpty } from "../utils/ops.util";
+import { reallyEmpty } from "../utils/ops.util.js";
 
 export function required(): ValidationRuleContract {
   return {

@@ -1,4 +1,4 @@
-import { ValidatorAbstract, registerRules } from "./validator-abstract";
+import { ValidatorAbstract, registerRules } from "./validator-abstract.js";
 
 export { registerRules };
 

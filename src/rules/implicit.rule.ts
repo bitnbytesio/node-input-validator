@@ -1,4 +1,4 @@
-import { ValidationRuleContract , ValidatorContract} from "../contracts";
+import { ValidationRuleContract , ValidatorContract} from "../contracts.js";
 
 export function sometimes(): ValidationRuleContract {
     return {

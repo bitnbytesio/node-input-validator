@@ -1,11 +1,11 @@
-import { Messages } from "../messages";
+import { Messages } from "../messages/index.js";
 import {
   integer,
   decimal,
   max,
   min,
   numeric,
-} from "./number.rule";
+} from "./number.rule.js";
 
 describe("rules:integer", () => {
   test("should pass", () => {

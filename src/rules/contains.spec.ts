@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { contains, notContains } from "./contains.rule";
+import { Messages } from "../messages/index.js";
+import { contains, notContains } from "./contains.rule.js";
 
 describe("rules:contains", () => {
   test("should pass", () => {

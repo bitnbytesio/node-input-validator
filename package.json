@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "5.0.0-beta.5",
+  "version": "5.0.0-beta.6",
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
@@ -29,9 +29,8 @@
     "jest": "^26.6.3",
     "moment": "^2.29.1",
     "ts-jest": "^26.4.4",
-    "tsc": "^2.0.3",
     "typedoc": "^0.20.16",
-    "typescript": "^3.9.7",
+    "typescript": "^3.9.10",
     "validator": "^13.5.2"
   },
   "engines": {

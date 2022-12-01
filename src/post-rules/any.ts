@@ -1,8 +1,8 @@
-import { ValidationRuleContract, ValidatorContract } from "../contracts";
+import { ValidationRuleContract, ValidatorContract } from "../contracts.js";
 
 export function any(args: Array<string>): ValidationRuleContract {
   return {
-    name: 'all',
+    name: 'any',
     handler: (_: any, v: ValidatorContract) => {
       // @ts-ignore
       const values = v.notationVals;

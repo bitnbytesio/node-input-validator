@@ -1,4 +1,4 @@
-import { validator } from './validator.rule'
+import { validator } from './validator.rule.js'
 
 describe('validator', () => {
   test('should pass', () => {

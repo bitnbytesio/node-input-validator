@@ -1,4 +1,4 @@
-import { dateAdapter } from './index';
+import { dateAdapter } from './index.js';
 
 describe('date:dateAdapter', () => {
   test('should throw exception', () => {

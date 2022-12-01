@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 export declare function dateAfter(args: Array<Date | string | number>): ValidationRuleContract;
 export declare function after(args: Array<Date | string | number>): ValidationRuleContract;
 export declare function dateAfterToday(args: Array<string>): ValidationRuleContract;

@@ -1,7 +1,7 @@
-import { Messages } from '../messages';
-import { ValidatorMock } from '../mock/validator.mock'
+import { Messages } from '../messages/index.js';
+import { ValidatorMock } from '../mock/validator.mock.js'
 
-import { same } from "./same.rule";
+import { same } from "./same.rule.js";
 
 describe("rules:same", () => {
   test("shoudl pass", function (): void {

@@ -1,7 +1,7 @@
 import fs from 'fs';
-import { Messages } from '../messages';
+import { Messages } from '../messages/index.js';
 
-import { mime } from './mime.rule';
+import { mime } from './mime.rule.js';
 
 const filePath = './stubs/file-small.png';
 

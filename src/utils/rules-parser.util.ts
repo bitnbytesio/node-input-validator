@@ -1,5 +1,5 @@
-import { ValidationRuleContract } from "../contracts";
-import { getKeyValue } from "./obj.util";
+import { ValidationRuleContract } from "../contracts.js";
+import { getKeyValue } from "./obj.util.js";
 
 /**
   * parse rules those are in string notation

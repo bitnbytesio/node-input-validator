@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { mongoId } from "./mongoId.rule";
+import { Messages } from "../messages/index.js";
+import { mongoId } from "./mongoId.rule.js";
 
 test("rules:mongoId", function (): void {
   const ruleHandler = mongoId().handler;

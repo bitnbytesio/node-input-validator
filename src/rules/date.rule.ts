@@ -1,7 +1,7 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
-import { dateAdapter } from "../date";
-import { DateAdapter } from "../date/contracts";
+import { dateAdapter } from "../date/index.js";
+import { DateAdapter } from "../date/contracts.js";
 
 
 export function dateAfter(args: Array<Date | string | number>): ValidationRuleContract {

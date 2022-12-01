@@ -1,4 +1,4 @@
-import { DateAdapter } from "./contracts";
+import { DateAdapter } from "./contracts.js";
 export declare class MomentAdapter extends DateAdapter {
     protected dateLib: any;
     readonly FORMAT_DATE: string;

@@ -1,6 +1,6 @@
 
-import { Messages } from "../messages";
-import { latLong } from "./latLong.rule";
+import { Messages } from "../messages/index.js";
+import { latLong } from "./latLong.rule.js";
 
 test("rules:latLong", function (): void {
   const ruleHandler = latLong().handler;

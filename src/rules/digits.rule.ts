@@ -1,6 +1,6 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
-import { isInt } from '../utils/number.util';
+import { isInt } from '../utils/number.util.js';
 
 export function digits(args: Array<string> = []): ValidationRuleContract {
   if (args.length !== 1) {

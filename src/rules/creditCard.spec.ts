@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { creditCard } from "./creditCard.rule";
+import { Messages } from "../messages/index.js";
+import { creditCard } from "./creditCard.rule.js";
 
 describe("rules:creditCard", () => {
   test("should pass", () => {

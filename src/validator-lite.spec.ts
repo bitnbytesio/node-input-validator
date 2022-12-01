@@ -1,8 +1,8 @@
-import { accepted } from "./rules/accepted.rule";
-import { required } from "./rules/required.rule";
-import { alpha } from "./rules/alpha.rule";
+import { accepted } from "./rules/accepted.rule.js";
+import { required } from "./rules/required.rule.js";
+import { alpha } from "./rules/alpha.rule.js";
 
-import { ValidatorLite, registerRules } from './validator-lite';
+import { ValidatorLite, registerRules } from './validator-lite.js';
 
 const Rules = registerRules({
   accepted,

@@ -1,5 +1,5 @@
-import * as config from './config';
-import { Langs } from './contracts';
+import * as config from './config.js';
+import { Langs } from './contracts.js';
 
 describe('configuration', () => {
   test('should return config', () => {

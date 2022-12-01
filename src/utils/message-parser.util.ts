@@ -1,6 +1,6 @@
-import { MessageProviderFuncation } from '../contracts';
-import { messages } from '../messages/en-US.messages';
-import { camelCaseToSentance, snakeCaseToSentance } from './str.util';
+import { MessageProviderFuncation } from '../contracts.js';
+import { messages } from '../messages/en-US.messages.js';
+import { camelCaseToSentance, snakeCaseToSentance } from './str.util.js';
 
 interface MessageParserParams {
   message: string | MessageProviderFuncation;

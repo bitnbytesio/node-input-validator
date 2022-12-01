@@ -1,4 +1,4 @@
-import { ValidationRuleContract } from "../contracts";
+import { ValidationRuleContract } from "../contracts.js";
 
 import * as mimeTypes from 'mime-types'
 import fileType from 'file-type'

@@ -1,7 +1,7 @@
-import { Messages } from '../messages';
-import { ValidatorMock } from '../mock/validator.mock'
+import { Messages } from '../messages/index.js';
+import { ValidatorMock } from '../mock/validator.mock.js'
 
-import { lt, lte } from "./lt.rule";
+import { lt, lte } from "./lt.rule.js";
 
 describe("rules:lt", () => {
   test("should pass", () => {

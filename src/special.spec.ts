@@ -1,7 +1,6 @@
-import { Rules } from "./index";
-import { nullable } from "./rules";
+import { Rules } from "./index.js";
 
-import { Validator } from './validator';
+import { Validator } from './validator.js';
 
 describe(
   "Validator:validate using sometimes and nullable",

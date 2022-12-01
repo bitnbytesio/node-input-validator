@@ -1,2 +1,2 @@
-export * from './all';
-export * from './any';
+export * from './all.js';
+export * from './any.js';

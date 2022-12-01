@@ -1,12 +1,12 @@
-import { Messages } from '../messages';
-import { ValidatorMock } from '../mock/validator.mock';
+import { Messages } from '../messages/index.js';
+import { ValidatorMock } from '../mock/validator.mock.js';
 
 import {
   required,
   requiredIf,
   requiredWithout,
   requiredWithoutAll,
-} from "../rules/required.rule";
+} from "../rules/required.rule.js";
 
 describe("rules:requiredIf", () => {
   test("should pass", function (): void {

@@ -1,5 +1,5 @@
-import { Messages } from "../messages";
-import { digits, digitsBetween } from "./digits.rule";
+import { Messages } from "../messages/index.js";
+import { digits, digitsBetween } from "./digits.rule.js";
 
 describe('rules:digits', () => {
   test("should pass", function (): void {
