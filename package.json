@@ -51,8 +51,6 @@
   ],
   "license": "ISC",
   "devDependencies": {
-    "@types/mocha": "^5.2.7",
-    "@types/moment": "^2.13.0",
     "@types/node": "^12.19.14",
     "@types/validator": "^10.11.3",
     "eslint": "^6.8.0",
@@ -67,8 +65,8 @@
     "image-size": "^0.8.3",
     "lodash.has": "^4.5.2",
     "mime-types": "^2.1.28",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "read-chunk": "^3.2.0",
-    "validator": "^13.5.2"
+    "validator": "^13.7.0"
   }
 }
