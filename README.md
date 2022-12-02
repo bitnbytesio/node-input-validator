@@ -1,14 +1,14 @@
 # NIV (Node Input Validator)
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
+[![Build Status](https://app.travis-ci.com/bitnbytesio/node-input-validator.svg?branch=development)](https://app.travis-ci.com/bitnbytesio/node-input-validator)
 [![known vulnerabilities](https://snyk.io/test/npm/node-input-validator/badge.svg)](https://snyk.io/test/npm/node-input-validator)
 [![codecov.io Status][codecov-img]][codecov-url]
 ![Libraries.io dependency status for specific release](https://img.shields.io/librariesio/release/npm/node-input-validator/5.0.0-beta.7)
 [![node version][node-image]][node-url]
 
 [travis-image]: https://travis-ci.com/bitnbytesio/node-input-validator.svg?branch=development
-[travis-url]: https://travis-ci.com/bitnbytesio/node-input-validator
+[travis-url]: https://travis-ci.com/bitnbytesio/node-input-validator?branch=development
 
 [codecov-img]: https://codecov.io/gh/bitnbytesio/node-input-validator/branch/development/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/bitnbytesio/node-input-validator/branch/development
@@ -17,7 +17,7 @@
 [david-url]: https://david-dm.org/bitnbytesio/node-input-validator/development
 
 [npm-image]: https://img.shields.io/npm/v/node-input-validator/beta?style=flat-square
-[npm-url]: https://www.npmjs.com/package/node-input-validator/v/5.0.0-beta.6
+[npm-url]: https://www.npmjs.com/package/node-input-validator/v/5.0.0-beta.7
 
 [node-image]: https://img.shields.io/badge/node.js-%3E=_10.12-green.svg?style=flat-square
 [node-url]: https://nodejs.org/en/download/
