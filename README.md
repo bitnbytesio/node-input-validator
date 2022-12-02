@@ -4,7 +4,7 @@
 [![build status][travis-image]][travis-url]
 [![known vulnerabilities](https://snyk.io/test/npm/node-input-validator/badge.svg)](https://snyk.io/test/npm/node-input-validator)
 [![codecov.io Status][codecov-img]][codecov-url]
-[![david][deps-image]][david-url]
+![Libraries.io dependency status for specific release](https://img.shields.io/librariesio/release/npm/node-input-validator/5.0.0-beta.7)
 [![node version][node-image]][node-url]
 
 [travis-image]: https://travis-ci.com/bitnbytesio/node-input-validator.svg?branch=development
@@ -27,7 +27,59 @@ NIV (Node Input Validator) is a validation library for node.js. You can also ext
 **Note**: For use case of any rule, please check test cases, If you have any doubt or confusion with documentation or regarding rule behaviour.
 
 > There are some major changes in nested fields validations and some rules behaviour. Will update documentation soon.
+
 > Post validations rules are broken
+
+> Rules that depends on input attributes (like: requiredWith:attributeName), only works with concrete path (Correct:requiredWith:array.0.field, Wrong:requiredWith:array.*.field).
+
+> Nested input children are only validated if have top level path rules declared in some cases
+```js
+// will pass
+new Validator(
+  { user: 'test' },
+  {
+     "user.address.city": [Rules.string(), Rules.alpha(), Rules.required()],
+  },
+);
+
+// will fail for user.address and user.address.city
+new Validator(
+  { user: 'test' },
+  {
+    'user.address': 'required|object',
+    "user.address.city": [Rules.string(), Rules.alpha(), Rules.required()],
+  },
+);
+
+// will pass
+new Validator(
+  { user: {} },
+  {
+     user: 'required|object',
+     "user.address.city": [Rules.string(), Rules.alpha(), Rules.required()],
+  },
+);
+
+// will fail dor user
+new Validator(
+  { user: 'test' },
+  {
+     user: 'required|object',
+     "user.address.city": [Rules.string(), Rules.alpha(), Rules.required()],
+  },
+);
+
+// recommended, you can add or remove "required" rule as per your requirements
+new Validator(
+  { user: 'whatever the value is' },
+  {
+     user: 'required|object',
+     'user.address': 'object',
+     "user.address.city": [Rules.string(), Rules.alpha(), Rules.required()],
+  },
+);
+```
+**Suggestions welcomed, please open an issue you have one.**
 
 ## Installation
 
@@ -49,6 +101,16 @@ import { Validator } from 'node-input-validator';
 
 ## Documentation
 For detailed documentation, <a target="_blank" href="https://bitnbytes.io/docs/niv/index.html">see https://bitnbytes.io/docs/niv/index.html</a>
+
+## New Features
+
+> get inputs as per declared rules (added in v5.0.0-beta.6)
+```js
+const v = new Validator(inputs, rules);
+const passed = await v.validate();
+// only includes fields that are declared in rules
+const data = v.data();
+```
 
 ## Features
 
@@ -419,7 +481,7 @@ useDateAdapter(new DateFnsAdapter(dateFns));
 
 To use validator rules, first your need to install it
 
-```ssh
+```bash
 npm i validator
 ```
 

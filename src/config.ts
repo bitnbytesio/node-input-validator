@@ -2,16 +2,17 @@ import { Langs } from "./contracts.js";
 import { DateAdapter } from "./date/contracts.js";
 
 export interface IConfig extends NodeJS.Dict<any> {
-  wildcardIterations?: number;
-  wildcardSeperator?: string;
+  // wildcardIterations?: number;
+  // wildcardSeperator?: string;
   lang?: Langs,
   dateAdapter?: DateAdapter,
   implicitRules?: Array<string>,
+  multipleErrors: boolean
 }
 
 let config: IConfig = {
-  wildcardIterations: 1000,
-  wildcardSeperator: '.',
+  // wildcardIterations: 1000,
+  // wildcardSeperator: '.',
   lang: Langs.en_US,
   implicitRules: [
     "required",
@@ -21,18 +22,24 @@ let config: IConfig = {
     "requiredWithout",
     "accepted",
     "sometimes",
+    "skip",
     "nullable",
   ],
+  /**
+   * @since v5
+   * @added v5.0.0.beta-6
+   */
+  multipleErrors: false,
 };
 
-export function set(customConfig: IConfig) {
+export function set(customConfig: Partial<IConfig>) {
   config = { ...config, ...customConfig }
 }
 
 export function get(key?: string, defaultValue = null) {
 
   if (key) {
-    return config[key] || defaultValue;
+    return config[key] != undefined ? config[key] : defaultValue;
   }
 
   return config;
@@ -42,6 +49,6 @@ export function modify(key: string, value: Langs | DateAdapter) {
   config[key] = value;
 }
 
-export function addImplicitRule(ruleName:string) {
+export function addImplicitRule(ruleName: string) {
   config.implicitRules?.push(ruleName);
 }

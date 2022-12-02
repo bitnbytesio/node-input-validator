@@ -1,3 +1,8 @@
+/**
+ * @internal
+ * @TODO cleaning and optimization
+ */
+
 import { messageParser } from "./utils/message-parser.util.js";
 import {
   Langs,
@@ -11,8 +16,8 @@ import {
   ValidatorErrorsContract,
   ValidationRuleArrayStringNotationContract,
 } from "./contracts.js";
-import { reallyEmpty, fillMissingSpots } from "./utils/ops.util.js";
-import { getValueByStringNotation, getValuesByWildCardStringNotation } from "./utils/obj.util.js";
+import { reallyEmpty } from "./utils/ops.util.js";
+import { getValueByStringNotation } from "./utils/obj.util.js";
 import { parseStringNotationRules, parseStringRule } from "./utils/rules-parser.util.js";
 import * as MessagesProvider from './messages/provider.js';
 
@@ -42,9 +47,6 @@ export function registerPostRules(rules: any) {
   return PostRulesProvider = rules;
 }
 
-// you can change this value with static method
-let shouldBreakIfFailed = true;
-
 export abstract class ValidatorAbstract {
   implicitRules: Array<string> = config.get('implicitRules');
 
@@ -72,12 +74,17 @@ export abstract class ValidatorAbstract {
   postRules: Array<any> = [];
 
   // break rules validation loop when failed
-  breakWhenFailed = shouldBreakIfFailed;
+  multipleErrors = config.get('multipleErrors') as boolean;
 
   // release attribute from futher validation rules
   shouldRelease = false;
 
   implicitInputs: NodeJS.Dict<any> = {};
+
+  inputsAsPerRules: any = {
+    state: {},
+    data: {},
+  };
 
   /**
    * init validator
@@ -98,22 +105,24 @@ export abstract class ValidatorAbstract {
   }
 
   /**
+   * @depricated
    * globally should break/bail on failed validation or not
    * @param {boolean} sure
    */
   static bailable(sure: boolean) {
-    shouldBreakIfFailed = sure;
+    config.set({ multipleErrors: sure === false });
   }
 
   /**
    * enable/disable multiple errors on current instance only
    * @param {boolean} sure
    */
-  bail(sure: boolean) {
-    this.breakWhenFailed = sure;
+  bailable(sure: boolean) {
+    this.multipleErrors = sure === false;
   }
 
   /**
+   * @unused
    * release attribute from rules validation
    */
   release() {
@@ -121,11 +130,22 @@ export abstract class ValidatorAbstract {
   }
 
   /**
-   * check is instance is bailable or not
+   * @since v5
+   * @added v5.0.0.beta-6
+   * @beta
+   * get inputs as per declared rules
+   * @returns 
+   */
+  data<T = any>() {
+    return this.inputsAsPerRules.data as T;
+  }
+
+  /**
+   * check is instance supports multiple errors or not
    * @returns {boolean}
    */
   isBailable(): boolean {
-    return this.breakWhenFailed;
+    return this.multipleErrors == false;
   }
 
   /**
@@ -248,12 +268,15 @@ export abstract class ValidatorAbstract {
   }
 
   parseInputs() {
+    const obj = {};
+    this.inputsAsPerRules = { state: obj, data: obj };
     // if (!this.hasNestedRules) {
     //   return;
     // }
   }
 
   /**
+   * @TODO
    * apply this set of filters to inputs
    * @param filters set of filters
    */
@@ -262,6 +285,7 @@ export abstract class ValidatorAbstract {
   }
 
   /**
+   * @TODO
   * apply post validation rules
   * @param rules post rules
   */
@@ -301,7 +325,19 @@ export abstract class ValidatorAbstract {
     return !this.hasErrors();
   }
 
-  async applyParsedRules(attrName: any, rules: any, inputs: any, prefix = '') {
+  /**
+   * apply parsed rules
+   * @param attrName 
+   * @param rules 
+   * @param inputs 
+   * @param prefix 
+   * @param state 
+   * @returns 
+   */
+  async applyParsedRules(attrName: any, rules: any, inputs: any, prefix = '', state: any = null) {
+    state = state || this.inputsAsPerRules.state;
+
+    // array handling
     if (attrName === '*') {
       if (!Array.isArray(inputs)) {
         // this.createAttributeError({
@@ -316,7 +352,7 @@ export abstract class ValidatorAbstract {
       let i = 0;
       for (const val of inputs) {
         // console.log(i, rules, [val], `${prefix}${i}`);
-        await this.applyParsedRules(i, rules, inputs, prefix);
+        await this.applyParsedRules(i, rules, inputs, prefix, state);
         i += 1;
       }
       return;
@@ -324,26 +360,61 @@ export abstract class ValidatorAbstract {
 
     const attrValue = inputs[attrName];
 
-
     const info = await this.validateAttribute(attrName, attrValue, rules.rules, { prefix, inputs });
+
+    // if (info.passed) {
+    //   console.log('attr', attrName, attrValue, this.inputsAsPerRules.state);
+    //   try {
+    //     if (state[attrName] == undefined) {
+    //       if (typeof attrValue == 'object') {
+    //         state = state[attrName] = Array.isArray(attrValue) ? [] : {};
+    //       } else {
+    //         state = state[attrName] = attrValue;
+    //       }
+    //     }
+    //     //state = state[attrName] = attrValue;
+    //   } catch (e) {
+    //     console.log('attr', attrName, attrValue, state);
+    //     console.info(this.inputsAsPerRules.data);
+    //     throw e;
+    //   }
+    // }
 
     //console.log(attrName, attrValue, info)
     if (info.empty && info.passed) {
       return;
     }
 
+    // input collection logic
+    if (state[attrName] == undefined) {
+      state[attrName] = attrValue
+      if (typeof attrValue == 'object') {
+        state[attrName] = Array.isArray(attrValue) ? [] : {};
+        state = state[attrName];
+      }
+    }
+
     for (const cattrName in rules.child) {
-      await this.applyParsedRules(cattrName, rules.child[cattrName], attrValue || {}, prefix.length ? `${prefix}${attrName}.` : `${attrName}.`);
+      await this.applyParsedRules(
+        cattrName,
+        rules.child[cattrName],
+        attrValue || {},
+        prefix.length ? `${prefix}${attrName}.` : `${attrName}.`,
+        state,
+      );
       //  break;
     }
   }
 
 
   /**
-  * apply rules on attribute
-  * @param attrName attribute name
-  * @param attrRules attribute rules
-  */
+   * apply rules
+   * @param attrName 
+   * @param attrValue 
+   * @param attrRules 
+   * @param param3 
+   * @returns 
+   */
   async validateAttribute(
     attrName: string,
     attrValue: any,
@@ -367,6 +438,10 @@ export abstract class ValidatorAbstract {
 
       if (isImplicitRule) {
         info.implicit = true;
+      }
+
+      if (validationRule.name == 'skip') {
+        return info;
       }
 
       if (!isImplicitRule && info.empty) {
@@ -413,7 +488,7 @@ export abstract class ValidatorAbstract {
       message: this.createAttributeErrorMessage(params),
     };
 
-    if (!this.breakWhenFailed) {
+    if (this.multipleErrors) {
       if (!this.errors[attrName]) {
         this.errors[attrName] = [];
       }

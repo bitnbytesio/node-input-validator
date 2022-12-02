@@ -1,0 +1,18 @@
+[
+  {
+    "tagName": "since",
+    "template": "<div class=\"tsd-p-custom-tag\"><i class=\"tsd-p-custom-tag-since\">since: {content}</i></div>"
+  },
+  {
+    "tagName": "version",
+    "template": "<div class=\"tsd-p-custom-tag\"><i class=\"tsd-p-custom-tag-version\">version: {content}</i></div>"
+  },
+  {
+    "tagName": "beta",
+    "template": "<div class=\"tsd-p-custom-tag\"><i class=\"tsd-p-custom-tag-beta\">beta</i></div>"
+  },
+  {
+    "tagName": "alias",
+    "template": "<div class=\"tsd-p-custom-tag\">Alias of {content}</div>"
+  }
+]

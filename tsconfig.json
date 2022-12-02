@@ -17,7 +17,8 @@
     "removeComments": false,
     "newLine": "lf",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "include": [
     "src/**/*"

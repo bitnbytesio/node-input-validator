@@ -1,7 +1,7 @@
 import { isObject } from './obj.util.js';
 
 export function reallyEmpty(value: any): boolean {
-  const str = (value === undefined || value === null ? "" : value) + "";
+  const str = (value === undefined || value === null ? "" : value).toString();
 
   return str.length === 0;
 }

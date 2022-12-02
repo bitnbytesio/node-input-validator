@@ -7,7 +7,7 @@ export { MomentAdapter, DateFnsAdapter } from './date/index.js';
 import { Langs, ValidationRuleContract } from './contracts.js';
 import * as config from "./config.js";
 import { DateAdapter } from './date/contracts.js';
-export declare function configure(customConf: config.IConfig): void;
+export declare function configure(customConf: Partial<config.IConfig>): void;
 export declare function useDateAdapter(dateAdapter: DateAdapter): void;
 export declare function lang(lang: Langs): void;
 export declare function addImplicitRule(ruleName: string): void;

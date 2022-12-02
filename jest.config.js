@@ -7,7 +7,8 @@ module.exports = {
   },
   globals: {
     'ts-jest': {
-      useESM: true
+      useESM: true,
+      isolatedModules: true
     }
   },
   moduleNameMapper: {

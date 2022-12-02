@@ -183,10 +183,10 @@ describe(
       });
 
     test(
-      "should fail with invalid value other then object data type",
+      "should fail when not top level rule exists, but input is still an object type",
       async function (): Promise<void> {
         const v = new Validator(
-          { user: 'test' },
+          { user: {} },
           { "user.name": [Rules.string(), Rules.alpha(), Rules.required()] },
         );
         const passed: boolean = await v.validate();
@@ -196,7 +196,7 @@ describe(
       });
 
     test(
-      "should pass with invalid value and no required rule",
+      "should pass when no top level rule exists",
       async function (): Promise<void> {
         const v = new Validator(
           { user: 'test' },
@@ -281,6 +281,8 @@ describe(
         const passed: boolean = await v.validate();
         expect(passed).toBe(false);
         // @ts-ignore
+        expect(v.errors["user.address"].rule).toBe("required");
+        // @ts-ignore
         expect(v.errors["user.address.city"].rule).toBe("required");
       },
     );
@@ -321,6 +323,80 @@ describe(
         expect(passed).toBe(true);
 
         //throw v.getErrors();
+      },
+    );
+  });
+
+
+describe(
+  'Validator:data()',
+  () => {
+    test(
+      'should return data as per declared rules',
+      async () => {
+        const v = new Validator(
+          {
+            name: 'xyz',
+            tags: ['a', 'b', 'c'],
+            address: {
+              city: 'Rajpura',
+              state: 'Punjab',
+              contacts: [
+                { type: 'official', phone: '1234567980', _v: 3 },
+                { type: 'home', phone: '1234567980', _v: 3 },
+              ],
+              _v: 2,
+            },
+            _v: 1,
+            extra: 2,
+            another: { extra: 3 },
+          },
+          {
+            name: 'string',
+            tags: 'array',
+            'tags.*': 'string',
+            'address.city': 'string',
+            'address.contacts.*.phone': 'numeric',
+          },
+        );
+
+        const passed = await v.validate();
+        const data = v.data();
+
+        expect(data).toMatchObject({
+          name: 'xyz',
+          tags: ['a', 'b', 'c'],
+          address: {
+            city: 'Rajpura',
+            contacts: [
+              { phone: '1234567980' },
+              { phone: '1234567980' },
+            ],
+          },
+        });
+      },
+    );
+  }
+);
+
+describe(
+  'Validator:Rules.custom()',
+  () => {
+    test(
+      'should be able to use custom rule',
+      async () => {
+        const v = new Validator(
+          { name: Symbol('test') },
+          {
+            name: [Rules.custom((value: any) => {
+              return typeof value === 'symbol';
+            })]
+          }
+        );
+
+        const passed = await v.validate();
+
+        expect(passed).toBe(true);
       },
     );
   });

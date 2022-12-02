@@ -16,7 +16,7 @@ import * as config from "./config.js";
 
 import { DateAdapter } from './date/contracts.js';
 
-export function configure(customConf: config.IConfig) {
+export function configure(customConf: Partial<config.IConfig>) {
   config.set(customConf);
 }
 

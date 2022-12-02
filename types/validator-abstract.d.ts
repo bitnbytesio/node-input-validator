@@ -1,3 +1,7 @@
+/**
+ * @internal
+ * @TODO cleaning and optimization
+ */
 /// <reference types="node" />
 import { Langs, AttributeValidationMinimalInfo, ValidationRuleContract, ValidationRulesContract, ValidationRuleStringNotationContract, MessagesContract, NiceNamesContract, ValidatorErrorContract, ValidatorErrorsContract, ValidationRuleArrayStringNotationContract } from "./contracts.js";
 /**
@@ -22,9 +26,10 @@ export declare abstract class ValidatorAbstract {
     parsedRulesCollection: ValidationRulesContract;
     lang: Langs;
     postRules: Array<any>;
-    breakWhenFailed: boolean;
+    multipleErrors: boolean;
     shouldRelease: boolean;
     implicitInputs: NodeJS.Dict<any>;
+    inputsAsPerRules: any;
     /**
      * init validator
      * @param inputs
@@ -33,6 +38,7 @@ export declare abstract class ValidatorAbstract {
      */
     constructor(inputs?: any, rules?: ValidationRulesContract | ValidationRuleStringNotationContract | ValidationRuleArrayStringNotationContract, customMessages?: MessagesContract);
     /**
+     * @depricated
      * globally should break/bail on failed validation or not
      * @param {boolean} sure
      */
@@ -41,13 +47,22 @@ export declare abstract class ValidatorAbstract {
      * enable/disable multiple errors on current instance only
      * @param {boolean} sure
      */
-    bail(sure: boolean): void;
+    bailable(sure: boolean): void;
     /**
+     * @unused
      * release attribute from rules validation
      */
     release(): void;
     /**
-     * check is instance is bailable or not
+     * @since v5
+     * @added v5.0.0.beta-6
+     * @beta
+     * get inputs as per declared rules
+     * @returns
+     */
+    data<T = any>(): T;
+    /**
+     * check is instance supports multiple errors or not
      * @returns {boolean}
      */
     isBailable(): boolean;
@@ -80,11 +95,13 @@ export declare abstract class ValidatorAbstract {
     parseRules(): void;
     parseInputs(): void;
     /**
+     * @TODO
      * apply this set of filters to inputs
      * @param filters set of filters
      */
     applyFilters(filters: any): void;
     /**
+     * @TODO
     * apply post validation rules
     * @param rules post rules
     */
@@ -93,12 +110,24 @@ export declare abstract class ValidatorAbstract {
      * validate inputs againest rules
      */
     validate(inputs?: any): Promise<boolean>;
-    applyParsedRules(attrName: any, rules: any, inputs: any, prefix?: string): Promise<void>;
     /**
-    * apply rules on attribute
-    * @param attrName attribute name
-    * @param attrRules attribute rules
-    */
+     * apply parsed rules
+     * @param attrName
+     * @param rules
+     * @param inputs
+     * @param prefix
+     * @param state
+     * @returns
+     */
+    applyParsedRules(attrName: any, rules: any, inputs: any, prefix?: string, state?: any): Promise<void>;
+    /**
+     * apply rules
+     * @param attrName
+     * @param attrValue
+     * @param attrRules
+     * @param param3
+     * @returns
+     */
     validateAttribute(attrName: string, attrValue: any, attrRules: Array<ValidationRuleContract>, { prefix, inputs }: any): Promise<{
         implicit: boolean;
         implicitFailed: boolean;

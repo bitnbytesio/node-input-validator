@@ -61,7 +61,7 @@ export function getValuesByWildCardStringNotation(
   const currentConfig = config.get();
 
   const { prefix, iterations, seperator } = Object.assign(
-    { prefix: [], iterations: currentConfig.wildcardIterations, seperator: currentConfig.wildcardSeperator },
+    { prefix: [], iterations: currentConfig.wildcardIterations || 1000, seperator: currentConfig.wildcardSeperator || '.' },
     options,
   );
 
@@ -145,6 +145,6 @@ export function getValuesByWildCardStringNotation(
 //   return target;
 // }
 
- export function isObject(item:any) {
+export function isObject(item: any) {
   return (item && typeof item === 'object' && !Array.isArray(item));
 }

@@ -17,6 +17,8 @@ export function array(): ValidationRuleContract {
 }
 
 /**
+ * @since v3.5
+ * 
  * The field under validation must be array of unique values.
  * No need to use array rule. This rule will take care of that.
  */
@@ -34,6 +36,8 @@ export function arrayUnique(): ValidationRuleContract {
 }
 
 /**
+ * @since v3.5
+ * 
  * The field under validation must be array and should have objects with unique attributes as per seed.
  * No need to use array rule. This rule will take care of that.
  * @param args seeds
@@ -63,7 +67,8 @@ export function arrayUniqueObjects(
 }
 
 /**
- * @since: v5
+ * @since v5
+ * 
  * The field under validation must be array of length as per seed.
  * @param args seeds
  */
