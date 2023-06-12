@@ -7,17 +7,26 @@ describe('#dateMonthsBeforeToday', function () {
 
     it('should return true', async () => {
         const stringFormat = formatDateString(new Date(),monthsBeforeToday)
-        const v = new Validator({ dob: stringFormat }, { dob: `required|dateFormat:YYYY-MM-DD|dateMonthsBeforeToday:${monthsBeforeToday}` });
-        const matched = await v.check();
+        const validator = new Validator({ dob: stringFormat }, { dob: `required|dateFormat:YYYY-MM-DD|dateMonthsBeforeToday:${monthsBeforeToday}` });
+        const matched = await validator.check();
         assert.equal(matched, true);
+        assert.deepStrictEqual(validator.errors, {});
 
     });
 
     it('should return false', async () => {
+        const key = "KEY"
         const stringFormat = formatDateString(new Date(),-1)
-        const v = new Validator({ dob: stringFormat }, { dob: `required|dateFormat:YYYY-MM-DD|dateMonthsBeforeToday:${monthsBeforeToday}` });
-        const matched = await v.check();
+        const validator = new Validator({ [key]: stringFormat }, { [key]: `required|dateFormat:YYYY-MM-DD|dateMonthsBeforeToday:${monthsBeforeToday}` });
+        const matched = await validator.check();
         assert.equal(matched, false);
+        const expectedErrorObject = {
+            [key]: {
+                message: `The ${key} must be a date before ${monthsBeforeToday} months.`,
+                rule: 'dateMonthsBeforeToday'
+            }
+        }
+        assert.deepStrictEqual(validator.errors, expectedErrorObject);
 
     });
 
