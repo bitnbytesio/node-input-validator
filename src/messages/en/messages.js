@@ -22,6 +22,8 @@ module.exports = {
     dateAfter: 'The :attribute must be a date after :arg0.',
     dateDaysAfterToday: 'The :attribute must be a date after :arg0 days.',
     dateYearsAfterToday: 'The :attribute must be a date after :arg0 years.',
+    dateMonthsAfterToday: 'The :attribute must be a date after :arg0 months.',
+    dateMonthsBeforeToday: 'The :attribute must be a date before :arg0 months.',
     dateDaysBeforeToday: 'The :attribute must be a date before :arg0 days.',
     dateYearsBeforeToday: 'The :attribute must be a date before :arg0 years.',
     dateBefore: 'The :attribute must be a date before :arg0.',
