@@ -161,6 +161,28 @@ const rules = [
         types: [types.DATE],
     },
     {
+        name: 'dateMonthsAfterToday',
+        arguments: [
+            {
+                type: 'integer',
+                name: 'number of months',
+            },
+        ],
+        description: 'The date under validation must be the given months after today',
+        types: [types.DATE],
+    },
+    {
+        name: 'dateMonthsBeforeToday',
+        arguments: [
+            {
+                type: 'integer',
+                name: 'number of months',
+            },
+        ],
+        description: 'The date under validation must be the given months before today',
+        types: [types.DATE],
+    },
+    {
         name: 'dateDaysBeforeToday',
         arguments: [
             {
