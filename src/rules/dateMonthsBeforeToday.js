@@ -10,7 +10,6 @@ module.exports = async function dateMonthsBeforeToday(field, value, months) {
     mBeforeDate = moment().subtract(months, 'months');
     mDate = moment(value, dateFormats);
 
-    /* istanbul ignore next */
     if (!mBeforeDate.isValid() || !mDate.isValid()) {
         return false;
     }
