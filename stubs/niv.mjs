@@ -6,7 +6,7 @@ const v = new Validator(
       price: 100,
       items: [
         { id: 1, quantity: 2, _v: 2 },
-        { id: 2, quantity: 4, _v: 2 },
+       // { id: 2, quantity: 4, _v: 2 },
       ],
       _v: 1,
     },
@@ -18,10 +18,10 @@ const v = new Validator(
     'order.price': 'numeric',
     'order.items': 'array',
     'order.items.*.id': 'numeric',
-    'order.items.*.quantity': 'numeric',
+    //'order.items.*.quantity': 'numeric',
   },
 );
 
 v.validate().then(passed => {
-  console.log(passed, v.errors, v.data());
+  console.log('result', passed, v.errors, v.data());
 });
