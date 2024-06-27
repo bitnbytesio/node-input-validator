@@ -2,7 +2,7 @@ export * from './contracts.js';
 
 export * as Messages from './messages/index.js';
 
-import * as Rules from './rules/index.js';
+import { Rules } from './rules.js';
 
 import { Validator } from './validator.js';
 

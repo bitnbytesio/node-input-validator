@@ -363,7 +363,7 @@ export abstract class ValidatorAbstract {
     const info = await this.validateAttribute(attrName, attrValue, rules.rules, { prefix, inputs });
 
     // if (info.passed) {
-    //   console.log('attr', attrName, attrValue, this.inputsAsPerRules.state);
+    //   //console.log('attr', attrName, attrValue, this.inputsAsPerRules.state);
     //   try {
     //     if (state[attrName] == undefined) {
     //       if (typeof attrValue == 'object') {

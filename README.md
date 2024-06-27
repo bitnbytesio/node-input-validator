@@ -555,5 +555,8 @@ For rules documentation, <a href="https://bitnbytes.io/docs/niv/modules/rules.ht
 - <a href="https://github.com/jgnovais">jgnovais</a>
 
 ## Roadblock
+### current beta
+- Node.js version 16.17, auto apply preventExtensions() on exports
 ### v5.0.0-beta.5
 - fillMissingSpots overwriting array value in nested inputs, eg. product.attributes.*.colors.*
+

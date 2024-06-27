@@ -1,4 +1,4 @@
-import * as Rules from './rules/index.js';
+import { Rules } from './rules.js';
 import * as PostRules from './post-rules/index.js';
 import './messages/index.js';
 import { dateAdapter } from "./date/index.js";
