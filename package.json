@@ -11,7 +11,7 @@
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "engines": {
-    "node": ">=8.16"
+    "node": ">=12"
   },
   "keywords": [
     "validation",
@@ -53,11 +53,11 @@
   "devDependencies": {
     "@types/node": "^12.19.14",
     "@types/validator": "^10.11.3",
-    "eslint": "^6.8.0",
+    "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "mocha": "^6.2.3",
-    "nyc": "^14.1.1",
+    "mocha": "^9.2.2",
+    "nyc": "^15.1.0",
     "should": "^13.2.3"
   },
   "dependencies": {

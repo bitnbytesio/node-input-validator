@@ -18,8 +18,10 @@
 
 [npm-image]: https://img.shields.io/npm/v/node-input-validator.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/node-input-validator
-[node-image]: https://img.shields.io/badge/node.js-%3E=_8.16-green.svg?style=flat-square
+[node-image]: https://img.shields.io/badge/node.js-%3E=_12-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
+
+> **Breaking Change (v4.6):** Minimum Node.js version is now 12. If you are using Node.js < 12, please use version 4.5.x.
 
 Validation library for node.js
 
@@ -46,17 +48,18 @@ npm i node-input-validator
 
 ## Usage
 
-- [Example](#simple-example)  
-- [With express](#with-in-express-application)  
-- [With async/await](#with-async-await)  
-- [Koa middleware](#for-koa2)  
-- [Object validation examples](#objects-validation)  
-- [Array validation examples](#array-validation)  
-- [Add/Modify messages](#add-or-modify-messages)  
-- [Change default language examples](#set-default-language)  
-- [Toggle multiple errors](#toggle-multiple-errors-support)  
-- [Change attribute names in messages examples](#set-attribute-nicecustom-name)  
-- [Add custom rules](#add-your-own-custom-validation-rules)  
+- [Example](#simple-example)
+- [With express](#with-in-express-application)
+- [With async/await](#with-async-await)
+- [Koa middleware](#for-koa2)
+- [Object validation examples](#objects-validation)
+- [Array validation examples](#array-validation)
+- [Add/Modify messages](#add-or-modify-messages)
+- [Change default language examples](#set-default-language)
+- [Toggle multiple errors](#toggle-multiple-errors-support)
+- [Collect validated inputs (Beta)](#collect-validated-inputs-beta)
+- [Change attribute names in messages examples](#set-attribute-nicecustom-name)
+- [Add custom rules](#add-your-own-custom-validation-rules)
 - [Rules](#rules)  
 
 ### Simple Example  
@@ -346,6 +349,79 @@ To toggle multiple errors on specific instance only.
 const niv = require('node-input-validator');
 const v = new niv.Validator(inputs, rules);
 v.bail(false);
+```
+
+### Collect Validated Inputs (Beta)
+
+<sub>Added in: v4.6</sub>
+
+Retrieve only the fields that have validation rules declared. This is useful when you want to get a clean object containing only validated fields, excluding any extra fields from the original input.
+
+**Note:** This feature is disabled by default and must be enabled globally before use.
+
+#### Enable globally
+
+```javascript
+const niv = require('node-input-validator');
+
+// Enable the beta feature
+niv.collectInputs(true);
+```
+
+#### Usage
+
+```javascript
+const { Validator } = require('node-input-validator');
+
+const v = new Validator(
+  {
+    name: 'John',
+    email: 'john@example.com',
+    age: 25,
+    extra: 'this field has no rule'  // will be excluded
+  },
+  {
+    name: 'required|string',
+    email: 'required|email',
+    age: 'required|integer'
+  }
+);
+
+const matched = await v.check();
+
+if (matched) {
+  // Returns only { name: 'John', email: 'john@example.com', age: 25 }
+  const validatedData = v.data();
+}
+```
+
+#### With nested objects
+
+```javascript
+const v = new Validator(
+  {
+    order: {
+      id: 1,
+      items: [
+        { id: 1, quantity: 2 },
+        { id: 2, quantity: 4 }
+      ],
+      internal_note: 'excluded'  // no rule, will be excluded
+    }
+  },
+  {
+    'order': 'required|object',
+    'order.id': 'required|integer',
+    'order.items': 'required|array',
+    'order.items.*.id': 'required|integer',
+    'order.items.*.quantity': 'required|integer'
+  }
+);
+
+await v.check();
+// Returns: { order: { id: 1, items: [{ id: 1, quantity: 2 }, { id: 2, quantity: 4 }] } }
+// Note: internal_note is excluded as it has no validation rule
+const data = v.data();
 ```
 
 ### Set attribute nice/custom name
