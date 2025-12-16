@@ -12,5 +12,5 @@ export declare function getValuesByWildCardStringNotation(iterable: any, rules?:
     notationsVals: any;
     notationMap: any;
 };
-export declare function isObject(item: any): boolean;
+export declare function isObject(item: any): any;
 export {};

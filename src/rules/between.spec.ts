@@ -19,9 +19,12 @@ describe('rules:between', () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => between([])).toThrowError(new Error('Invalid number of arguments.'));
-    expect(() => between(["abc", "xyz"])).toThrowError(new TypeError('Seeds must be number.'));
-    expect(() => between(["5", "4"])).toThrowError(new RangeError('Seed min must be less then max.'));
+    expect(() => between([])).toThrow(new Error('Invalid number of arguments.'));
+    expect(() => between(["abc", "xyz"])).toThrow(new TypeError('Seeds must be number.'));
+    expect(() => between(["5", "4"])).toThrow(new RangeError('Seed min must be less then max.'));
+    // Test that second argument is validated (was a bug where only first arg was checked twice)
+    expect(() => between(["5", "abc"])).toThrow(new TypeError('Seeds must be number.'));
+    expect(() => between(["abc", "8"])).toThrow(new TypeError('Seeds must be number.'));
   });
 
   test("message should exists", () => {

@@ -572,7 +572,7 @@ export abstract class ValidatorAbstract {
    * @param attr attribute name
    */
   doAttributeHasValue(attr: string): boolean {
-    return this.attributeValue(attr) === undefined ? true : false;
+    return this.attributeValue(attr) !== undefined;
   }
 
   /**

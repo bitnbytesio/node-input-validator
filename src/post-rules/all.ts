@@ -1,46 +1,40 @@
-import {
-  ValidationRuleContract,
-  ValidatorContract,
-} from "../contracts.js";
+import { ValidatorContract } from "../contracts.js";
 
-export function all(args: Array<string>): ValidationRuleContract {
-  return {
-    name: 'all',
-    handler: (_: any, v: ValidatorContract) => {
-      // @ts-ignore
-      const values = v.notationVals;
+/**
+ * Post rule: All specified fields must be present in input
+ * @param rule - { rule: 'all', params: ['field1', 'field2', ...] }
+ * @param v - validator instance
+ */
+export async function all(rule: { params: Array<string> }, v: ValidatorContract) {
+  const fields = rule.params;
+  const missingFields: Array<string> = [];
 
-      let result = true;
+  for (const field of fields) {
+    const value = v.attributeValue(field);
+    if (value === undefined || value === null || value === '') {
+      missingFields.push(field);
+    }
+  }
 
-      for (const k in args) {
-        if (values[args[k]] === undefined) {
-          result = false;
-          break;
-        }
-      }
+  if (missingFields.length === 0) {
+    return true;
+  }
 
-      if (result) {
-        return true;
-      }
+  missingFields.forEach((attrName) => {
+    v.createAttributeError({
+      ruleName: 'required',
+      attrName,
+      attrValue: v.attributeValue(attrName),
+      ruleArgs: fields,
+    });
+  });
 
-      args.forEach((attrName) => {
-        const attrValue = v.attributeValue(attrName);
-        v.createAttributeError({
-          ruleName: 'required',
-          attrName,
-          attrValue,
-          ruleArgs: args,
-        });
-      });
+  v.createAttributeError({
+    ruleName: 'all',
+    attrName: '*',
+    attrValue: null,
+    ruleArgs: fields,
+  });
 
-      v.createAttributeError({
-        ruleName: 'all',
-        attrName: '*',
-        attrValue: values,
-        ruleArgs: args,
-      });
-
-      return false;
-    },
-  };
-};
+  return false;
+}

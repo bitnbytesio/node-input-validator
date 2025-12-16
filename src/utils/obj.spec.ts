@@ -130,4 +130,49 @@ describe('util:obj', (): void => {
     }, 'product'))
       .toMatch('abc');
   })
+
+  test('obj:getValueByStringNotation returns undefined for missing property', () => {
+    expect(objUtil.getValueByStringNotation({
+      product: { name: 'abc' },
+    }, 'product.missing'))
+      .toBeUndefined();
+  })
+
+  test('obj:getValueByStringNotation returns undefined for deeply missing property', () => {
+    expect(objUtil.getValueByStringNotation({
+      product: { name: 'abc' },
+    }, 'product.missing.deep'))
+      .toBeUndefined();
+  })
+
+  test('obj:getValueByStringNotation returns null when intermediate value is null', () => {
+    expect(objUtil.getValueByStringNotation({
+      product: null,
+    }, 'product.name'))
+      .toBeNull();
+  })
+
+  test('obj:getValueByStringNotation returns null for property with null value', () => {
+    expect(objUtil.getValueByStringNotation({
+      product: { name: null },
+    }, 'product.name'))
+      .toBeNull();
+  })
+
+  test('obj:getValueByStringNotation handles deeply nested null', () => {
+    expect(objUtil.getValueByStringNotation({
+      a: { b: null },
+    }, 'a.b.c.d'))
+      .toBeNull();
+  })
+
+  test('obj:getValueByStringNotation returns undefined when root object is null', () => {
+    expect(objUtil.getValueByStringNotation(null, 'product.name'))
+      .toBeNull();
+  })
+
+  test('obj:getValueByStringNotation returns undefined when root object is undefined', () => {
+    expect(objUtil.getValueByStringNotation(undefined, 'product.name'))
+      .toBeUndefined();
+  })
 });

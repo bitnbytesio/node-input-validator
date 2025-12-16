@@ -72,7 +72,7 @@ export function koa() {
 
     try {
       await next();
-    } catch (err) {
+    } catch (err: any) {
       if (err.status && err.status === 422) {
         ctx.type = 'json';
         ctx.status = 422;

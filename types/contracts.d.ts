@@ -59,7 +59,7 @@ export interface ValidatorContract {
 export interface NiceNamesContract {
     [key: string]: string;
 }
-export declare type MessageProviderFuncation = (...args: any) => string;
+export type MessageProviderFuncation = (...args: any) => string;
 /**
  * messages interface
  */

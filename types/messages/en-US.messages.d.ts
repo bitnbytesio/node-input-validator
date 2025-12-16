@@ -85,6 +85,7 @@ export declare const messages: {
     requiredIf: string;
     requiredNotIf: string;
     requiredWith: string;
+    requiredWithAll: string;
     requiredWithout: string;
     requiredWithoutAll: string;
     same: string;

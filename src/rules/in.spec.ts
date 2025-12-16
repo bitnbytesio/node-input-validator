@@ -13,7 +13,7 @@ describe("rules:in", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => _in([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => _in([])).toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {
@@ -34,7 +34,7 @@ describe("rules:notIn", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => notIn([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => notIn([])).toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {

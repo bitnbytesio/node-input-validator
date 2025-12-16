@@ -88,9 +88,18 @@ export function arrayLen(args: Array<string>): ValidationRuleContract {
 
 
 /**
- * @since: v5
- * The field under validation must be array and has length range as per seed.
- * @param args seeds
+ * Validates that the array has at most `max` items, and optionally at least `min` items.
+ *
+ * @since v5
+ * @param args[0] max - Maximum number of items allowed
+ * @param args[1] min - (Optional) Minimum number of items required
+ *
+ * @example
+ * // Max only: array must have at most 5 items
+ * 'items': 'arrayLenRange:5'
+ *
+ * // Range: array must have between 2 and 5 items
+ * 'items': 'arrayLenRange:5,2'
  */
 export function arrayLenRange(args: Array<string>): ValidationRuleContract {
   if (args.length < 1 || args.length > 2) {

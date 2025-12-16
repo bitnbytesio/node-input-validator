@@ -77,8 +77,6 @@ export function isEmail(str: string) {
   const domain = parts.pop() || '';
   let user = parts.join('@');
 
-  const lower_domain = domain.toLowerCase();
-
   if (
     !isByteLength(user, { max: 64 }) ||
     !isByteLength(domain, { max: 254 })
@@ -163,11 +161,11 @@ export function isIp(str: string, version: '4' | '6' | '' = ''): boolean {
     // initial or final ::
     if (str === '::') {
       return true;
-    } else if (str.substr(0, 2) === '::') {
+    } else if (str.substring(0, 2) === '::') {
       blocks.shift();
       blocks.shift();
       foundOmissionBlock = true;
-    } else if (str.substr(str.length - 2) === '::') {
+    } else if (str.substring(str.length - 2) === '::') {
       blocks.pop();
       blocks.pop();
       foundOmissionBlock = true;

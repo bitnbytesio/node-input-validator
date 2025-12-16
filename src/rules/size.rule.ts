@@ -12,7 +12,7 @@ import { ValidationRuleContract } from "../contracts.js";
  * @param min min bytes required
  * @returns {boolean}
  */
-function bytesBetween(bytes: number, max: number, min: Number): boolean {
+function bytesBetween(bytes: number, max: number, min: number): boolean {
   if (max && bytes > max) {
     return false;
   }

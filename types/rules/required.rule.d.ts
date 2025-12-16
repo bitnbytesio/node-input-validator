@@ -2,6 +2,12 @@ import { ValidationRuleContract } from "../contracts.js";
 export declare function required(): ValidationRuleContract;
 export declare function requiredIf(args: Array<string>): ValidationRuleContract;
 /**
+ * The attribute under validation is required,
+ * unless another attribute matches a specific value.
+ * @param args [field, value] pairs - field may be blank if field === value
+ */
+export declare function requiredNotIf(args: Array<string>): ValidationRuleContract;
+/**
  * The attribute under validation consider required,
  * if any attribute given in seed is empty or missing.
  * @param args attribute names

@@ -99,6 +99,7 @@ export const messages = {
   requiredIf: 'The :attr field is required.',
   requiredNotIf: 'The :attr field is required.',
   requiredWith: 'The :attr field is required.',
+  requiredWithAll: 'The :attr field is required.',
   requiredWithout: 'The :attr field is required.',
   requiredWithoutAll: 'The :attr field is required.',
   same: 'The :attr and :arg0 must match.',

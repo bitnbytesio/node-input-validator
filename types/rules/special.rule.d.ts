@@ -16,7 +16,7 @@ export declare function sometimes(): ValidationRuleContract;
  * @returns
  */
 export declare function skip(): ValidationRuleContract;
-declare type CustomHandler = ((value: any, v: any, name: string, { inputs }: any) => Promise<boolean> | boolean) | ((...args: any) => Promise<boolean> | boolean);
+type CustomHandler = ((value: any, v: any, name: string, { inputs }: any) => Promise<boolean> | boolean) | ((...args: any) => Promise<boolean> | boolean);
 /**
  * @since v5
  *

@@ -19,7 +19,7 @@
 [npm-image]: https://img.shields.io/npm/v/node-input-validator/beta?style=flat-square
 [npm-url]: https://www.npmjs.com/package/node-input-validator/v/5.0.0-beta.7
 
-[node-image]: https://img.shields.io/badge/node.js-%3E=_10.12-green.svg?style=flat-square
+[node-image]: https://img.shields.io/badge/node.js-%3E=_14-green.svg?style=flat-square
 [node-url]: https://nodejs.org/en/download/
 
 NIV (Node Input Validator) is a validation library for node.js. You can also extend library to add custom rules.
@@ -28,7 +28,7 @@ NIV (Node Input Validator) is a validation library for node.js. You can also ext
 
 > There are some major changes in nested fields validations and some rules behaviour. Will update documentation soon.
 
-> Post validations rules are broken
+> Post validation rules are fixed in v5.0.0-beta.9
 
 > Rules that depends on input attributes (like: requiredWith:attributeName), only works with concrete path (Correct:requiredWith:array.0.field, Wrong:requiredWith:array.*.field).
 
@@ -60,7 +60,7 @@ new Validator(
   },
 );
 
-// will fail dor user
+// will fail for user
 new Validator(
   { user: 'test' },
   {
@@ -79,7 +79,7 @@ new Validator(
   },
 );
 ```
-**Suggestions welcomed, please open an issue you have one.**
+**Suggestions welcomed, please open an issue if you have one.**
 
 ## Installation
 
@@ -140,7 +140,7 @@ const data = v.data();
 
 ### Basic Example  
 
-#### Vanila Javascript
+#### Vanilla Javascript
 
 ##### Style 1
 
@@ -252,7 +252,7 @@ await ctx.validate({
 #### With custom inputs
 
 ```js
-const cutomInputs = {...}
+const customInputs = {...}
 
 // if validation fails, this will auto abort request with status code 422 and errors in body
 await ctx.validate({
@@ -260,7 +260,7 @@ await ctx.validate({
   username: 'required|maxLength:15',
   email: 'required|email',
   password: 'required'
-}, cutomInputs);
+}, customInputs);
 
 // validation passes
 // do some code
@@ -281,7 +281,7 @@ await ctx.validate({
 // do some code
 ```
 
-#### In case you wants control over validator, Then use
+#### In case you want control over validator, then use
 
 ```js
 const v = await ctx.validator(ctx.request.body, {
@@ -458,7 +458,7 @@ v.validate()
 
 ## Date Rules
 
-To use date rules, you has to install <a target="_blank" href="https://www.npmjs.com/package/moment">moment</a> or <a target="_blank" href="https://www.npmjs.com/package/date-fns">date-fns</a>
+To use date rules, you have to install <a target="_blank" href="https://www.npmjs.com/package/moment">moment</a> or <a target="_blank" href="https://www.npmjs.com/package/date-fns">date-fns</a>
 
 ### For moment
 
@@ -479,7 +479,7 @@ useDateAdapter(new DateFnsAdapter(dateFns));
 
 ## using <a target="_blank" href="https://www.npmjs.com/package/validator">validator</a>
 
-To use validator rules, first your need to install it
+To use validator rules, first you need to install it
 
 ```bash
 npm i validator
@@ -487,7 +487,7 @@ npm i validator
 
 ### Example 1
 
-Then your can use all rules of validator.js as sub rule under rule validator.
+Then you can use all rules of validator.js as sub rule under rule validator.
 
 ```js
 const { Validator } = require('node-input-validator');
@@ -555,8 +555,6 @@ For rules documentation, <a href="https://bitnbytes.io/docs/niv/modules/rules.ht
 - <a href="https://github.com/jgnovais">jgnovais</a>
 
 ## Roadblock
-### current beta
-- Node.js version 16.17, auto apply preventExtensions() on exports
 ### v5.0.0-beta.5
 - fillMissingSpots overwriting array value in nested inputs, eg. product.attributes.*.colors.*
 

@@ -10,6 +10,6 @@ describe('validator', () => {
   });
 
   test('should throw error', () => {
-    expect(() => validator('isMissingRule')).toThrowError(new Error('Rule isMissingRule does not exists on validator.js.'));
+    expect(() => validator('isMissingRule')).toThrow(new Error('Rule isMissingRule does not exists on validator.js.'));
   });
 })

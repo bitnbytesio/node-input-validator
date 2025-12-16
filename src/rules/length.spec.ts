@@ -16,7 +16,7 @@ describe('rules:minLength', () => {
     expect(Messages.en_US.messages).toHaveProperty('minLength');
   });
   test("rules:minLength throw exception", function (): void {
-    expect(() => minLength([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => minLength([])).toThrow(new Error('Invalid number of arguments.'));
   });
 });
 
@@ -28,7 +28,7 @@ describe('rules:maxLength', () => {
   });
 
   test("rules:maxLength throw exception", () => {
-    expect(() => maxLength([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => maxLength([])).toThrow(new Error('Invalid number of arguments.'));
   });
 
 
@@ -59,8 +59,8 @@ describe('rules:length', () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => length([])).toThrowError(new Error('Invalid number of arguments.'));
-    expect(() => length(['1', '2', '3'])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => length([])).toThrow(new Error('Invalid number of arguments.'));
+    expect(() => length(['1', '2', '3'])).toThrow(new Error('Invalid number of arguments.'));
   });
 });
 
@@ -85,8 +85,8 @@ describe('rules:lengthBetween', () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => lengthBetween([])).toThrowError(new Error('Invalid number of arguments.'));
-    expect(() => lengthBetween(['1', '2', '3'])).toThrowError(new Error('Invalid number of arguments.'));
-    expect(() => lengthBetween(['5', '2'])).toThrowError(new RangeError('Seed min must be less then max.'));
+    expect(() => lengthBetween([])).toThrow(new Error('Invalid number of arguments.'));
+    expect(() => lengthBetween(['1', '2', '3'])).toThrow(new Error('Invalid number of arguments.'));
+    expect(() => lengthBetween(['5', '2'])).toThrow(new RangeError('Seed min must be less then max.'));
   });
 })

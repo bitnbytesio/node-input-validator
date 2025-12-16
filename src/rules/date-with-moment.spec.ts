@@ -24,11 +24,11 @@ describe("rules:dateAfter", () => {
     const ruleHandler = dateAfter([adapter.FORMAT_DATE, "2020-05-20"]).handler;
     expect(ruleHandler("2020-06-20")).toBe(true);
 
-    const d = new Date();
+    // Use dynamic future date instead of hardcoded date
+    const futureDate = adapter.addDays(new Date(), 1);
+    const futureDateStr = adapter.format(futureDate, adapter.FORMAT_DATETIME);
 
-    d.setTime(d.getTime() + (1 * 60 * 60 * 1000));
-
-    expect(after([adapter.FORMAT_DATETIME]).handler('2025-12-12 10:00:00')).toBe(true);
+    expect(after([adapter.FORMAT_DATETIME]).handler(futureDateStr)).toBe(true);
     expect(after([adapter.FORMAT_DATETIME, '2020-12-12 10:00:00']).handler('2021-12-12 10:00:00')).toBe(true);
   });
 
@@ -39,9 +39,9 @@ describe("rules:dateAfter", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => dateAfter([])).toThrowError(new Error('Rule accepts 2 argument (format,date).'));
-    expect(() => dateAfter([1, 2, 3])).toThrowError(new Error('Rule accepts 2 argument (format,date).'));
-    expect(() => dateAfter([1, 2])).toThrowError(new TypeError('First element must be date format.'));
+    expect(() => dateAfter([])).toThrow(new Error('Rule accepts 2 argument (format,date).'));
+    expect(() => dateAfter([1, 2, 3])).toThrow(new Error('Rule accepts 2 argument (format,date).'));
+    expect(() => dateAfter([1, 2])).toThrow(new TypeError('First element must be date format.'));
   });
 
   test("message should exists", () => {
@@ -70,7 +70,7 @@ describe("rules:dateAfterToday", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => dateAfterToday([])).toThrowError(new Error('Rule accepts only 1 argument (format).'));
+    expect(() => dateAfterToday([])).toThrow(new Error('Rule accepts only 1 argument (format).'));
   });
 
   test("message should exists", () => {
@@ -101,9 +101,9 @@ describe("rules:dateBefore", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => dateBefore([])).toThrowError(new Error('Rule accepts 2 argument (format,date).'));
-    expect(() => dateBefore([1, 2, 3])).toThrowError(new Error('Rule accepts 2 argument (format,date).'));
-    expect(() => dateBefore([1, 2])).toThrowError(new TypeError('First element must be date format.'));
+    expect(() => dateBefore([])).toThrow(new Error('Rule accepts 2 argument (format,date).'));
+    expect(() => dateBefore([1, 2, 3])).toThrow(new Error('Rule accepts 2 argument (format,date).'));
+    expect(() => dateBefore([1, 2])).toThrow(new TypeError('First element must be date format.'));
   });
 
   test("message should exists", () => {
@@ -134,7 +134,7 @@ describe("rules:dateBeforeToday", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => dateBeforeToday([])).toThrowError(new Error('Rule accepts only 1 argument (format).'));
+    expect(() => dateBeforeToday([])).toThrow(new Error('Rule accepts only 1 argument (format).'));
   });
 
 
@@ -155,7 +155,7 @@ describe("rules:dateFormat", (): void => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => dateFormat([])).toThrowError(new Error('Rule accepts only 1 argument (format).'));
+    expect(() => dateFormat([])).toThrow(new Error('Rule accepts only 1 argument (format).'));
   });
 
   test("message should exists", () => {

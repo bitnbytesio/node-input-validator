@@ -89,7 +89,7 @@ describe("rules:arrayLen", () => {
   test("should throw", () => {
     expect(() => arrayLen([])
       .handler([]))
-      .toThrowError(new Error('Invalid number of arguments.'));
+      .toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {
@@ -122,7 +122,7 @@ describe("rules:arrayLenRange", () => {
   test("should throw", () => {
     expect(() => arrayLenRange([])
       .handler([]))
-      .toThrowError(new Error('Invalid number of arguments.'));
+      .toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {
@@ -147,7 +147,7 @@ describe("rules:arrayLenMin", () => {
   test("should throw", () => {
     expect(() => arrayLenMin([])
       .handler([]))
-      .toThrowError(new Error('Invalid number of arguments.'));
+      .toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {
@@ -169,7 +169,7 @@ describe("rules:arrayLenMax", () => {
   test("should throw", () => {
     expect(() => arrayLenMax([])
       .handler([]))
-      .toThrowError(new Error('Invalid number of arguments.'));
+      .toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {

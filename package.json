@@ -1,6 +1,6 @@
 {
   "name": "node-input-validator",
-  "version": "5.0.0-beta.9",
+  "version": "5.0.0",
   "description": "validation library for nodejs, inspired by laravel.",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
@@ -21,29 +21,28 @@
   },
   "devDependencies": {
     "@types/babel__traverse": "7.0",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.5.2",
     "@types/mime-types": "^2.1.1",
     "@types/node": "16.11",
     "@types/validator": "^13.7.10",
-    "codecov": "^3.8.1",
     "date-fns": "^2.16.1",
     "dayjs": "^1.10.4",
     "eslint": "^7.18.0",
-    "jest": "^26.6.3",
+    "jest": "^27.5.1",
     "moment": "^2.29.1",
-    "ts-jest": "^26.5.6",
-    "typedoc": "^0.20.37",
+    "ts-jest": "^27.1.5",
+    "typedoc": "^0.28.15",
     "typedoc-plugin-custom-tags": "^1.0.2",
-    "typescript": "^3.9.10",
+    "typescript": "^4.9.5",
     "validator": "^13.5.2"
   },
   "engines": {
-    "node": ">=10.12"
+    "node": ">=14"
   },
   "scripts": {
     "test": "npx jest",
     "test:coverage": "npx jest --coverage",
-    "report:coverage": "npx codecov -f coverage/coverage-final.json",
+    "report:coverage": "codecov -f coverage/coverage-final.json",
     "compile": "npx tsc -p tsconfig.json && npx tsc -p cjs.tsconfig.json && node fixup.js",
     "compile:docs": "npx typedoc --theme ../doctheme",
     "docs": "npx typedoc --custom-tags-config typedoc-tags-config.json",

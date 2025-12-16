@@ -15,6 +15,6 @@ describe("rules:same", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => same([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => same([])).toThrow(new Error('Invalid number of arguments.'));
   });
 })

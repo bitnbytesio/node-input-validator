@@ -32,8 +32,6 @@ export function gte(
   return {
     name: "gte",
     handler: (value: any, v: ValidatorContract) => {
-      const [anotherAttr] = args;
-
       const anotherAttrVal = v.attributeValue(anotherAttr);
 
       return Number(value) >= Number(anotherAttrVal);

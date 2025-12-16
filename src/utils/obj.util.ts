@@ -27,16 +27,14 @@ export function getValueByStringNotation(
 ): string {
   const notationArr: Array<string> = notation.split(".");
 
-  let value: any;
+  let value: any = object;
 
-  notationArr.map((item) => {
-    if (value === undefined) {
-      value = object[item];
-    } else {
-      value = value[item];
+  for (const item of notationArr) {
+    if (value == null) {
+      return value;
     }
-    return value;
-  });
+    value = value[item];
+  }
 
   return value;
 }

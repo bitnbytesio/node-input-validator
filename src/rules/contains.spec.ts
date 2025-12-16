@@ -16,8 +16,8 @@ describe("rules:contains", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => contains([])).toThrowError(new Error('Invalid number of arguments.'));
-    expect(() => contains(['test', 'g'])).toThrowError(new Error('Only support modifier is insensitive (i).'));
+    expect(() => contains([])).toThrow(new Error('Invalid number of arguments.'));
+    expect(() => contains(['test', 'g'])).toThrow(new Error('Only support modifier is insensitive (i).'));
   });
 
   test("message should exists", () => {
@@ -37,7 +37,7 @@ describe("rules:notContains", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => notContains([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => notContains([])).toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {

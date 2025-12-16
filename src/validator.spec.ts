@@ -1,4 +1,5 @@
 import { Rules } from "./index.js";
+import { custom } from "./rules/special.rule.js";
 
 import { Validator } from './validator.js';
 
@@ -388,7 +389,7 @@ describe(
         const v = new Validator(
           { name: Symbol('test') },
           {
-            name: [Rules.custom((value: any) => {
+            name: [custom((value: any) => {
               return typeof value === 'symbol';
             })]
           }

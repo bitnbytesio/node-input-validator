@@ -34,18 +34,15 @@ export class DateFnsAdapter extends DateAdapter {
   }
 
   parseDate(date: Date | string | number, format: string): Date {
-    if (!(date instanceof Date)) {
-      date = this.dateLib.parse(date, format, new Date);
-    }
+    const parsed: Date = date instanceof Date
+      ? new Date(date.getTime())
+      : this.dateLib.parse(date, format, new Date);
 
-    // @ts-ignore
-    let d: Date = date;
-
-    d.setHours(0);
-    d.setMinutes(0);
-    d.setSeconds(0);
-    d.setMilliseconds(0);
-    return d;
+    parsed.setHours(0);
+    parsed.setMinutes(0);
+    parsed.setSeconds(0);
+    parsed.setMilliseconds(0);
+    return parsed;
   }
 
   parse(date: string, format: string, referenceDate: Date): Date {

@@ -13,7 +13,7 @@ describe("rules:equals", function (): void {
   });
 
   test("should throw exception", function (): void {
-    expect(() => equals([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => equals([])).toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {

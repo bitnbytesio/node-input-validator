@@ -40,7 +40,6 @@ export function fillMissingSpots(target: any, key: string | Array<string>) {
         const targetVal: NodeJS.Dict<any> = {};
         targetVal[segments[0]] = null;
         target.push(targetVal);
-        console.log('create new target', target);
       }
       target.forEach((childTarget: any) => {
         fillMissingSpots(childTarget, segments);

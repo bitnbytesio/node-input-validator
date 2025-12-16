@@ -20,17 +20,30 @@ export function minLength(args: Array<string>): ValidationRuleContract {
     throw new Error('Invalid number of arguments.');
   }
 
-  const maxNum = parseInt(args[0], 10);
+  const minNum = parseInt(args[0], 10);
 
   return {
     name: "minLength",
     handler: (value: any) => {
-      return (value.toString().length >= maxNum);
+      return (value.toString().length >= minNum);
     },
   };
 }
 
 
+/**
+ * Validates that the value's length is at most `max`, and optionally at least `min`.
+ *
+ * @param args[0] max - Maximum length allowed
+ * @param args[1] min - (Optional) Minimum length required
+ *
+ * @example
+ * // Max length only: value must be at most 10 characters
+ * 'username': 'length:10'
+ *
+ * // Range: value must be between 5 and 10 characters
+ * 'username': 'length:10,5'
+ */
 export function length(args: Array<string>): ValidationRuleContract {
   let min: number;
 

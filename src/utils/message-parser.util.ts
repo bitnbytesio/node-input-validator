@@ -38,13 +38,13 @@ export function messageParser(params: MessageParserParams) {
 
   // replace args
   if (defaultMessage.indexOf(":args") >= 0) {
-    defaultMessage = defaultMessage.replace(":args", ruleArgs.toString());
+    defaultMessage = defaultMessage.replace(":args", ruleArgs?.toString() || '');
   }
 
   // find and replace each arg
   for (let i = 0; i < 10; i++) {
     if (defaultMessage.indexOf(`:arg${i}`) >= 0) {
-      defaultMessage = defaultMessage.replace(`:arg${i}`, ruleArgs[i]);
+      defaultMessage = defaultMessage.replace(`:arg${i}`, ruleArgs?.[i] ?? '');
     } else {
       break;
     }

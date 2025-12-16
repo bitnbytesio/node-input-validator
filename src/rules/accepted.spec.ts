@@ -43,7 +43,7 @@ describe("rules:acceptedIf", () => {
   test("should throw", () => {
     expect(() => acceptedIf(['services'])
       .handler("true", new ValidatorMock({ services: 'true' })))
-      .toThrowError(new Error('Invalid number of arguments.'));
+      .toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {
@@ -68,7 +68,7 @@ describe("rules:acceptedNotIf", () => {
   test("should throw", () => {
     expect(() => acceptedNotIf(['services'])
       .handler("true", new ValidatorMock({ services: 'true' })))
-      .toThrowError(new Error('Invalid number of arguments.'));
+      .toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {

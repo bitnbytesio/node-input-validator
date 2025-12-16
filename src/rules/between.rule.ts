@@ -12,7 +12,7 @@ export function between(args: Array<string>): ValidationRuleContract {
     throw new Error('Invalid number of arguments.');
   }
 
-  if (!isNumeric(args[0]) || !isNumeric(args[0])) {
+  if (!isNumeric(args[0]) || !isNumeric(args[1])) {
     throw new TypeError('Seeds must be number.');
   }
 

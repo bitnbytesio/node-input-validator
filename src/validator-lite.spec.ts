@@ -35,7 +35,7 @@ describe(
           );
           // const passed: boolean = await v.validate();
           throw new Error('It should fail.');
-        }).toThrowError(new Error('Rule string does not exists.'));
+        }).toThrow(new Error('Rule string does not exists.'));
       });
 
     test(

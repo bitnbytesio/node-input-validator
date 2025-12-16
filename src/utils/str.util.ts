@@ -22,13 +22,13 @@ export function trim(string: string, char: string = " "): string {
   let str = string;
 
   if (str.charAt(0) === char) {
-    str = str.substr(1, str.length);
+    str = str.substring(1);
   }
 
   const len = str.length;
 
   if (str.charAt(len - 1) === char) {
-    str = str.substr(0, len - 1);
+    str = str.substring(0, len - 1);
   }
 
   return str.toString();

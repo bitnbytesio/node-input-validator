@@ -19,7 +19,7 @@ describe("rules:lt", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => lt([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => lt([])).toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {
@@ -45,7 +45,7 @@ describe("rules:lte", () => {
   });
 
   test("should throw exception", function (): void {
-    expect(() => lte([])).toThrowError(new Error('Invalid number of arguments.'));
+    expect(() => lte([])).toThrow(new Error('Invalid number of arguments.'));
   });
 
   test("message should exists", () => {
