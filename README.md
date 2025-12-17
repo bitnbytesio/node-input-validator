@@ -1,20 +1,13 @@
 # Validation Library
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
+[![Tests](https://github.com/bitnbytesio/node-input-validator/actions/workflows/test.yml/badge.svg)](https://github.com/bitnbytesio/node-input-validator/actions/workflows/test.yml)
 [![Known Vulnerabilities](https://snyk.io/test/npm/node-input-validator/badge.svg)](https://snyk.io/test/npm/node-input-validator)
 [![Coverage Status][codecov-img]][codecov-url]
-[![David deps][david-image]][david-url]
 [![node version][node-image]][node-url]
-
-[travis-image]: https://api.travis-ci.com/bitnbytesio/node-input-validator.svg?branch=master
-[travis-url]: https://app.travis-ci.com/bitnbytesio/node-input-validator
 
 [codecov-img]: https://codecov.io/gh/bitnbytesio/node-input-validator/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/bitnbytesio/node-input-validator
-
-[david-image]: https://david-dm.org/bitnbytesio/node-input-validator.svg?style=flat-square&branch=master
-[david-url]: https://david-dm.org/bitnbytesio/node-input-validator?branch=master
 
 [npm-image]: https://img.shields.io/npm/v/node-input-validator.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/node-input-validator
