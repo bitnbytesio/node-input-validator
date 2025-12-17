@@ -1,5 +1,5 @@
 export declare function getKeyValue(key: string): (obj: any) => any;
-export declare function namedArgs(params: Array<string>): {};
+export declare function namedArgs(params: Array<string>): Record<string, string | null>;
 export declare function getValueByStringNotation(object: any, notation: string): string;
 export declare function isIterable(object: any): boolean;
 interface NotationLoopOptions {

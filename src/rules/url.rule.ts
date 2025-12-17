@@ -23,10 +23,14 @@ export function url(args: Array<string> = ['http:', 'https:']): ValidationRuleCo
   };
 }
 
+const DEFAULT_DNS_TIMEOUT = 10000; // 10 seconds
+
 /**
  * Validates that the URL is active/resolvable by checking if the hostname exists via DNS lookup.
+ * @param args - Array of allowed protocols (default: ['http:', 'https:'])
+ * @param timeout - DNS lookup timeout in milliseconds (default: 10000)
  */
-export function activeUrl(args: Array<string> = ['http:', 'https:']): ValidationRuleContract {
+export function activeUrl(args: Array<string> = ['http:', 'https:'], timeout: number = DEFAULT_DNS_TIMEOUT): ValidationRuleContract {
   return {
     name: "activeUrl",
     handler: async (value: any): Promise<boolean> => {
@@ -46,11 +50,20 @@ export function activeUrl(args: Array<string> = ['http:', 'https:']): Validation
         return false;
       }
 
-      return new Promise((resolve) => {
+      let timeoutId: NodeJS.Timeout;
+
+      const dnsLookup = new Promise<boolean>((resolve) => {
         dns.lookup(parsedUrl.hostname, (err) => {
+          clearTimeout(timeoutId);
           resolve(!err);
         });
       });
+
+      const timeoutPromise = new Promise<boolean>((resolve) => {
+        timeoutId = setTimeout(() => resolve(false), timeout);
+      });
+
+      return Promise.race([dnsLookup, timeoutPromise]);
     },
   };
 }

@@ -99,33 +99,50 @@ describe("rules:arrayLen", () => {
 
 
 describe("rules:arrayLenRange", () => {
-  test("should pass", () => {
-    const ruleHandler = arrayLenRange(['2']).handler;
+  test("should pass with max only", () => {
+    const ruleHandler = arrayLenRange(['5']).handler;
+    expect(ruleHandler([])).toBe(true);
     expect(ruleHandler([1])).toBe(true);
+    expect(ruleHandler([1, 2, 3, 4, 5])).toBe(true);
   });
 
-  test("should pass", () => {
-    const ruleHandler = arrayLenRange(['2', '1']).handler;
-    expect(ruleHandler([2, 1])).toBe(true);
+  test("should pass with max and min", () => {
+    const ruleHandler = arrayLenRange(['5', '2']).handler;
+    expect(ruleHandler([1, 2])).toBe(true);
+    expect(ruleHandler([1, 2, 3, 4, 5])).toBe(true);
   });
 
-  test("should fail", () => {
-    const ruleHandler = arrayLenRange(['1']).handler;
-    expect(ruleHandler([1, 2])).toBe(false);
+  test("should pass with min=0 (explicit)", () => {
+    const ruleHandler = arrayLenRange(['5', '0']).handler;
+    expect(ruleHandler([])).toBe(true);
+    expect(ruleHandler([1, 2, 3])).toBe(true);
   });
 
-  test("should fail", () => {
-    const ruleHandler = arrayLenRange(['2', '1']).handler;
+  test("should fail when exceeds max", () => {
+    const ruleHandler = arrayLenRange(['2']).handler;
+    expect(ruleHandler([1, 2, 3])).toBe(false);
+  });
+
+  test("should fail when below min", () => {
+    const ruleHandler = arrayLenRange(['5', '2']).handler;
     expect(ruleHandler([])).toBe(false);
+    expect(ruleHandler([1])).toBe(false);
   });
 
-  test("should throw", () => {
+  test("should fail for non-array", () => {
+    const ruleHandler = arrayLenRange(['5']).handler;
+    expect(ruleHandler({})).toBe(false);
+    expect(ruleHandler("test")).toBe(false);
+    expect(ruleHandler(null)).toBe(false);
+  });
+
+  test("should throw with no arguments", () => {
     expect(() => arrayLenRange([])
       .handler([]))
       .toThrow(new Error('Invalid number of arguments.'));
   });
 
-  test("message should exists", () => {
+  test("message should exist", () => {
     expect(Messages.en_US.messages).toHaveProperty('arrayLenRange');
     expect(Messages.en_US.messages.arrayLenRange({ ruleArgs: ['5'] }))
       .not.toBe(Messages.en_US.messages.arrayLenRange({ ruleArgs: ['5', '1'] }))

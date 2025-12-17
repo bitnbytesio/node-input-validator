@@ -23,11 +23,16 @@ import * as MessagesProvider from './messages/provider.js';
 
 import * as config from './config.js';
 
+/**
+ * Global rule providers - intentionally shared across all Validator instances.
+ * This is the standard pattern for validation libraries (similar to Joi, Yup, etc.)
+ * to allow extending rules globally via extend() function.
+ */
 let RulesProvider: any = {};
 let PostRulesProvider: any = {};
 
 /**
- * registerRules will replace old registered rules 
+ * registerRules will replace old registered rules
  * @param rules validation rules
  */
 export function registerRules(rules: any) {
@@ -493,11 +498,10 @@ export abstract class ValidatorAbstract {
         this.errors[attrName] = [];
       }
 
-      // @ts-ignore
-      this.errors[attrName].push(error);
+      (this.errors as ValidatorErrorsContract)[attrName].push(error);
       return;
     }
-    this.errors[attrName] = error;
+    (this.errors as ValidatorErrorContract)[attrName] = error;
   }
 
   /**

@@ -36,6 +36,37 @@ describe("rules:activeUrl", () => {
     expect(await ruleHandler("https://google.com")).toBe(true);
   });
 
+  test("should timeout and return false when DNS lookup exceeds timeout", async () => {
+    // Mock dns.lookup to simulate slow DNS
+    const dns = require('dns');
+    const originalLookup = dns.lookup;
+
+    dns.lookup = (_hostname: string, callback: Function) => {
+      // Simulate slow DNS that takes 500ms
+      setTimeout(() => callback(null), 500);
+    };
+
+    try {
+      // Use 50ms timeout - DNS mock takes 500ms, so it should timeout
+      const ruleHandler = activeUrl(['http:', 'https:'], 50).handler;
+      expect(await ruleHandler("https://example.com")).toBe(false);
+    } finally {
+      dns.lookup = originalLookup;
+    }
+  });
+
+  test("should succeed with sufficient timeout", async () => {
+    // Use default timeout (10 seconds) - should succeed for valid domain
+    const ruleHandler = activeUrl(['http:', 'https:'], 10000).handler;
+    expect(await ruleHandler("https://google.com")).toBe(true);
+  });
+
+  test("should return false for URL without protocol", async () => {
+    const ruleHandler = activeUrl().handler;
+    expect(await ruleHandler("example.com")).toBe(false);
+    expect(await ruleHandler("www.google.com")).toBe(false);
+  });
+
   test("message should exist", () => {
     expect(Messages.en_US.messages).toHaveProperty('activeUrl');
   });

@@ -32,8 +32,8 @@ export function notContains(args: Array<any>): ValidationRuleContract {
 
   return {
     name: "notContains",
-    handler: (value: any) => {
-      return !containsHandler(value);
+    handler: (value: any, ...rest: any[]) => {
+      return !containsHandler(value, ...rest);
     },
   };
 }

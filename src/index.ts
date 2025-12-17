@@ -10,7 +10,7 @@ export { Validator, Rules };
 
 export { MomentAdapter, DateFnsAdapter } from './date/index.js';
 
-import { Langs, ValidationRuleContract } from './contracts.js';
+import { Langs, ValidationRuleContract, ValidationRuleStringNotationContract } from './contracts.js';
 
 import * as config from "./config.js";
 
@@ -33,15 +33,24 @@ export function addImplicitRule(ruleName: string) {
 }
 
 export function extend(ruleName: string, ruleFunc: (args?: Array<string>) => ValidationRuleContract) {
-  // @ts-ignore
   Rules[ruleName] = ruleFunc;
+}
+
+interface KoaValidatorContext {
+  request: { body: Record<string, unknown>; files: Record<string, unknown> };
+  type: string;
+  status: number;
+  body: unknown;
+  throw(status: number, body: unknown): never;
+  validationErrors(errors: unknown): { body: { message: string; errors: unknown } };
+  validate(rulesArray: unknown, inputs: unknown, useMessages?: unknown): Promise<Validator>;
+  validator(inputs: unknown, rulesArray: unknown, useMessages?: unknown): Validator;
 }
 
 /* istanbul ignore next */
 export function koa() {
-  return async (ctx: any, next: any) => {
-    // @ts-ignore
-    ctx.validationErrors = function validationErrors(errors) {
+  return async (ctx: KoaValidatorContext, next: () => Promise<void>) => {
+    ctx.validationErrors = function validationErrors(errors: unknown) {
       return {
         body: {
           message: 'The given data is invalid.',
@@ -50,11 +59,11 @@ export function koa() {
       };
     };
 
-    ctx.validate = async function validate(rulesArray: any, inputs: any, useMessages?: any) {
+    ctx.validate = async function validate(this: KoaValidatorContext, rulesArray: unknown, inputs: unknown, useMessages?: unknown) {
       const v = new Validator(
         inputs || { ...this.request.body, ...this.request.files },
-        rulesArray || {},
-        useMessages || {},
+        rulesArray as ValidationRuleStringNotationContract,
+        useMessages as Record<string, string>,
       );
 
       if (!(await v.validate())) {
@@ -64,19 +73,20 @@ export function koa() {
       return v;
     };
 
-    ctx.validator = (inputs: any, rulesArray: any, useMessages?: any) => new Validator(
+    ctx.validator = (inputs: unknown, rulesArray: unknown, useMessages?: unknown) => new Validator(
       inputs,
-      rulesArray,
-      useMessages,
+      rulesArray as ValidationRuleStringNotationContract,
+      useMessages as Record<string, string>,
     );
 
     try {
       await next();
-    } catch (err: any) {
-      if (err.status && err.status === 422) {
+    } catch (err: unknown) {
+      const error = err as { status?: number; body?: unknown };
+      if (error.status && error.status === 422) {
         ctx.type = 'json';
         ctx.status = 422;
-        ctx.body = err.body;
+        ctx.body = error.body;
         return;
       }
       throw err;

@@ -107,13 +107,17 @@ export function arrayLenRange(args: Array<string>): ValidationRuleContract {
   }
 
   const max = parseInt(args[0], 10);
-  const min = parseInt(args[1] || '0', 10);
+  const hasMin = args.length > 1;
+  const min = hasMin ? parseInt(args[1], 10) : 0;
 
   return {
     name: "arrayLenRange",
     handler: (value: any) => {
+      if (!Array.isArray(value)) {
+        return false;
+      }
       const len = value.length;
-      return (Array.isArray(value) && len <= max && (!min || len >= min));
+      return len <= max && (!hasMin || len >= min);
     },
   };
 }

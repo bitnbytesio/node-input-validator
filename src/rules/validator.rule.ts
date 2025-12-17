@@ -1,6 +1,10 @@
 /* istanbul ignore file */
 
-let validatorJs: any;
+import { ValidationRuleContract } from "../contracts.js";
+
+type ValidatorJsModule = Record<string, (...args: unknown[]) => boolean>;
+
+let validatorJs: ValidatorJsModule | null = null;
 
 try {
   validatorJs = require('validator');
@@ -8,19 +12,20 @@ try {
   /** ignore */
 }
 
-import { ValidationRuleContract } from "../contracts.js";
-
 /**
  * @since v5
- * @param args 
+ * @param args
  */
 export function validator(
   name: string,
-  args: Array<any> = [],
+  args: Array<unknown> = [],
 ): ValidationRuleContract {
-  // @ts-ignore
+  if (!validatorJs) {
+    throw new Error('validator.js is not installed. Please install it with: npm install validator');
+  }
+
   if (typeof validatorJs[name] !== 'function') {
-    throw new Error(`Rule ${name} does not exists on validator.js.`);
+    throw new Error(`Rule ${name} does not exist on validator.js.`);
   }
 
   if (Array.isArray(name)) {
@@ -31,9 +36,8 @@ export function validator(
 
   return {
     name: rulename,
-    handler: (value: any) => {
-      // @ts-ignore
-      return validatorJs[name](value + "", ...args);
+    handler: (value: unknown) => {
+      return validatorJs![name](value + "", ...args);
     },
   };
 }

@@ -13,7 +13,7 @@ export declare const messages: {
     alphaHyphen: string;
     alphaNumericDash: string;
     arrayLen: string;
-    arrayLenRange: (params: any) => "The :attr must be an array max length :arg0." | "The :attr must be an array of length between :arg1 - :arg0.";
+    arrayLenRange: (params: any) => "The :attr must be an array with maximum length of :arg0." | "The :attr must be an array of length between :arg0 and :arg1.";
     arrayLenMin: string;
     arrayLenMax: string;
     array: string;

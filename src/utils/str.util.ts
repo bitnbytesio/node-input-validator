@@ -1,5 +1,5 @@
 export function camelCaseToSentance(str: string): string {
-  return str.replace(/([A-Z]+)/g, " $1").trimLeft().toLowerCase();
+  return str.replace(/([A-Z]+)/g, " $1").trimStart().toLowerCase();
 }
 
 export function snakeCaseToSentance(str: string): string {
@@ -10,12 +10,25 @@ export function kebabCaseToSentance(str: string): string {
   return str.replace(/-/g, " ");
 }
 
+/**
+ * Escapes special regex characters to prevent ReDoS attacks.
+ * Uses native RegExp.escape if available (ES2024+), otherwise falls back to manual escaping.
+ */
+function escapeRegExp(str: string): string {
+  // @ts-ignore - RegExp.escape is ES2024+
+  if (typeof RegExp.escape === 'function') {
+    // @ts-ignore
+    return RegExp.escape(str);
+  }
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 export function replaceAll(
   str: string,
   replaceWhat: string,
   replaceWith: string,
 ): string {
-  return str.replace(new RegExp(replaceWhat, "g"), replaceWith);
+  return str.replace(new RegExp(escapeRegExp(replaceWhat), "g"), replaceWith);
 }
 
 export function trim(string: string, char: string = " "): string {

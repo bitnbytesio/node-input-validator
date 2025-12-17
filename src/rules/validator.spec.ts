@@ -9,7 +9,7 @@ describe('validator', () => {
     expect(validator('isEmail').handler('bitnbytesio')).toBe(false);
   });
 
-  test('should throw error', () => {
-    expect(() => validator('isMissingRule')).toThrow(new Error('Rule isMissingRule does not exists on validator.js.'));
+  test('should throw error for missing rule', () => {
+    expect(() => validator('isMissingRule')).toThrow(new Error('Rule isMissingRule does not exist on validator.js.'));
   });
 })

@@ -3,20 +3,19 @@ import { Langs, MessagesContract, MessagesDictContract } from "../contracts.js";
 
 export const DEFAULT_LANG: Langs = Langs.en_US;
 
-const MessagesRef = {};
+const MessagesRef: Record<string, { messages: Record<string, unknown> }> = {};
 
 export function messagesRefByLang(lang: Langs) {
   let messages = getKeyValue(lang.toString())(MessagesRef);
 
   if (typeof messages === "undefined") {
-    // @ts-ignore
     MessagesRef[lang] = { messages: {} };
 
     messages = getKeyValue(lang.toString())(MessagesRef);
   }
 
   return messages;
-};
+}
 
 export function extend(newMessages: MessagesContract | MessagesDictContract, lang: Langs = Langs.en_US) {
   const messages = messagesRefByLang(lang);
