@@ -7,8 +7,8 @@
 [![David deps][david-image]][david-url]
 [![node version][node-image]][node-url]
 
-[travis-image]: https://api.travis-ci.org/bitnbytesio/node-input-validator.svg?branch=master
-[travis-url]: https://travis-ci.org/bitnbytesio/node-input-validator?branch=master
+[travis-image]: https://api.travis-ci.com/bitnbytesio/node-input-validator.svg?branch=master
+[travis-url]: https://app.travis-ci.com/bitnbytesio/node-input-validator
 
 [codecov-img]: https://codecov.io/gh/bitnbytesio/node-input-validator/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/bitnbytesio/node-input-validator
