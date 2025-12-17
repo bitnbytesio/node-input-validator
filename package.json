@@ -20,21 +20,19 @@
     "read-chunk": "^3.2.0"
   },
   "devDependencies": {
-    "@types/babel__traverse": "7.0",
-    "@types/jest": "^27.5.2",
-    "@types/mime-types": "^2.1.1",
-    "@types/node": "16.11",
-    "@types/validator": "^13.7.10",
-    "date-fns": "^2.16.1",
-    "dayjs": "^1.10.4",
-    "eslint": "^7.18.0",
-    "jest": "^27.5.1",
-    "moment": "^2.29.1",
-    "ts-jest": "^27.1.5",
+    "@types/jest": "^29.5.14",
+    "@types/mime-types": "^2.1.4",
+    "@types/node": "^18.0.0",
+    "@types/validator": "^13.12.2",
+    "date-fns": "^2.30.0",
+    "dayjs": "^1.11.13",
+    "jest": "^29.7.0",
+    "moment": "^2.30.1",
+    "ts-jest": "^29.2.5",
     "typedoc": "^0.26.11",
     "typedoc-plugin-custom-tags": "^1.0.2",
     "typescript": "^4.9.5",
-    "validator": "^13.5.2"
+    "validator": "^13.12.0"
   },
   "engines": {
     "node": ">=18"
